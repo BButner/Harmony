@@ -1,0 +1,28 @@
+body {
+    @apply bg-primary-100;
+    font-family: Ubuntu;
+    @apply text-gray-700;
+}
+
+nav {
+    border-top: 4px solid;
+    @apply border-blue-500
+}
+
+.input-icon {
+    border-bottom: 1px solid;
+    @apply border-gray-500;
+}
+
+.input-icon input {
+    @apply text-gray-800;
+}
+
+.input-icon > i {
+    @apply text-gray-500;
+}
+
+.input-icon-active, .input-icon-active svg {
+    @apply border-blue-500;
+    @apply text-blue-500;
+}

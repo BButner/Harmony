@@ -22,14 +22,20 @@ function handleLogoutOnClick () {
         })
 }
 
+function handleAvatarOnClick () {
+    console.log('testing')
+}
+
 export default function UserCard (props: UserProps) {
     return (
         <Layout showNavBar={true} user={props.user}>
             <div className="mt-20 flex justify-center flex-wrap items-start">
                 <Card title={props.user.userName} subtitle={props.user.displayName} size={2} className="md:mr-10 mb-20 md:mb-0">
                     <div className="text-center">
-                        {props.user.avatarUrl && <img className="w-48 h-48 rounded-full mb-10 m-auto"
-                              src={`${Config.bucketUrl}${props.user.avatarUrl}.jpg`} alt="Avatar"/>}
+                        {props.user.avatarUrl && <img className="w-48 h-48 rounded-full mb-10 m-auto hover:opacity-50 animated cursor-pointer"
+                              src={`${Config.bucketUrl}${props.user.avatarUrl}.jpg`} alt="Avatar"
+                              onClick={() => handleAvatarOnClick()}
+                        />}
                         <div className="pb-5">
                             <p className="pb-2"><input type="email" className="border border-gray-500 rounded p-1" readOnly={true} placeholder={props.user.email}/></p>
                             <button className="bg-blue-500 text-white hover:bg-blue-700 rounded pt-1 pb-1 pl-5 pr-5 animated">Change Email</button>

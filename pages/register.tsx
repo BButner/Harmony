@@ -5,9 +5,9 @@ import Link from "next/link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faUser } from "@fortawesome/free-regular-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons/faLock";
-import Config from '../config/default.json'
+import LoginService from '../services/authentication/login'
+import RegisterService from '../services/authentication/register'
 import Router from 'next/router'
-import fetch from "isomorphic-unfetch";
 
 type LoginState = {
     emailActive: boolean,
@@ -144,89 +144,34 @@ export default class Login extends Component<{}, LoginState> {
         return validationErrors.length === 0
     }
 
-    async getAvatarBase64 () {
-        var promise = new Promise((resolve, reject) => {
-            if (this.state.avatar !== null) {
-                const reader = new FileReader()
-                reader.readAsDataURL(this.state.avatar)
-                reader.onload = () => resolve(reader.result)
-                reader.onerror = () => reject(reader.onerror)
-            } else {
-                resolve(null)
-            }
-        })
-
-        return promise
-    }
-
     private handleOnSubmit (e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
         if (this.validate()) {
-            this.getAvatarBase64().then(imageData => {
-                fetch(Config.apiUrl + '/register', {
-                    method: 'POST',
-                    mode: 'cors',
-                    body: JSON.stringify({
-                        userName: this.state.userName,
-                        displayName: this.state.displayName,
-                        email: this.state.email,
-                        password: this.state.password,
-                        password2: this.state.password2,
-                        avatar: imageData !== null ? imageData : ''
-                    }),
-                    headers: {
-                        'Content-Type': 'application/json'
+            RegisterService.registerUser(
+                this.state.userName,
+                this.state.displayName,
+                this.state.email,
+                this.state.password,
+                this.state.password2,
+                this.state.avatar
+            )
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        LoginService.loginUser(this.state.email, this.state.password)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    Router.push('/')
+                                } else {
+
+                                }
+                            })
+                    } else {
+
                     }
                 })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data) {
-                            if (!data.success) {
-                                this.setState({validationErrors: data.error.map(error => error.msg)})
-                            } else {
-                                fetch(Config.apiUrl + '/login', {
-                                    method: 'POST',
-                                    body: JSON.stringify({
-                                        email: this.state.email,
-                                        password: this.state.password
-                                    }),
-                                    headers: {
-                                        'Content-Type': 'application/json'
-                                    },
-                                    credentials: 'include'
-                                })
-                                    .then(response => {
-                                        console.log(response)
-                                        if (response.ok) {
-                                            return response.json()
-                                        } else {
-                                            this.setState({emailFailed: true, passwordFailed: true})
-                                            this.setState({validationErrors: ['Login failed, please check Email/Password']})
-                                            return
-                                        }
-                                    })
-                                    .then(data => {
-                                        if (data) {
-                                            Router.push('/')
-                                            console.log(data)
-                                        }
-                                    })
-                                    .catch((error) => {
-                                        console.log(error)
-                                        if (error.status === 401) {
-                                            console.log('401d')
-                                        }
-                                    })
-                                // Router.push('/login')
-                            }
-                        }
-                    })
-                    .catch((error) => {
-                        console.log('error!')
-                        console.log(error)
-                    })
-            })
         } else {
 
         }

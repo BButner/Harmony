@@ -3,11 +3,10 @@ import Layout from '../components/layout'
 import Card from '../components/card'
 import Link from "next/link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
-import { faLock } from "@fortawesome/free-solid-svg-icons/faLock";
-import Config from '../config/default.json'
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
+import { faLock } from '@fortawesome/free-solid-svg-icons/faLock'
+import LoginService from '../services/authentication/login'
 import Router from 'next/router'
-import fetch from 'isomorphic-unfetch'
 
 type LoginState = {
     emailActive: boolean,
@@ -86,38 +85,21 @@ export default class Login extends Component<{}, LoginState> {
         e.preventDefault()
 
         if (this.validate()) {
-            fetch(Config.apiUrl + '/login', {
-                method: 'POST',
-                mode: 'cors',
-                body: JSON.stringify({
-                    email: this.state.email,
-                    password: this.state.password
-                }),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'include'
-            })
+            LoginService.loginUser(
+                this.state.email,
+                this.state.password
+            )
                 .then(response => {
-                    console.log(response)
-                    if (response.ok) {
-                        return response.json()
-                    } else {
+                    if (response.ok) return response.json()
+                    else {
                         this.setState({emailFailed: true, passwordFailed: true})
-                        this.setState({validationErrors: ['Login failed, please check Email/Password']})
+                        this.setState({validationErrors: ['Login failed, please check your Email and Password']})
                         return
                     }
                 })
                 .then(data => {
-                    if (data) {
+                    if (data.success) {
                         Router.push('/')
-                        console.log(data)
-                    }
-                })
-                .catch((error) => {
-                    console.log(error)
-                    if (error.status === 401) {
-                        console.log('401d')
                     }
                 })
         }

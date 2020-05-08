@@ -3,7 +3,7 @@ import Layout from '../components/layout'
 import Card from '../components/card'
 import Link from "next/link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, faUser } from "@fortawesome/free-regular-svg-icons";
+import { faEnvelope, faUser, faIdCard } from "@fortawesome/free-regular-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons/faLock";
 import LoginService from '../services/authentication/login'
 import RegisterService from '../services/authentication/register'
@@ -55,18 +55,42 @@ export default class Login extends Component<{}, LoginState> {
     }
 
     private onFocus (id: string) {
-        if (id === 'email') {
-            this.setState({emailActive: true})
-        } else {
-            this.setState({passwordActive: true})
+        switch (id) {
+            case 'email':
+                this.setState({emailActive: true})
+                break;
+            case 'userName':
+                this.setState({userNameActive: true})
+                break;
+            case 'displayName':
+                this.setState({displayNameActive: true})
+                break;
+            case 'password':
+                this.setState({passwordActive: true})
+                break;
+            case 'password2':
+                this.setState({password2Active: true})
+                break;
         }
     }
 
     private onBlur (id: string) {
-        if (id === 'email') {
-            this.setState({emailActive: false})
-        } else {
-            this.setState({passwordActive: false})
+        switch (id) {
+            case 'email':
+                this.setState({emailActive: false})
+                break;
+            case 'userName':
+                this.setState({userNameActive: false})
+                break;
+            case 'displayName':
+                this.setState({displayNameActive: false})
+                break;
+            case 'password':
+                this.setState({passwordActive: false})
+                break;
+            case 'password2':
+                this.setState({password2Active: false})
+                break;
         }
     }
 
@@ -169,25 +193,23 @@ export default class Login extends Component<{}, LoginState> {
                                 }
                             })
                     } else {
-
+                        this.setState({validationErrors: data.error.map(err => err.msg)})
                     }
                 })
-        } else {
-
         }
     }
 
     public render (): JSX.Element {
         return (
             <Layout showNavBar={false} user={null}>
-                <div className="flex h-screen w-screen justify-center">
+                <div className="flex w-full justify-center">
                     <div className="m-auto w-full align-middle lg:relative md:w-2/5 lg:w-1/4">
                         <Card title={'Register'} size={3}>
                             <form onSubmit={e => this.handleOnSubmit(e)} id="register-form">
                                 <label htmlFor="displayName" className="text-xs">NAME</label><br/>
                                 <div className={`input-icon flex ${(this.state.displayNameActive || this.state.displayName.length > 0) && !this.state.displayNameFailed ? 'input-icon-active' : ''} ${this.state.displayNameFailed ? 'border-red-600' : ''} mb-10 animated`}>
                                     <div className={`text-gray-500 m-auto pr-2 pl-2 animated ${this.state.displayNameFailed ? 'text-red-600' : ''}`}>
-                                        <FontAwesomeIcon aria-hidden="false" icon={faUser}/>
+                                        <FontAwesomeIcon aria-hidden="false" icon={faIdCard}/>
                                     </div>
                                     <input
                                         type="text"

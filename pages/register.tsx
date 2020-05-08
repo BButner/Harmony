@@ -184,7 +184,7 @@ export default class Login extends Component<{}, LoginState> {
                             if (!data.success) {
                                 this.setState({validationErrors: data.error.map(error => error.msg)})
                             } else {
-                                Router.push('/')
+                                Router.push('/login')
                             }
                         }
                     })
@@ -308,7 +308,7 @@ export default class Login extends Component<{}, LoginState> {
 
                                 <button
                                     type="submit"
-                                    className="bg-blue-500 bg-blue-500 hover:bg-blue-600 text-white w-full p-1 rounded-md cursor-pointer animated"
+                                    className="bg-blue-500 bg-blue-500 hover:bg-blue-700 text-white w-full p-1 rounded-md cursor-pointer animated"
                                 >Register</button>
                             </form>
                             <div className="text-sm text-center pt-20 text-gray-500">

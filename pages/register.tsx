@@ -7,6 +7,7 @@ import { faEnvelope, faUser } from "@fortawesome/free-regular-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons/faLock";
 import Config from '../config/default.json'
 import Router from 'next/router'
+import fetch from "isomorphic-unfetch";
 
 type LoginState = {
     emailActive: boolean,
@@ -184,7 +185,40 @@ export default class Login extends Component<{}, LoginState> {
                             if (!data.success) {
                                 this.setState({validationErrors: data.error.map(error => error.msg)})
                             } else {
-                                Router.push('/login')
+                                fetch(Config.apiUrl + '/login', {
+                                    method: 'POST',
+                                    body: JSON.stringify({
+                                        email: this.state.email,
+                                        password: this.state.password
+                                    }),
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    credentials: 'include'
+                                })
+                                    .then(response => {
+                                        console.log(response)
+                                        if (response.ok) {
+                                            return response.json()
+                                        } else {
+                                            this.setState({emailFailed: true, passwordFailed: true})
+                                            this.setState({validationErrors: ['Login failed, please check Email/Password']})
+                                            return
+                                        }
+                                    })
+                                    .then(data => {
+                                        if (data) {
+                                            Router.push('/')
+                                            console.log(data)
+                                        }
+                                    })
+                                    .catch((error) => {
+                                        console.log(error)
+                                        if (error.status === 401) {
+                                            console.log('401d')
+                                        }
+                                    })
+                                // Router.push('/login')
                             }
                         }
                     })

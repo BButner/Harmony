@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Header from './header'
 import Meta from './meta'
 import { User } from '../models/User'
@@ -13,7 +13,7 @@ type LayoutState = {
     test: number
 }
 
-export default class Layout extends React.Component<LayoutProps, LayoutState> {
+export default class Layout extends Component<LayoutProps, LayoutState> {
     constructor (props) {
         super(props)
         this.state = {

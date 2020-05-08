@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 type CardProps = {
     children: any,
@@ -8,7 +8,7 @@ type CardProps = {
     className?: string
 }
 
-export default class Header extends React.Component<CardProps, {}> {
+export default class Card extends Component<CardProps, {}> {
     private getCardSizeClasses (size: Number): string {
         switch (size) {
             case 1:

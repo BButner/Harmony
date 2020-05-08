@@ -5,7 +5,7 @@ import { User } from '../models/User'
 import Card from '../components/card'
 import Router from 'next/router'
 
-type UserProps  = {
+type UserProps = {
     user: User
 }
 

@@ -202,8 +202,8 @@ export default class Login extends Component<{}, LoginState> {
     public render (): JSX.Element {
         return (
             <Layout showNavBar={false} user={null}>
-                <div className="flex w-full justify-center">
-                    <div className="m-auto w-full align-middle lg:relative md:w-2/5 lg:w-1/4">
+                <div className="flex w-full h-screen justify-center">
+                    <div className="m-auto w-full align-middle m-auto lg:relative md:w-2/5 lg:w-1/4">
                         <Card title={'Register'} size={3}>
                             <form onSubmit={e => this.handleOnSubmit(e)} id="register-form">
                                 <label htmlFor="displayName" className="text-xs">NAME</label><br/>

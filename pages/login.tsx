@@ -99,6 +99,7 @@ export default class Login extends Component<{}, LoginState> {
                 })
                 .then(data => {
                     if (data && data.success) {
+                        console.log(data)
                         Router.push('/')
                     }
                 })

@@ -1,5 +1,5 @@
 {
-  "name": "harmony",
+  "name": "harmony2",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,16 +13,16 @@
     "@fortawesome/free-regular-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
-    "@fullhuman/postcss-purgecss": "^2.1.2",
+    "@fullhuman/postcss-purgecss": "^2.2.0",
     "isomorphic-unfetch": "^3.0.0",
     "next": "9.3.6",
     "postcss-preset-env": "^6.7.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "tailwindcss": "^1.4.4"
+    "tailwindcss": "^1.4.6"
   },
   "devDependencies": {
-    "@types/node": "^13.13.4",
+    "@types/node": "^13.13.5",
     "@types/react": "^16.9.34",
     "typescript": "^3.8.3"
   }

@@ -53,7 +53,7 @@ export default class UserCard extends Component<UserProps, UserState> {
   public render(): JSX.Element {
     return (
       <Layout showNavBar={true} user={this.props.user}>
-        <div className="mt-20 flex justify-center flex-wrap items-start">
+        <div className="flex justify-center flex-wrap items-start">
           <Card title={this.props.user.userName} subtitle={this.props.user.displayName} size={2} className="md:mr-10 mb-20 md:mb-0">
             <div className="text-center">
               {this.props.user.avatarUrl && <img className="w-48 h-48 rounded-full mb-10 m-auto hover:opacity-50 animated cursor-pointer"

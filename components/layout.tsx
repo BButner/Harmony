@@ -24,9 +24,9 @@ export default class Layout extends Component<LayoutProps, LayoutState> {
   public render(): JSX.Element {
     return (
       <>
-        {this.props.showNavBar && <Header links={['Spotify']} user={this.props.user} />}
         <Meta />
-        <div className="bg-purple-500">
+        {this.props.showNavBar && <Header links={['Spotify']} user={this.props.user} />}
+        <div className="mt-32">
           {this.props.children}
         </div>
       </>

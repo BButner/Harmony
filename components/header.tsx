@@ -39,7 +39,7 @@ export default class Header extends Component<HeaderProps, HeaderState> {
 
   public render(): JSX.Element {
     return (
-      <nav className="flex items-center justify-between flex-wrap p-6 z-50 bg-white w-screen softer-shadow">
+      <nav className="flex items-center justify-between flex-wrap p-6 z-50 bg-white softer-shadow w-screen fixed top-0 left-0">
         <div className="flex items-center flex-shrink-0 text-lg">
           <Link href="/"><a>harmony</a></Link>
         </div>

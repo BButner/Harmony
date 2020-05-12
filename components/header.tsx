@@ -39,12 +39,12 @@ export default class Header extends Component<HeaderProps, HeaderState> {
 
   public render(): JSX.Element {
     return (
-      <nav className="flex items-center justify-between flex-wrap p-6 z-50 bg-white softer-shadow w-screen fixed top-0 left-0">
+      <nav className="flex items-center justify-between flex-wrap p-6 z-50 bg-white w-screen fixed top-0 left-0">
         <div className="flex items-center flex-shrink-0 text-lg">
           <Link href="/"><a>harmony</a></Link>
         </div>
         <div className="block md:hidden">
-          <button className="flex items-center px-3 py-2 border rounded border-gray-600 text-gray-600" onClick={() => this.handleToggleNavOnClick()}>
+          <button className="flex items-center px-3 py-2 border rounded border-bluegrey-600 text-bluegrey-600 hover:bg-white" onClick={() => this.handleToggleNavOnClick()}>
             <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" /></svg>
           </button>
         </div>
@@ -55,8 +55,8 @@ export default class Header extends Component<HeaderProps, HeaderState> {
                 className="block mt-4 md:inline-block md:mt-0 hover:text-gray-500 md:mr-4 animated">{link}</a></Link>
             })}
           </div>
-          <Link href={this.props.user === null ? '/login' : '/user'}>
-            <a className="inline-block text-sm px-4 py-2 leading-none rounded text-blue-500 border border-blue-500 bg-white hover:border-transparent hover:text-white hover:bg-blue-600 mt-4 md:mt-0 animated">
+          <Link href={this.props.user === null ? '/login' : `/user/${this.props.user.userName}`}>
+            <a className="inline-block text-sm px-4 py-2 leading-none rounded text-purple-500 border border-purple-500 bg-white hover:border-transparent hover:text-white hover:bg-purple-600 mt-4 md:mt-0 animated">
               {this.props.user === null ? 'Login/Register' : this.props.user.userName}
             </a>
           </Link>

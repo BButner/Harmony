@@ -28,9 +28,12 @@ export default class Index extends Component<IndexProps, {}> {
 }
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
+  console.log('testing')
   const response = await fetch(Config.apiUrl + '/user', {
+    method: 'POST',
     credentials: 'include',
-    headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
+    headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined,
+    body: JSON.stringify({userName: null})
   })
   const json = await response.json()
   return { props: { user: json.user } }

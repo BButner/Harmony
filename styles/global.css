@@ -1,12 +1,12 @@
 body {
-    @apply bg-primary-100;
+    @apply bg-bluegrey-100;
     font-family: Ubuntu;
     @apply text-gray-700;
 }
 
 nav {
     border-top: 4px solid;
-    @apply border-blue-500
+    @apply border-purple-600;
 }
 
 .input-icon {
@@ -23,6 +23,18 @@ nav {
 }
 
 .input-icon-active, .input-icon-active svg {
-    @apply border-blue-500;
-    @apply text-blue-500;
+    @apply border-purple-600;
+    @apply text-purple-600;
+}
+
+button, button[type="submit"], input[type="submit"], .button {
+    @apply bg-purple-500;
+    @apply pt-1;
+    @apply pb-1;
+    @apply pr-5;
+    @apply pl-5;
+}
+
+button:hover, button[type="submit"]:hover, input[type="submit"]:hover {
+    @apply bg-purple-700;
 }

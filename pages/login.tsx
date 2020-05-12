@@ -109,9 +109,10 @@ export default class Login extends Component<{}, LoginState> {
   public render(): JSX.Element {
     return (
       <Layout showNavBar={false} user={null}>
-        <div className="flex h-screen w-screen justify-center">
-          <div className="m-auto w-full align-middle lg:relative md:w-2/5 lg:w-1/4">
-            <Card title={'Login'} size={3}>
+        <div className="flex justify-center h-screen">
+          <div className="m-auto w-full align-middle md:w-2/5 lg:w-1/4">
+            <Card className="fixed bottom-0 w-full md:relative">
+              <p className="text-2xl text-center mb-10">Login</p>
               <form onSubmit={e => this.handleOnSubmit(e)}>
                 <label htmlFor="email" className="text-xs">EMAIL</label><br />
                 <div className={`input-icon flex ${(this.state.emailActive || this.state.email.length > 0) && !this.state.emailFailed ? 'input-icon-active' : ''} ${this.state.emailFailed ? 'border-red-600' : ''} mb-10 animated`}>
@@ -154,12 +155,12 @@ export default class Login extends Component<{}, LoginState> {
 
                 <button
                   type="submit"
-                  className="bg-blue-500 hover:bg-blue-700 text-white w-full p-1 rounded-md cursor-pointer animated"
+                  className="text-white w-full p-1 rounded-md cursor-pointer animated"
                 >Login</button>
               </form>
               <div className="text-sm text-center pt-20 text-gray-500">
-                <p>Don't have an account yet? <Link href="/register"><a className="text-blue-500">Create an account.</a></Link></p>
-                <p><Link href="/"><a className="text-blue-500">Return to homepage.</a></Link></p>
+                <p>Don't have an account yet? <Link href="/register"><a className="text-purple-500">Create an account.</a></Link></p>
+                <p><Link href="/"><a className="text-purple-500">Return to homepage.</a></Link></p>
               </div>
             </Card>
           </div>

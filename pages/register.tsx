@@ -313,8 +313,8 @@ export default class Login extends Component<{}, LoginState> {
                 >Register</button>
               </form>
               <div className="text-sm text-center pt-20 text-gray-500">
-                <p>Already have an account? <Link href="/login"><a className="text-blue-500">Login instead.</a></Link></p>
-                <p><Link href="/"><a className="text-blue-500">Return to homepage.</a></Link></p>
+                <p>Already have an account? <Link href="/login"><a className="text-purple-500">Login instead.</a></Link></p>
+                <p><Link href="/"><a className="text-purple-500">Return to homepage.</a></Link></p>
               </div>
             </Card>
           </div>

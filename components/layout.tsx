@@ -26,7 +26,7 @@ export default class Layout extends Component<LayoutProps, LayoutState> {
       <>
         <Meta />
         {this.props.showNavBar && <Header links={['Spotify']} user={this.props.user} />}
-        <div className="mt-32">
+        <div>
           {this.props.children}
         </div>
       </>

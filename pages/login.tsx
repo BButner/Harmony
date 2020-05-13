@@ -9,13 +9,13 @@ import LoginService from '../services/authentication/login'
 import Router from 'next/router'
 
 type LoginState = {
-  emailActive: boolean,
-  passwordActive: boolean,
-  email: string,
-  password: string,
-  emailFailed: boolean,
-  passwordFailed: boolean,
-  validationErrors: string[]
+  emailActive: boolean;
+  passwordActive: boolean;
+  email: string;
+  password: string;
+  emailFailed: boolean;
+  passwordFailed: boolean;
+  validationErrors: string[];
 }
 
 export default class Login extends Component<{}, LoginState> {
@@ -33,7 +33,7 @@ export default class Login extends Component<{}, LoginState> {
     }
   }
 
-  private onFocus (id: string) {
+  private onFocus (id: string): void {
     if (id === 'email') {
       this.setState({ emailActive: true })
     } else {
@@ -41,7 +41,7 @@ export default class Login extends Component<{}, LoginState> {
     }
   }
 
-  private onBlur (id: string) {
+  private onBlur (id: string): void {
     if (id === 'email') {
       this.setState({ emailActive: false })
     } else {
@@ -49,21 +49,21 @@ export default class Login extends Component<{}, LoginState> {
     }
   }
 
-  private handleEmailChange (email: string) {
+  private handleEmailChange (email: string): void {
     this.setState({ email: email })
     if (email.length > 0 && this.state.emailFailed) {
       this.setState({ emailFailed: false })
     }
   }
 
-  private handlePasswordChange (password: string) {
+  private handlePasswordChange (password: string): void {
     this.setState({ password: password })
     if (password.length > 0 && this.state.passwordFailed) {
       this.setState({ passwordFailed: false })
     }
   }
 
-  private validate () {
+  private validate (): boolean {
     this.setState({ validationErrors: [] })
     const validationErrors = []
 
@@ -81,7 +81,7 @@ export default class Login extends Component<{}, LoginState> {
     return validationErrors.length === 0
   }
 
-  private handleOnSubmit (e: React.FormEvent<HTMLFormElement>) {
+  private handleOnSubmit (e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault()
 
     if (this.validate()) {
@@ -111,7 +111,7 @@ export default class Login extends Component<{}, LoginState> {
         <div className="flex justify-center h-screen">
           <div className="m-auto w-full align-middle md:w-2/5 lg:w-1/4">
             <Card className="fixed bottom-0 w-full md:relative" title="Login">
-              <form onSubmit={e => this.handleOnSubmit(e)}>
+              <form onSubmit={(e): void => this.handleOnSubmit(e)}>
                 <label htmlFor="email" className="text-xs">EMAIL</label><br />
                 <div className={`input-icon flex ${(this.state.emailActive || this.state.email.length > 0) && !this.state.emailFailed ? 'input-icon-active' : ''} ${this.state.emailFailed ? 'border-red-600' : ''} mb-10 animated`}>
                   <div className={`text-gray-500 m-auto pr-2 pl-2 animated ${this.state.emailFailed ? 'text-red-600' : ''}`}>
@@ -122,9 +122,9 @@ export default class Login extends Component<{}, LoginState> {
                     id="email"
                     placeholder="Enter your email address"
                     className="flex-grow bg-transparent pt-2 pb-2"
-                    onFocus={e => this.onFocus(e.target.id)}
-                    onBlur={e => this.onBlur(e.target.id)}
-                    onChange={e => this.handleEmailChange(e.target.value)}
+                    onFocus={(e): void => this.onFocus(e.target.id)}
+                    onBlur={(e): void => this.onBlur(e.target.id)}
+                    onChange={(e): void => this.handleEmailChange(e.target.value)}
                     value={this.state.email}
                   />
                 </div>
@@ -139,9 +139,9 @@ export default class Login extends Component<{}, LoginState> {
                     id="password"
                     placeholder="Enter your password"
                     className="flex-grow bg-transparent pt-2 pb-2"
-                    onFocus={e => this.onFocus(e.target.id)}
-                    onBlur={e => this.onBlur(e.target.id)}
-                    onChange={e => this.handlePasswordChange(e.target.value)}
+                    onFocus={(e): void => this.onFocus(e.target.id)}
+                    onBlur={(e): void => this.onBlur(e.target.id)}
+                    onChange={(e): void => this.handlePasswordChange(e.target.value)}
                     value={this.state.password}
                   />
                 </div>

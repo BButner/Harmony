@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 
 type CardProps = {
-  children: any,
-  className?: string,
-  title?: string
+  children: any;
+  className?: string;
+  title?: string;
 }
 
 export default class Card extends Component<CardProps, {}> {
-  private getCardSizeClasses (size: Number): string {
+  private getCardSizeClasses (size: number): string {
     switch (size) {
       case 1:
         return 'pt-2 pb-5'

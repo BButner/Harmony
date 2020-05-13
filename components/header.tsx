@@ -3,12 +3,12 @@ import Link from 'next/link'
 import { User } from '../models/User'
 
 type HeaderProps = {
-  links: string[],
-  user: User
+  links: string[];
+  user: User;
 }
 
 type HeaderState = {
-  navVisible: boolean
+  navVisible: boolean;
 }
 
 export default class Header extends Component<HeaderProps, HeaderState> {
@@ -19,16 +19,16 @@ export default class Header extends Component<HeaderProps, HeaderState> {
     }
   }
 
-  private handleWindowResize () {
+  private handleWindowResize (): void {
     if (window.innerWidth <= 640) this.setState({ navVisible: false })
     else this.setState({ navVisible: true })
   }
 
-  private handleToggleNavOnClick () {
+  private handleToggleNavOnClick (): void {
     this.setState({ navVisible: !this.state.navVisible })
   }
 
-  componentDidMount () {
+  componentDidMount (): void {
     window.addEventListener('resize', () => this.handleWindowResize())
     if (window.innerWidth >= 768) {
       this.setState({ navVisible: true })
@@ -43,7 +43,7 @@ export default class Header extends Component<HeaderProps, HeaderState> {
             <Link href="/"><a>harmony</a></Link>
           </div>
           <div className="block md:hidden">
-            <button className="flex items-center px-3 py-2 border rounded border-bluegrey-600 text-bluegrey-600 hover:bg-white" onClick={() => this.handleToggleNavOnClick()}>
+            <button className="flex items-center px-3 py-2 border rounded border-bluegrey-600 text-bluegrey-600 hover:bg-white" onClick={(): void => this.handleToggleNavOnClick()}>
               <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" /></svg>
             </button>
           </div>

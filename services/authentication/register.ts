@@ -27,13 +27,13 @@ export default class RegisterService {
     return promise
   }
 
-  private static async getAvatarBase64 (avatar: File) {
-    var promise = new Promise((resolve, reject) => {
+  private static async getAvatarBase64 (avatar: File): Promise<string> {
+    const promise: Promise<string> = new Promise((resolve, reject) => {
       if (avatar !== null) {
         const reader = new FileReader()
         reader.readAsDataURL(avatar)
-        reader.onload = () => resolve(reader.result)
-        reader.onerror = () => reject(reader.onerror)
+        reader.onload = (): void => resolve(String(reader.result))
+        reader.onerror = (): void => reject(reader.onerror)
       } else {
         resolve(null)
       }

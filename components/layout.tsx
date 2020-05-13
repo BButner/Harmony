@@ -4,17 +4,17 @@ import Meta from './meta'
 import { User } from '../models/User'
 
 type LayoutProps = {
-  showNavBar: boolean,
-  children: any,
-  user: User,
-  navbarTitle?: string,
-  navbarSubtitle?: string,
-  title?: string,
-  subtitle?: string
+  showNavBar: boolean;
+  children: any;
+  user: User;
+  navbarTitle?: string;
+  navbarSubtitle?: string;
+  title?: string;
+  subtitle?: string;
 }
 
 type LayoutState = {
-  showNavBarSub: boolean
+  showNavBarSub: boolean;
 }
 
 export default class Layout extends Component<LayoutProps, LayoutState> {
@@ -25,7 +25,7 @@ export default class Layout extends Component<LayoutProps, LayoutState> {
     }
   }
 
-  private handleScroll () {
+  private handleScroll (): void {
     if (window.scrollY > 10 && this.state.showNavBarSub) {
       this.setState({ showNavBarSub: false })
     } else if (window.scrollY <= 10) {
@@ -33,7 +33,7 @@ export default class Layout extends Component<LayoutProps, LayoutState> {
     }
   }
 
-  componentDidMount () {
+  componentDidMount (): void {
     window.addEventListener('scroll', () => this.handleScroll())
   }
 

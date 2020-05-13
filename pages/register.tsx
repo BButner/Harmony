@@ -10,23 +10,23 @@ import RegisterService from '../services/authentication/register'
 import Router from 'next/router'
 
 type LoginState = {
-  emailActive: boolean,
-  passwordActive: boolean,
-  email: string,
-  password: string,
-  emailFailed: boolean,
-  passwordFailed: boolean,
-  displayName: string,
-  displayNameActive: boolean,
-  displayNameFailed: boolean,
-  userName: string,
-  userNameActive: boolean,
-  userNameFailed: boolean
-  password2: string,
-  password2Active: boolean,
-  password2Failed: boolean,
-  avatar: File,
-  validationErrors: string[]
+  emailActive: boolean;
+  passwordActive: boolean;
+  email: string;
+  password: string;
+  emailFailed: boolean;
+  passwordFailed: boolean;
+  displayName: string;
+  displayNameActive: boolean;
+  displayNameFailed: boolean;
+  userName: string;
+  userNameActive: boolean;
+  userNameFailed: boolean;
+  password2: string;
+  password2Active: boolean;
+  password2Failed: boolean;
+  avatar: File;
+  validationErrors: string[];
 }
 
 export default class Login extends Component<{}, LoginState> {
@@ -54,7 +54,7 @@ export default class Login extends Component<{}, LoginState> {
     }
   }
 
-  private onFocus (id: string) {
+  private onFocus (id: string): void {
     switch (id) {
       case 'email':
         this.setState({ emailActive: true })
@@ -74,7 +74,7 @@ export default class Login extends Component<{}, LoginState> {
     }
   }
 
-  private onBlur (id: string) {
+  private onBlur (id: string): void {
     switch (id) {
       case 'email':
         this.setState({ emailActive: false })
@@ -94,47 +94,47 @@ export default class Login extends Component<{}, LoginState> {
     }
   }
 
-  private handleDisplayNameChanged (name: string) {
+  private handleDisplayNameChanged (name: string): void {
     this.setState({ displayName: name })
     if (name.length > 0 && this.state.displayNameFailed) {
       this.setState({ displayNameFailed: false })
     }
   }
 
-  private handleUserNameChanged (name: string) {
+  private handleUserNameChanged (name: string): void {
     this.setState({ userName: name })
     if (name.length > 0 && this.state.userNameFailed) {
       this.setState({ userNameFailed: false })
     }
   }
 
-  private handleAvatarChange (file: File) {
+  private handleAvatarChange (file: File): void {
     this.setState({ avatar: file })
     console.log(file)
   }
 
-  private handlePassword2Change (password2: string) {
+  private handlePassword2Change (password2: string): void {
     this.setState({ password2: password2 })
     if (password2.length > 0 && this.state.password2Failed) {
       this.setState({ password2Failed: false })
     }
   }
 
-  private handleEmailChange (email: string) {
+  private handleEmailChange (email: string): void {
     this.setState({ email: email })
     if (email.length > 0 && this.state.emailFailed) {
       this.setState({ emailFailed: false })
     }
   }
 
-  private handlePasswordChange (password: string) {
+  private handlePasswordChange (password: string): void {
     this.setState({ password: password })
     if (password.length > 0 && this.state.passwordFailed) {
       this.setState({ passwordFailed: false })
     }
   }
 
-  private validate () {
+  private validate (): boolean {
     this.setState({ validationErrors: [] })
     const validationErrors = []
 
@@ -168,7 +168,7 @@ export default class Login extends Component<{}, LoginState> {
     return validationErrors.length === 0
   }
 
-  private handleOnSubmit (e: React.FormEvent<HTMLFormElement>) {
+  private handleOnSubmit (e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault()
 
     if (this.validate()) {
@@ -205,7 +205,7 @@ export default class Login extends Component<{}, LoginState> {
         <div className="flex w-full h-screen justify-center">
           <div className="m-auto w-full align-middle m-auto lg:relative md:w-2/5 lg:w-1/4">
             <Card title="Register">
-              <form onSubmit={e => this.handleOnSubmit(e)} id="register-form">
+              <form onSubmit={(e): void => this.handleOnSubmit(e)} id="register-form">
                 <label htmlFor="displayName" className="text-xs">NAME</label><br />
                 <div className={`input-icon flex ${(this.state.displayNameActive || this.state.displayName.length > 0) && !this.state.displayNameFailed ? 'input-icon-active' : ''} ${this.state.displayNameFailed ? 'border-red-600' : ''} mb-10 animated`}>
                   <div className={`text-gray-500 m-auto pr-2 pl-2 animated ${this.state.displayNameFailed ? 'text-red-600' : ''}`}>
@@ -216,9 +216,9 @@ export default class Login extends Component<{}, LoginState> {
                     id="displayName"
                     placeholder="Enter your name"
                     className="flex-grow bg-transparent pt-2 pb-2"
-                    onFocus={e => this.onFocus(e.target.id)}
-                    onBlur={e => this.onBlur(e.target.id)}
-                    onChange={e => this.handleDisplayNameChanged(e.target.value)}
+                    onFocus={(e): void => this.onFocus(e.target.id)}
+                    onBlur={(e): void => this.onBlur(e.target.id)}
+                    onChange={(e): void => this.handleDisplayNameChanged(e.target.value)}
                     value={this.state.displayName}
                   />
                 </div>
@@ -233,9 +233,9 @@ export default class Login extends Component<{}, LoginState> {
                     id="userName"
                     placeholder="Enter your username"
                     className="flex-grow bg-transparent pt-2 pb-2"
-                    onFocus={e => this.onFocus(e.target.id)}
-                    onBlur={e => this.onBlur(e.target.id)}
-                    onChange={e => this.handleUserNameChanged(e.target.value)}
+                    onFocus={(e): void => this.onFocus(e.target.id)}
+                    onBlur={(e): void => this.onBlur(e.target.id)}
+                    onChange={(e): void => this.handleUserNameChanged(e.target.value)}
                     value={this.state.userName}
                   />
                 </div>
@@ -247,7 +247,7 @@ export default class Login extends Component<{}, LoginState> {
                     id="avatar"
                     placeholder="Enter your username"
                     className="flex-grow bg-transparent pt-2 pb-2"
-                    onChange={e => this.handleAvatarChange(e.target.files[0])}
+                    onChange={(e): void => this.handleAvatarChange(e.target.files[0])}
                   />
                 </div>
 
@@ -261,9 +261,9 @@ export default class Login extends Component<{}, LoginState> {
                     id="email"
                     placeholder="Enter your email address"
                     className="flex-grow bg-transparent pt-2 pb-2"
-                    onFocus={e => this.onFocus(e.target.id)}
-                    onBlur={e => this.onBlur(e.target.id)}
-                    onChange={e => this.handleEmailChange(e.target.value)}
+                    onFocus={(e): void => this.onFocus(e.target.id)}
+                    onBlur={(e): void => this.onBlur(e.target.id)}
+                    onChange={(e): void => this.handleEmailChange(e.target.value)}
                     value={this.state.email}
                   />
                 </div>
@@ -278,9 +278,9 @@ export default class Login extends Component<{}, LoginState> {
                     id="password"
                     placeholder="Enter your password"
                     className="flex-grow bg-transparent pt-2 pb-2"
-                    onFocus={e => this.onFocus(e.target.id)}
-                    onBlur={e => this.onBlur(e.target.id)}
-                    onChange={e => this.handlePasswordChange(e.target.value)}
+                    onFocus={(e): void => this.onFocus(e.target.id)}
+                    onBlur={(e): void => this.onBlur(e.target.id)}
+                    onChange={(e): void => this.handlePasswordChange(e.target.value)}
                     value={this.state.password}
                   />
                 </div>
@@ -295,9 +295,9 @@ export default class Login extends Component<{}, LoginState> {
                     id="password2"
                     placeholder="Enter your password again"
                     className="flex-grow bg-transparent pt-2 pb-2"
-                    onFocus={e => this.onFocus(e.target.id)}
-                    onBlur={e => this.onBlur(e.target.id)}
-                    onChange={e => this.handlePassword2Change(e.target.value)}
+                    onFocus={(e): void => this.onFocus(e.target.id)}
+                    onBlur={(e): void => this.onBlur(e.target.id)}
+                    onChange={(e): void => this.handlePassword2Change(e.target.value)}
                     value={this.state.password2}
                   />
                 </div>

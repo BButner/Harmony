@@ -9,12 +9,12 @@ import Confirmation from '../../components/popups/confirmation'
 import { GetServerSideProps } from 'next'
 
 type UserProps = {
-  user: User,
-  self: User
+  user: User;
+  self: User;
 }
 
 type UserState = {
-  showLogoutConfirmation: boolean
+  showLogoutConfirmation: boolean;
 }
 
 export default class UserCard extends Component<UserProps, UserState> {
@@ -25,15 +25,15 @@ export default class UserCard extends Component<UserProps, UserState> {
     }
   }
 
-  private handleAvatarOnClick () {
+  private handleAvatarOnClick (): void {
     console.log('testing')
   }
 
-  private handleLogoutOnClick () {
+  private handleLogoutOnClick (): void {
     this.setState({ showLogoutConfirmation: true })
   }
 
-  handleLogoutConfirmationChange = e => {
+  handleLogoutConfirmationChange = (e): void => {
     if (e) {
       fetch(Config.apiUrl + '/logout', {
         credentials: 'include'
@@ -67,7 +67,7 @@ export default class UserCard extends Component<UserProps, UserState> {
             </div>
             <div className="m-auto md:m-0 md:ml-10 text-center mt-5 md:mt-0">
               <button className="m-auto bg-teal-500 block text-white rounded button hover:bg-teal-700 animated mb-2">Change Email</button>
-              <button onClick={() => this.handleLogoutOnClick()} className="m-auto md:m-0 bg-red-500 text-white rounded hover:bg-red-700 button animated">Logout</button>
+              <button onClick={(): void => this.handleLogoutOnClick()} className="m-auto md:m-0 bg-red-500 text-white rounded hover:bg-red-700 button animated">Logout</button>
             </div>
           </Card>
 

@@ -5,7 +5,9 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "standard"
+        "standard",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -24,6 +26,7 @@
         "@typescript-eslint"
     ],
     "rules": {
-      "no-useless-constructor": "off"
+      "no-useless-constructor": "off",
+      "@typescript-eslint/no-explicit-any": "off"
     }
 }

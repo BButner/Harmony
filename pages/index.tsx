@@ -6,7 +6,7 @@ import { User } from '../models/User'
 import { GetServerSideProps } from 'next'
 
 type IndexProps = {
-  user: User
+  user: User;
 }
 
 export default class Index extends Component<IndexProps, {}> {

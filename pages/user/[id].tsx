@@ -53,9 +53,9 @@ export default class UserCard extends Component<UserProps, UserState> {
 
   public render(): JSX.Element {
     return (
-      <Layout showNavBar={true} user={this.props.self}>
-        <div className="flex justify-center flex-wrap items-start mt-32">
-          <Card className="text-center md:flex md:items-center md:mr-10">
+      <Layout showNavBar={true} user={this.props.self} title="User Information" subtitle="View your profile, change your settings, etc.">
+        <div className="flex justify-center flex-wrap items-start">
+          <Card className="text-center md:flex md:items-center md:text-left">
             {this.props.user.avatarUrl && <img
               className="w-32 h-32 rounded-full m-auto mb-10 md:m-0"
               src={`${Config.bucketUrl}${this.props.user.avatarUrl}.jpg`}>

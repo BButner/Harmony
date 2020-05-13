@@ -5,8 +5,14 @@ body {
 }
 
 nav {
-    border-top: 4px solid;
+    border-top: 6px solid;
     @apply border-purple-600;
+}
+
+@media (min-width: 768px) {
+    .nav-link:not(:last-of-type) {
+        @apply mr-4;
+    }
 }
 
 .input-icon {

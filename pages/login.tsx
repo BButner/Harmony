@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import Layout from '../components/layout'
 import Card from '../components/card'
 import Link from 'next/link'
@@ -7,163 +7,158 @@ import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
 import { faLock } from '@fortawesome/free-solid-svg-icons/faLock'
 import LoginService from '../services/authentication/login'
 import Router from 'next/router'
+import { stringify } from 'querystring'
 
-type LoginState = {
-  emailActive: boolean;
-  passwordActive: boolean;
-  email: string;
-  password: string;
-  emailFailed: boolean;
-  passwordFailed: boolean;
-  validationErrors: string[];
+interface ActiveFields {
+  email: boolean;
+  password: boolean;
 }
 
-export default class Login extends Component<{}, LoginState> {
-  constructor (props) {
-    super(props)
+interface LoginFields {
+  email: string;
+  password: string;
+}
 
-    this.state = {
-      emailActive: false,
-      passwordActive: false,
-      email: '',
-      password: '',
-      emailFailed: false,
-      passwordFailed: false,
-      validationErrors: []
+interface InvalidatedFields {
+  email: boolean;
+  password: boolean;
+}
+
+const Login: React.FunctionComponent = () => {
+  const [validationErrors, setValidationErrors] = useState<string[]>([])
+
+  const [activeFields, setActiveFields] = useState<ActiveFields>({
+    email: false,
+    password: false
+  })
+
+  const [fields, setFields] = useState<LoginFields>({
+    email: '',
+    password: ''
+  })
+
+  const [invalidatedFields, setInvalidatedFields] = useState<InvalidatedFields>({
+    email: false,
+    password: false
+  })
+
+  function onFocus (id: string): void {
+    setActiveFields({
+      ...activeFields,
+      [id]: true
+    })
+  }
+
+  function onBlur (id: string): void {
+    setActiveFields({
+      ...activeFields,
+      [id]: false
+    })
+  }
+
+  function handleValueChange (id: string, value: string): void {
+    setFields({
+      ...fields,
+      [id]: value
+    })
+
+    if (fields[id].length > 0 && invalidatedFields[id]) {
+      setInvalidatedFields({
+        ...invalidatedFields,
+        [id]: false
+      })
     }
   }
 
-  private onFocus (id: string): void {
-    if (id === 'email') {
-      this.setState({ emailActive: true })
-    } else {
-      this.setState({ passwordActive: true })
-    }
-  }
+  function validate (): boolean {
+    setValidationErrors([])
+    const validationErrors: string[] = []
 
-  private onBlur (id: string): void {
-    if (id === 'email') {
-      this.setState({ emailActive: false })
-    } else {
-      this.setState({ passwordActive: false })
-    }
-  }
+    Object.entries(fields).filter(e => e[1].length === 0).map((key) => {
+      validationErrors.push(`${key[0]} cannot be empty!`)
+    })
 
-  private handleEmailChange (email: string): void {
-    this.setState({ email: email })
-    if (email.length > 0 && this.state.emailFailed) {
-      this.setState({ emailFailed: false })
-    }
-  }
-
-  private handlePasswordChange (password: string): void {
-    this.setState({ password: password })
-    if (password.length > 0 && this.state.passwordFailed) {
-      this.setState({ passwordFailed: false })
-    }
-  }
-
-  private validate (): boolean {
-    this.setState({ validationErrors: [] })
-    const validationErrors = []
-
-    if (this.state.email.length === 0) {
-      this.setState({ emailFailed: true })
-      validationErrors.push('Email cannot be blank')
-    }
-
-    if (this.state.password.length === 0) {
-      this.setState({ passwordFailed: true })
-      validationErrors.push('Password cannot be blank')
-    }
-
-    this.setState({ validationErrors: validationErrors })
+    setValidationErrors(validationErrors)
     return validationErrors.length === 0
   }
 
-  private handleOnSubmit (e: React.FormEvent<HTMLFormElement>): void {
-    e.preventDefault()
+  function handleOnSubmit (form: React.FormEvent<HTMLFormElement>): void {
+    form.preventDefault()
 
-    if (this.validate()) {
-      LoginService.loginUser(
-        this.state.email,
-        this.state.password
-      )
-        .then(response => {
-          if (response.ok) return response.json()
+    if (validate()) {
+      LoginService.loginUser(fields.email, fields.password)
+        .then(resposne => {
+          if (resposne.ok) return resposne.json()
           else {
-            this.setState({ emailFailed: true, passwordFailed: true })
-            this.setState({ validationErrors: ['Login failed, please check your Email and Password'] })
+            setInvalidatedFields({ email: true, password: true })
+            setValidationErrors(['Login failed, please check your Email and Password!'])
           }
         })
         .then(data => {
-          if (data && data.success) {
-            console.log(data)
-            Router.push('/')
-          }
+          if (data && data.success) Router.push('/')
         })
     }
   }
 
-  public render (): JSX.Element {
-    return (
-      <Layout showNavBar={false} user={null}>
-        <div className="flex justify-center h-screen">
-          <div className="m-auto w-full align-middle md:w-2/5 lg:w-1/4">
-            <Card className="fixed bottom-0 w-full md:relative" title="Login">
-              <form onSubmit={(e): void => this.handleOnSubmit(e)}>
-                <label htmlFor="email" className="text-xs">EMAIL</label><br />
-                <div className={`input-icon flex ${(this.state.emailActive || this.state.email.length > 0) && !this.state.emailFailed ? 'input-icon-active' : ''} ${this.state.emailFailed ? 'border-red-600' : ''} mb-10 animated`}>
-                  <div className={`text-gray-500 m-auto pr-2 pl-2 animated ${this.state.emailFailed ? 'text-red-600' : ''}`}>
-                    <FontAwesomeIcon aria-hidden="false" icon={faEnvelope} />
-                  </div>
-                  <input
-                    type="email"
-                    id="email"
-                    placeholder="Enter your email address"
-                    className="flex-grow bg-transparent pt-2 pb-2"
-                    onFocus={(e): void => this.onFocus(e.target.id)}
-                    onBlur={(e): void => this.onBlur(e.target.id)}
-                    onChange={(e): void => this.handleEmailChange(e.target.value)}
-                    value={this.state.email}
-                  />
+  return (
+    <Layout showNavBar={false} user={null}>
+      <div className="flex justify-center h-screen">
+        <div className="m-auto w-full align-middle md:w-2/5 lg:w-1/4">
+          <Card className="fixed bottom-0 w-full md:relative" title="Login">
+            <form onSubmit={(e): void => handleOnSubmit(e)}>
+              <label htmlFor="email" className="text-xs">EMAIL</label><br />
+              <div className={`input-icon flex ${(activeFields.email || fields.email.length > 0) && !invalidatedFields.email ? 'input-icon-active' : ''} ${invalidatedFields.email ? 'border-red-600' : ''} mb-10 animated`}>
+                <div className={`text-gray-500 m-auto pr-2 pl-2 animated ${invalidatedFields.email ? 'text-red-600' : ''}`}>
+                  <FontAwesomeIcon aria-hidden="false" icon={faEnvelope} />
                 </div>
-
-                <label htmlFor="password" className="text-xs">PASSWORD</label><br />
-                <div className={`input-icon flex ${(this.state.passwordActive || this.state.password.length > 0) && !this.state.passwordFailed ? 'input-icon-active' : ''} ${this.state.passwordFailed ? 'border-red-600' : ''} animated`}>
-                  <div className={`text-gray-500 m-auto pr-2 pl-2 ${this.state.passwordFailed ? 'text-red-600' : ''}`}>
-                    <FontAwesomeIcon icon={faLock} />
-                  </div>
-                  <input
-                    type="password"
-                    id="password"
-                    placeholder="Enter your password"
-                    className="flex-grow bg-transparent pt-2 pb-2"
-                    onFocus={(e): void => this.onFocus(e.target.id)}
-                    onBlur={(e): void => this.onBlur(e.target.id)}
-                    onChange={(e): void => this.handlePasswordChange(e.target.value)}
-                    value={this.state.password}
-                  />
-                </div>
-                <div className="mb-20 mt-4 text-sm text-red-600">
-                  {this.state.validationErrors.map((err) => {
-                    return <p key={err}>{err}</p>
-                  })}
-                </div>
-
-                <button
-                  type="submit"
-                  className="text-white w-full p-1 rounded-md cursor-pointer animated"
-                >Login</button>
-              </form>
-              <div className="text-sm text-center pt-20 text-gray-500">
-                <p>Don&apos;t have an account yet? <Link href="/register"><a className="text-purple-500">Create an account.</a></Link></p>
-                <p><Link href="/"><a className="text-purple-500">Return to homepage.</a></Link></p>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Enter your email address"
+                  className="flex-grow bg-transparent pt-2 pb-2"
+                  onFocus={(e): void => onFocus(e.target.id)}
+                  onBlur={(e): void => onBlur(e.target.id)}
+                  onChange={(e): void => handleValueChange(e.target.id, e.target.value)}
+                  value={fields.email}
+                />
               </div>
-            </Card>
-          </div>
+
+              <label htmlFor="password" className="text-xs">PASSWORD</label><br />
+              <div className={`input-icon flex ${(activeFields.password || fields.password.length > 0) && !invalidatedFields.password ? 'input-icon-active' : ''} ${invalidatedFields.password ? 'border-red-600' : ''} animated`}>
+                <div className={`text-gray-500 m-auto pr-2 pl-2 ${invalidatedFields.password ? 'text-red-600' : ''}`}>
+                  <FontAwesomeIcon icon={faLock} />
+                </div>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Enter your password"
+                  className="flex-grow bg-transparent pt-2 pb-2"
+                  onFocus={(e): void => onFocus(e.target.id)}
+                  onBlur={(e): void => onBlur(e.target.id)}
+                  onChange={(e): void => handleValueChange(e.target.id, e.target.value)}
+                  value={fields.password}
+                />
+              </div>
+              <div className="mb-20 mt-8 text-sm text-red-600">
+                {validationErrors.map((err) => {
+                  return <p className="capitalize-first" key={err}>{err}</p>
+                })}
+              </div>
+
+              <button
+                type="submit"
+                className="text-white w-full p-1 rounded-md cursor-pointer animated"
+              >Login</button>
+            </form>
+            <div className="text-sm text-center pt-20 text-gray-500">
+              <p>Don&apos;t have an account yet? <Link href="/register"><a className="text-purple-500">Create an account.</a></Link></p>
+              <p><Link href="/"><a className="text-purple-500">Return to homepage.</a></Link></p>
+            </div>
+          </Card>
         </div>
-      </Layout>
-    )
-  }
+      </div>
+    </Layout>
+  )
 }
+
+export default Login

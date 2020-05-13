@@ -28,4 +28,8 @@
     .bg-special:hover {
         background-position: 20px;
     }
+
+    .capitalize-first:first-letter {
+      text-transform: capitalize;
+    }
 }

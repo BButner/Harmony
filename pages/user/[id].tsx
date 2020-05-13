@@ -65,10 +65,10 @@ export default class UserCard extends Component<UserProps, UserState> {
               <p className="text-md text-bluegrey-600">{this.props.user.email}</p>
               <p className="text-xs text-bluegrey-500 mt-4">Member since {new Date(this.props.user.date.toString()).toDateString()}</p>
             </div>
-            <div className="m-auto md:m-0 md:ml-10 text-center mt-5 md:mt-0">
+            {this.props.user.userName === this.props.self.userName && <div className="m-auto md:m-0 md:ml-10 text-center mt-5 md:mt-0">
               <button className="m-auto bg-teal-500 block text-white rounded button hover:bg-teal-700 animated mb-2">Change Email</button>
               <button onClick={(): void => this.handleLogoutOnClick()} className="m-auto md:m-0 bg-red-500 text-white rounded hover:bg-red-700 button animated">Logout</button>
-            </div>
+            </div>}
           </Card>
 
           {this.state.showLogoutConfirmation && <Confirmation title={'Logout'} message={'Are you sure you wish to logout?'} onChangeValue={this.handleLogoutConfirmationChange} />}

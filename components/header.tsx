@@ -39,8 +39,8 @@ export default class Header extends Component<HeaderProps, HeaderState> {
     return (
       <div className="bg-white w-screen fixed top-0 left-0 z-50">
         <nav className="flex items-center justify-between flex-wrap p-6">
-          <div className="flex items-center flex-shrink-0 text-lg w-1/12 font-bold hover:text-purple-500 animated">
-            <Link href="/"><a>harmony</a></Link>
+          <div className="flex items-center flex-shrink-0 text-lg w-1/12 font-bold animated">
+            <Link href="/"><a className="hover:text-purple-500 animated">harmony</a></Link>
           </div>
           <div className="block md:hidden">
             <button className="flex items-center px-3 py-2 border rounded border-bluegrey-600 text-bluegrey-600 hover:bg-white" onClick={(): void => this.handleToggleNavOnClick()}>

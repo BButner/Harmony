@@ -8,11 +8,11 @@ type ConfirmationProps = {
 }
 
 export default class Confirmation extends Component<ConfirmationProps> {
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
-  public render(): JSX.Element {
+  public render (): JSX.Element {
     return (
       <div className="w-screen h-screen fixed top-0 left-0 flex justify-center align-middle confirmation-card" style={{ backgroundColor: 'rgba(0, 0, 0, .5)' }}>
         <div className="m-auto">

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import Layout from '../components/layout'
 import Card from '../components/card'
-import Link from "next/link";
+import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, faUser, faIdCard } from "@fortawesome/free-regular-svg-icons";
-import { faLock } from "@fortawesome/free-solid-svg-icons/faLock";
+import { faEnvelope, faUser, faIdCard } from '@fortawesome/free-regular-svg-icons'
+import { faLock } from '@fortawesome/free-solid-svg-icons/faLock'
 import LoginService from '../services/authentication/login'
 import RegisterService from '../services/authentication/register'
 import Router from 'next/router'
@@ -30,8 +30,8 @@ type LoginState = {
 }
 
 export default class Login extends Component<{}, LoginState> {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
     this.state = {
       emailActive: false,
@@ -54,89 +54,89 @@ export default class Login extends Component<{}, LoginState> {
     }
   }
 
-  private onFocus(id: string) {
+  private onFocus (id: string) {
     switch (id) {
       case 'email':
         this.setState({ emailActive: true })
-        break;
+        break
       case 'userName':
         this.setState({ userNameActive: true })
-        break;
+        break
       case 'displayName':
         this.setState({ displayNameActive: true })
-        break;
+        break
       case 'password':
         this.setState({ passwordActive: true })
-        break;
+        break
       case 'password2':
         this.setState({ password2Active: true })
-        break;
+        break
     }
   }
 
-  private onBlur(id: string) {
+  private onBlur (id: string) {
     switch (id) {
       case 'email':
         this.setState({ emailActive: false })
-        break;
+        break
       case 'userName':
         this.setState({ userNameActive: false })
-        break;
+        break
       case 'displayName':
         this.setState({ displayNameActive: false })
-        break;
+        break
       case 'password':
         this.setState({ passwordActive: false })
-        break;
+        break
       case 'password2':
         this.setState({ password2Active: false })
-        break;
+        break
     }
   }
 
-  private handleDisplayNameChanged(name: string) {
+  private handleDisplayNameChanged (name: string) {
     this.setState({ displayName: name })
     if (name.length > 0 && this.state.displayNameFailed) {
       this.setState({ displayNameFailed: false })
     }
   }
 
-  private handleUserNameChanged(name: string) {
+  private handleUserNameChanged (name: string) {
     this.setState({ userName: name })
     if (name.length > 0 && this.state.userNameFailed) {
       this.setState({ userNameFailed: false })
     }
   }
 
-  private handleAvatarChange(file: File) {
+  private handleAvatarChange (file: File) {
     this.setState({ avatar: file })
     console.log(file)
   }
 
-  private handlePassword2Change(password2: string) {
+  private handlePassword2Change (password2: string) {
     this.setState({ password2: password2 })
     if (password2.length > 0 && this.state.password2Failed) {
       this.setState({ password2Failed: false })
     }
   }
 
-  private handleEmailChange(email: string) {
+  private handleEmailChange (email: string) {
     this.setState({ email: email })
     if (email.length > 0 && this.state.emailFailed) {
       this.setState({ emailFailed: false })
     }
   }
 
-  private handlePasswordChange(password: string) {
+  private handlePasswordChange (password: string) {
     this.setState({ password: password })
     if (password.length > 0 && this.state.passwordFailed) {
       this.setState({ passwordFailed: false })
     }
   }
 
-  private validate() {
+  private validate () {
     this.setState({ validationErrors: [] })
-    let validationErrors = []
+    const validationErrors = []
 
     if (this.state.email.length === 0) {
       this.setState({ emailFailed: true })
@@ -168,7 +168,7 @@ export default class Login extends Component<{}, LoginState> {
     return validationErrors.length === 0
   }
 
-  private handleOnSubmit(e: React.FormEvent<HTMLFormElement>) {
+  private handleOnSubmit (e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
     if (this.validate()) {
@@ -199,7 +199,7 @@ export default class Login extends Component<{}, LoginState> {
     }
   }
 
-  public render(): JSX.Element {
+  public render (): JSX.Element {
     return (
       <Layout showNavBar={false} user={null}>
         <div className="flex w-full h-screen justify-center">
@@ -303,7 +303,7 @@ export default class Login extends Component<{}, LoginState> {
                 </div>
                 <div className="mb-20 mt-4 text-sm text-red-600">
                   {this.state.validationErrors.map((err) => {
-                    return <p>{err}</p>
+                    return <p key={err}>{err}</p>
                   })}
                 </div>
 

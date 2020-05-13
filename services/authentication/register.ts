@@ -2,7 +2,7 @@ import fetch from 'isomorphic-unfetch'
 import Config from '../../config/default.json'
 
 export default class RegisterService {
-  static async registerUser(userName: string, displayName: string, email: string, password: string, password2: string, avatar?: File): Promise<any> {
+  static async registerUser (userName: string, displayName: string, email: string, password: string, password2: string, avatar?: File): Promise<any> {
     const imageData = await this.getAvatarBase64(avatar)
 
     const promise = new Promise((resolve, reject) => {
@@ -14,7 +14,7 @@ export default class RegisterService {
           email: email,
           password: password,
           password2: password2,
-          avatar: imageData ? imageData : ''
+          avatar: imageData
         }),
         headers: {
           'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ export default class RegisterService {
     return promise
   }
 
-  private static async getAvatarBase64(avatar: File) {
+  private static async getAvatarBase64 (avatar: File) {
     var promise = new Promise((resolve, reject) => {
       if (avatar !== null) {
         const reader = new FileReader()

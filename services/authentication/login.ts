@@ -2,7 +2,7 @@ import fetch from 'isomorphic-unfetch'
 import Config from '../../config/default.json'
 
 export default class LoginService {
-  static async loginUser(email: string, password: string): Promise<any> {
+  static async loginUser (email: string, password: string): Promise<any> {
     const promise = new Promise((resolve, reject) => {
       fetch(Config.apiUrl + '/login', {
         method: 'POST',

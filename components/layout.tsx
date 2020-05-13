@@ -18,7 +18,7 @@ type LayoutState = {
 }
 
 export default class Layout extends Component<LayoutProps, LayoutState> {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       showNavBarSub: this.props.navbarTitle !== null
@@ -27,9 +27,9 @@ export default class Layout extends Component<LayoutProps, LayoutState> {
 
   private handleScroll () {
     if (window.scrollY > 10 && this.state.showNavBarSub) {
-      this.setState({showNavBarSub: false})
+      this.setState({ showNavBarSub: false })
     } else if (window.scrollY <= 10) {
-      this.setState({showNavBarSub: true})
+      this.setState({ showNavBarSub: true })
     }
   }
 
@@ -37,7 +37,7 @@ export default class Layout extends Component<LayoutProps, LayoutState> {
     window.addEventListener('scroll', () => this.handleScroll())
   }
 
-  public render(): JSX.Element {
+  public render (): JSX.Element {
     return (
       <>
         <Meta />

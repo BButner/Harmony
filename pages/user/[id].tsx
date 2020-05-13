@@ -4,7 +4,7 @@ import Config from '../../config/default.json'
 import Layout from '../../components/layout'
 import { User } from '../../models/User'
 import Card from '../../components/card'
-import Router, { useRouter } from 'next/router'
+import Router from 'next/router'
 import Confirmation from '../../components/popups/confirmation'
 import { GetServerSideProps } from 'next'
 
@@ -18,13 +18,12 @@ type UserState = {
 }
 
 export default class UserCard extends Component<UserProps, UserState> {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       showLogoutConfirmation: false
     }
   }
-
 
   private handleAvatarOnClick () {
     console.log('testing')
@@ -51,7 +50,7 @@ export default class UserCard extends Component<UserProps, UserState> {
     }
   }
 
-  public render(): JSX.Element {
+  public render (): JSX.Element {
     return (
       <Layout showNavBar={true} user={this.props.self} title="User Information" subtitle="View your profile, change your settings, etc.">
         <div className="flex justify-center flex-wrap items-start pt-56">
@@ -86,10 +85,10 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     headers: ctx.req ? { cookie: ctx.req.headers.cookie, 'Content-Type': 'application/json' } : undefined,
     body: JSON.stringify({
       userName: ctx.params.id
-    }),
+    })
   })
   const json = await response.json()
-  return { 
+  return {
     props: {
       user: json.user,
       self: json.self

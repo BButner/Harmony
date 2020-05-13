@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react'
+import React, { Component } from 'react'
 import Link from 'next/link'
 import { User } from '../models/User'
 
@@ -12,7 +12,7 @@ type HeaderState = {
 }
 
 export default class Header extends Component<HeaderProps, HeaderState> {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       navVisible: false
@@ -20,10 +20,8 @@ export default class Header extends Component<HeaderProps, HeaderState> {
   }
 
   private handleWindowResize () {
-    if (window.innerWidth <= 640)
-      this.setState({ navVisible: false })
-    else
-      this.setState({ navVisible: true })
+    if (window.innerWidth <= 640) this.setState({ navVisible: false })
+    else this.setState({ navVisible: true })
   }
 
   private handleToggleNavOnClick () {
@@ -37,7 +35,7 @@ export default class Header extends Component<HeaderProps, HeaderState> {
     }
   }
 
-  public render(): JSX.Element {
+  public render (): JSX.Element {
     return (
       <div className="bg-white w-screen fixed top-0 left-0 z-50">
         <nav className="flex items-center justify-between flex-wrap p-6">
@@ -53,15 +51,15 @@ export default class Header extends Component<HeaderProps, HeaderState> {
             <div className="text-sm md:flex-grow justify-center text-center font-semibold text-bluegrey-600">
               {this.props.links.map((link) => {
                 return <Link href={link} key={link}><a
-                    className="block mt-4 md:inline-block md:mt-0 hover:text-purple-500 animated nav-link">{link}</a></Link>
+                  className="block mt-4 md:inline-block md:mt-0 hover:text-purple-500 animated nav-link">{link}</a></Link>
               })}
             </div>
           </div>}
           {this.state.navVisible && <div className="w-full md:w-1/12 flex justify-center md:justify-end mt-4 md:mt-0"><Link href={this.props.user === null ? '/login' : `/user/${this.props.user.userName}`}>
-              <a className="inline-block text-sm px-4 py-2 leading-none rounded text-purple-500 border border-purple-500 bg-white hover:border-transparent hover:text-white hover:bg-purple-600 mt-4 md:mt-0 animated">
-                {this.props.user === null ? 'Login/Register' : this.props.user.userName}
-              </a>
-            </Link>
+            <a className="inline-block text-sm px-4 py-2 leading-none rounded text-purple-500 border border-purple-500 bg-white hover:border-transparent hover:text-white hover:bg-purple-600 mt-4 md:mt-0 animated">
+              {this.props.user === null ? 'Login/Register' : this.props.user.userName}
+            </a>
+          </Link>
           </div>}
         </nav>
       </div>

@@ -19,8 +19,8 @@ type LoginState = {
 }
 
 export default class Login extends Component<{}, LoginState> {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
     this.state = {
       emailActive: false,
@@ -65,7 +65,7 @@ export default class Login extends Component<{}, LoginState> {
 
   private validate () {
     this.setState({ validationErrors: [] })
-    let validationErrors = []
+    const validationErrors = []
 
     if (this.state.email.length === 0) {
       this.setState({ emailFailed: true })
@@ -94,7 +94,6 @@ export default class Login extends Component<{}, LoginState> {
           else {
             this.setState({ emailFailed: true, passwordFailed: true })
             this.setState({ validationErrors: ['Login failed, please check your Email and Password'] })
-            return
           }
         })
         .then(data => {
@@ -106,7 +105,7 @@ export default class Login extends Component<{}, LoginState> {
     }
   }
 
-  public render(): JSX.Element {
+  public render (): JSX.Element {
     return (
       <Layout showNavBar={false} user={null}>
         <div className="flex justify-center h-screen">
@@ -148,7 +147,7 @@ export default class Login extends Component<{}, LoginState> {
                 </div>
                 <div className="mb-20 mt-4 text-sm text-red-600">
                   {this.state.validationErrors.map((err) => {
-                    return <p>{err}</p>
+                    return <p key={err}>{err}</p>
                   })}
                 </div>
 
@@ -158,7 +157,7 @@ export default class Login extends Component<{}, LoginState> {
                 >Login</button>
               </form>
               <div className="text-sm text-center pt-20 text-gray-500">
-                <p>Don't have an account yet? <Link href="/register"><a className="text-purple-500">Create an account.</a></Link></p>
+                <p>Don&apos;t have an account yet? <Link href="/register"><a className="text-purple-500">Create an account.</a></Link></p>
                 <p><Link href="/"><a className="text-purple-500">Return to homepage.</a></Link></p>
               </div>
             </Card>

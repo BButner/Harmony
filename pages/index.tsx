@@ -10,8 +10,8 @@ type IndexProps = {
 }
 
 export default class Index extends Component<IndexProps, {}> {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
   }
 
   public render (): JSX.Element {
@@ -33,7 +33,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     method: 'POST',
     credentials: 'include',
     headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined,
-    body: JSON.stringify({userName: null})
+    body: JSON.stringify({ userName: null })
   })
   const json = await response.json()
   return { props: { user: json.user } }

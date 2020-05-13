@@ -47,7 +47,7 @@ export default class Layout extends Component<LayoutProps, LayoutState> {
             <p className="pt-32 text-xl">{this.props.title}</p>
             <p className="pb-32">{this.props.subtitle}</p>
           </div>}
-          <div className="z-40 relative pt-56">
+          <div className="z-40 relative">
             {this.props.children}
           </div>
         </div>

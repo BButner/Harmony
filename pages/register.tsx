@@ -204,7 +204,7 @@ export default class Login extends Component<{}, LoginState> {
       <Layout showNavBar={false} user={null}>
         <div className="flex w-full h-screen justify-center">
           <div className="m-auto w-full align-middle m-auto lg:relative md:w-2/5 lg:w-1/4">
-            <Card title={'Register'} size={3}>
+            <Card title="Register">
               <form onSubmit={e => this.handleOnSubmit(e)} id="register-form">
                 <label htmlFor="displayName" className="text-xs">NAME</label><br />
                 <div className={`input-icon flex ${(this.state.displayNameActive || this.state.displayName.length > 0) && !this.state.displayNameFailed ? 'input-icon-active' : ''} ${this.state.displayNameFailed ? 'border-red-600' : ''} mb-10 animated`}>

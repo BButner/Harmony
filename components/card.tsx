@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 
 type CardProps = {
   children: any,
-  className?: string
+  className?: string,
+  title?: string
 }
 
 export default class Card extends Component<CardProps, {}> {
@@ -25,20 +26,10 @@ export default class Card extends Component<CardProps, {}> {
 
   public render(): JSX.Element {
     return (
-      // <>
-      //   <div className={`card rounded-card p-8 border-bluegrey-300 border bg-white ${this.props.className}`}>
-      //     <div className={'text-center font-bold tracking-wide ' + this.getCardSizeClasses(this.props.size)}>
-      //       <p>{this.props.title}</p>
-      //       {this.props.subtitle && <p className='text-sm font-normal text-gray-600'>{this.props.subtitle}</p>}
-      //     </div>
-      //     <div className="card-body p-2">
-      //       {this.props.children}
-      //     </div>
-      //   </div>
-      // </>
-        <div className={`bg-white border border-bluegrey-300 p-10 rounded-card ${this.props.className}`}>
-          {this.props.children}
-        </div>
+      <div className={`bg-white border border-bluegrey-300 p-10 rounded-card ${this.props.className}`}>
+        {this.props.title && <p className="text-2xl text-center mb-10">{this.props.title}</p>}
+        {this.props.children}
+      </div>
     )
   }
 }

@@ -14,7 +14,7 @@ export default class Index extends Component<IndexProps, {}> {
     super(props);
   }
 
-  public render(): JSX.Element {
+  public render (): JSX.Element {
     return (
       <Layout showNavBar={true} user={this.props.user}>
         <div className="w-full h-full flex-grow flex justify-center align-middle">

@@ -33,7 +33,7 @@ export default class Login extends Component<{}, LoginState> {
     }
   }
 
-  private onFocus(id: string) {
+  private onFocus (id: string) {
     if (id === 'email') {
       this.setState({ emailActive: true })
     } else {
@@ -41,7 +41,7 @@ export default class Login extends Component<{}, LoginState> {
     }
   }
 
-  private onBlur(id: string) {
+  private onBlur (id: string) {
     if (id === 'email') {
       this.setState({ emailActive: false })
     } else {
@@ -49,21 +49,21 @@ export default class Login extends Component<{}, LoginState> {
     }
   }
 
-  private handleEmailChange(email: string) {
+  private handleEmailChange (email: string) {
     this.setState({ email: email })
     if (email.length > 0 && this.state.emailFailed) {
       this.setState({ emailFailed: false })
     }
   }
 
-  private handlePasswordChange(password: string) {
+  private handlePasswordChange (password: string) {
     this.setState({ password: password })
     if (password.length > 0 && this.state.passwordFailed) {
       this.setState({ passwordFailed: false })
     }
   }
 
-  private validate() {
+  private validate () {
     this.setState({ validationErrors: [] })
     let validationErrors = []
 
@@ -81,7 +81,7 @@ export default class Login extends Component<{}, LoginState> {
     return validationErrors.length === 0
   }
 
-  private handleOnSubmit(e: React.FormEvent<HTMLFormElement>) {
+  private handleOnSubmit (e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
     if (this.validate()) {
@@ -111,8 +111,7 @@ export default class Login extends Component<{}, LoginState> {
       <Layout showNavBar={false} user={null}>
         <div className="flex justify-center h-screen">
           <div className="m-auto w-full align-middle md:w-2/5 lg:w-1/4">
-            <Card className="fixed bottom-0 w-full md:relative">
-              <p className="text-2xl text-center mb-10">Login</p>
+            <Card className="fixed bottom-0 w-full md:relative" title="Login">
               <form onSubmit={e => this.handleOnSubmit(e)}>
                 <label htmlFor="email" className="text-xs">EMAIL</label><br />
                 <div className={`input-icon flex ${(this.state.emailActive || this.state.email.length > 0) && !this.state.emailFailed ? 'input-icon-active' : ''} ${this.state.emailFailed ? 'border-red-600' : ''} mb-10 animated`}>

@@ -44,3 +44,18 @@ button, button[type="submit"], input[type="submit"], .button {
 button:hover, button[type="submit"]:hover, input[type="submit"]:hover {
     @apply bg-purple-700;
 }
+
+.rounded-card {
+    animation: .5s ease-out 0s 1 card-fade-in;
+}
+
+@keyframes card-fade-in {
+    0% {
+        transform: translateY(50%);
+        @apply opacity-0;
+    }
+    100%{
+        transform: translateY(0);
+        @apply opacity-100;
+    }
+}

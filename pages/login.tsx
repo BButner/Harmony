@@ -7,7 +7,6 @@ import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
 import { faLock } from '@fortawesome/free-solid-svg-icons/faLock'
 import LoginService from '../services/authentication/login'
 import Router from 'next/router'
-import { stringify } from 'querystring'
 
 interface ActiveFields {
   email: boolean;
@@ -73,12 +72,21 @@ const Login: React.FunctionComponent = () => {
   function validate (): boolean {
     setValidationErrors([])
     const validationErrors: string[] = []
+    let invalidatedFields: InvalidatedFields = {
+      email: false,
+      password: false
+    }
 
     Object.entries(fields).filter(e => e[1].length === 0).map((key) => {
       validationErrors.push(`${key[0]} cannot be empty!`)
+      invalidatedFields = {
+        ...invalidatedFields,
+        [key[0]]: true
+      }
     })
 
     setValidationErrors(validationErrors)
+    setInvalidatedFields(invalidatedFields)
     return validationErrors.length === 0
   }
 

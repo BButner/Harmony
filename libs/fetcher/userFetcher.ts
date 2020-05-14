@@ -23,5 +23,7 @@ export async function getUserById (ctx) {
       userName: ctx.params.id
     })
   })
-  return response.json()
+  const data = await response.json()
+  console.log(data)
+  return data
 }

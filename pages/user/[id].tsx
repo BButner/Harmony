@@ -24,6 +24,8 @@ const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
   setUserState(user)
   setSelfState(self)
 
+  console.log(userState)
+
   function handleLogoutConfirmationChange (e): void {
     if (e) {
       fetch(Config.apiUrl + '/logout', {
@@ -65,7 +67,7 @@ const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
               <p className="text-md text-bluegrey-600">{user.email}</p>
               <p className="text-xs text-bluegrey-500 mt-4">Member since {new Date(user.date.toString()).toDateString()}</p>
             </div>
-            {user.userName === self.userName && <div className="m-auto md:m-0 md:ml-10 text-center mt-5 md:mt-0">
+            {self && user.userName === self.userName && <div className="m-auto md:m-0 md:ml-10 text-center mt-5 md:mt-0">
               <button className="m-auto bg-teal-500 block text-white rounded button hover:bg-teal-700 animated mb-2">Change Email</button>
               <button onClick={handleLogoutOnClick} className="m-auto md:m-0 bg-red-500 text-white rounded hover:bg-red-700 button animated">Logout</button>
             </div>}

@@ -8,85 +8,85 @@ import { faLock } from '@fortawesome/free-solid-svg-icons/faLock'
 import LoginService from '../services/authentication/login'
 import Router from 'next/router'
 
-interface ActiveFields {
-  email: boolean;
-  password: boolean;
+interface DefaultFieldAttributes {
+  active: boolean;
+  invalid: boolean;
+  value: string;
 }
 
-interface LoginFields {
-  email: string;
-  password: string;
-}
-
-interface InvalidatedFields {
-  email: boolean;
-  password: boolean;
+interface Fields {
+  email: DefaultFieldAttributes;
+  password: DefaultFieldAttributes;
 }
 
 const Login: React.FunctionComponent = () => {
   const [validationErrors, setValidationErrors] = useState<string[]>([])
 
-  const [activeFields, setActiveFields] = useState<ActiveFields>({
-    email: false,
-    password: false
-  })
-
-  const [fields, setFields] = useState<LoginFields>({
-    email: '',
-    password: ''
-  })
-
-  const [invalidatedFields, setInvalidatedFields] = useState<InvalidatedFields>({
-    email: false,
-    password: false
+  const [fields, setFields] = useState<Fields>({
+    email: {
+      active: false,
+      invalid: false,
+      value: ''
+    },
+    password: {
+      active: false,
+      invalid: false,
+      value: ''
+    }
   })
 
   function onFocus (id: string): void {
-    setActiveFields({
-      ...activeFields,
-      [id]: true
+    setFields({
+      ...fields,
+      [id]: {
+        ...fields[id],
+        active: true
+      }
     })
   }
 
   function onBlur (id: string): void {
-    setActiveFields({
-      ...activeFields,
-      [id]: false
+    setFields({
+      ...fields,
+      [id]: {
+        ...fields[id],
+        active: false
+      }
     })
   }
 
   function handleValueChange (id: string, value: string): void {
     setFields({
       ...fields,
-      [id]: value
+      [id]: {
+        ...fields[id],
+        value: value,
+        invalid: !(value.length > 0)
+      }
     })
-
-    if (fields[id].length > 0 && invalidatedFields[id]) {
-      setInvalidatedFields({
-        ...invalidatedFields,
-        [id]: false
-      })
-    }
   }
 
   function validate (): boolean {
     setValidationErrors([])
     const validationErrors: string[] = []
-    let invalidatedFields: InvalidatedFields = {
-      email: false,
-      password: false
-    }
+    let fieldsTemp = fields
 
-    Object.entries(fields).filter(e => e[1].length === 0).map((key) => {
+    console.log(Object.entries(fields))
+
+    Object.entries(fields).filter(e => e[1].value === '').map((key) => {
       validationErrors.push(`${key[0]} cannot be empty!`)
-      invalidatedFields = {
-        ...invalidatedFields,
-        [key[0]]: true
+      fieldsTemp = {
+        ...fieldsTemp,
+        [key[0]]: {
+          ...fieldsTemp[key[0]],
+          invalid: true
+        }
       }
     })
 
     setValidationErrors(validationErrors)
-    setInvalidatedFields(invalidatedFields)
+    console.log(fieldsTemp)
+    setFields(fieldsTemp)
     return validationErrors.length === 0
   }
 
@@ -94,11 +94,20 @@ const Login: React.FunctionComponent = () => {
     form.preventDefault()
 
     if (validate()) {
-      LoginService.loginUser(fields.email, fields.password)
+      LoginService.loginUser(fields.email.value, fields.password.value)
         .then(resposne => {
           if (resposne.ok) return resposne.json()
           else {
-            setInvalidatedFields({ email: true, password: true })
+            setFields({
+              email: {
+                ...fields.email,
+                invalid: true
+              },
+              password: {
+                ...fields.password,
+                invalid: true
+              }
+            })
             setValidationErrors(['Login failed, please check your Email and Password!'])
           }
         })
@@ -115,8 +124,8 @@ const Login: React.FunctionComponent = () => {
           <Card className="fixed bottom-0 w-full md:relative" title="Login">
             <form onSubmit={(e): void => handleOnSubmit(e)}>
               <label htmlFor="email" className="text-xs">EMAIL</label><br />
-              <div className={`input-icon flex ${(activeFields.email || fields.email.length > 0) && !invalidatedFields.email ? 'input-icon-active' : ''} ${invalidatedFields.email ? 'border-red-600' : ''} mb-10 animated`}>
-                <div className={`text-gray-500 m-auto pr-2 pl-2 animated ${invalidatedFields.email ? 'text-red-600' : ''}`}>
+              <div className={`input-icon flex ${(fields.email.active || fields.email.value.length > 0) && !fields.email.invalid ? 'input-icon-active' : ''} ${fields.email.invalid ? 'border-red-600' : ''} mb-10 animated`}>
+                <div className={`text-gray-500 m-auto pr-2 pl-2 animated ${fields.email.invalid ? 'text-red-600' : ''}`}>
                   <FontAwesomeIcon aria-hidden="false" icon={faEnvelope} />
                 </div>
                 <input
@@ -127,13 +136,13 @@ const Login: React.FunctionComponent = () => {
                   onFocus={(e): void => onFocus(e.target.id)}
                   onBlur={(e): void => onBlur(e.target.id)}
                   onChange={(e): void => handleValueChange(e.target.id, e.target.value)}
-                  value={fields.email}
+                  value={fields.email.value}
                 />
               </div>
 
               <label htmlFor="password" className="text-xs">PASSWORD</label><br />
-              <div className={`input-icon flex ${(activeFields.password || fields.password.length > 0) && !invalidatedFields.password ? 'input-icon-active' : ''} ${invalidatedFields.password ? 'border-red-600' : ''} animated`}>
-                <div className={`text-gray-500 m-auto pr-2 pl-2 ${invalidatedFields.password ? 'text-red-600' : ''}`}>
+              <div className={`input-icon flex ${(fields.password.active || fields.password.value.length > 0) && !fields.password.invalid ? 'input-icon-active' : ''} ${fields.password.invalid ? 'border-red-600' : ''} animated`}>
+                <div className={`text-gray-500 m-auto pr-2 pl-2 ${fields.password.invalid ? 'text-red-600' : ''}`}>
                   <FontAwesomeIcon icon={faLock} />
                 </div>
                 <input
@@ -144,7 +153,7 @@ const Login: React.FunctionComponent = () => {
                   onFocus={(e): void => onFocus(e.target.id)}
                   onBlur={(e): void => onBlur(e.target.id)}
                   onChange={(e): void => handleValueChange(e.target.id, e.target.value)}
-                  value={fields.password}
+                  value={fields.password.value}
                 />
               </div>
               <div className="mb-20 mt-8 text-sm text-red-600">

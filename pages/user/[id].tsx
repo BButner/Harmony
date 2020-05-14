@@ -55,16 +55,16 @@ export default class UserCard extends Component<UserProps, UserState> {
       <Layout showNavBar={true} user={this.props.self} title="User Information" subtitle="View your profile, change your settings, etc.">
         <div className="flex justify-center flex-wrap items-start pt-56">
           <Card className="text-center md:flex md:items-center md:text-left">
-            {this.props.user.avatarUrl && <div
-              className="w-32 h-32 rounded-full m-auto mb-10 md:m-0"
+            <div
+              className="w-32 h-32 rounded-full m-auto mb-10 md:m-0 bg-bluegrey-100 avatar-shadow"
               style={{
                 backgroundImage: `url(${Config.bucketUrl}${this.props.user.avatarUrl}.jpg)`,
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center'
               }}>
-            </div>}
-            <div className={`${this.props.user.avatarUrl ? 'md:ml-10' : ''}`}>
+            </div>
+            <div className="md:ml-10">
               <p className="text-2xl">{this.props.user.userName}</p>
               <p className="text-lg text-bluegrey-600">{this.props.user.displayName}</p>
               <p className="text-md text-bluegrey-600">{this.props.user.email}</p>

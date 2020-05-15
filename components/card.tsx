@@ -7,19 +7,6 @@ type CardProps = {
 }
 
 export default class Card extends Component<CardProps, {}> {
-  private getCardSizeClasses (size: number): string {
-    switch (size) {
-      case 1:
-        return 'pt-2 pb-5'
-      case 2:
-        return 'pt-4 pb-10 text-xl'
-      case 3:
-        return 'pt-6 pb-20 text-2xl'
-      default:
-        return 'pt-1 pb-1'
-    }
-  }
-
   public render (): JSX.Element {
     return (
       <div className={`bg-white border border-bluegrey-300 p-10 rounded-card ${this.props.className}`}>

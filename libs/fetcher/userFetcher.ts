@@ -9,8 +9,6 @@ export async function getUser (ctx) {
     body: JSON.stringify({ userName: null })
   })
 
-  console.log('testing')
-
   return response.json()
 }
 
@@ -26,4 +24,13 @@ export async function getUserById (ctx) {
   const data = await response.json()
   console.log(data)
   return data
+}
+
+export async function getUserSettings (ctx) {
+  const response = await fetch(Config.apiUrl + '/user/settings', {
+    credentials: 'include',
+    headers: ctx.req ? { cookie: ctx.req.headers.cookie, 'Content-Type': 'application/json' } : undefined
+  })
+
+  const data = await response.json()
 }

@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next'
 import Router from 'next/router'
 import { User } from '../../models/User'
 import PropTypes from 'prop-types'
-import { getUserById, getUser } from '../../libs/fetcher/userFetcher'
+import { getUser } from '../../libs/fetcher/userFetcher'
 import Layout from '../../components/layout'
 
 type UserIndexProps = {

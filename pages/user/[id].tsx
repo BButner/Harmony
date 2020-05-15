@@ -10,7 +10,6 @@ import { GetServerSideProps } from 'next'
 import { getUserById } from '../../libs/fetcher/userFetcher'
 import PropTypes from 'prop-types'
 import useSharedState from '../../libs/useSharedState'
-import TestView from '../../components/test'
 
 type UserProps = {
   user: User;
@@ -74,7 +73,7 @@ const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
           </div>
         </Card>
 
-        {showLogout && <Confirmation title={'Logout'} message={'Are you sure you wish to logout?'} onChangeValue={(e) => handleLogoutConfirmationChange(e)} />}
+        {showLogout && <Confirmation title={'Logout'} message={'Are you sure you wish to logout?'} onChangeValue={(e): void => handleLogoutConfirmationChange(e)} />}
       </div>
     </Layout>
   )

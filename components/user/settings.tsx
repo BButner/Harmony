@@ -5,7 +5,7 @@ import useSWR from 'swr'
 import { getUserSettings, updateUserSettings } from '../../libs/fetcher/userFetcher'
 import LoadingCard from '../cards/loadingcard'
 import { UserSettings } from '../../models/UserSettings'
-import { faDotCircle } from '@fortawesome/free-regular-svg-icons'
+import { faDotCircle, faCheckCircle } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Settings: FunctionComponent = () => {
@@ -63,7 +63,7 @@ const Settings: FunctionComponent = () => {
             <p className="ml-4 text-md italic">You have unsaved settings</p>
           </div>
           <div className={`w-full flex justify-center animated mb-10 absolute ${settingsSaved ? 'opacity-1' : 'opacity-0'}`}>
-            <FontAwesomeIcon className="text-green-500 text-2xl" icon={faDotCircle}/>
+            <FontAwesomeIcon className="text-green-500 text-2xl" icon={faCheckCircle}/>
             <p className="ml-4 text-md italic">Settings saved!</p>
           </div>
         </div>

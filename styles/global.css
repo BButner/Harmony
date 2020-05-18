@@ -43,6 +43,11 @@ button, button[type="submit"], input[type="submit"], .button {
     @apply rounded;
 }
 
+button:focus, button[type="submit"]:focus, input[type="submit"]:focus, .button:focus {
+  outline: none;
+  @apply bg-purple-900;
+}
+
 button:hover, button[type="submit"]:hover, input[type="submit"]:hover {
     @apply bg-purple-700;
 }

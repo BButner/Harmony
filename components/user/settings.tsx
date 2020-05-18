@@ -22,6 +22,7 @@ const Settings: FunctionComponent = () => {
   if (data == null) return <LoadingCard title={'Settings'}/>
 
   function handleSettingChanged (key: string, newValue: boolean): void {
+    if (settingsSaved) setSettingsSaved(false)
     let currentValues = settings == null ? data : settings
     const currentSetting = currentValues.filter(setting => setting.settingKey === key)[0]
     currentSetting.settingValue = newValue

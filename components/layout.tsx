@@ -26,9 +26,9 @@ export default class Layout extends Component<LayoutProps, LayoutState> {
   }
 
   private handleScroll (): void {
-    if (window.scrollY > 10 && this.state.showNavBarSub) {
+    if (window.scrollY > 50 && this.state.showNavBarSub) {
       this.setState({ showNavBarSub: false })
-    } else if (window.scrollY <= 10) {
+    } else if (window.scrollY <= 50) {
       this.setState({ showNavBarSub: true })
     }
   }

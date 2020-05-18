@@ -21,6 +21,7 @@ interface Fields {
 
 const Login: React.FunctionComponent = () => {
   const [validationErrors, setValidationErrors] = useState<string[]>([])
+  const [success, setSuccess] = useState<boolean>(false)
 
   const [fields, setFields] = useState<Fields>({
     email: {
@@ -112,7 +113,10 @@ const Login: React.FunctionComponent = () => {
           }
         })
         .then(data => {
-          if (data && data.success) Router.push('/')
+          if (data && data.success) {
+            setSuccess(true)
+            Router.push('/')
+          }
         })
     }
   }
@@ -124,8 +128,8 @@ const Login: React.FunctionComponent = () => {
           <Card className="fixed bottom-0 w-full md:relative" title="Login">
             <form onSubmit={(e): void => handleOnSubmit(e)}>
               <label htmlFor="email" className="text-xs">EMAIL</label><br />
-              <div className={`input-icon flex ${(fields.email.active || fields.email.value.length > 0) && !fields.email.invalid ? 'input-icon-active' : ''} ${fields.email.invalid ? 'border-red-600' : ''} mb-10 animated`}>
-                <div className={`text-gray-500 m-auto pr-2 pl-2 animated ${fields.email.invalid ? 'text-red-600' : ''}`}>
+              <div className={`input-icon flex ${(fields.email.active || fields.email.value.length > 0) && !fields.email.invalid ? 'input-icon-active' : ''} ${fields.email.invalid ? 'border-red-600' : ''} ${success ? 'text-teal-500' : ''} mb-10 animated`}>
+                <div className={`text-gray-500 m-auto pr-2 pl-2 animated ${fields.email.invalid ? 'text-red-600' : ''} ${success ? 'text-teal-500' : ''}`}>
                   <FontAwesomeIcon aria-hidden="false" icon={faEnvelope} />
                 </div>
                 <input
@@ -141,8 +145,8 @@ const Login: React.FunctionComponent = () => {
               </div>
 
               <label htmlFor="password" className="text-xs">PASSWORD</label><br />
-              <div className={`input-icon flex ${(fields.password.active || fields.password.value.length > 0) && !fields.password.invalid ? 'input-icon-active' : ''} ${fields.password.invalid ? 'border-red-600' : ''} animated`}>
-                <div className={`text-gray-500 m-auto pr-2 pl-2 ${fields.password.invalid ? 'text-red-600' : ''}`}>
+              <div className={`input-icon flex ${(fields.password.active || fields.password.value.length > 0) && !fields.password.invalid ? 'input-icon-active' : ''} ${fields.password.invalid ? 'border-red-600' : ''} ${success ? 'text-teal-500' : ''} animated`}>
+                <div className={`text-gray-500 m-auto pr-2 pl-2 ${fields.password.invalid ? 'text-red-600' : ''} ${success ? 'text-teal-500' : ''}`}>
                   <FontAwesomeIcon icon={faLock} />
                 </div>
                 <input

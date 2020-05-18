@@ -1,5 +1,6 @@
 export interface UserSettings {
-  userId: string;
-  emailPublic: boolean;
-  displayNamePublic: boolean;
+  settingKey: string;
+  settingValue: boolean;
+  settingTitle: string;
+  settingDescription: string;
 }

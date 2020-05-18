@@ -89,3 +89,74 @@ button:hover, button[type="submit"]:hover, input[type="submit"]:hover {
         left: 100%;
     }
 }
+
+.checkbox > input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox {
+    @apply relative;
+    @apply inline-block;
+}
+
+.checkbox > label {
+    @apply block;
+    width: 48px;
+    height: 24px;
+    text-indent: -150%;
+    clip: rect(0, 0, 0, 0);
+    color: transparent;
+    user-select: none;
+}
+
+.checkbox > label:before, .checkbox > label:after {
+    content: "";
+    @apply block;
+    @apply absolute;
+    @apply cursor-pointer;
+}
+
+.checkbox > label:before {
+    @apply w-full;
+    @apply h-full;
+    @apply bg-bluegrey-400;
+    @apply rounded-full;
+    -webkit-transition: background-color 0.25s ease;
+    transition: background-color .25s ease;
+}
+
+.checkbox > label:after {
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    @apply bg-white;
+    -webkit-transition: left 0.25s ease;
+    transition: left .25s ease;
+}
+
+.checkbox > input[type="checkbox"]:checked + label:before {
+    @apply bg-teal-500;
+}
+
+.checkbox > input[type="checkbox"]:checked + label:after {
+    left: 26px;
+}
+
+.setting-wrapper:not(:last-of-type) {
+  @apply mb-12;
+}
+
+.unsaved-settings {
+  animation: 2s ease-out 0s infinite flash;
+}
+
+@keyframes flash {
+  0%, 100% {
+    opacity: 0
+  }
+  50% {
+    opacity: 1
+  }
+}

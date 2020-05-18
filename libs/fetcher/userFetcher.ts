@@ -33,4 +33,21 @@ export async function getUserSettings (ctx) {
   })
 
   const data = await response.json()
+  return data
+}
+
+export async function updateUserSettings (settingsData: any) {
+  const response = await fetch(Config.apiUrl + '/user/settings', {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      settings: settingsData
+    })
+  })
+
+  const data = await response.json()
+  return data
 }

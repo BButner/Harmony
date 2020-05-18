@@ -8,7 +8,7 @@ interface LoadingCardProps {
 
 const LoadingCard: FunctionComponent<LoadingCardProps> = ({ title }) => {
   return (
-    <Card title={title}>
+    <Card title={title} className="w-3/4 md: w-3/5">
       <div className="loading-bar">
         <div className="loading-bar-inner"></div>
       </div>

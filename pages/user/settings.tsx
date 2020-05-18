@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect } from 'react'
 import Layout from '../../components/layout'
 import { GetServerSideProps } from 'next'
-import { getUser, getUserSettings } from '../../libs/fetcher/userFetcher'
+import { getUser } from '../../libs/fetcher/userFetcher'
 import PropTypes from 'prop-types'
 import { User } from '../../models/User'
 import Router from 'next/router'

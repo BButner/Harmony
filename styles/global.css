@@ -41,10 +41,14 @@ button, button[type="submit"], input[type="submit"], .button {
     @apply pr-5;
     @apply pl-5;
     @apply rounded;
+    @apply transition duration-200 ease-in-out;
 }
 
 button:focus, button[type="submit"]:focus, input[type="submit"]:focus, .button:focus {
   outline: none;
+}
+
+button:active, button[type="submit"]:active, input[type="submit"]:active, .button:active {
   @apply bg-purple-900;
 }
 
@@ -53,10 +57,10 @@ button:hover, button[type="submit"]:hover, input[type="submit"]:hover {
 }
 
 .rounded-card {
-    animation: .5s ease-out 0s 1 card-fade-in;
+    animation: .5s ease-out 0s 1 card-fade-up;
 }
 
-@keyframes card-fade-in {
+@keyframes card-fade-up {
     0% {
         transform: translateY(50%);
         @apply opacity-0;
@@ -150,18 +154,50 @@ button:hover, button[type="submit"]:hover, input[type="submit"]:hover {
 }
 
 .setting-wrapper:not(:last-of-type) {
-  @apply mb-12;
+    @apply mb-12;
 }
 
 .unsaved-settings {
-  animation: 2s ease-out 0s infinite flash;
+    animation: 2s ease-out 0s infinite flash;
 }
 
 @keyframes flash {
-  0%, 100% {
-    opacity: 0
+    0%, 100% {
+        opacity: 0
+    }
+    50% {
+        opacity: 1
+    }
+}
+
+.confirmation-card {
+    z-index: 90;
+}
+
+.image-popup {
+    animation: .5s ease-out 0s 1 card-fade-in;
+    z-index: 99;
+}
+
+@keyframes card-fade-in {
+  0% {
+    opacity: 0;
   }
-  50% {
-    opacity: 1
+  100% {
+    opacity: 1;
   }
+}
+
+.bg-animated {
+    animation: .5s ease-out 0s 1 bg-animate;
+    background-color: rgba(0, 0, 0, .3);
+}
+
+@keyframes bg-animate {
+    0% {
+        background-color: rgba(0, 0, 0, .0);
+    }
+    100% {
+        background-color: rgba(0, 0, 0, .3);
+    }
 }

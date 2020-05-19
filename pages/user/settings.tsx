@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import { User } from '../../models/User'
 import Router from 'next/router'
 import Settings from '../../components/user/settings'
+import ProfileSettings from '../../components/user/profile'
 
 type UserSettingsProps = {
   self: User;
@@ -18,7 +19,8 @@ const UserSettings: FunctionComponent<UserSettingsProps> = ({ self }) => {
 
   return (
     <Layout showNavBar={true} user={self} title={'User Settings'} subtitle={'Change your general experience, privacy settings, etc.'}>
-      <div className="mt-56 flex justify-center">
+      <div className="mt-56 flex justify-evenly items-center flex-wrap">
+        <ProfileSettings/>
         <Settings/>
       </div>
     </Layout>

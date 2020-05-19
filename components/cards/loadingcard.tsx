@@ -4,20 +4,22 @@ import PropTypes from 'prop-types'
 
 interface LoadingCardProps {
   title: string;
+  className: string;
 }
 
-const LoadingCard: FunctionComponent<LoadingCardProps> = ({ title }) => {
+const LoadingCard: FunctionComponent<LoadingCardProps> = ({ title, className }) => {
   return (
-    <Card title={title} className="w-3/4 md: w-3/5">
-      <div className="loading-bar">
-        <div className="loading-bar-inner"></div>
-      </div>
-    </Card>
+    <>
+      <Card title={title} className={`${className}`}>
+        <div className="loading-bar"></div>
+      </Card>
+    </>
   )
 }
 
 LoadingCard.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired
 }
 
 export default LoadingCard

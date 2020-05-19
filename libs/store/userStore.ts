@@ -1,7 +1,10 @@
 import useSharedState from '../useSharedState'
-import { User } from '../../models/User'
-import useSWR from 'swr'
+import { getUser, getUserSettings } from '../fetcher/userFetcher'
 
 export const useUserState = () => {
-  return useSharedState('user', useSWR('user'))
+  return useSharedState('/api/user', getUser)
+}
+
+export const useSettingsState = () => {
+  return useSharedState('/api/settings', getUserSettings)
 }

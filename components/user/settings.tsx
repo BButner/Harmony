@@ -1,8 +1,7 @@
 import React, { FunctionComponent, useState } from 'react'
 import Card from '../card'
-import useSharedState from '../../libs/useSharedState'
-import useSWR, { mutate } from 'swr'
-import { getUserSettings, updateUserSettings, getUser } from '../../libs/fetcher/userFetcher'
+import useSWR from 'swr'
+import { getUserSettings, updateUserSettings } from '../../libs/fetcher/userFetcher'
 import LoadingCard from '../cards/loadingcard'
 import { UserSettings } from '../../models/UserSettings'
 import { faDotCircle, faCheckCircle, faStopCircle } from '@fortawesome/free-regular-svg-icons'
@@ -10,7 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Settings: FunctionComponent = () => {
   const { data, error } = useSWR('/user/settings', getUserSettings)
-  const [userState, setUserState] = useSharedState('/api/user', getUser)
   const [settings, setSettings] = useState<UserSettings[]>(data)
   const [settingChanged, setSettingChanged] = useState<boolean>(false)
   const [settingsSaved, setSettingsSaved] = useState<boolean>(false)

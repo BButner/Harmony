@@ -9,7 +9,6 @@ import Confirmation from '../../components/popups/confirmation'
 import { GetServerSideProps } from 'next'
 import { getUserById } from '../../libs/fetcher/userFetcher'
 import PropTypes from 'prop-types'
-import useSharedState from '../../libs/useSharedState'
 import ImagePopup from '../../components/popups/imagepopup'
 
 type UserProps = {
@@ -18,12 +17,8 @@ type UserProps = {
 }
 
 const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
-  const [userState, setUserState] = useSharedState('user', user)
-  const [selfState, setSelfState] = useSharedState('self', self)
   const [showLogout, setShowLogout] = useState(false)
   const [showAvatar, setShowAvatar] = useState<boolean>(false)
-  setUserState(user)
-  setSelfState(self)
 
   function handleAvatarOnClick (): void {
     setShowAvatar(true)
@@ -62,7 +57,7 @@ const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
           <div className="md:flex md:items-center md:text-left">
             <div
               className="w-32 h-32 rounded-full m-auto mb-10 md:m-0 bg-bluegrey-100 avatar-shadow cursor-pointer hover:opacity-75 animated"
-              onClick={() => handleAvatarOnClick()}
+              onClick={(): void => handleAvatarOnClick()}
               style={{
                 backgroundImage: `url(${Config.bucketUrl}${user.avatarUrl}.jpg)`,
                 backgroundSize: 'cover',

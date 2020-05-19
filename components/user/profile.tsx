@@ -5,7 +5,6 @@ import { getUser } from '../../libs/fetcher/userFetcher'
 import LoadingCard from '../cards/loadingcard'
 import Config from '../../config/default.json'
 import ImagePopup from '../popups/imagepopup'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const ProfileSettings: FunctionComponent = () => {
   const { data, error } = useSWR('/api/user', getUser)
@@ -31,7 +30,7 @@ const ProfileSettings: FunctionComponent = () => {
         <div className="text-center w-full">
           <div
             className="w-32 h-32 m-auto flex justify-center text-center rounded-full bg-bluegrey-100 avatar-shadow hover:opacity-75 cursor-pointer animated"
-            onClick={() => handleAvatarOnClick()}
+            onClick={(): void => handleAvatarOnClick()}
             style={{
               backgroundImage: `url(${Config.bucketUrl}${data.user.avatarUrl}.jpg)`,
               backgroundSize: 'cover',

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Layout from '../components/layout'
 import { User } from '../models/User'
 import { GetServerSideProps } from 'next'
-import { getUser } from '../libs/fetcher/userFetcher'
+import { getSelf } from '../libs/fetcher/userFetcher'
 
 type IndexProps = {
   user: User;
@@ -27,6 +27,6 @@ export default class Index extends Component<IndexProps, {}> {
 }
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  const data = await getUser(ctx)
-  return { props: { user: data.user } }
+  const data = await getSelf(ctx)
+  return { props: { user: data.self } }
 }

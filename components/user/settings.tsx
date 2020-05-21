@@ -6,9 +6,12 @@ import LoadingCard from '../cards/loadingcard'
 import { UserSettings } from '../../models/UserSettings'
 import { faDotCircle, faCheckCircle, faStopCircle } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useRouter } from 'next/router'
 
 const Settings: FunctionComponent = () => {
-  const { data, error } = useSWR('/user/settings', getUserSettings)
+  const router = useRouter()
+  const { id: userName } = router.query
+  const { data, error } = useSWR(`/user/${userName}/settings`, getUserSettings)
   const [settingChanged, setSettingChanged] = useState<boolean>(false)
   const [settingsSaved, setSettingsSaved] = useState<boolean>(false)
   const [settingsReverted, setSettingsReverted] = useState<boolean>(false)
@@ -45,7 +48,7 @@ const Settings: FunctionComponent = () => {
         [set.settingKey]: set.settingValue
       })
     })
-    updateUserSettings(settingsData)
+    updateUserSettings(String(userName), settingsData)
       .then(data => {
         if (data.success) {
           setSettingChanged(false)

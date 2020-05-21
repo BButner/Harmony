@@ -72,8 +72,6 @@ const Login: React.FunctionComponent = () => {
     const validationErrors: string[] = []
     let fieldsTemp = fields
 
-    console.log(Object.entries(fields))
-
     Object.entries(fields).filter(e => e[1].value === '').map((key) => {
       validationErrors.push(`${key[0]} cannot be empty!`)
       fieldsTemp = {
@@ -86,7 +84,6 @@ const Login: React.FunctionComponent = () => {
     })
 
     setValidationErrors(validationErrors)
-    console.log(fieldsTemp)
     setFields(fieldsTemp)
     return validationErrors.length === 0
   }

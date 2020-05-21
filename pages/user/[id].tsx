@@ -7,7 +7,7 @@ import Card from '../../components/card'
 import Router from 'next/router'
 import Confirmation from '../../components/popups/confirmation'
 import { GetServerSideProps } from 'next'
-import { getUserById } from '../../libs/fetcher/userFetcher'
+import { getUserByUserName } from '../../libs/fetcher/userFetcher'
 import PropTypes from 'prop-types'
 import ImagePopup from '../../components/popups/image'
 
@@ -72,7 +72,7 @@ const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
               <p className="text-xs text-bluegrey-500 mt-4">Member since {new Date(user.date.toString()).toDateString()}</p>
             </div>
             {self && user.userName === self.userName && <div className="m-auto md:m-0 md:ml-10 text-center mt-5 md:mt-0">
-              <button className="m-auto button mb-2 animated block" onClick={(): Promise<any> => Router.push('/user/settings')}>Settings</button>
+              <button className="m-auto button mb-2 animated block" onClick={(): Promise<any> => Router.push(`/user/${user.userName}/settings`)}>Settings</button>
               <button onClick={handleLogoutOnClick} className="m-auto md:m-0 bg-red-500 text-white rounded hover:bg-red-700 button animated red-active">Logout</button>
             </div>}
           </div>
@@ -86,7 +86,7 @@ const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  const data = await getUserById(ctx, true)
+  const data = await getUserByUserName(ctx)
   return { props: { user: data.user, self: data.self } }
 }
 

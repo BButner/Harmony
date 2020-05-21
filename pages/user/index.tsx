@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next'
 import Router from 'next/router'
 import { User } from '../../models/User'
 import PropTypes from 'prop-types'
-import { getUser } from '../../libs/fetcher/userFetcher'
+import { getSelf } from '../../libs/fetcher/userFetcher'
 import Layout from '../../components/layout'
 
 type UserIndexProps = {
@@ -26,8 +26,8 @@ const UserIndex: FunctionComponent<UserIndexProps> = ({ user }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  const data = await getUser(ctx)
-  return { props: { user: data.user, self: data.self } }
+  const data = await getSelf(ctx)
+  return { props: { user: data.self, self: data.self } }
 }
 
 UserIndex.propTypes = {

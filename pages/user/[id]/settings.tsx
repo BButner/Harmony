@@ -1,12 +1,12 @@
 import React, { FunctionComponent, useEffect } from 'react'
-import Layout from '../../components/layout'
+import Layout from '../../../components/layout'
 import { GetServerSideProps } from 'next'
-import { getUser } from '../../libs/fetcher/userFetcher'
+import { getSelf } from '../../../libs/fetcher/userFetcher'
 import PropTypes from 'prop-types'
-import { User } from '../../models/User'
+import { User } from '../../../models/User'
 import Router from 'next/router'
-import Settings from '../../components/user/settings'
-import ProfileSettings from '../../components/user/profile'
+import Settings from '../../../components/user/settings'
+import ProfileSettings from '../../../components/user/profile'
 
 type UserSettingsProps = {
   self: User;
@@ -30,7 +30,7 @@ const UserSettings: FunctionComponent<UserSettingsProps> = ({ self }) => {
 export default UserSettings
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  const data = await getUser(ctx)
+  const data = await getSelf(ctx)
   return { props: { self: data.self } }
 }
 

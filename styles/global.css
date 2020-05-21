@@ -46,6 +46,10 @@ button, button[type="submit"], input[type="submit"], .button {
     @apply cursor-pointer;
 }
 
+input {
+  outline: none;
+}
+
 button:focus, button[type="submit"]:focus, input[type="submit"]:focus, .button:focus {
   outline: none;
 }

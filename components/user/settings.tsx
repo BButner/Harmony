@@ -6,12 +6,15 @@ import LoadingCard from '../cards/loadingcard'
 import { UserSettings } from '../../models/UserSettings'
 import { faDotCircle, faCheckCircle, faStopCircle } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useRouter } from 'next/router'
+import { UserSelf } from '../../models/User'
+import PropTypes from 'prop-types'
 
-const Settings: FunctionComponent = () => {
-  const router = useRouter()
-  const { id: userName } = router.query
-  const { data, error } = useSWR(`/user/${userName}/settings`, getUserSettings)
+interface SettingsTypes {
+  self: UserSelf;
+}
+
+const Settings: FunctionComponent<SettingsTypes> = ({ self }) => {
+  const { data, error } = useSWR(`/user/${self.userName}/settings`, getUserSettings)
   const [settingChanged, setSettingChanged] = useState<boolean>(false)
   const [settingsSaved, setSettingsSaved] = useState<boolean>(false)
   const [settingsReverted, setSettingsReverted] = useState<boolean>(false)
@@ -48,7 +51,7 @@ const Settings: FunctionComponent = () => {
         [set.settingKey]: set.settingValue
       })
     })
-    updateUserSettings(String(userName), settingsData)
+    updateUserSettings(self.userName, settingsData)
       .then(data => {
         if (data.success) {
           setSettingChanged(false)
@@ -106,6 +109,10 @@ const Settings: FunctionComponent = () => {
       </Card>
     </>
   )
+}
+
+Settings.propTypes = {
+  self: PropTypes.any.isRequired
 }
 
 export default Settings

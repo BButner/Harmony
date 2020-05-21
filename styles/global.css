@@ -141,7 +141,7 @@ button:hover, button[type="submit"]:hover, input[type="submit"]:hover {
 }
 
 .checkbox > label:after {
-    top: 2px;
+    top: 0px;
     left: 2px;
     width: 20px;
     height: 20px;
@@ -206,4 +206,63 @@ button:hover, button[type="submit"]:hover, input[type="submit"]:hover {
     100% {
         background-color: rgba(0, 0, 0, .9);
     }
+}
+
+.loading-icon {
+  animation: .5s ease-out 0s 1 bg-animate-light;
+  background-color: rgba(255, 255, 255, .8);
+}
+
+@keyframes bg-animate-light {
+  0% {
+    background-color: rgba(255, 255, 255, 0);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, .8)
+  }
+}
+
+.loading-icon > div {
+  width: 65%;
+  height: 20px;
+  @apply relative;
+  @apply inline-block;
+}
+
+.loading-icon div:after {
+  @apply inline-block;
+  @apply absolute;
+  content: "";
+  top: 0px;
+  height: 20px;
+  animation-name: loading-animate;
+  animation-duration: 1.75s;
+  animation-iteration-count: infinite;
+  box-shadow: 0 4px 10px 0 hsla(0, 0%, 0%, 0.2);
+}
+
+@keyframes loading-animate {
+  0% {
+    @apply bg-purple-500;
+    width: 0%;
+    left: 0px;
+  }
+  40% {
+    width: 100%;
+    left: 0px;
+  }
+  50% {
+    @apply bg-blue-500;
+    width: 100%;
+    right: 0px;
+  }
+  60% {
+    width: 100%;
+    right: 0px;
+  }
+  100% {
+    @apply bg-teal-500;
+    width: 0%;
+    right: 0px;
+  }
 }

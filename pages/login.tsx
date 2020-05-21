@@ -7,6 +7,7 @@ import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
 import { faLock } from '@fortawesome/free-solid-svg-icons/faLock'
 import LoginService from '../services/authentication/login'
 import Router from 'next/router'
+import LoadingIcon from '../components/loadingicon'
 
 interface DefaultFieldAttributes {
   active: boolean;
@@ -22,6 +23,7 @@ interface Fields {
 const Login: React.FunctionComponent = () => {
   const [validationErrors, setValidationErrors] = useState<string[]>([])
   const [success, setSuccess] = useState<boolean>(false)
+  const [loggingIn, setLoggingIn] = useState<boolean>(false)
 
   const [fields, setFields] = useState<Fields>({
     email: {
@@ -90,6 +92,7 @@ const Login: React.FunctionComponent = () => {
 
   function handleOnSubmit (form: React.FormEvent<HTMLFormElement>): void {
     form.preventDefault()
+    setLoggingIn(true)
 
     if (validate()) {
       LoginService.loginUser(fields.email.value, fields.password.value)
@@ -107,6 +110,7 @@ const Login: React.FunctionComponent = () => {
               }
             })
             setValidationErrors(['Login failed, please check your Email and Password!'])
+            setLoggingIn(false)
           }
         })
         .then(data => {
@@ -172,6 +176,7 @@ const Login: React.FunctionComponent = () => {
               <p>Don&apos;t have an account yet? <Link href="/register"><a className="text-purple-500">Create an account.</a></Link></p>
               <p><Link href="/"><a className="text-purple-500">Return to homepage.</a></Link></p>
             </div>
+            {loggingIn && <LoadingIcon/>}
           </Card>
         </div>
       </div>

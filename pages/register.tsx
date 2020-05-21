@@ -8,6 +8,7 @@ import { faLock } from '@fortawesome/free-solid-svg-icons/faLock'
 import LoginService from '../services/authentication/login'
 import RegisterService from '../services/authentication/register'
 import Router from 'next/router'
+import LoadingIcon from '../components/loadingicon'
 
 interface DefaultFieldAttributes {
   active: boolean;
@@ -25,9 +26,7 @@ interface Fields {
 
 const Register: React.FunctionComponent = () => {
   const [validationErrors, setValidationErrors] = useState<string[]>([])
-
   const [avatar, setAvatar] = useState<File>(null)
-
   const [fields, setFields] = useState<Fields>({
     email: {
       active: false,
@@ -55,6 +54,7 @@ const Register: React.FunctionComponent = () => {
       value: ''
     }
   })
+  const [registering, setRegistering] = useState<boolean>(false)
 
   function onFocus (id: string): void {
     setFields({
@@ -117,6 +117,7 @@ const Register: React.FunctionComponent = () => {
 
   function handleOnSubmit (e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault()
+    setRegistering(true)
 
     if (validate()) {
       RegisterService.registerUser(
@@ -137,6 +138,9 @@ const Register: React.FunctionComponent = () => {
                   Router.push('/')
                 }
               })
+          } else {
+            setRegistering(false)
+            // setValidationErrors(data.error)
           }
         })
     }
@@ -260,6 +264,8 @@ const Register: React.FunctionComponent = () => {
               <p>Already have an account? <Link href="/login"><a className="text-purple-500">Login instead.</a></Link></p>
               <p><Link href="/"><a className="text-purple-500">Return to homepage.</a></Link></p>
             </div>
+
+            {registering && <LoadingIcon/>}
           </Card>
         </div>
       </div>

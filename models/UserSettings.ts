@@ -4,3 +4,9 @@ export interface UserSettings {
   settingTitle: string;
   settingDescription: string;
 }
+
+export interface UserSettingsRaw {
+  emailPublic: boolean;
+  displayNamePublic: boolean;
+  showImageStats: boolean;
+}

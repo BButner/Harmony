@@ -19,7 +19,7 @@ const UserSettings: FunctionComponent<UserSettingsProps> = ({ self }) => {
 
   return (
     <Layout showNavBar={true} user={self} title={'User Settings'} subtitle={'Change your general experience, privacy settings, etc.'}>
-      <div className="mt-56 flex justify-evenly items-center flex-wrap">
+      <div className="mt-56 flex justify-center items-baseline flex-wrap">
         <ProfileSettings/>
         <Settings/>
       </div>

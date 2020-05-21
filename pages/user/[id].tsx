@@ -2,18 +2,18 @@ import React, { FunctionComponent, useState } from 'react'
 import fetch from 'isomorphic-unfetch'
 import Config from '../../config/default.json'
 import Layout from '../../components/layout'
-import { User } from '../../models/User'
+import { User, UserSelf } from '../../models/User'
 import Card from '../../components/card'
 import Router from 'next/router'
 import Confirmation from '../../components/popups/confirmation'
 import { GetServerSideProps } from 'next'
 import { getUserById } from '../../libs/fetcher/userFetcher'
 import PropTypes from 'prop-types'
-import ImagePopup from '../../components/popups/imagepopup'
+import ImagePopup from '../../components/popups/image'
 
 type UserProps = {
   user: User;
-  self: User;
+  self: UserSelf;
 }
 
 const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
@@ -72,13 +72,13 @@ const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
               <p className="text-xs text-bluegrey-500 mt-4">Member since {new Date(user.date.toString()).toDateString()}</p>
             </div>
             {self && user.userName === self.userName && <div className="m-auto md:m-0 md:ml-10 text-center mt-5 md:mt-0">
-              <button className="m-auto button mb-2 animated block" onClick={(): Promise<boolean> => Router.push('/user/settings')}>Settings</button>
+              <button className="m-auto button mb-2 animated block" onClick={(): Promise<any> => Router.push('/user/settings')}>Settings</button>
               <button onClick={handleLogoutOnClick} className="m-auto md:m-0 bg-red-500 text-white rounded hover:bg-red-700 button animated red-active">Logout</button>
             </div>}
           </div>
         </Card>
 
-        {showAvatar && <ImagePopup imageUrl={`${Config.bucketUrl}${user.avatarUrl}.jpg`} onValueChange={handleImagePopup}/>}
+        {showAvatar && <ImagePopup self={self} imageUrl={`${Config.bucketUrl}${user.avatarUrl}.jpg`} onValueChange={handleImagePopup}/>}
         {showLogout && <Confirmation title={'Logout'} message={'Are you sure you wish to logout?'} onChangeValue={(e): void => handleLogoutConfirmationChange(e)} />}
       </div>
     </Layout>
@@ -86,7 +86,7 @@ const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  const data = await getUserById(ctx)
+  const data = await getUserById(ctx, true)
   return { props: { user: data.user, self: data.self } }
 }
 

@@ -4,7 +4,7 @@ import useSWR from 'swr'
 import { getUser } from '../../libs/fetcher/userFetcher'
 import LoadingCard from '../cards/loadingcard'
 import Config from '../../config/default.json'
-import ImagePopup from '../popups/imagepopup'
+import ImagePopup from '../popups/image'
 
 const ProfileSettings: FunctionComponent = () => {
   const { data, error } = useSWR('/api/user', getUser)
@@ -26,7 +26,7 @@ const ProfileSettings: FunctionComponent = () => {
 
   return (
     <>
-      <Card title="Profile" className="w-11/12 md:w-1/5 flex-start">
+      <Card title="Profile" className="w-11/12 md:w-1/5 flex-start md:mr-4">
         <div className="text-center w-full">
           <div
             className="w-32 h-32 m-auto flex justify-center text-center rounded-full bg-bluegrey-100 avatar-shadow hover:opacity-75 cursor-pointer animated"
@@ -44,7 +44,7 @@ const ProfileSettings: FunctionComponent = () => {
         </div>
       </Card>
 
-      {showAvatar && <ImagePopup onValueChange={handleImagePopup} imageUrl={`${Config.bucketUrl}${data.user.avatarUrl}.jpg`}></ImagePopup>}
+      {showAvatar && <ImagePopup self={data.self} onValueChange={handleImagePopup} imageUrl={`${Config.bucketUrl}${data.user.avatarUrl}.jpg`}></ImagePopup>}
     </>
   )
 }

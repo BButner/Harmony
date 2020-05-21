@@ -12,13 +12,14 @@ export async function getUser (ctx) {
   return response.json()
 }
 
-export async function getUserById (ctx) {
+export async function getUserById (ctx, includeSettings) {
   const response = await fetch(Config.apiUrl + '/user', {
     method: 'POST',
     credentials: 'include',
     headers: ctx.req ? { cookie: ctx.req.headers.cookie, 'Content-Type': 'application/json' } : undefined,
     body: JSON.stringify({
-      userName: ctx.params.id
+      userName: ctx.params.id,
+      settings: includeSettings
     })
   })
   const data = await response.json()

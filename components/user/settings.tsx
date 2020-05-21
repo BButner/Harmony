@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from 'react'
 import Card from '../card'
-import useSWR from 'swr'
+import useSWR, { mutate } from 'swr'
 import { getUserSettings, updateUserSettings } from '../../libs/fetcher/userFetcher'
 import LoadingCard from '../cards/loadingcard'
 import { UserSettings } from '../../models/UserSettings'
@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Settings: FunctionComponent = () => {
   const { data, error } = useSWR('/user/settings', getUserSettings)
-  const [settings, setSettings] = useState<UserSettings[]>(data)
   const [settingChanged, setSettingChanged] = useState<boolean>(false)
   const [settingsSaved, setSettingsSaved] = useState<boolean>(false)
   const [settingsReverted, setSettingsReverted] = useState<boolean>(false)
@@ -22,26 +21,26 @@ const Settings: FunctionComponent = () => {
   if (data == null) return <LoadingCard title={'Settings'} className="w-11/12 md:w-3/5"/>
 
   function handleSettingChanged (key: string, newValue: boolean): void {
+    const currentValues = data
     if (settingsSaved) setSettingsSaved(false)
     if (settingsReverted) setSettingsReverted(false)
-    let currentValues = settings == null ? data : settings
-    if (settingsBackup == null) setSettingsBackup(currentValues)
-    const currentSetting = currentValues.filter(setting => setting.settingKey === key)[0]
-    currentSetting.settingValue = newValue
+    if (settingsBackup == null) {
+      setSettingsBackup(JSON.parse(JSON.stringify(data)))
+    }
 
-    currentValues = currentValues
-      .filter(setting => setting.settingKey !== key)
-      .concat(
-        currentSetting
-      )
+    currentValues.map(setting => {
+      if (setting.settingKey === key) {
+        setting.settingValue = newValue
+      }
+    })
 
-    setSettings(currentValues)
+    mutate('/user/settings', currentValues, false)
     setSettingChanged(true)
   }
 
   function handleSaveOnClick (): void {
     const settingsData: any[] = []
-    settings.map(set => {
+    data.map(set => {
       settingsData.push({
         [set.settingKey]: set.settingValue
       })
@@ -61,7 +60,10 @@ const Settings: FunctionComponent = () => {
     setSettingChanged(false)
     setSettingsReverted(true)
     setTimeout(() => setSettingsReverted(false), 3000)
-    setSettings(settingsBackup)
+    mutate('/user/settings', settingsBackup, false)
+    settingsBackup.map(setting => {
+      (document.getElementById(setting.settingKey) as HTMLInputElement).checked = setting.settingValue
+    })
     setSettingsBackup(null)
   }
 

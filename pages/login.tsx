@@ -176,7 +176,8 @@ const Login: React.FunctionComponent = () => {
               <p>Don&apos;t have an account yet? <Link href="/register"><a className="text-purple-500">Create an account.</a></Link></p>
               <p><Link href="/"><a className="text-purple-500">Return to homepage.</a></Link></p>
             </div>
-            {loggingIn && <LoadingIcon/>}
+            {/* {loggingIn && <LoadingIcon/>} */}
+            <LoadingIcon></LoadingIcon>
           </Card>
         </div>
       </div>

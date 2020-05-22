@@ -166,6 +166,7 @@ const Register: React.FunctionComponent = () => {
                   onBlur={(e): void => onBlur(e.target.id)}
                   onChange={(e): void => handleValueOnChange(e.target.id, e.target.value)}
                   value={fields.displayName.value}
+                  readOnly={registering}
                 />
               </div>
 
@@ -183,6 +184,7 @@ const Register: React.FunctionComponent = () => {
                   onBlur={(e): void => onBlur(e.target.id)}
                   onChange={(e): void => handleValueOnChange(e.target.id, e.target.value)}
                   value={fields.userName.value}
+                  readOnly={registering}
                 />
               </div>
 
@@ -193,9 +195,8 @@ const Register: React.FunctionComponent = () => {
                   id="avatar"
                   placeholder="Enter your username"
                   className="flex-grow bg-transparent pt-2 pb-2"
-                  onChange={
-                    (e): void => setAvatar(e.target.files[0])
-                  }
+                  onChange={(e): void => setAvatar(e.target.files[0])}
+                  readOnly={registering}
                 />
               </div>
 
@@ -213,6 +214,7 @@ const Register: React.FunctionComponent = () => {
                   onBlur={(e): void => onBlur(e.target.id)}
                   onChange={(e): void => handleValueOnChange(e.target.id, e.target.value)}
                   value={fields.email.value}
+                  readOnly={registering}
                 />
               </div>
 
@@ -230,6 +232,7 @@ const Register: React.FunctionComponent = () => {
                   onBlur={(e): void => onBlur(e.target.id)}
                   onChange={(e): void => handleValueOnChange(e.target.id, e.target.value)}
                   value={fields.password.value}
+                  readOnly={registering}
                 />
               </div>
 
@@ -247,6 +250,7 @@ const Register: React.FunctionComponent = () => {
                   onBlur={(e): void => onBlur(e.target.id)}
                   onChange={(e): void => handleValueOnChange(e.target.id, e.target.value)}
                   value={fields.password2.value}
+                  readOnly={registering}
                 />
               </div>
               <div className="mb-20 mt-4 text-sm text-red-600">

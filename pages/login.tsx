@@ -142,6 +142,7 @@ const Login: React.FunctionComponent = () => {
                   onBlur={(e): void => onBlur(e.target.id)}
                   onChange={(e): void => handleValueChange(e.target.id, e.target.value)}
                   value={fields.email.value}
+                  readOnly={loggingIn}
                 />
               </div>
 
@@ -159,6 +160,7 @@ const Login: React.FunctionComponent = () => {
                   onBlur={(e): void => onBlur(e.target.id)}
                   onChange={(e): void => handleValueChange(e.target.id, e.target.value)}
                   value={fields.password.value}
+                  readOnly={loggingIn}
                 />
               </div>
               <div className="mb-20 mt-8 text-sm text-red-600">
@@ -176,8 +178,7 @@ const Login: React.FunctionComponent = () => {
               <p>Don&apos;t have an account yet? <Link href="/register"><a className="text-purple-500">Create an account.</a></Link></p>
               <p><Link href="/"><a className="text-purple-500">Return to homepage.</a></Link></p>
             </div>
-            {/* {loggingIn && <LoadingIcon/>} */}
-            <LoadingIcon></LoadingIcon>
+            {loggingIn && <LoadingIcon/>}
           </Card>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { FunctionComponent, useState, useEffect } from 'react'
 import Link from 'next/link'
 import { User } from '../models/User'
 import PropTypes from 'prop-types'
+import { faWindowRestore } from '@fortawesome/free-regular-svg-icons'
 
 type HeaderProps = {
   links: string[];
@@ -10,6 +11,7 @@ type HeaderProps = {
 
 const Header: FunctionComponent<HeaderProps> = ({ links, user }) => {
   const [navVisible, setNavVisible] = useState<boolean>(false)
+  const [showShadow, setShowShadow] = useState<boolean>(false)
 
   function handleWindowResize (): void {
     if (window.innerWidth <= 640) setNavVisible(false)
@@ -20,13 +22,23 @@ const Header: FunctionComponent<HeaderProps> = ({ links, user }) => {
     setNavVisible(!navVisible)
   }
 
+  function handleScroll (): void {
+    if (window.scrollY > 50) {
+      setShowShadow(true)
+    } else {
+      setShowShadow(false)
+    }
+  }
+
   useEffect(() => {
     window.addEventListener('resize', () => handleWindowResize())
+    window.addEventListener('scroll', () => handleScroll())
     if (window.innerWidth >= 768) setNavVisible(true)
+    if (window.scrollY > 50) setShowShadow(true)
   })
 
   return (
-    <div className="bg-white w-screen fixed top-0 left-0 z-50">
+    <div className={`bg-white w-screen fixed top-0 left-0 z-50 ${showShadow ? 'softer-shadow' : ''}`}>
       <nav className="flex items-center justify-between flex-wrap p-6">
         <div className="flex items-center flex-shrink-0 text-lg w-2/3 font-bold animated">
           <Link href="/"><a className="hover:text-purple-500 animated">harmony</a></Link>

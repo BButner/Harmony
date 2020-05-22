@@ -2,6 +2,8 @@ body {
     @apply bg-bluegrey-100;
     font-family: Ubuntu;
     @apply text-gray-700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 nav {
@@ -47,15 +49,15 @@ button, button[type="submit"], input[type="submit"], .button {
 }
 
 input {
-  outline: none;
+    outline: none;
 }
 
 button:focus, button[type="submit"]:focus, input[type="submit"]:focus, .button:focus {
-  outline: none;
+    outline: none;
 }
 
 button:active, button[type="submit"]:active, input[type="submit"]:active, .button:active {
-  @apply bg-purple-900;
+    @apply bg-purple-900;
 }
 
 button:hover, button[type="submit"]:hover, input[type="submit"]:hover {
@@ -106,7 +108,7 @@ button:hover, button[type="submit"]:hover, input[type="submit"]:hover {
 }
 
 .checkbox > input[type="checkbox"] {
-  display: none;
+    display: none;
 }
 
 .checkbox {
@@ -223,46 +225,46 @@ button:hover, button[type="submit"]:hover, input[type="submit"]:hover {
 }
 
 .loading-icon > div {
-  width: 65%;
-  height: 20px;
-  @apply relative;
-  @apply inline-block;
+    width: 65%;
+    height: 20px;
+    @apply relative;
+    @apply inline-block;
 }
 
 .loading-icon div:after {
-  @apply inline-block;
-  @apply absolute;
-  content: "";
-  top: 0px;
-  height: 20px;
-  animation-name: loading-animate;
-  animation-duration: 1.25s;
-  animation-iteration-count: infinite;
-  box-shadow: 0 4px 10px 0 hsla(0, 0%, 0%, 0.2);
+    @apply inline-block;
+    @apply absolute;
+    content: "";
+    top: 0px;
+    height: 20px;
+    animation-name: loading-animate;
+    animation-duration: 1.25s;
+    animation-iteration-count: infinite;
+    box-shadow: 0 4px 10px 0 hsla(0, 0%, 0%, 0.2);
 }
 
 @keyframes loading-animate {
-  0% {
-    @apply bg-purple-500;
-    width: 0%;
-    left: 0px;
-  }
-  40% {
-    width: 100%;
-    left: 0px;
-  }
-  50% {
-    @apply bg-blue-500;
-    width: 100%;
-    right: 0px;
-  }
-  60% {
-    width: 100%;
-    right: 0px;
-  }
-  100% {
-    @apply bg-teal-500;
-    width: 0%;
-    right: 0px;
-  }
+    0% {
+        @apply bg-purple-500;
+        width: 0%;
+        left: 0px;
+    }
+    40% {
+        width: 100%;
+        left: 0px;
+    }
+    50% {
+        @apply bg-blue-500;
+        width: 100%;
+        right: 0px;
+    }
+    60% {
+        width: 100%;
+        right: 0px;
+    }
+    100% {
+        @apply bg-teal-500;
+        width: 0%;
+        right: 0px;
+    }
 }

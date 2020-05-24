@@ -57,3 +57,16 @@ export async function updateUserSettings (userName: string, settingsData: any): 
   const data = await response.json()
   return data
 }
+
+export async function updateUser (user: any): Promise<SuccessFailResponse> {
+  const response = await fetch(`${Config.apiUrl}/user/${user.userName}`, {
+    method: 'PUT',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ user: user })
+  })
+
+  return response.json()
+}

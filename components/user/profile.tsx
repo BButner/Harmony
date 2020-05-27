@@ -12,6 +12,7 @@ const ProfileSettings: FunctionComponent = () => {
   const [changeAvatar, setChangeAvatar] = useState<boolean>(false)
   const [changeEmail, setChangeEmail] = useState<boolean>(false)
   const [emailErrors, setEmailErrors] = useState<string[]>([])
+  const [avatarError, setAvatarError] = useState<string>('')
   const emailRef = useRef(null)
   const avatarRef = useRef(null)
 
@@ -43,8 +44,8 @@ const ProfileSettings: FunctionComponent = () => {
     }
   }
 
-  function handleAvatarOnSubmit (form: React.FormEvent<HTMLFormElement>): void {
-    form.preventDefault()
+  function handleAvatarOnSubmit (): void {
+    setAvatarError('')
 
     if (avatarRef.current.files[0]) {
       const avatarData = new FormData()
@@ -61,7 +62,7 @@ const ProfileSettings: FunctionComponent = () => {
             mutate('/api/user', data)
             setChangeAvatar(false)
           } else {
-
+            setAvatarError(respData.message)
           }
         })
     } else {
@@ -89,17 +90,27 @@ const ProfileSettings: FunctionComponent = () => {
               backgroundPosition: 'center'
             }}>
           </div>
-          {changeAvatar && <form className="text-center" onSubmit={(e): void => handleAvatarOnSubmit(e)}>
+          {avatarError.length > 0 && <p className="text-red-500">{avatarError}</p>}
+          {changeAvatar && <div>
             <input type="file" ref={avatarRef} id="avatar" className="text-center w-full m-auto inline-block items-middle"/>
-            <button className="button button-teal mt-5">Save</button>
-          </form>}
+            <button className="button button-teal mt-5" onClick={handleAvatarOnSubmit}>Save</button>
+            <button className="button button-red mt-5 md:ml-2" onClick={(): void => {
+              setChangeAvatar(false)
+              setAvatarError('')
+            }}>Cancel</button>
+          </div>}
           {!changeAvatar && <button className="button button-blue mt-5" onClick={(): void => setChangeAvatar(true)}>Change Avatar</button>}
           <input type="email" ref={emailRef} className="text-center mt-10 border border-bluegrey-300 rounded pl-5 pr-5 pt-1 pb-1 focus:border-purple-500 animated w-full" readOnly={!changeEmail} placeholder={data.self.email}/><br/>
           {emailErrors.length > 0 && emailErrors.map((error, index) => {
             return <p key={index} className="text-red-500">{error}</p>
           })}
-          {!changeEmail && <button className="button button-blue mt-2" onClick={(): void => handleChangeEmailOnClick()}>Change Email</button>}
-          {changeEmail && <button className="button button-teal mt-2" onClick={(): void => handleSaveEmailOnClick()}>Save</button>}
+          {!changeEmail && <button className="button button-blue mt-2" onClick={handleChangeEmailOnClick}>Change Email</button>}
+          {changeEmail && <button className="button button-teal mt-2" onClick={handleSaveEmailOnClick}>Save</button>}
+          {changeEmail && <button className="button button-red mt-2 md:ml-2" onClick={(): void => {
+            setChangeEmail(false)
+            emailRef.current.value = ''
+            setEmailErrors([])
+          }}>Cancel</button>}
         </div>
       </Card>
 

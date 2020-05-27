@@ -3,7 +3,7 @@ import Layout from '../../../components/layout'
 import { GetServerSideProps } from 'next'
 import { getSelf } from '../../../libs/fetcher/userFetcher'
 import PropTypes from 'prop-types'
-import { User, UserSelf } from '../../../models/User'
+import { UserSelf } from '../../../models/User'
 import Router, { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 

@@ -269,14 +269,7 @@ button:hover, button[type="submit"]:hover, input[type="submit"]:hover {
     }
 }
 
-.avatar {
-    @apply w-32;
-    @apply h-32;
-    @apply rounded-full;
-    @apply bg-bluegrey-100;
+.image-hover:hover {
+    @apply opacity-50;
     @apply cursor-pointer;
-}
-
-.avatar:hover {
-    @apply opacity-75;
 }

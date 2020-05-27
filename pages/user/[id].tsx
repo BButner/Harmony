@@ -53,30 +53,30 @@ const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
   return (
     <Layout showNavBar={true} user={self} title="User Information" subtitle="View your profile, change your settings, etc.">
       <div className="flex justify-center flex-wrap items-start pt-56">
-        <Card className="text-center">
-          <div className="md:flex md:items-center md:text-left h-full">
-            <div
-              className="w-32 h-32 rounded-full m-auto mb-10 md:m-0 bg-bluegrey-100 avatar-shadow cursor-pointer hover:opacity-75 animated"
-              onClick={(): void => handleAvatarOnClick()}
-              style={{
-                backgroundImage: `url(${Config.bucketUrl}${user.avatarUrl})`,
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'center'
-              }}>
-            </div>
-            <div className="md:ml-10">
-              <p className="text-2xl">{user.userName}</p>
-              <p className="text-lg text-bluegrey-600">{user.displayName}</p>
-              <p className="text-md text-bluegrey-600">{user.email}</p>
-              <p className="text-xs text-bluegrey-500 mt-4">Member since {new Date(user.date.toString()).toDateString()}</p>
-            </div>
-            {self && user.userName === self.userName && <div className="m-auto md:m-0 md:ml-10 text-center mt-5 md:mt-0 h-full">
-              <button className="m-auto button mb-2 animated block" onClick={(): Promise<any> => Router.push(`/user/${user.userName}/settings`)}>Settings</button>
-              <button onClick={handleLogoutOnClick} className="button button-red">Logout</button>
-            </div>}
+        <div className="flex items-center flex-wrap bg-white soft-shadow pr-5 w-11/12 md:w-auto card-animated">
+          <div
+            className="w-48 h-48 m-auto animated image-hover"
+            onClick={(): void => handleAvatarOnClick()}
+            style={{
+              backgroundImage: `url(${Config.bucketUrl}${user.avatarUrl})`,
+              backgroundSize: 'contain',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center'
+            }}>
+            <div className="avatar-public-inner"></div>
           </div>
-        </Card>
+
+          <div className="md:ml-10">
+            <p className="text-2xl">{user.userName}</p>
+            <p className="text-lg text-bluegrey-600">{user.displayName}</p>
+            <p className="text-md text-bluegrey-600">{user.email}</p>
+            <p className="text-xs text-bluegrey-500 mt-4">Member since {new Date(user.date.toString()).toDateString()}</p>
+          </div>
+          {self && user.userName === self.userName && <div className="m-auto md:m-0 md:ml-10 text-center mt-5 md:mt-0 h-full">
+            <button className="m-auto button mb-2 animated block" onClick={(): Promise<any> => Router.push(`/user/${user.userName}/settings`)}>Settings</button>
+            <button onClick={handleLogoutOnClick} className="button button-red">Logout</button>
+          </div>}
+        </div>
 
         {showAvatar && <ImagePopup self={self} imageUrl={`${Config.bucketUrl}${user.avatarUrl}`} onValueChange={handleImagePopup}/>}
         {showLogout && <Confirmation title={'Logout'} message={'Are you sure you wish to logout?'} onChangeValue={(e): void => handleLogoutConfirmationChange(e)} />}

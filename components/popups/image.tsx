@@ -37,23 +37,26 @@ const ImagePopup: FunctionComponent<ImagePopupProps> = ({ imageUrl, onValueChang
             width: 'auto'
           }}>
             <div style={{
-              width: imgSize.width,
-              height: imgSize.height,
-              background: `url(${imageUrl})`
+              background: `url(${imageUrl})`,
+              backgroundSize: 'contain',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+              width: '32rem',
+              height: '32rem'
             }}
-            className="relative text-white max-w-screen">
+            className="relative text-white w-64 h-64">
               {(self == null || self.settings.showImageStats) && <><div className="flex justify-center align-center items-center flex-grow justify-center absolute text-center" style={{ top: '-30px' }}>
                 <svg style={{
-                  width: imgSize.rectWidth + 'px',
+                  width: '13rem',
                   height: '1px'
                 }}>
                   <rect width={imgSize.rectWidth} height={'1'} className="stroke-current"/>
                 </svg>
                 <div style={{
-                  width: '70px'
+                  width: '6rem'
                 }} className="text-sm">{imgSize.width}px</div>
                 <svg style={{
-                  width: imgSize.rectWidth + 'px',
+                  width: '13rem',
                   height: '1px'
                 }}>
                   <rect width={imgSize.rectWidth} height={'1'} className="stroke-current"/>
@@ -61,17 +64,17 @@ const ImagePopup: FunctionComponent<ImagePopupProps> = ({ imageUrl, onValueChang
               </div>
               <div className="absolute top-0" style={{ left: '-20px' }}>
                 <svg style={{
-                  height: imgSize.rectHeight + 'px',
+                  height: '13rem',
                   width: '1px'
                 }}>
                   <rect height={imgSize.rectHeight} width={'1'} className="stroke-current"/>
                 </svg>
                 <div style={{
-                  height: '70px',
-                  lineHeight: '30px'
+                  height: '6rem',
+                  lineHeight: '50px'
                 }} className="text-sm transform -rotate-90">{imgSize.height}px</div>
                 <svg style={{
-                  height: imgSize.rectHeight + 'px',
+                  height: '13rem',
                   width: '1px'
                 }}>
                   <rect height={imgSize.rectHeight} width={'1'} className="stroke-current"/>

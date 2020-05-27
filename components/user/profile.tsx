@@ -80,11 +80,11 @@ const ProfileSettings: FunctionComponent = () => {
       <Card title="Profile" className="w-11/12 md:w-1/5 flex-start md:mr-4">
         <div className="text-center w-full">
           <div
-            className="m-auto flex justify-center animated mb-10 soft-shadow avatar"
+            className="m-auto flex justify-center animated mb-10 w-48 h-48 image-hover"
             onClick={(): void => handleAvatarOnClick()}
             style={{
               backgroundImage: `url(${Config.bucketUrl}${data.self.avatarUrl})`,
-              backgroundSize: 'cover',
+              backgroundSize: 'contain',
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center'
             }}>

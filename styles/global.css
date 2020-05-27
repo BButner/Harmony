@@ -64,7 +64,7 @@ button:hover, button[type="submit"]:hover, input[type="submit"]:hover {
     @apply bg-purple-700;
 }
 
-.rounded-card {
+.card-animated {
     animation: .5s ease-out 0s 1 card-fade-up;
 }
 
@@ -87,7 +87,7 @@ button:hover, button[type="submit"]:hover, input[type="submit"]:hover {
     overflow: hidden;
 }
 
-.loading-bar:after {
+.loading-bar::after {
     content: "";
     height: 100px;
     background: linear-gradient(to left, hsl(212, 33%, 89%, 0), hsl(212, 33%, 89%), hsl(212, 33%, 89%, 0));
@@ -188,12 +188,12 @@ button:hover, button[type="submit"]:hover, input[type="submit"]:hover {
 }
 
 @keyframes card-fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .bg-animated {
@@ -267,4 +267,16 @@ button:hover, button[type="submit"]:hover, input[type="submit"]:hover {
         width: 0%;
         right: 0px;
     }
+}
+
+.avatar {
+    @apply w-32;
+    @apply h-32;
+    @apply rounded-full;
+    @apply bg-bluegrey-100;
+    @apply cursor-pointer;
+}
+
+.avatar:hover {
+    @apply opacity-75;
 }

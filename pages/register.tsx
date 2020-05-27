@@ -26,7 +26,6 @@ interface Fields {
 
 const Register: React.FunctionComponent = () => {
   const [validationErrors, setValidationErrors] = useState<string[]>([])
-  const [avatar, setAvatar] = useState<File>(null)
   const [fields, setFields] = useState<Fields>({
     email: {
       active: false,
@@ -92,8 +91,6 @@ const Register: React.FunctionComponent = () => {
     const validationErrors: string[] = []
     let fieldsTemp = fields
 
-    console.log(Object.entries(fields))
-
     Object.entries(fields).filter(e => e[1].value === '').map((key) => {
       validationErrors.push(`${key[0]} cannot be empty!`)
       fieldsTemp = {
@@ -110,7 +107,6 @@ const Register: React.FunctionComponent = () => {
     }
 
     setValidationErrors(validationErrors)
-    console.log(fieldsTemp)
     setFields(fieldsTemp)
     return validationErrors.length === 0
   }
@@ -125,8 +121,7 @@ const Register: React.FunctionComponent = () => {
         fields.displayName.value,
         fields.email.value,
         fields.password.value,
-        fields.password2.value,
-        avatar
+        fields.password2.value
       )
         .then(response => response.json())
         .then(data => {
@@ -139,8 +134,12 @@ const Register: React.FunctionComponent = () => {
                 }
               })
           } else {
+            const errors = []
             setRegistering(false)
-            // setValidationErrors(data.error)
+            data.error.map((err) => {
+              errors.push(err.msg)
+            })
+            setValidationErrors(errors)
           }
         })
     }
@@ -184,18 +183,6 @@ const Register: React.FunctionComponent = () => {
                   onBlur={(e): void => onBlur(e.target.id)}
                   onChange={(e): void => handleValueOnChange(e.target.id, e.target.value)}
                   value={fields.userName.value}
-                  readOnly={registering}
-                />
-              </div>
-
-              <label htmlFor="avatar" className="text-xs">AVATAR (OPTIONAL)</label><br />
-              <div className={`input-icon flex mb-10 animated ${avatar === null ? '' : 'input-icon-active'}`}>
-                <input
-                  type="file"
-                  id="avatar"
-                  placeholder="Enter your username"
-                  className="flex-grow bg-transparent pt-2 pb-2"
-                  onChange={(e): void => setAvatar(e.target.files[0])}
                   readOnly={registering}
                 />
               </div>

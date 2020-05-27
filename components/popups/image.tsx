@@ -41,7 +41,7 @@ const ImagePopup: FunctionComponent<ImagePopupProps> = ({ imageUrl, onValueChang
               height: imgSize.height,
               background: `url(${imageUrl})`
             }}
-            className="hard-shadow relative text-white max-w-screen">
+            className="relative text-white max-w-screen">
               {(self == null || self.settings.showImageStats) && <><div className="flex justify-center align-center items-center flex-grow justify-center absolute text-center" style={{ top: '-30px' }}>
                 <svg style={{
                   width: imgSize.rectWidth + 'px',

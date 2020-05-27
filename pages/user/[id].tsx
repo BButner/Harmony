@@ -52,7 +52,7 @@ const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
   return (
     <Layout showNavBar={true} user={self} title="User Information" subtitle="View your profile, change your settings, etc.">
       <div className="flex justify-center flex-wrap items-start pt-56">
-        <div className="flex items-center flex-wrap bg-white soft-shadow pr-5 w-11/12 md:w-auto card-animated">
+        <div className="flex items-center flex-wrap bg-white soft-shadow pr-5 w-11/12 md:w-auto card-animated p-2">
           <div
             className="w-48 h-48 m-auto animated image-hover"
             onClick={(): void => handleAvatarOnClick()}

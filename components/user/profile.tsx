@@ -78,7 +78,7 @@ const ProfileSettings: FunctionComponent = () => {
 
   return (
     <>
-      <Card title="Profile" className="w-11/12 md:w-1/5 flex-start m-4 avatar-container">
+      <Card title="Profile" className="w-11/12 md:w-auto flex-start m-4 avatar-container max-w-xs">
         <div className="text-center w-full">
           <div
             className="m-auto flex justify-center animated mb-10 w-48 h-48 image-hover"
@@ -92,7 +92,7 @@ const ProfileSettings: FunctionComponent = () => {
           </div>
           {avatarError.length > 0 && <p className="text-red-500">{avatarError}</p>}
           {changeAvatar && <div>
-            <input type="file" ref={avatarRef} id="avatar" className="text-center w-full m-auto inline-block items-middle"/>
+            <input type="file" ref={avatarRef} id="avatar" className="text-center w-full m-auto items-middle max-w-xs"/><br/>
             <button className="button button-teal mt-5" onClick={handleAvatarOnSubmit}>Save</button>
             <button className="button button-red mt-5 md:ml-2" onClick={(): void => {
               setChangeAvatar(false)
@@ -100,7 +100,7 @@ const ProfileSettings: FunctionComponent = () => {
             }}>Cancel</button>
           </div>}
           {!changeAvatar && <button className="button button-blue mt-5" onClick={(): void => setChangeAvatar(true)}>Change Avatar</button>}
-          <input type="email" ref={emailRef} className="text-center mt-10 border border-bluegrey-300 rounded pl-5 pr-5 pt-1 pb-1 focus:border-purple-500 animated w-full" readOnly={!changeEmail} placeholder={data.self.email}/><br/>
+          <input type="email" ref={emailRef} className="text-center mt-10 border border-bluegrey-300 rounded pl-5 pr-5 pt-1 pb-1 focus:border-purple-500 animated w-full max-w-xs" readOnly={!changeEmail} placeholder={data.self.email}/><br/>
           {emailErrors.length > 0 && emailErrors.map((error, index) => {
             return <p key={index} className="text-red-500">{error}</p>
           })}

@@ -52,7 +52,7 @@ const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
   return (
     <Layout showNavBar={true} user={self} title="User Information" subtitle="View your profile, change your settings, etc.">
       <div className="flex justify-center flex-wrap items-start pt-56">
-        <div className="flex items-center flex-wrap bg-white soft-shadow pr-5 w-11/12 md:w-auto card-animated p-2">
+        <div className="text-center md:text-center md:flex md:mt-0 items-center flex-wrap bg-white soft-shadow pr-5 w-11/12 md:w-auto card-animated p-2 avatar-container">
           <div
             className="w-48 h-48 m-auto animated image-hover"
             onClick={(): void => handleAvatarOnClick()}
@@ -65,13 +65,13 @@ const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
             <div className="avatar-public-inner"></div>
           </div>
 
-          <div className="md:ml-10">
+          <div className="mt-5 md:mt-0 md:ml-10">
             <p className="text-2xl">{user.userName}</p>
             <p className="text-lg text-bluegrey-600">{user.displayName}</p>
             <p className="text-md text-bluegrey-600">{user.email}</p>
             <p className="text-xs text-bluegrey-500 mt-4">Member since {new Date(user.date.toString()).toDateString()}</p>
           </div>
-          {self && user.userName === self.userName && <div className="m-auto md:m-0 md:ml-10 text-center mt-5 md:mt-0 h-full">
+          {self && user.userName === self.userName && <div className="m-auto md:m-0 md:ml-10 text-center mt-5 md:mt-0 h-full pb-4 md:pb-0">
             <button className="m-auto button mb-2 animated block" onClick={(): Promise<any> => Router.push(`/user/${user.userName}/settings`)}>Settings</button>
             <button onClick={handleLogoutOnClick} className="button button-red">Logout</button>
           </div>}

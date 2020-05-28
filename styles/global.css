@@ -273,3 +273,7 @@ button:hover, button[type="submit"]:hover, input[type="submit"]:hover {
     @apply opacity-50;
     @apply cursor-pointer;
 }
+
+.avatar-container {
+    min-width: 16rem;
+}

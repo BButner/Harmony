@@ -146,7 +146,7 @@ const Register: React.FunctionComponent = () => {
   }
 
   return (
-    <Layout showNavBar={false} user={null}>
+    <Layout pageTitle="Register" showNavBar={false} user={null}>
       <div className="flex w-full h-screen justify-center">
         <div className="m-auto w-full align-middle m-auto lg:relative md:w-2/5 lg:w-1/4">
           <Card title="Register">

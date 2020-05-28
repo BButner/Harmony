@@ -12,9 +12,10 @@ type LayoutProps = {
   navbarSubtitle?: string;
   title?: string;
   subtitle?: string;
+  pageTitle: string;
 }
 
-const Layout: FunctionComponent<LayoutProps> = ({ showNavBar, children, user, navbarTitle, navbarSubtitle, title, subtitle }) => {
+const Layout: FunctionComponent<LayoutProps> = ({ showNavBar, children, user, navbarTitle, navbarSubtitle, title, subtitle, pageTitle }) => {
   const [showNavBarSub, setShowNavBarSub] = useState<boolean>(navbarTitle !== null)
 
   function handleScroll (): void {
@@ -28,8 +29,8 @@ const Layout: FunctionComponent<LayoutProps> = ({ showNavBar, children, user, na
 
   return (
     <>
-      <Meta />
-      {showNavBar && <Header links={['Spotify', 'Pandora', 'Google Play Music', 'YouTube Music', 'Apple Music']} user={user}/>}
+      <Meta title={pageTitle}/>
+      {showNavBar && <Header links={['Spotify', 'Pandora', 'YouTube Music', 'Apple Music']} user={user}/>}
       <div className="relative">
         {title && <div className={`p-0 m-0 m-auto w-screen text-center fixed top-0 left-0 z-0 bg-white transition-all duration-200 ${showNavBarSub ? 'opacity-100' : 'opacity-0'}`}>
           <p className="pt-32 text-xl">{title}</p>
@@ -50,7 +51,8 @@ Layout.propTypes = {
   navbarTitle: PropTypes.string,
   navbarSubtitle: PropTypes.string,
   title: PropTypes.string,
-  subtitle: PropTypes.string
+  subtitle: PropTypes.string,
+  pageTitle: PropTypes.string.isRequired
 }
 
 export default Layout

@@ -17,7 +17,7 @@ const UserIndex: FunctionComponent<UserIndexProps> = ({ user }) => {
   })
 
   return (
-    <Layout showNavBar={true} user={null}>
+    <Layout pageTitle="Redirecting..." showNavBar={true} user={null}>
       <div className="w-screen h-screen flex">
         <p className="m-auto text-xl1 font-bold">Redirecting...</p>
       </div>

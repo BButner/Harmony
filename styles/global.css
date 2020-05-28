@@ -1,6 +1,6 @@
 body {
     @apply bg-bluegrey-100;
-    font-family: Ubuntu;
+    font-family: Ubuntu, Roboto;
     @apply text-gray-700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

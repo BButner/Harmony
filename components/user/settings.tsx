@@ -75,7 +75,7 @@ const Settings: FunctionComponent<SettingsTypes> = ({ self }) => {
 
   return (
     <>
-      <Card title="Settings" className="w-11/12 md:w-2/5 mt-5 md:mt-0">
+      <Card title="Settings" className="w-11/12 md:w-2/5 m-4">
         <div className="flex justify-center flex-wrap animated relative mb-24 md:mb-12">
           <div className={`w-full flex justify-center animated absolute ${settingChanged ? 'opacity-1' : 'opacity-0'}`}>
             <FontAwesomeIcon className="text-yellow-500 unsaved-settings text-2xl" icon={faDotCircle}/>

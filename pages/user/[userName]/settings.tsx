@@ -25,11 +25,12 @@ const UserSettings: FunctionComponent<UserSettingsProps> = ({ self }) => {
   })
 
   return (
-    <Layout showNavBar={true} user={self} title={'User Settings'} subtitle={'Change your general experience, privacy settings, etc.'}>
+    <Layout pageTitle="User Settings" showNavBar={true} user={self} title={'User Settings'} subtitle={'Change your general experience, privacy settings, etc.'}>
       <div className="mt-56 flex justify-center items-baseline flex-wrap">
         {self.userName !== userName && <p className="m-auto text-xl1 font-bold">Redirecting...</p>}
         {self.userName === userName && <><ProfileSettings/>
           <Settings self={self}/>
+          <ConnectedServices/>
         </>}
       </div>
     </Layout>

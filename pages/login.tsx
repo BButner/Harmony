@@ -123,7 +123,7 @@ const Login: React.FunctionComponent = () => {
   }
 
   return (
-    <Layout showNavBar={false} user={null}>
+    <Layout pageTitle="Login" showNavBar={false} user={null}>
       <div className="flex justify-center h-screen">
         <div className="m-auto w-full align-middle md:w-2/5 lg:w-1/4">
           <Card className="fixed bottom-0 w-full md:relative" title="Login">

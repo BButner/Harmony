@@ -14,6 +14,7 @@ type UserSettingsProps = {
 const UserSettings: FunctionComponent<UserSettingsProps> = ({ self }) => {
   const ProfileSettings = dynamic(() => import('../../../components/user/profile'))
   const Settings = dynamic(() => import('../../../components/user/settings'))
+  const ConnectedServices = dynamic(() => import('../../../components/user/connectedservices'))
 
   const router = useRouter()
   const { userName } = router.query

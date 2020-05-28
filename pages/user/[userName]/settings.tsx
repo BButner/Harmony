@@ -16,7 +16,7 @@ const UserSettings: FunctionComponent<UserSettingsProps> = ({ self }) => {
   const Settings = dynamic(() => import('../../../components/user/settings'))
 
   const router = useRouter()
-  const { id: userName } = router.query
+  const { userName } = router.query
 
   useEffect(() => {
     if (!self) Router.push('/login')

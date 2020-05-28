@@ -15,7 +15,7 @@ interface SelfResponse {
 }
 
 export async function getUserByUserName (ctx): Promise<UserResponse> {
-  const response = await fetch(`${Config.apiUrl}/user/${ctx.params.id}`, {
+  const response = await fetch(`${Config.apiUrl}/user/${ctx.params.userName}`, {
     credentials: 'include',
     headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
   })

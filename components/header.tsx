@@ -6,7 +6,7 @@ import { faWindowRestore } from '@fortawesome/free-regular-svg-icons'
 
 type HeaderProps = {
   links: string[];
-  user: User;
+  user?: User;
 }
 
 const Header: FunctionComponent<HeaderProps> = ({ links, user }) => {
@@ -77,7 +77,7 @@ const Header: FunctionComponent<HeaderProps> = ({ links, user }) => {
 
 Header.propTypes = {
   links: PropTypes.array.isRequired,
-  user: PropTypes.any.isRequired
+  user: PropTypes.any
 }
 
 export default Header

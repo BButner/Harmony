@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 type LayoutProps = {
   showNavBar: boolean;
   children: any;
-  user: User;
+  user?: User;
   navbarTitle?: string;
   navbarSubtitle?: string;
   title?: string;
@@ -47,7 +47,7 @@ const Layout: FunctionComponent<LayoutProps> = ({ showNavBar, children, user, na
 Layout.propTypes = {
   showNavBar: PropTypes.bool.isRequired,
   children: PropTypes.any.isRequired,
-  user: PropTypes.any.isRequired,
+  user: PropTypes.any,
   navbarTitle: PropTypes.string,
   navbarSubtitle: PropTypes.string,
   title: PropTypes.string,

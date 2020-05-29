@@ -9,6 +9,8 @@ import { GetServerSideProps } from 'next'
 import { getUserByUserName } from '../../libs/fetcher/userFetcher'
 import PropTypes from 'prop-types'
 import ImagePopup from '../../components/popups/image'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
 type UserProps = {
   user: User;
@@ -52,7 +54,7 @@ const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
   return (
     <Layout pageTitle={user.userName} showNavBar={true} user={self} title="User Information" subtitle="View your profile, change your settings, etc.">
       <div className="flex justify-center flex-wrap items-start pt-56">
-        <div className="text-center md:text-center md:flex md:mt-0 items-center flex-wrap bg-white soft-shadow pr-5 w-11/12 md:w-auto card-animated p-2 avatar-container">
+        <div className="text-center md:text-left md:flex md:mt-0 items-center flex-wrap bg-white soft-shadow pr-5 w-11/12 md:w-auto card-animated p-2 avatar-container">
           <div
             className="w-48 h-48 m-auto animated image-hover"
             onClick={(): void => handleAvatarOnClick()}
@@ -72,8 +74,8 @@ const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
             <p className="text-xs text-bluegrey-500 mt-4">Member since {new Date(user.date.toString()).toDateString()}</p>
           </div>
           {self && user.userName === self.userName && <div className="m-auto md:m-0 md:ml-10 text-center mt-5 md:mt-0 h-full pb-4 md:pb-0">
-            <button className="m-auto button mb-2 animated block" onClick={(): Promise<any> => Router.push(`/user/${user.userName}/settings`)}>Settings</button>
-            <button onClick={handleLogoutOnClick} className="button button-red">Logout</button>
+            <button className="m-auto button button-icon mb-2 animated m-auto" onClick={(): Promise<any> => Router.push(`/user/${user.userName}/settings`)}>Settings<FontAwesomeIcon icon={faCog}/></button>
+            <button onClick={handleLogoutOnClick} className="button button-red button-icon m-auto">Logout<FontAwesomeIcon icon={faSignOutAlt}/></button>
           </div>}
         </div>
 

@@ -1,6 +1,6 @@
 body {
     @apply bg-bluegrey-100;
-    font-family: Ubuntu, Roboto;
+    font-family: Ubuntu;
     @apply text-gray-700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -43,9 +43,22 @@ button, button[type="submit"], input[type="submit"], .button {
     @apply pr-5;
     @apply pl-5;
     @apply rounded;
-    @apply transition duration-200 ease-in-out;
+    @apply transition; 
+    @apply duration-200;
+    @apply ease-in-out;
     -webkit-appearance: button;
     @apply cursor-pointer;
+}
+
+.button-icon {
+    @apply flex;
+    @apply items-center;
+}
+
+.button-icon > svg {
+    @apply ml-2;
+    @apply w-4;
+    @apply w-4;
 }
 
 input {

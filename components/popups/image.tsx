@@ -31,11 +31,8 @@ const ImagePopup: FunctionComponent<ImagePopupProps> = ({ imageUrl, onValueChang
     <>
       <div className="w-screen h-screen fixed top-0 left-0 flex justify-center align-middle confirmation-card bg-animated">
         <div className="m-auto text-center">
-          <FontAwesomeIcon className="text-white text-4xl cursor-pointer mb-10 text-shadow hover:text-red-500 animated" icon={faTimesCircle} onClick={(): void => onValueChange()}/>
-          <div className="m-auto image-popup flex flex-wrap justify-center hidden lg:block" style={{
-            maxWidth: imgSize.width + 100,
-            width: 'auto'
-          }}>
+          <FontAwesomeIcon className="text-white w-10 h-10 m-auto cursor-pointer mb-10 text-shadow hover:text-red-500 animated" icon={faTimesCircle} onClick={(): void => onValueChange()}/>
+          <div className="m-auto image-popup flex flex-wrap justify-center hidden lg:block">
             <div style={{
               background: `url(${imageUrl})`,
               backgroundSize: 'contain',

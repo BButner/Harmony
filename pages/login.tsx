@@ -125,13 +125,13 @@ const Login: React.FunctionComponent = () => {
   return (
     <Layout pageTitle="Login" showNavBar={false} user={null}>
       <div className="flex justify-center h-screen">
-        <div className="m-auto w-full align-middle md:w-2/5 lg:w-1/4">
+        <div className="m-auto w-full align-middle md:w-2/5 lg:w-1/5">
           <Card className="fixed bottom-0 w-full md:relative" title="Login">
             <form onSubmit={(e): void => handleOnSubmit(e)}>
               <label htmlFor="email" className="text-xs">EMAIL</label><br />
               <div className={`input-icon flex ${(fields.email.active || fields.email.value.length > 0) && !fields.email.invalid ? 'input-icon-active' : ''} ${fields.email.invalid ? 'border-red-600' : ''} ${success ? 'text-teal-500' : ''} mb-10 animated`}>
-                <div className={`text-gray-500 m-auto pr-2 pl-2 animated ${fields.email.invalid ? 'text-red-600' : ''} ${success ? 'text-teal-500' : ''}`}>
-                  <FontAwesomeIcon aria-hidden="false" icon={faEnvelope} />
+                <div className={`text-gray-500 m-auto animated w-4 h-4 mr-2 ${fields.email.invalid ? 'text-red-600' : ''} ${success ? 'text-teal-500' : ''}`}>
+                  <FontAwesomeIcon icon={faEnvelope} />
                 </div>
                 <input
                   type="email"
@@ -148,8 +148,8 @@ const Login: React.FunctionComponent = () => {
 
               <label htmlFor="password" className="text-xs">PASSWORD</label><br />
               <div className={`input-icon flex ${(fields.password.active || fields.password.value.length > 0) && !fields.password.invalid ? 'input-icon-active' : ''} ${fields.password.invalid ? 'border-red-600' : ''} ${success ? 'text-teal-500' : ''} animated`}>
-                <div className={`text-gray-500 m-auto pr-2 pl-2 ${fields.password.invalid ? 'text-red-600' : ''} ${success ? 'text-teal-500' : ''}`}>
-                  <FontAwesomeIcon icon={faLock} />
+                <div className={`text-gray-500 m-auto w-4 h-4 mr-2 ${fields.password.invalid ? 'text-red-600' : ''}${success ? 'text-teal-500' : ''}`}>
+                  <FontAwesomeIcon icon={faLock}/>
                 </div>
                 <input
                   type="password"

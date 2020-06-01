@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import Layout from '../components/layout'
 import Card from '../components/card'
 import Link from 'next/link'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, faUser, faIdCard } from '@fortawesome/free-regular-svg-icons'
-import { faLock } from '@fortawesome/free-solid-svg-icons/faLock'
 import LoginService from '../services/authentication/login'
 import RegisterService from '../services/authentication/register'
 import Router from 'next/router'
 import LoadingIcon from '../components/loadingicon'
+import Icon from '@mdi/react'
+import { mdiCardAccountDetailsOutline, mdiAccountOutline, mdiEmailOutline, mdiLockOutline } from '@mdi/js'
 
 interface DefaultFieldAttributes {
   active: boolean;
@@ -136,7 +135,7 @@ const Register: React.FunctionComponent = () => {
           } else {
             const errors = []
             setRegistering(false)
-            data.error.map((err) => {
+            data.errors.map((err) => {
               errors.push(err.msg)
             })
             setValidationErrors(errors)
@@ -153,8 +152,8 @@ const Register: React.FunctionComponent = () => {
             <form onSubmit={(e): void => handleOnSubmit(e)} id="register-form">
               <label htmlFor="displayName" className="text-xs">NAME</label><br />
               <div className={`input-icon flex ${(fields.displayName.active || fields.displayName.value.length > 0) && !fields.displayName.invalid ? 'input-icon-active' : ''} ${fields.displayName.invalid ? 'border-red-600' : ''} mb-10 animated`}>
-                <div className={`text-gray-500 m-auto animated w-4 h-4 mr-2 ${fields.displayName.invalid ? 'text-red-600' : ''}`}>
-                  <FontAwesomeIcon icon={faIdCard} />
+                <div className={`text-gray-500 m-auto animated mr-2 ${fields.displayName.invalid ? 'text-red-600' : ''}`}>
+                  <Icon path={mdiCardAccountDetailsOutline} size={0.75}/>
                 </div>
                 <input
                   type="text"
@@ -171,8 +170,8 @@ const Register: React.FunctionComponent = () => {
 
               <label htmlFor="userName" className="text-xs">USERNAME</label><br />
               <div className={`input-icon flex ${(fields.userName.active || fields.userName.value.length > 0) && !fields.userName.invalid ? 'input-icon-active' : ''} ${fields.userName.invalid ? 'border-red-600' : ''} mb-10 animated`}>
-                <div className={`text-gray-500 m-auto animated w-4 h-4 mr-2 ${fields.userName.invalid ? 'text-red-600' : ''}`}>
-                  <FontAwesomeIcon icon={faUser} />
+                <div className={`text-gray-500 m-auto animated mr-2 ${fields.userName.invalid ? 'text-red-600' : ''}`}>
+                  <Icon path={mdiAccountOutline} size={0.75}/>
                 </div>
                 <input
                   type="text"
@@ -189,8 +188,8 @@ const Register: React.FunctionComponent = () => {
 
               <label htmlFor="email" className="text-xs">EMAIL</label><br />
               <div className={`input-icon flex ${(fields.email.active || fields.email.value.length > 0) && !fields.email.invalid ? 'input-icon-active' : ''} ${fields.email.invalid ? 'border-red-600' : ''} mb-10 animated`}>
-                <div className={`text-gray-500 m-auto animated w-4 h-4 mr-2 ${fields.email.invalid ? 'text-red-600' : ''}`}>
-                  <FontAwesomeIcon icon={faEnvelope} />
+                <div className={`text-gray-500 m-auto animated mr-2 ${fields.email.invalid ? 'text-red-600' : ''}`}>
+                  <Icon path={mdiEmailOutline} size={0.75}/>
                 </div>
                 <input
                   type="email"
@@ -207,8 +206,8 @@ const Register: React.FunctionComponent = () => {
 
               <label htmlFor="password" className="text-xs">PASSWORD</label><br />
               <div className={`input-icon flex ${(fields.password.active || fields.password.value.length > 0) && !fields.password.invalid ? 'input-icon-active' : ''} ${fields.password.invalid ? 'border-red-600' : ''} mb-10 animated`}>
-                <div className={`text-gray-500 m-auto w-4 h-4 mr-2 ${fields.password.invalid ? 'text-red-600' : ''}`}>
-                  <FontAwesomeIcon icon={faLock} />
+                <div className={`text-gray-500 m-auto mr-2 ${fields.password.invalid ? 'text-red-600' : ''}`}>
+                  <Icon path={mdiLockOutline} size={0.75}/>
                 </div>
                 <input
                   type="password"
@@ -225,8 +224,8 @@ const Register: React.FunctionComponent = () => {
 
               <label htmlFor="password2" className="text-xs">RE-ENTER PASSWORD</label><br />
               <div className={`input-icon flex ${(fields.password2.active || fields.password2.value.length > 0) && !fields.password2.invalid ? 'input-icon-active' : ''} ${fields.password2.invalid ? 'border-red-600' : ''} mb-10 animated`}>
-                <div className={`text-gray-500 m-auto w-4 h-4 mr-2 ${fields.password2.invalid ? 'text-red-600' : ''}`}>
-                  <FontAwesomeIcon icon={faLock} />
+                <div className={`text-gray-500 m-auto mr-2 ${fields.password2.invalid ? 'text-red-600' : ''}`}>
+                  <Icon path={mdiLockOutline} size={0.75}/>
                 </div>
                 <input
                   type="password"

@@ -4,10 +4,10 @@ import useSWR, { mutate } from 'swr'
 import { getUserSettings, updateUserSettings } from '../../libs/fetcher/userFetcher'
 import LoadingCard from '../cards/loadingcard'
 import { UserSettings } from '../../models/UserSettings'
-import { faDotCircle, faCheckCircle, faStopCircle } from '@fortawesome/free-regular-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { UserSelf } from '../../models/User'
 import PropTypes from 'prop-types'
+import Icon from '@mdi/react'
+import { mdiAlertCircle, mdiCheckCircle, mdiCloseCircle } from '@mdi/js'
 
 interface SettingsTypes {
   self: UserSelf;
@@ -78,15 +78,15 @@ const Settings: FunctionComponent<SettingsTypes> = ({ self }) => {
       <Card title="Settings" className="w-11/12 md:w-2/5 m-4">
         <div className="flex justify-center flex-wrap animated relative mb-24 md:mb-12">
           <div className={`w-full flex justify-center animated absolute ${settingChanged ? 'opacity-1' : 'opacity-0'}`}>
-            <FontAwesomeIcon className="text-yellow-500 unsaved-settings text-2xl" icon={faDotCircle}/>
+            <Icon path={mdiAlertCircle} size={1} className="text-yellow-500 unsaved-settings text-2xl"/>
             <p className="ml-4 text-md italic">You have unsaved settings</p>
           </div>
           <div className={`w-full flex justify-center animated mb-10 absolute ${settingsSaved ? 'opacity-1' : 'opacity-0'}`}>
-            <FontAwesomeIcon className="text-green-500 text-2xl" icon={faCheckCircle}/>
+            <Icon path={mdiCheckCircle} size={1} className="text-teal-500 text-2xl"/>
             <p className="ml-4 text-md italic">Settings saved!</p>
           </div>
           <div className={`w-full flex justify-center animated mb-10 absolute ${settingsReverted ? 'opacity-1' : 'opacity-0'}`}>
-            <FontAwesomeIcon className="text-red-500 text-2xl" icon={faStopCircle}/>
+            <Icon path={mdiCloseCircle} size={1} className="text-red-500 text-2xl"/>
             <p className="ml-4 text-md italic">Settings reverted!</p>
           </div>
         </div>
@@ -103,8 +103,8 @@ const Settings: FunctionComponent<SettingsTypes> = ({ self }) => {
           </div>
         })}
         {settingChanged && <div className="m-auto text-center mt-10">
-          <button className="button animated" onClick={(): void => handleSaveOnClick()}>Save Changes</button>
-          <button className="button animated ml-10 button-red" onClick={(): void => handleRevertOnClick()}>Revert Changes</button>
+          <button className="button animated m-auto block md:inline-block" onClick={(): void => handleSaveOnClick()}>Save Changes</button>
+          <button className="button animated md:ml-10 mt-4 md:mt-0 button-red" onClick={(): void => handleRevertOnClick()}>Revert Changes</button>
         </div>}
       </Card>
     </>

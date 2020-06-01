@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useRef, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import { UserSelf } from '../../models/User'
+import Icon from '@mdi/react'
+import { mdiCloseCircle } from '@mdi/js'
 
 type ImagePopupProps = {
   imageUrl: string;
@@ -31,7 +31,7 @@ const ImagePopup: FunctionComponent<ImagePopupProps> = ({ imageUrl, onValueChang
     <>
       <div className="w-screen h-screen fixed top-0 left-0 flex justify-center align-middle confirmation-card bg-animated">
         <div className="m-auto text-center">
-          <FontAwesomeIcon className="text-white w-10 h-10 m-auto cursor-pointer mb-10 text-shadow hover:text-red-500 animated" icon={faTimesCircle} onClick={(): void => onValueChange()}/>
+          <div onClick={onValueChange}><Icon className="text-white w-10 h-10 m-auto cursor-pointer text-shadow hover:text-red-500 animated mb-10" path={mdiCloseCircle}/></div>
           <div className="m-auto image-popup flex flex-wrap justify-center hidden lg:block">
             <div style={{
               background: `url(${imageUrl})`,
@@ -79,7 +79,7 @@ const ImagePopup: FunctionComponent<ImagePopupProps> = ({ imageUrl, onValueChang
               </div></>}
             </div>
           </div>
-          <img src={imageUrl} className="hard-shadow lg:hidden" alt="" onClick={(): void => onValueChange()}/>
+          <img src={imageUrl} className="lg:hidden" alt="" onClick={(): void => onValueChange()}/>
           <div className="hidden lg:block m-auto">
             <a href={`${imageUrl}`} rel="noreferrer" target="_blank" className="button mt-4 button-teal" download>Download</a>
           </div>

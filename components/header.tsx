@@ -2,7 +2,6 @@ import React, { FunctionComponent, useState, useEffect } from 'react'
 import Link from 'next/link'
 import { User } from '../models/User'
 import PropTypes from 'prop-types'
-import { faWindowRestore } from '@fortawesome/free-regular-svg-icons'
 
 type HeaderProps = {
   links: string[];

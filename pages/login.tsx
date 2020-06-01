@@ -2,12 +2,11 @@ import React, { useState } from 'react'
 import Layout from '../components/layout'
 import Card from '../components/card'
 import Link from 'next/link'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
-import { faLock } from '@fortawesome/free-solid-svg-icons/faLock'
 import LoginService from '../services/authentication/login'
 import Router from 'next/router'
 import LoadingIcon from '../components/loadingicon'
+import Icon from '@mdi/react'
+import { mdiEmailOutline, mdiLockOutline } from '@mdi/js'
 
 interface DefaultFieldAttributes {
   active: boolean;
@@ -130,8 +129,8 @@ const Login: React.FunctionComponent = () => {
             <form onSubmit={(e): void => handleOnSubmit(e)}>
               <label htmlFor="email" className="text-xs">EMAIL</label><br />
               <div className={`input-icon flex ${(fields.email.active || fields.email.value.length > 0) && !fields.email.invalid ? 'input-icon-active' : ''} ${fields.email.invalid ? 'border-red-600' : ''} ${success ? 'text-teal-500' : ''} mb-10 animated`}>
-                <div className={`text-gray-500 m-auto animated w-4 h-4 mr-2 ${fields.email.invalid ? 'text-red-600' : ''} ${success ? 'text-teal-500' : ''}`}>
-                  <FontAwesomeIcon icon={faEnvelope} />
+                <div className={`text-gray-500 m-auto animated mr-2 ${fields.email.invalid ? 'text-red-600' : ''} ${success ? 'text-teal-500' : ''}`}>
+                  <Icon path={mdiEmailOutline} size={0.75}/>
                 </div>
                 <input
                   type="email"
@@ -148,8 +147,8 @@ const Login: React.FunctionComponent = () => {
 
               <label htmlFor="password" className="text-xs">PASSWORD</label><br />
               <div className={`input-icon flex ${(fields.password.active || fields.password.value.length > 0) && !fields.password.invalid ? 'input-icon-active' : ''} ${fields.password.invalid ? 'border-red-600' : ''} ${success ? 'text-teal-500' : ''} animated`}>
-                <div className={`text-gray-500 m-auto w-4 h-4 mr-2 ${fields.password.invalid ? 'text-red-600' : ''}${success ? 'text-teal-500' : ''}`}>
-                  <FontAwesomeIcon icon={faLock}/>
+                <div className={`text-gray-500 m-auto mr-2 ${fields.password.invalid ? 'text-red-600' : ''}${success ? 'text-teal-500' : ''}`}>
+                  <Icon path={mdiLockOutline} size={0.75}/>
                 </div>
                 <input
                   type="password"

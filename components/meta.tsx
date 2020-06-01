@@ -15,7 +15,6 @@ const Meta: FunctionComponent<MetaProps> = ({ title }) => {
       />
       <title>{title}</title>
       <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu&display=swap" />
-      <script src="https://kit.fontawesome.com/24376cde76.js" crossOrigin="anonymous"></script>
     </Head>
   )
 }

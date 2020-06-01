@@ -9,8 +9,8 @@ import { GetServerSideProps } from 'next'
 import { getUserByUserName } from '../../libs/fetcher/userFetcher'
 import PropTypes from 'prop-types'
 import ImagePopup from '../../components/popups/image'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import Icon from '@mdi/react'
+import { mdiLogout, mdiCog } from '@mdi/js'
 
 type UserProps = {
   user: User;
@@ -26,14 +26,12 @@ const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
   }
 
   function handleLogoutConfirmationChange (e): void {
-    console.log(e)
     if (e) {
       fetch(Config.apiUrl + '/logout', {
         credentials: 'include'
       })
         .then(response => response.json())
         .then(data => {
-          console.log(data)
           if (data.success) {
             Router.push('/')
           }
@@ -74,8 +72,8 @@ const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
             <p className="text-xs text-bluegrey-500 mt-4">Member since {new Date(user.date.toString()).toDateString()}</p>
           </div>
           {self && user.userName === self.userName && <div className="m-auto md:m-0 md:ml-10 text-center mt-5 md:mt-0 h-full pb-4 md:pb-0">
-            <button className="m-auto button button-icon mb-2 animated m-auto" onClick={(): Promise<any> => Router.push(`/user/${user.userName}/settings`)}>Settings<FontAwesomeIcon icon={faCog}/></button>
-            <button onClick={handleLogoutOnClick} className="button button-red button-icon m-auto">Logout<FontAwesomeIcon icon={faSignOutAlt}/></button>
+            <button className="m-auto button button-icon mb-2 animated m-auto" onClick={(): Promise<any> => Router.push(`/user/${user.userName}/settings`)}>Settings<Icon path={mdiCog}/></button>
+            <button onClick={handleLogoutOnClick} className="button button-red button-icon m-auto">Logout<Icon path={mdiLogout}></Icon></button>
           </div>}
         </div>
 

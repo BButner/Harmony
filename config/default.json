@@ -1,4 +1,4 @@
 {
-  "apiUrl": "http://10.0.0.97:3001/api",
+  "apiUrl": "http://localhost:3001",
   "bucketUrl": "https://harmonydev.s3.amazonaws.com/"
 }

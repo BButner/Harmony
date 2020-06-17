@@ -1,0 +1,144 @@
+button, button[type="submit"], input[type="submit"], .button {
+  @apply text-white;
+  @apply bg-purple-500;
+  @apply pt-1;
+  @apply pb-1;
+  @apply pr-5;
+  @apply pl-5;
+  @apply rounded;
+  @apply transition; 
+  @apply duration-200;
+  @apply ease-in-out;
+  -webkit-appearance: button;
+  @apply cursor-pointer;
+}
+
+.button-icon {
+  @apply flex;
+  @apply items-center;
+}
+
+.button-icon > svg {
+  @apply ml-2;
+}
+
+button:focus, button[type="submit"]:focus, input[type="submit"]:focus, .button:focus {
+  outline: none;
+}
+
+button:active, button[type="submit"]:active, input[type="submit"]:active, .button:active {
+  @apply bg-purple-900;
+}
+
+button:hover, button[type="submit"]:hover, input[type="submit"]:hover {
+  @apply bg-purple-700;
+}
+
+.button-red {
+  @apply bg-red-500;
+}
+
+.button-red:hover {
+  @apply bg-red-700;
+}
+
+.button-red:active {
+  @apply bg-red-900;
+}
+
+.button-teal {
+  @apply bg-teal-500;
+}
+
+.button-teal:hover {
+  @apply bg-teal-700;
+}
+
+.button-teal:active {
+  @apply bg-teal-900;
+}
+
+.button-blue {
+  @apply bg-blue-500;
+}
+
+.button-blue:hover {
+  @apply bg-blue-700;
+}
+
+.button-blue:active {
+  @apply bg-blue-900;
+}
+
+.login-buttons button {
+  @apply pr-4;
+  @apply pl-4;
+  @apply pt-2;
+  @apply pb-2;
+}
+
+.login-buttons button:not(:last-of-type) {
+  @apply mb-4;
+}
+
+.login-buttons button:hover {
+  @apply transform;
+  @apply -translate-y-1;
+}
+
+.button-google {
+  @apply bg-white;
+  @apply text-gray-600;
+  @apply border;
+  @apply border-gray-300;
+}
+
+.button-google:hover {
+  @apply bg-white;
+  @apply border-gray-400;
+  @apply text-gray-700;
+}
+
+.button-google:active {
+  @apply bg-gray-100;
+}
+
+.button-google:focus {
+  outline: none;
+}
+
+.button-facebook {
+  background-color: hsl(221, 44%, 41%);
+}
+
+.button-facebook:hover {
+  background-color: hsl(221, 44%, 35%);
+}
+
+.button-facebook:active {
+  background-color: hsl(221, 44%, 29%);
+}
+
+.button-twitter {
+  background-color: hsl(203, 89%, 53%);
+}
+
+.button-twitter:hover {
+  background-color: hsl(203, 89%, 47%);
+}
+
+.button-twitter:active {
+  background-color: hsl(203, 89%, 41%);
+}
+
+.button-spotify {
+  background-color: hsl(141, 73%, 42%);
+}
+
+.button-spotify:hover {
+  background-color: hsl(141, 73%, 36%);
+}
+
+.button-spotify:active {
+  background-color: hsl(141, 73%, 30%);
+}

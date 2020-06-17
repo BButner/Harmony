@@ -1,183 +1,58 @@
-import React, { useState } from 'react'
+import React, { FunctionComponent } from 'react'
 import Layout from '../components/layout'
 import Card from '../components/card'
 import Link from 'next/link'
-import LoginService from '../services/authentication/login'
-import Router from 'next/router'
-import LoadingIcon from '../components/loadingicon'
-import Icon from '@mdi/react'
-import { mdiEmailOutline, mdiLockOutline } from '@mdi/js'
 
-interface DefaultFieldAttributes {
-  active: boolean;
-  invalid: boolean;
-  value: string;
-}
-
-interface Fields {
-  email: DefaultFieldAttributes;
-  password: DefaultFieldAttributes;
-}
-
-const Login: React.FunctionComponent = () => {
-  const [validationErrors, setValidationErrors] = useState<string[]>([])
-  const [success, setSuccess] = useState<boolean>(false)
-  const [loggingIn, setLoggingIn] = useState<boolean>(false)
-
-  const [fields, setFields] = useState<Fields>({
-    email: {
-      active: false,
-      invalid: false,
-      value: ''
-    },
-    password: {
-      active: false,
-      invalid: false,
-      value: ''
-    }
-  })
-
-  function onFocus (id: string): void {
-    setFields({
-      ...fields,
-      [id]: {
-        ...fields[id],
-        active: true
-      }
-    })
+const Login: FunctionComponent = () => {
+  const handleGoogleLoginClick = () => {
+    window.location.href = 'http://10.0.0.97:3001/login/google'
   }
 
-  function onBlur (id: string): void {
-    setFields({
-      ...fields,
-      [id]: {
-        ...fields[id],
-        active: false
-      }
-    })
+  const handleFacebookLoginClick = () => {
+    window.location.href = 'http://10.0.0.97:3001/login/facebook'
   }
 
-  function handleValueChange (id: string, value: string): void {
-    setFields({
-      ...fields,
-      [id]: {
-        ...fields[id],
-        value: value,
-        invalid: !(value.length > 0)
-      }
-    })
+  const handleSpotifyLoginClick = () => {
+    window.location.href = 'http://10.0.0.97:3001/login/spotify'
   }
 
-  function validate (): boolean {
-    setValidationErrors([])
-    const validationErrors: string[] = []
-    let fieldsTemp = fields
-
-    Object.entries(fields).filter(e => e[1].value === '').map((key) => {
-      validationErrors.push(`${key[0]} cannot be empty!`)
-      fieldsTemp = {
-        ...fieldsTemp,
-        [key[0]]: {
-          ...fieldsTemp[key[0]],
-          invalid: true
-        }
-      }
-    })
-
-    setValidationErrors(validationErrors)
-    setFields(fieldsTemp)
-    return validationErrors.length === 0
-  }
-
-  function handleOnSubmit (form: React.FormEvent<HTMLFormElement>): void {
-    form.preventDefault()
-    setLoggingIn(true)
-
-    if (validate()) {
-      LoginService.loginUser(fields.email.value, fields.password.value)
-        .then(resposne => {
-          if (resposne.ok) return resposne.json()
-          else {
-            setFields({
-              email: {
-                ...fields.email,
-                invalid: true
-              },
-              password: {
-                ...fields.password,
-                invalid: true
-              }
-            })
-            setValidationErrors(['Login failed, please check your Email and Password!'])
-            setLoggingIn(false)
-          }
-        })
-        .then(data => {
-          if (data && data.success) {
-            setSuccess(true)
-            Router.push('/')
-          }
-        })
-    }
+  const handleTwitterLoginClick = () => {
+    window.location.href = 'http://localhost:3001/login/twitter'
   }
 
   return (
-    <Layout pageTitle="Login" showNavBar={false} user={null}>
+    <Layout pageTitle="Login/Register" showNavBar={false} user={null}>
       <div className="flex justify-center h-screen">
         <div className="m-auto w-full align-middle md:w-2/5 lg:w-1/5">
-          <Card className="fixed bottom-0 w-full md:relative" title="Login">
-            <form onSubmit={(e): void => handleOnSubmit(e)}>
-              <label htmlFor="email" className="text-xs">EMAIL</label><br />
-              <div className={`input-icon flex ${(fields.email.active || fields.email.value.length > 0) && !fields.email.invalid ? 'input-icon-active' : ''} ${fields.email.invalid ? 'border-red-600' : ''} ${success ? 'text-teal-500' : ''} mb-10 animated`}>
-                <div className={`text-gray-500 m-auto animated mr-2 ${fields.email.invalid ? 'text-red-600' : ''} ${success ? 'text-teal-500' : ''}`}>
-                  <Icon path={mdiEmailOutline} size={0.75}/>
-                </div>
-                <input
-                  type="email"
-                  id="email"
-                  placeholder="Enter your email address"
-                  className="flex-grow bg-transparent pt-2 pb-2"
-                  onFocus={(e): void => onFocus(e.target.id)}
-                  onBlur={(e): void => onBlur(e.target.id)}
-                  onChange={(e): void => handleValueChange(e.target.id, e.target.value)}
-                  value={fields.email.value}
-                  readOnly={loggingIn}
-                />
+          <Card className="fixed bottom-0 w-full md:relative login-buttons" title="Login">
+            <button className="button-google m-auto flex justify-center align-center animated w-full" onClick={handleGoogleLoginClick}>
+              <div className="flex">
+                <img src="/images/logos/google.png" className="w-10 h-10"/>
+                <p className="ml-4 m-auto">Login with Google</p>
               </div>
-
-              <label htmlFor="password" className="text-xs">PASSWORD</label><br />
-              <div className={`input-icon flex ${(fields.password.active || fields.password.value.length > 0) && !fields.password.invalid ? 'input-icon-active' : ''} ${fields.password.invalid ? 'border-red-600' : ''} ${success ? 'text-teal-500' : ''} animated`}>
-                <div className={`text-gray-500 m-auto mr-2 ${fields.password.invalid ? 'text-red-600' : ''}${success ? 'text-teal-500' : ''}`}>
-                  <Icon path={mdiLockOutline} size={0.75}/>
-                </div>
-                <input
-                  type="password"
-                  id="password"
-                  placeholder="Enter your password"
-                  className="flex-grow bg-transparent pt-2 pb-2"
-                  onFocus={(e): void => onFocus(e.target.id)}
-                  onBlur={(e): void => onBlur(e.target.id)}
-                  onChange={(e): void => handleValueChange(e.target.id, e.target.value)}
-                  value={fields.password.value}
-                  readOnly={loggingIn}
-                />
+            </button>
+            <button className="button-facebook m-auto flex justify-center align-center animated w-full" onClick={handleFacebookLoginClick}>
+              <div className="flex">
+                <img src="/images/logos/facebook.png" className="w-10 h-10"/>
+                <p className="ml-4 m-auto">Login with Facebook</p>
               </div>
-              <div className="mb-20 mt-8 text-sm text-red-600">
-                {validationErrors.map((err) => {
-                  return <p className="capitalize-first" key={err}>{err}</p>
-                })}
+            </button>
+            <button className="button-twitter m-auto flex justify-center align-center animated w-full" onClick={handleTwitterLoginClick}>
+              <div className="flex">
+                <img src="/images/logos/twitter.png" className="w-10 h-10"/>
+                <p className="ml-4 m-auto">Login with Twitter</p>
               </div>
-
-              <button
-                type="submit"
-                className="text-white w-full p-1 rounded-md cursor-pointer animated"
-              >Login</button>
-            </form>
-            <div className="text-sm text-center pt-20 text-gray-500">
-              <p>Don&apos;t have an account yet? <Link href="/register"><a className="text-purple-500">Create an account.</a></Link></p>
+            </button>
+            <button className="button-spotify m-auto flex justify-center align-center animated w-full" onClick={handleSpotifyLoginClick}>
+              <div className="flex">
+                <img src="/images/logos/spotify_white.png" className="w-10 h-10"/>
+                <p className="ml-4 m-auto">Login with Spotify</p>
+              </div>
+            </button>
+            <div className="text-sm text-center mt-10 text-gray-500">
+              <p>For increased security and ease of access, we do not implement the ability to register/login with only a username and password.</p>
               <p><Link href="/"><a className="text-purple-500">Return to homepage.</a></Link></p>
             </div>
-            {loggingIn && <LoadingIcon/>}
           </Card>
         </div>
       </div>

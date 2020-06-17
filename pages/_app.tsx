@@ -1,5 +1,6 @@
 import '../styles/global.css'
 import '../styles/tailwind.css'
+import '../styles/buttons.css'
 
 import React from 'react'
 

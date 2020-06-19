@@ -16,5 +16,6 @@ export interface UserSelf {
   userName: string;
   email: string;
   date: Date;
+  userSetup: boolean;
   settings: UserSettingsRaw;
 }

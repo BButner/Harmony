@@ -9,29 +9,29 @@
     "lint": "eslint **/*.ts **/*.tsx"
   },
   "dependencies": {
-    "@fullhuman/postcss-purgecss": "^2.2.0",
+    "@fullhuman/postcss-purgecss": "^2.3.0",
     "@mdi/js": "^5.3.45",
     "@mdi/react": "^1.4.0",
     "isomorphic-unfetch": "^3.0.0",
-    "next": "9.3.6",
+    "next": "^9.4.4",
     "postcss-preset-env": "^6.7.0",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "swr": "^0.2.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "swr": "^0.2.3",
     "tailwindcss": "^1.4.6"
   },
   "devDependencies": {
-    "@types/node": "^13.13.5",
-    "@types/react": "^16.9.34",
-    "@typescript-eslint/eslint-plugin": "^2.33.0",
-    "@typescript-eslint/parser": "^2.33.0",
-    "eslint": "^7.0.0",
+    "@types/node": "^13.13.12",
+    "@types/react": "^16.9.38",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
+    "eslint": "^7.2.0",
     "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-import": "^2.21.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-standard": "^4.0.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.5"
   }
 }

@@ -50,7 +50,7 @@ const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
   }
 
   return (
-    <Layout pageTitle={user.userName} showNavBar={true} user={self} title="User Information" subtitle="View your profile, change your settings, etc.">
+    <Layout pageTitle={user.userName} showNavBar={true} user={self} title="User Information" subtitle={(!self || (user.userName !== self.userName)) ? `Viewing Profile of ${user.userName}` : 'View your profile, change your settings, etc.'}>
       <div className="flex justify-center flex-wrap items-start pt-56">
         <div className="text-center md:text-left md:flex md:mt-0 items-center flex-wrap bg-white soft-shadow pr-5 w-11/12 md:w-auto card-animated p-2 avatar-container">
           <div

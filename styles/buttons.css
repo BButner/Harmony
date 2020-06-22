@@ -142,3 +142,21 @@ button:hover, button[type="submit"]:hover, input[type="submit"]:hover {
 .button-spotify:active {
   background-color: hsl(141, 73%, 30%);
 }
+
+.login-button > button {
+  @apply bg-white;
+  @apply border;
+  @apply border-purple-500;
+  @apply text-purple-500;
+}
+
+.login-button > button:hover {
+  @apply bg-purple-500;
+  @apply border-purple-500;
+  @apply text-white;
+}
+
+.login-button > button:active {
+  @apply bg-purple-700;
+  @apply border-purple-700;
+}

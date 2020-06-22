@@ -16,7 +16,7 @@
     }
 
     .hard-shadow {
-      box-shadow: 0 4px 10px 0 hsla(0, 0%, 0%, 0.4);
+        box-shadow: 0 4px 10px 0 hsla(0, 0%, 0%, 0.4);
     }
 
     .rounded-card {
@@ -24,14 +24,14 @@
     }
 
     .capitalize-first:first-letter {
-      text-transform: capitalize;
+        text-transform: capitalize;
     }
 
     .avatar-shadow {
-      box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 0%, .2);
+        box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 0%, .2);
     }
 
     .avatar-shadow-alt {
-      box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, .1);
+        box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, .1);
     }
 }

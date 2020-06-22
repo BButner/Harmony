@@ -31,7 +31,7 @@ const ImagePopup: FunctionComponent<ImagePopupProps> = ({ imageUrl, onValueChang
     <>
       <div className="w-screen h-screen fixed top-0 left-0 flex justify-center align-middle confirmation-card bg-animated">
         <div className="m-auto text-center">
-          <div onClick={onValueChange}><Icon className="text-white w-10 h-10 m-auto cursor-pointer text-shadow hover:text-red-500 animated mb-10" path={mdiCloseCircle}/></div>
+          <div onClick={onValueChange}><Icon className="text-white w-10 h-10 m-auto cursor-pointer text-shadow mb-10 rounded-full bg-gray-600 hover:bg-red-500 animated" path={mdiCloseCircle}/></div>
           <div className="m-auto image-popup flex flex-wrap justify-center hidden lg:block">
             <div style={{
               background: `url(${imageUrl})`,
@@ -51,7 +51,7 @@ const ImagePopup: FunctionComponent<ImagePopupProps> = ({ imageUrl, onValueChang
                 </svg>
                 <div style={{
                   width: '6rem'
-                }} className="text-sm">{imgSize.width}px</div>
+                }} className="text-sm text-gray-600">{imgSize.width}px</div>
                 <svg style={{
                   width: '13rem',
                   height: '1px'
@@ -69,7 +69,7 @@ const ImagePopup: FunctionComponent<ImagePopupProps> = ({ imageUrl, onValueChang
                 <div style={{
                   height: '6rem',
                   lineHeight: '50px'
-                }} className="text-sm transform -rotate-90">{imgSize.height}px</div>
+                }} className="text-sm transform -rotate-90 text-gray-600">{imgSize.height}px</div>
                 <svg style={{
                   height: '13rem',
                   width: '1px'

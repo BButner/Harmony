@@ -9,13 +9,12 @@ type LayoutProps = {
   children: any;
   user?: User;
   navbarTitle?: string;
-  navbarSubtitle?: string;
   title?: string;
   subtitle?: string;
   pageTitle: string;
 }
 
-const Layout: FunctionComponent<LayoutProps> = ({ showNavBar, children, user, navbarTitle, navbarSubtitle, title, subtitle, pageTitle }) => {
+const Layout: FunctionComponent<LayoutProps> = ({ showNavBar, children, user, navbarTitle, title, subtitle, pageTitle }) => {
   const [showNavBarSub, setShowNavBarSub] = useState<boolean>(navbarTitle !== null)
 
   function handleScroll (): void {
@@ -49,7 +48,6 @@ Layout.propTypes = {
   children: PropTypes.any.isRequired,
   user: PropTypes.any,
   navbarTitle: PropTypes.string,
-  navbarSubtitle: PropTypes.string,
   title: PropTypes.string,
   subtitle: PropTypes.string,
   pageTitle: PropTypes.string.isRequired

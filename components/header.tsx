@@ -2,6 +2,7 @@ import React, { FunctionComponent, useState, useEffect } from 'react'
 import Link from 'next/link'
 import { User } from '../models/User'
 import PropTypes from 'prop-types'
+import dynamic from 'next/dynamic'
 
 type HeaderProps = {
   links: string[];
@@ -11,6 +12,8 @@ type HeaderProps = {
 const Header: FunctionComponent<HeaderProps> = ({ links, user }) => {
   const [navVisible, setNavVisible] = useState<boolean>(false)
   const [showShadow, setShowShadow] = useState<boolean>(false)
+  const Login = dynamic(() => import('../components/login'))
+  const [loginVisible, setLoginVisible] = useState<boolean>(false)
 
   function handleWindowResize (): void {
     if (window.innerWidth <= 640) setNavVisible(false)
@@ -27,6 +30,14 @@ const Header: FunctionComponent<HeaderProps> = ({ links, user }) => {
     } else {
       setShowShadow(false)
     }
+  }
+
+  const handleLoginOnClick = (): void => {
+    setLoginVisible(true)
+  }
+
+  const handleLoginClose = (): void => {
+    setLoginVisible(false)
   }
 
   useEffect(() => {
@@ -63,13 +74,24 @@ const Header: FunctionComponent<HeaderProps> = ({ links, user }) => {
             })}
           </div>
         </div>}
-        {navVisible && <div className="w-full md:w-1/12 flex justify-center md:justify-end mt-4 md:mt-0"><Link href={user === null ? '/login' : `/user/${user.userName}`}>
+        {/* {navVisible && <div className="w-full md:w-1/12 flex justify-center md:justify-end mt-4 md:mt-0"><button href={user === null ? '/login' : `/user/${user.userName}`}>
           <a className="inline-block text-sm px-4 py-2 leading-none rounded text-purple-500 border border-purple-500 bg-white hover:border-transparent hover:text-white hover:bg-purple-600 mt-4 md:mt-0 animated">
             {user === null ? 'Login/Register' : user.userName}
           </a>
-        </Link>
+        </button>
+        </div>} */}
+        {navVisible && <div className="w-full md:w-1/12 flex justify-center md:justify-end mt-4 md:mt-0 login-button">
+          {user === null && <button onClick={handleLoginOnClick}>
+            Login/Register
+          </button>}
+          {user !== null && <Link href={`/user/${user.userName}`}>
+            <button className="inline-block button login-button">
+              {user.userName}
+            </button>
+          </Link>}
         </div>}
       </nav>
+      {loginVisible && <Login onValueChange={handleLoginClose}/>}
     </div>
   )
 }

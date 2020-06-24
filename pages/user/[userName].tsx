@@ -79,7 +79,7 @@ const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
             <p className="text-xs text-bluegrey-500 mt-4">Member since {new Date(user.date.toString()).toDateString()}</p>
           </div>
           {self && user.userName === self.userName && <div className="m-auto md:m-0 md:ml-10 text-center mt-5 md:mt-0 h-full pb-4 md:pb-0">
-            <button className="m-auto button button-icon mb-2 animated m-auto" onClick={(): Promise<any> => Router.push(`/user/${user.userName}/settings`)}>Settings<Icon path={mdiCog} size={0.75}/></button>
+            <button className="m-auto button button-icon mb-2 animated" onClick={(): Promise<any> => Router.push(`/user/${user.userName}/settings`)}>Settings<Icon path={mdiCog} size={0.75}/></button>
             <button onClick={handleLogoutOnClick} className="button button-red button-icon m-auto">Logout<Icon path={mdiLogout} size={0.75}/></button>
           </div>}
         </div>

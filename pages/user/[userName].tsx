@@ -11,6 +11,7 @@ import PropTypes from 'prop-types'
 import ImagePopup from '../../components/popups/image'
 import Icon from '@mdi/react'
 import { mdiLogout, mdiCog } from '@mdi/js'
+import ErrorCard from '../../components/cards/errorcard'
 
 type UserProps = {
   user: User;
@@ -20,6 +21,12 @@ type UserProps = {
 const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
   const [showLogout, setShowLogout] = useState(false)
   const [showAvatar, setShowAvatar] = useState<boolean>(false)
+
+  if (!user) {
+    return (
+      <ErrorCard title="User Not Found" message="Could not find a user by that username!" self={self}/>
+    )
+  }
 
   function handleAvatarOnClick (): void {
     setShowAvatar(true)
@@ -52,7 +59,7 @@ const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
   return (
     <Layout pageTitle={user.userName} showNavBar={true} user={self} title="User Information" subtitle={(!self || (user.userName !== self.userName)) ? `Viewing Profile of ${user.userName}` : 'View your profile, change your settings, etc.'}>
       <div className="flex justify-center flex-wrap items-start pt-56">
-        <div className="text-center md:text-left md:flex md:mt-0 items-center flex-wrap bg-white soft-shadow pr-5 w-11/12 md:w-auto card-animated p-2 avatar-container">
+        <div className="text-center md:text-left md:flex md:mt-0 items-center flex-wrap bg-white softer-shadow pr-5 w-11/12 md:w-auto card-animated p-2 avatar-container rounded-lg">
           <div
             className="w-48 h-48 m-auto animated image-hover"
             onClick={(): void => handleAvatarOnClick()}

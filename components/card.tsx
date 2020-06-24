@@ -9,7 +9,7 @@ type CardProps = {
 
 const Card: FunctionComponent<CardProps> = ({ children, className, title }) => {
   return (
-    <div className={`bg-white p-10 soft-shadow card-animated ${className}`}>
+    <div className={`bg-white p-10 softer-shadow card-animated ${className} rounded-lg`}>
       {title && <p className="text-2xl text-center mb-10">{title}</p>}
       {children}
     </div>

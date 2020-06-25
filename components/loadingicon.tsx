@@ -7,7 +7,7 @@ interface LoadingIconProps {
 
 const LoadingIcon: FunctionComponent<LoadingIconProps> = ({ className }) => {
   return (
-    <div className={`w-full h-full absolute top-0 left-0 flex justify-center align-center loading-icon rounded-card ${className}`}>
+    <div className={`w-full h-full absolute top-0 left-0 flex justify-center align-center loading-icon bg-animated rounded-card ${className}`}>
       <div className="m-auto">
       </div>
     </div>

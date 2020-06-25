@@ -1,27 +1,32 @@
 import React, { FunctionComponent } from 'react'
 import { UserSelf } from '../../../models/User'
+import { GetServerSideProps } from 'next'
 import PropTypes from 'prop-types'
 import Layout from '../../../components/layout'
-import Card from '../../../components/card'
+import SetUsername from '../../../components/onboarding/setusername'
+import { getSelf } from '../../../libs/fetcher/userFetcher'
 
 type OnboardingIndexProps = {
-  user: UserSelf;
+  self: UserSelf;
 }
 
-const OnboardingIndex: FunctionComponent<OnboardingIndexProps> = ({ user }) => {
+const OnboardingIndex: FunctionComponent<OnboardingIndexProps> = ({ self }) => {
   return (
-    <Layout pageTitle={'User Onboarding'} showNavBar={false} user={user} title="User Onboarding" subtitle="Lets get some information!">
+    <Layout pageTitle={'User Onboarding'} showNavBar={false} user={self} title="User Onboarding" subtitle="Lets get some information!">
       <div className="flex justify-center flex-wrap pt-56">
-        <Card title={'How about a proper Username?'}>
-          <input type="text"/>
-        </Card>
+        <SetUsername self={self}/>
       </div>
     </Layout>
   )
 }
 
+export const getServerSideProps: GetServerSideProps = async ctx => {
+  const data = await getSelf(ctx)
+  return { props: { self: data.self } }
+}
+
 OnboardingIndex.propTypes = {
-  user: PropTypes.any.isRequired
+  self: PropTypes.any.isRequired
 }
 
 export default OnboardingIndex

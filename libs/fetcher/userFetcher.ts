@@ -1,7 +1,6 @@
 import fetch from 'isomorphic-unfetch'
 import Config from '../../config/default.json'
 import { User, UserSelf } from '../../models/User'
-import { useRouter } from 'next/router'
 import { UserSettings } from '../../models/UserSettings'
 import { SuccessFailResponse } from '../../models/Generic'
 
@@ -66,6 +65,19 @@ export async function updateUser (user: any): Promise<SuccessFailResponse> {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ user: user })
+  })
+
+  return response.json()
+}
+
+export async function validateUsername (userName: string): Promise<SuccessFailResponse> {
+  const response = await fetch(`${Config.apiUrl}/user/validate/username`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ userName: userName })
   })
 
   return response.json()

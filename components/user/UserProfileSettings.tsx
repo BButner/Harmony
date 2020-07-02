@@ -1,12 +1,12 @@
 import React, { FunctionComponent, useState, useRef } from 'react'
-import Card from '../card'
+import Card from '../cards/CardGeneric'
 import useSWR, { mutate } from 'swr'
 import { getSelf } from '../../libs/fetcher/userFetcher'
-import LoadingCard from '../cards/loadingcard'
+import LoadingCard from '../cards/CardLoading'
 import Config from '../../config/default.json'
-import ImagePopup from '../popups/image'
+import ImagePopup from '../popups/PopupImage'
 
-const ProfileSettings: FunctionComponent = () => {
+const UserProfileSettings: FunctionComponent = () => {
   const { data, error } = useSWR('/api/user', getSelf)
   const [showAvatar, setShowAvatar] = useState<boolean>(false)
   const [changeAvatar, setChangeAvatar] = useState<boolean>(false)
@@ -86,4 +86,4 @@ const ProfileSettings: FunctionComponent = () => {
   )
 }
 
-export default ProfileSettings
+export default UserProfileSettings

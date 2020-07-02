@@ -1,19 +1,19 @@
 import React, { FunctionComponent, useState } from 'react'
-import Card from '../card'
+import Card from '../cards/CardGeneric'
 import useSWR, { mutate } from 'swr'
 import { getUserSettings, updateUserSettings } from '../../libs/fetcher/userFetcher'
-import LoadingCard from '../cards/loadingcard'
-import { UserSettings } from '../../models/UserSettings'
-import { UserSelf } from '../../models/User'
+import LoadingCard from '../cards/CardLoading'
+import { ModelUserSettings } from '../../models/user/ModelUserSettings'
+import { ModelUserSelf } from '../../models/user/ModelUser'
 import PropTypes from 'prop-types'
 import Icon from '@mdi/react'
 import { mdiAlertCircle, mdiCheckCircle, mdiCloseCircle } from '@mdi/js'
 
-interface SettingsTypes {
+interface UserSettingsTypes {
   self: UserSelf;
 }
 
-const Settings: FunctionComponent<SettingsTypes> = ({ self }) => {
+const UserSettings: FunctionComponent<UserSettingsTypes> = ({ self }) => {
   const { data, error } = useSWR(`/user/${self.userName}/settings`, getUserSettings)
   const [settingChanged, setSettingChanged] = useState<boolean>(false)
   const [settingsSaved, setSettingsSaved] = useState<boolean>(false)
@@ -93,7 +93,7 @@ const Settings: FunctionComponent<SettingsTypes> = ({ self }) => {
         {data.map(setting => {
           return <div key={setting.settingKey} className="md:flex md:items-center setting-wrapper">
             <p className="w-full text-center text-lg md:w-1/4 capitalize font-bold md:font-normal">{setting.settingTitle}</p>
-            <p className="w-full text-center md:w-1/2 text-center italic md:text-sm">{setting.settingDescription}</p>
+            <p className="w-full text-center md:w-1/2 italic md:text-sm">{setting.settingDescription}</p>
             <div className="w-full text-center md:w-1/4 md:text-right md:flex md:items-center md:justify-end mt-4 md:mt-0">
               <div className="checkbox">
                 <input type="checkbox" name={setting.settingKey} id={setting.settingKey} defaultChecked={setting.settingValue} onChange={(e): void => handleSettingChanged(setting.settingKey, e.target.checked)}/>
@@ -111,8 +111,8 @@ const Settings: FunctionComponent<SettingsTypes> = ({ self }) => {
   )
 }
 
-Settings.propTypes = {
+UserSettings.propTypes = {
   self: PropTypes.any.isRequired
 }
 
-export default Settings
+export default UserSettings

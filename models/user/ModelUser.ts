@@ -1,4 +1,4 @@
-import { UserSettingsRaw } from './UserSettings'
+import { UserSettingsRaw } from './ModelUserSettings'
 
 export interface User {
   id: string;

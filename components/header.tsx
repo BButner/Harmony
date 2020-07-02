@@ -52,7 +52,7 @@ const Header: FunctionComponent<HeaderProps> = ({ links, user }) => {
       <nav className="flex items-center justify-between flex-wrap p-6">
         <div className="flex items-center flex-shrink-0 text-lg w-2/3 font-bold animated">
           <Link href="/"><a className="hover:text-purple-500 animated">harmony</a></Link>
-          {navVisible && <div className="hidden md:block w-full block ml-10 md:flex justify-start md:w-auto text-left">
+          {navVisible && <div className="hidden w-full ml-10 md:flex justify-start md:w-auto text-left">
             <div className="text-sm md:flex-grow justify-center text-center font-semibold text-bluegrey-600">
               {links.map((link) => {
                 return <Link href={link} key={link}><a
@@ -74,12 +74,6 @@ const Header: FunctionComponent<HeaderProps> = ({ links, user }) => {
             })}
           </div>
         </div>}
-        {/* {navVisible && <div className="w-full md:w-1/12 flex justify-center md:justify-end mt-4 md:mt-0"><button href={user === null ? '/login' : `/user/${user.userName}`}>
-          <a className="inline-block text-sm px-4 py-2 leading-none rounded text-purple-500 border border-purple-500 bg-white hover:border-transparent hover:text-white hover:bg-purple-600 mt-4 md:mt-0 animated">
-            {user === null ? 'Login/Register' : user.userName}
-          </a>
-        </button>
-        </div>} */}
         {navVisible && <div className="w-full md:w-1/12 flex justify-center md:justify-end mt-4 md:mt-0 login-button">
           {user === null && <button onClick={handleLoginOnClick}>
             Login/Register

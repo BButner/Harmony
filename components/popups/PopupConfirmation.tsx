@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Card from '../card'
+import CardGeneric from '../cards/CardGeneric'
 
 type ConfirmationProps = {
   title: string;
@@ -16,7 +16,7 @@ export default class Confirmation extends Component<ConfirmationProps> {
     return (
       <div className="w-screen h-screen fixed top-0 left-0 flex justify-center align-middle confirmation-card bg-animated">
         <div className="m-auto">
-          <Card>
+          <CardGeneric>
             <div className="text-center">
               <p className="text-2xl">{this.props.title}</p>
               <p>{this.props.message}</p>
@@ -25,7 +25,7 @@ export default class Confirmation extends Component<ConfirmationProps> {
                 <button className="animated w-32 button button-red" onClick={(): void => this.props.onChangeValue(false)}>No</button>
               </div>
             </div>
-          </Card>
+          </CardGeneric>
         </div>
       </div>
     )

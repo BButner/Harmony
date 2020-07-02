@@ -4,13 +4,13 @@ import { UserSelf } from '../../models/User'
 import Icon from '@mdi/react'
 import { mdiCloseCircle } from '@mdi/js'
 
-type ImagePopupProps = {
+type PopupImageProps = {
   imageUrl: string;
   onValueChange: any;
   self: UserSelf;
 }
 
-const ImagePopup: FunctionComponent<ImagePopupProps> = ({ imageUrl, onValueChange, self }) => {
+const PopupImage: FunctionComponent<PopupImageProps> = ({ imageUrl, onValueChange, self }) => {
   return (
     <>
       <div className="w-screen h-screen fixed top-0 left-0 flex justify-center align-middle confirmation-card bg-animated">
@@ -38,10 +38,10 @@ const ImagePopup: FunctionComponent<ImagePopupProps> = ({ imageUrl, onValueChang
   )
 }
 
-ImagePopup.propTypes = {
+PopupImage.propTypes = {
   imageUrl: PropTypes.string.isRequired,
   onValueChange: PropTypes.any.isRequired,
   self: PropTypes.any.isRequired
 }
 
-export default ImagePopup
+export default PopupImage

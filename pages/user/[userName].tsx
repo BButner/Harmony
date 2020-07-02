@@ -4,14 +4,14 @@ import Config from '../../config/default.json'
 import Layout from '../../components/layout'
 import { User, UserSelf } from '../../models/User'
 import Router from 'next/router'
-import Confirmation from '../../components/popups/confirmation'
+import Confirmation from '../../components/popups/PopupConfirmation'
 import { GetServerSideProps } from 'next'
 import { getUserByUserName } from '../../libs/fetcher/userFetcher'
 import PropTypes from 'prop-types'
-import ImagePopup from '../../components/popups/image'
+import ImagePopup from '../../components/popups/PopupImage'
 import Icon from '@mdi/react'
 import { mdiLogout, mdiCog } from '@mdi/js'
-import ErrorCard from '../../components/cards/errorcard'
+import CardError from '../../components/cards/CardError'
 
 type UserProps = {
   user: User;
@@ -24,7 +24,7 @@ const UserView: FunctionComponent<UserProps> = ({ user, self }) => {
 
   if (!user) {
     return (
-      <ErrorCard title="User Not Found" message="Could not find a user by that username!" self={self}/>
+      <CardError title="User Not Found" message="Could not find a user by that username!" self={self}/>
     )
   }
 

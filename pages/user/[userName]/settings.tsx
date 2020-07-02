@@ -12,9 +12,9 @@ type UserSettingsProps = {
 }
 
 const UserSettings: FunctionComponent<UserSettingsProps> = ({ self }) => {
-  const ProfileSettings = dynamic(() => import('../../../components/user/profile'))
-  const Settings = dynamic(() => import('../../../components/user/settings'))
-  const ConnectedServices = dynamic(() => import('../../../components/user/connectedservices'))
+  const UserProfileSettings = dynamic(() => import('../../../components/user/UserProfileSettings'))
+  const UserSettings = dynamic(() => import('../../../components/user/UserSettings'))
+  const UserConnectedServices = dynamic(() => import('../../../components/user/UserConnectedServices'))
 
   const router = useRouter()
   const { userName } = router.query
@@ -28,9 +28,9 @@ const UserSettings: FunctionComponent<UserSettingsProps> = ({ self }) => {
     <Layout pageTitle="User Settings" showNavBar={true} user={self} title={'User Settings'} subtitle={'Change your general experience, privacy settings, etc.'}>
       <div className="mt-56 flex justify-center items-baseline flex-wrap">
         {self.userName !== userName && <p className="m-auto text-xl1 font-bold">Redirecting...</p>}
-        {self.userName === userName && <><ProfileSettings/>
-          <Settings self={self}/>
-          <ConnectedServices/>
+        {self.userName === userName && <><UserProfileSettings/>
+          <UserSettings self={self}/>
+          <UserConnectedServices/>
         </>}
       </div>
     </Layout>

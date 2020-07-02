@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react'
-import Card from '../card'
+import CardGeneric from '../cards/CardGeneric'
 
 const ConnectedServices: FunctionComponent = () => {
   return (
-    <Card title="Connected Services" className="m-4">
+    <CardGeneric title="Connected Services" className="m-4">
       <div className="flex items-center justify-between mb-10">
         <div className="flex items-center">
           <img className="w-16 h-16" src="/images/logos/spotify.png" alt="spotify"/>
@@ -32,7 +32,7 @@ const ConnectedServices: FunctionComponent = () => {
         </div>
         <button className="button">Connect</button>
       </div>
-    </Card>
+    </CardGeneric>
   )
 }
 

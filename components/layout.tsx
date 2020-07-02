@@ -31,7 +31,7 @@ const Layout: FunctionComponent<LayoutProps> = ({ showNavBar, children, user, na
       <Meta title={pageTitle}/>
       {showNavBar && <Header links={['Spotify', 'Pandora', 'YouTube Music', 'Apple Music']} user={user}/>}
       <div className="relative">
-        {title && <div className={`p-0 m-0 m-auto w-screen text-center fixed top-0 left-0 z-0 bg-white transition-all duration-200 ${showNavBarSub ? 'opacity-100' : 'opacity-0'}`}>
+        {title && <div className={`p-0 m-auto w-screen text-center fixed top-0 left-0 z-0 bg-white transition-all duration-200 ${showNavBarSub ? 'opacity-100' : 'opacity-0'}`}>
           <p className="pt-32 text-xl">{title}</p>
           <p className="pb-32">{subtitle}</p>
         </div>}

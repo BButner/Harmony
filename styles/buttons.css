@@ -35,17 +35,19 @@ button:active, button[type="submit"]:active, input[type="submit"]:active, .butto
   @apply bg-purple-900;
 }
 
-/* button:hover:not(:disabled) {
+button:hover {
   @apply bg-purple-700;
-} */
+}
 
-button:hover:disabled {}
+button:hover:disabled {
+  @apply bg-bluegrey-300;
+}
 
 .button-red {
   @apply bg-red-500;
 }
 
-.button-red:hover:not(:disabled) {
+.button-red:hover {
   @apply bg-red-700;
 }
 
@@ -57,7 +59,7 @@ button:hover:disabled {}
   @apply bg-teal-500;
 }
 
-.button-teal:hover:not(:disabled) {
+.button-teal:hover {
   @apply bg-teal-700;
 }
 
@@ -69,7 +71,7 @@ button:hover:disabled {}
   @apply bg-blue-500;
 }
 
-.button-blue:hover:not(:disabled) {
+.button-blue:hover {
   @apply bg-blue-700;
 }
 

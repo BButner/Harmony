@@ -10,7 +10,7 @@ import Icon from '@mdi/react'
 import { mdiAlertCircle, mdiCheckCircle, mdiCloseCircle } from '@mdi/js'
 
 interface UserSettingsTypes {
-  self: UserSelf;
+  self: ModelUserSelf;
 }
 
 const UserSettings: FunctionComponent<UserSettingsTypes> = ({ self }) => {
@@ -18,7 +18,7 @@ const UserSettings: FunctionComponent<UserSettingsTypes> = ({ self }) => {
   const [settingChanged, setSettingChanged] = useState<boolean>(false)
   const [settingsSaved, setSettingsSaved] = useState<boolean>(false)
   const [settingsReverted, setSettingsReverted] = useState<boolean>(false)
-  const [settingsBackup, setSettingsBackup] = useState<UserSettings[]>(null)
+  const [settingsBackup, setSettingsBackup] = useState<ModelUserSettings[]>(null)
 
   if (error != null) {
     console.log(error)

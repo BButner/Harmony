@@ -1,13 +1,13 @@
 import React, { FunctionComponent } from 'react'
-import { UserSelf } from '../../../models/User'
+import { ModelUserSelf } from '../../../models/user/ModelUser'
 import { GetServerSideProps } from 'next'
 import PropTypes from 'prop-types'
 import Layout from '../../../components/layout'
-import SetUsername from '../../../components/onboarding/setusername'
+import SetUsername from '../../../components/onboarding/SetUsername'
 import { getSelf } from '../../../libs/fetcher/userFetcher'
 
 type OnboardingIndexProps = {
-  self: UserSelf;
+  self: ModelUserSelf;
 }
 
 const OnboardingIndex: FunctionComponent<OnboardingIndexProps> = ({ self }) => {

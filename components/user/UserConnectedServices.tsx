@@ -1,39 +1,39 @@
 import React, { FunctionComponent } from 'react'
 import CardGeneric from '../cards/CardGeneric'
+import { ModelUserSelf } from '../../models/user/ModelUser'
+import PropTypes from 'prop-types'
+import Icon from '@mdi/react'
+import { mdiPlus } from '@mdi/js'
+import PopupGeneric from '../popups/PopupGeneric'
 
-const ConnectedServices: FunctionComponent = () => {
+interface UserConnectedServicesProps {
+  self: ModelUserSelf;
+}
+
+const UserConnectedServices: FunctionComponent<UserConnectedServicesProps> = ({ self }) => {
+  console.log(self)
   return (
-    <CardGeneric title="Connected Services" className="m-4">
-      <div className="flex items-center justify-between mb-10">
-        <div className="flex items-center">
-          <img className="w-16 h-16" src="/images/logos/spotify.png" alt="spotify"/>
-          <p className="text-bluegrey-500 font-bold mr-16 ml-5">Not Connected</p>
-        </div>
-        <button className="button">Connect</button>
+    <CardGeneric title="Connected Services" className="m-4 connectedServicesCard">
+      <div className="flex w-full justify-center mb-16">
+        {Object.keys(self.connectedServices).filter(key => !['_id', 'userid', '__v'].includes(key.toLowerCase()) && self.connectedServices[key]).map(key => {
+          const service = key.replace('Connected', '').toLocaleLowerCase()
+          const connected = self.connectedServices[key]
+
+          return (
+            <img key={service} className="w-16 h-16" src={`/images/logos/${service}.png`}/>
+          )
+        })}
       </div>
-      <div className="flex items-center justify-between mb-10">
-        <div className="flex items-center">
-          <img className="w-16 h-16" src="/images/logos/applemusic.png" alt="apple music"/>
-          <p className="text-bluegrey-500 font-bold mr-16 ml-5">Not Connected</p>
-        </div>
-        <button className="button">Connect</button>
-      </div>
-      <div className="flex items-center justify-between mb-10">
-        <div className="flex items-center">
-          <img className="w-16 h-16" src="/images/logos/youtubemusic.png" alt="youtube music"/>
-          <p className="text-bluegrey-500 font-bold mr-16 ml-5">Not Connected</p>
-        </div>
-        <button className="button">Connect</button>
-      </div>
-      <div className="flex items-center justify-between mb-10">
-        <div className="flex items-center">
-          <img className="w-16 h-16" src="/images/logos/pandora.png" alt="pandora"/>
-          <p className="text-bluegrey-500 font-bold mr-16 ml-5">Not Connected</p>
-        </div>
-        <button className="button">Connect</button>
-      </div>
+      <button className="m-auto block button"><Icon path={mdiPlus} size={0.75}/></button>
+      <PopupGeneric title="Connect Service" closable>
+        <p>This is a test</p>
+      </PopupGeneric>
     </CardGeneric>
   )
 }
 
-export default ConnectedServices
+UserConnectedServices.propTypes = {
+  self: PropTypes.any.isRequired
+}
+
+export default UserConnectedServices

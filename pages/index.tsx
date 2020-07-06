@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import Layout from '../components/layout'
-import { UserSelf } from '../models/User'
+import { ModelUserSelf } from '../models/user/ModelUser'
 import { GetServerSideProps } from 'next'
 import { getSelf } from '../libs/fetcher/userFetcher'
 
 type IndexProps = {
-  user: UserSelf;
+  user: ModelUserSelf;
 }
 
 export default class Index extends Component<IndexProps, {}> {

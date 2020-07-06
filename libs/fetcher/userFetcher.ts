@@ -1,16 +1,16 @@
 import fetch from 'isomorphic-unfetch'
 import Config from '../../config/default.json'
-import { User, UserSelf } from '../../models/User'
-import { UserSettings } from '../../models/UserSettings'
-import { SuccessFailResponse } from '../../models/Generic'
+import { ModelUser, ModelUserSelf } from '../../models/user/ModelUser'
+import { ModelUserSettings } from '../../models/user/ModelUserSettings'
+import { SuccessFailResponse } from '../../models/ModelGeneric'
 
 interface UserResponse {
-  user: User;
-  self: UserSelf;
+  user: ModelUser;
+  self: ModelUserSelf;
 }
 
 interface SelfResponse {
-  self: UserSelf;
+  self: ModelUserSelf;
 }
 
 export async function getUserByUserName (ctx): Promise<UserResponse> {
@@ -31,7 +31,7 @@ export async function getSelf (ctx): Promise<SelfResponse> {
   return response.json()
 }
 
-export async function getUserSettings (ctx): Promise<UserSettings[]> {
+export async function getUserSettings (ctx): Promise<ModelUserSettings[]> {
   const response = await fetch(`${Config.apiUrl}${ctx}`, {
     credentials: 'include',
     headers: ctx.req ? { cookie: ctx.req.headers.cookie, 'Content-Type': 'application/json' } : undefined

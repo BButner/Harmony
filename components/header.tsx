@@ -1,18 +1,18 @@
 import React, { FunctionComponent, useState, useEffect } from 'react'
 import Link from 'next/link'
-import { User } from '../models/User'
+import { ModelUser } from '../models/user/ModelUser'
 import PropTypes from 'prop-types'
 import dynamic from 'next/dynamic'
 
 type HeaderProps = {
   links: string[];
-  user?: User;
+  user?: ModelUser;
 }
 
 const Header: FunctionComponent<HeaderProps> = ({ links, user }) => {
   const [navVisible, setNavVisible] = useState<boolean>(false)
   const [showShadow, setShowShadow] = useState<boolean>(false)
-  const Login = dynamic(() => import('../components/login'))
+  const Login = dynamic(() => import('../components/Login'))
   const [loginVisible, setLoginVisible] = useState<boolean>(false)
 
   function handleWindowResize (): void {

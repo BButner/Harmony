@@ -1,13 +1,13 @@
 import React, { FunctionComponent } from 'react'
 import PropTypes from 'prop-types'
-import { UserSelf } from '../../models/User'
+import { ModelUserSelf } from '../../models/user/ModelUser'
 import Icon from '@mdi/react'
 import { mdiCloseCircle } from '@mdi/js'
 
 type PopupImageProps = {
   imageUrl: string;
   onValueChange: any;
-  self: UserSelf;
+  self: ModelUserSelf;
 }
 
 const PopupImage: FunctionComponent<PopupImageProps> = ({ imageUrl, onValueChange, self }) => {

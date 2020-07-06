@@ -1,6 +1,6 @@
-import { UserSettingsRaw } from './ModelUserSettings'
+import { ModelUserSettingsRaw, ModelUserConnectedServices } from './ModelUserSettings'
 
-export interface User {
+export interface ModelUser {
   id: string;
   avatarUrl: string;
   displayName: string;
@@ -9,7 +9,7 @@ export interface User {
   date: Date;
 }
 
-export interface UserSelf {
+export interface ModelUserSelf {
   id: string;
   avatarUrl: string;
   displayName: string;
@@ -17,5 +17,6 @@ export interface UserSelf {
   email: string;
   date: Date;
   userSetup: boolean;
-  settings: UserSettingsRaw;
+  settings: ModelUserSettingsRaw;
+  connectedServices: ModelUserConnectedServices;
 }

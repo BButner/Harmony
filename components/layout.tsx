@@ -1,13 +1,13 @@
 import React, { FunctionComponent, useState, useEffect } from 'react'
 import Header from './header'
 import Meta from './meta'
-import { User } from '../models/User'
+import { ModelUser } from '../models/user/ModelUser'
 import PropTypes from 'prop-types'
 
 type LayoutProps = {
   showNavBar: boolean;
   children: any;
-  user?: User;
+  user?: ModelUser;
   navbarTitle?: string;
   title?: string;
   subtitle?: string;

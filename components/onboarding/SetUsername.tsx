@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import CardGeneric from '../cards/CardGeneric'
 import Icon from '@mdi/react'
 import { mdiBadgeAccountOutline, mdiCheck, mdiRefresh, mdiAlertOutline } from '@mdi/js'
-import { UserSelf } from '../../models/User'
+import { ModelUserSelf } from '../../models/user/ModelUser'
 import { validateUsername, updateUser } from '../../libs/fetcher/userFetcher'
-import LoadingIcon from '../loadingicon'
+import LoadingIcon from '../LoadingIcon'
 
 interface SetUsernameTypes {
-  self: UserSelf;
+  self: ModelUserSelf;
 }
 
 enum CheckStatus {

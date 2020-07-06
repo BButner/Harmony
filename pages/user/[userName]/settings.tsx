@@ -3,12 +3,12 @@ import Layout from '../../../components/layout'
 import { GetServerSideProps } from 'next'
 import { getSelf } from '../../../libs/fetcher/userFetcher'
 import PropTypes from 'prop-types'
-import { UserSelf } from '../../../models/User'
+import { ModelUserSelf } from '../../../models/user/ModelUser'
 import Router, { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 
 type UserSettingsProps = {
-  self: UserSelf;
+  self: ModelUserSelf;
 }
 
 const UserSettings: FunctionComponent<UserSettingsProps> = ({ self }) => {
@@ -30,7 +30,7 @@ const UserSettings: FunctionComponent<UserSettingsProps> = ({ self }) => {
         {self.userName !== userName && <p className="m-auto text-xl1 font-bold">Redirecting...</p>}
         {self.userName === userName && <><UserProfileSettings/>
           <UserSettings self={self}/>
-          <UserConnectedServices/>
+          <UserConnectedServices self={self}/>
         </>}
       </div>
     </Layout>

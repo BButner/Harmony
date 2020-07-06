@@ -79,6 +79,18 @@ button:hover:disabled {
   @apply bg-blue-900;
 }
 
+.button-bluegrey {
+  @apply bg-bluegrey-300;
+}
+
+.button-bluegrey:hover {
+  @apply bg-bluegrey-500;
+}
+
+.button-bluegrey:active {
+  @apply bg-bluegrey-700;
+}
+
 .login-buttons button {
   @apply pr-4;
   @apply pl-4;

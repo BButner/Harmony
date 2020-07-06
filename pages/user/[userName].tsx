@@ -2,7 +2,7 @@ import React, { FunctionComponent, useState } from 'react'
 import fetch from 'isomorphic-unfetch'
 import Config from '../../config/default.json'
 import Layout from '../../components/layout'
-import { User, UserSelf } from '../../models/User'
+import { ModelUser, ModelUserSelf } from '../../models/user/ModelUser'
 import Router from 'next/router'
 import Confirmation from '../../components/popups/PopupConfirmation'
 import { GetServerSideProps } from 'next'
@@ -14,8 +14,8 @@ import { mdiLogout, mdiCog } from '@mdi/js'
 import CardError from '../../components/cards/CardError'
 
 type UserProps = {
-  user: User;
-  self: UserSelf;
+  user: ModelUser;
+  self: ModelUserSelf;
 }
 
 const UserView: FunctionComponent<UserProps> = ({ user, self }) => {

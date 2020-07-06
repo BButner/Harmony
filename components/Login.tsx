@@ -12,7 +12,7 @@ interface LoginProps {
 
 const Login: FunctionComponent<LoginProps> = ({ loginPage, onValueChange }) => {
   const handleLoginButtonClick = (id: string): void => {
-    window.location.href = `http://10.0.0.97:3001/login/${id}`
+    window.location.href = `http://localhost:3001/login/${id}`
   }
 
   return (

@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import PropTypes from 'prop-types'
 import Layout from '../layout'
-import { UserSelf } from '../../models/User'
+import { ModelUserSelf } from '../../models/user/ModelUser'
 import Icon from '@mdi/react'
 import { mdiAlertCircleOutline } from '@mdi/js'
 import CardGeneric from './CardGeneric'
@@ -11,7 +11,7 @@ import Router from 'next/router'
 interface CardErrorTypes {
   title: string;
   message: string;
-  self: UserSelf;
+  self: ModelUserSelf;
 }
 
 const CardError: FunctionComponent<CardErrorTypes> = ({ title, message, self }) => {

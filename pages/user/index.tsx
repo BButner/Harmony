@@ -1,13 +1,13 @@
 import React, { FunctionComponent, useEffect } from 'react'
 import { GetServerSideProps } from 'next'
 import Router from 'next/router'
-import { User } from '../../models/User'
+import { ModelUser } from '../../models/user/ModelUser'
 import PropTypes from 'prop-types'
 import { getSelf } from '../../libs/fetcher/userFetcher'
 import Layout from '../../components/layout'
 
 type UserIndexProps = {
-  user: User;
+  user: ModelUser;
 }
 
 const UserIndex: FunctionComponent<UserIndexProps> = ({ user }) => {

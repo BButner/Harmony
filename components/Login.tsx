@@ -4,6 +4,7 @@ import Link from 'next/link'
 import PropTypes from 'prop-types'
 import Icon from '@mdi/react'
 import { mdiClose } from '@mdi/js'
+import Config from '../config/default.json'
 
 interface LoginProps {
   loginPage?: boolean;
@@ -12,7 +13,7 @@ interface LoginProps {
 
 const Login: FunctionComponent<LoginProps> = ({ loginPage, onValueChange }) => {
   const handleLoginButtonClick = (id: string): void => {
-    window.location.href = `http://localhost:3001/login/${id}`
+    window.location.href = `${Config.apiUrl}/login/${id}`
   }
 
   return (

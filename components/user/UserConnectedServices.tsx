@@ -15,7 +15,7 @@ interface UserConnectedServicesProps {
 const UserConnectedServices: FunctionComponent<UserConnectedServicesProps> = ({ self }) => {
   const [showConnectServices, setShowConnectServices] = useState<boolean>(false)
 
-  const hideConnectService = () => {
+  const hideConnectService = (): void => {
     setShowConnectServices(false)
   }
 
@@ -25,7 +25,6 @@ const UserConnectedServices: FunctionComponent<UserConnectedServicesProps> = ({ 
         <div className="flex w-full justify-center mb-16">
           {Object.keys(self.connectedServices).filter(key => !['_id', 'userid', '__v'].includes(key.toLowerCase()) && self.connectedServices[key]).map(key => {
             const service = key.replace('Connected', '').toLocaleLowerCase()
-            const connected = self.connectedServices[key]
 
             return (
               <div key={service} className="text-center w-32">
@@ -34,6 +33,9 @@ const UserConnectedServices: FunctionComponent<UserConnectedServicesProps> = ({ 
               </div>
             )
           })}
+          {Object.keys(self.connectedServices).filter(key => !['_id', 'userid', '__v'].includes(key.toLowerCase())).filter(k => self.connectedServices[k]).length === 0 &&
+            <p>No Connected Services</p>
+          }
         </div>
         <button className="m-auto block button button-teal" onClick={(): void => setShowConnectServices(true)}><Icon path={mdiPlus} size={0.75}/></button>
       </CardGeneric>

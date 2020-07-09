@@ -271,3 +271,25 @@ input[type="text"]:focus {
 .connectedServicesCard div:not(:last-of-type) {
   @apply mb-10;
 }
+
+.playlist-table td {
+  @apply text-sm;
+  @apply pr-2;
+  @apply pl-2;
+  @apply pt-1;
+  @apply pb-1;
+  @apply text-center;
+}
+
+.playlist-table tbody tr:hover {
+  @apply bg-gray-200;
+  @apply cursor-pointer;
+}
+
+.playlist-description div {
+  @apply hidden;
+}
+
+.playlist-description:hover div {
+ @apply visible; 
+}

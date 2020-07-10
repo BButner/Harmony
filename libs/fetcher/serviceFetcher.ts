@@ -6,5 +6,6 @@ export const fetchPlaylist = async (ctx) => {
     credentials: 'include'
   })
 
-  return response.json()
+  if (!response.ok) return [{ error: { status: response.status } }]
+  else return response.json()
 }

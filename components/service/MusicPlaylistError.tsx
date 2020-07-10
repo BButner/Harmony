@@ -19,7 +19,7 @@ const MusicPlaylistError: FunctionComponent<MusicPlaylistErrorProps> = ({ servic
     <div style={{
       width: '42rem'
     }}>
-      <CardGenericSlim title="Playlists" className="">
+      <CardGenericSlim title={getServiceNameFromId(service) + ' Playlists'}>
         <div className="w-full flex justify-center align-center bg-gray-200 rounded-b-lg">
           <div onClick={reconnectService} className="m-auto mt-5 mb-5">
             <Icon path={mdiAlertCircleOutline} className="text-gray-500 m-auto hover:text-gray-700 cursor-pointer animated" size={3.5}/>

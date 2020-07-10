@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import useSWR from 'swr'
 import { fetchPlaylist } from '../../libs/fetcher/serviceFetcher'
@@ -15,17 +15,17 @@ interface MusicPlaylistProps {
 }
 
 const MusicPlaylist: FunctionComponent<MusicPlaylistProps> = ({ service }) => {
-  const { data, error } = useSWR(`/service/${service}`, fetchPlaylist)
+  const { data, error } = useSWR(`/service/${service}`, fetchPlaylist, {
+    shouldRetryOnError: false,
+    revalidateOnFocus: false
+  })
   const DESC_LENGTH = 64
 
   if (!data) return (<p>Loading...</p>)
-  if (error) {
-    return (
-      <CardGeneric>
-        <p>There was an error bro</p>
-      </CardGeneric>
-    )
-  }
+  if (error) return (<p>bruh</p>)
+
+  console.log(data)
+  console.log(error)
 
   return (
     <div className="">

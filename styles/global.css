@@ -180,17 +180,17 @@ input[type="text"]:focus {
 }
 
 .loading-icon {
-  animation: .5s ease-out 0s 1 bg-animate-light;
-  background-color: rgba(255, 255, 255, .8);
+    animation: .5s ease-out 0s 1 bg-animate-light;
+    background-color: rgba(255, 255, 255, .8);
 }
 
 @keyframes bg-animate-light {
-  0% {
-    background-color: rgba(255, 255, 255, 0);
-  }
-  100% {
-    background-color: rgba(255, 255, 255, .8)
-  }
+    0% {
+        background-color: rgba(255, 255, 255, 0);
+    }
+    100% {
+        background-color: rgba(255, 255, 255, .8)
+    }
 }
 
 .loading-icon > div {
@@ -269,27 +269,77 @@ input[type="text"]:focus {
 }
 
 .connectedServicesCard div:not(:last-of-type) {
-  @apply mb-10;
+    @apply mb-10;
 }
 
-.playlist-table td {
-  @apply text-sm;
-  @apply pr-2;
-  @apply pl-2;
-  @apply pt-1;
-  @apply pb-1;
-  @apply text-center;
-}
+/* .playlist-table td {
+    @apply text-sm;
+    @apply pr-2;
+    @apply pl-2;
+    @apply pt-1;
+    @apply pb-1;
+    @apply text-center;
+} */
 
 .playlist-table tbody tr:hover {
-  @apply bg-gray-200;
-  @apply cursor-pointer;
+    @apply bg-gray-200;
+    @apply cursor-pointer;
 }
 
-.playlist-description div {
-  @apply hidden;
+.tooltip {
+    @apply p-1;
+    opacity: 0;
+    position: absolute;
+    z-index: 99;
+    background-color: white;
+    @apply rounded-lg;
+    box-shadow: 0 2px 8px 0 hsla(0, 0%, 0%, 0.15);
 }
 
-.playlist-description:hover div {
- @apply visible; 
+.playlist-description:hover .tooltip {
+    opacity: 1;
+}
+
+.playlistTableBody tr, thead {
+    display: table;
+    table-layout: fixed;
+    @apply w-full;
+}
+
+.playlistTableBody tr, .playlistTableBody td {
+    max-height: 2rem;
+    white-space: nowrap;
+    overflow-x: hidden;
+}
+
+.playlist-description {
+    max-height: 2rem;
+}
+
+.playlistCard {
+    width: 500px;
+}
+
+.playlistTable {
+    display: grid;
+    grid-template-columns: 25% 50% 12.5% 12.5%;
+    grid-template-rows: repeat(11, calc(2rem + 2px));
+    white-space: nowrap;
+    /* border-top: 2px solid; */
+}
+
+.playlistGridRow p {
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.playlistGridRow {
+    border-top: 1px solid;
+    @apply border-gray-300;
+}
+
+.playlistGridRow:hover {
+    background-color: hsl(141, 73%, 42%);
+    @apply text-white;
 }

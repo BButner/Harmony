@@ -8,6 +8,7 @@ import CardGenericSlim from '../cards/CardGenericSlim'
 import Icon from '@mdi/react'
 import { mdiOpenInApp, mdiArrowRight, mdiArrowLeft } from '@mdi/js'
 import { getServiceNameFromId } from '../../lang/LangService'
+import Pagination from './Pagination'
 
 interface MusicPlaylistProps {
   service: string;
@@ -25,6 +26,7 @@ const MusicPlaylist: FunctionComponent<MusicPlaylistProps> = ({ service }) => {
   const [currentPlaylists, setCurrentPlaylists] = useState<UnifiedPlaylistData[]>([])
   const paginate = (page: number): void => {
     setCurrentPlaylists(data.slice((page * PER_PAGE) - PER_PAGE, page * PER_PAGE))
+    setCurrentPage(page)
   }
   let pageCount = 0
 
@@ -38,9 +40,7 @@ const MusicPlaylist: FunctionComponent<MusicPlaylistProps> = ({ service }) => {
   if (error) return (<p>bruh</p>)
 
   if (data) {
-    // console.log(data)
     pageCount = Math.ceil(data.length / 10)
-    // paginate()
   }
 
   return (
@@ -74,10 +74,6 @@ const MusicPlaylist: FunctionComponent<MusicPlaylistProps> = ({ service }) => {
                   <p style={{ gridColumnStart: 2, gridColumnEnd: 3 }}>
                     <i className="text-sm playlist-description">
                       {playlist.description.substring(0, DESC_LENGTH) + (playlist.description.length > DESC_LENGTH ? '...' : '')}
-                      {playlist.description.length > DESC_LENGTH && <div
-                        className="tooltip animated text-gray-700">
-                        {playlist.description}
-                      </div>}
                     </i>
                   </p>
                   <p style={{ gridColumnStart: 3, gridColumnEnd: 4 }} className="m-auto">{playlist.songCount}</p>
@@ -89,58 +85,9 @@ const MusicPlaylist: FunctionComponent<MusicPlaylistProps> = ({ service }) => {
                 </div>
               })}
             </div>
-            {/* <table className="playlist-table" style={{
-              borderSpacing: '0'
-            }}>
-              <thead>
-                <tr>
-                  <th className="w-1/4 text-left">Name</th>
-                  <th className="w-1/2">Description</th>
-                  <th className="w-1/8">Song Count</th>
-                  <th className="w-1/8">Link</th>
-                </tr>
-              </thead>
-              <tbody className="block playlistTableBody" style={{
-                minHeight: '20rem',
-                height: '20rem'
-              }}>
-                {currentPlaylists.map((playlist: UnifiedPlaylistData) => {
-                  return <tr key={playlist.id} className="animated h-8">
-                    <td className="w-1/4">{playlist.name}</td>
-                    <td className="w-1/2">
-                      <div className="text-xs playlist-description relative overflow-y-hidden overflow-x-hidden">
-                        {playlist.description.substring(0, DESC_LENGTH) + (playlist.description.length > DESC_LENGTH ? '...' : '')}
-                        <div
-                          className="tooltip animated">
-                          {playlist.description}
-                        </div>
-                      </div>
-                    </td>
-                    <td className="w-1/8">{playlist.songCount}</td>
-                    <td className="w-1-8"><a href={playlist.uri} className="w-full text-center text-purple-500 hover:text-purple-700 animated"><Icon className="m-auto" path={mdiOpenInApp} size={1}/></a></td>
-                  </tr>
-                })}
-              </tbody>
-            </table> */}
           </CardGenericSlim>
-          <div className="w-auto">
-            <div className="flex justify-between w-full">
-              <button className="p-1 button-blue" onClick={(): void => {
-                paginate(currentPage - 1)
-                setCurrentPage(currentPage - 1)
-              }} disabled={currentPage === 1}>
-                <Icon path={mdiArrowLeft} size={1}/>
-              </button>
-              <button className="p-1 button-blue" onClick={(): void => {
-                paginate(currentPage + 1)
-                setCurrentPage(currentPage + 1)
-              }} disabled={currentPage === pageCount}>
-                <Icon path={mdiArrowRight} size={1}/>
-              </button>
-            </div>
-            <div className="w-full bg-white rounded-lg text-center text-sm flex justify-center p-2">
-              <p>Page <b>{currentPage}</b> of <b>{pageCount}</b></p>
-            </div>
+          <div className="bg-red">
+            <Pagination count={pageCount} active={currentPage} paginate={paginate}/>
           </div>
         </div>}
       {data[0].error.status !== 999 && <MusicPlaylistError service={service}/>}

@@ -17,7 +17,7 @@ export default class Index extends Component<IndexProps, {}> {
   public render (): JSX.Element {
     return (
       <Layout pageTitle="harmony" showNavBar={true} user={this.props.user}>
-        <div className="flex justify-center flex-wrap items-start pt-56">
+        <div className="flex justify-center flex-wrap items-start pt-56 w-screen">
           <MusicPlaylist service={'spotify'}/>
         </div>
       </Layout>

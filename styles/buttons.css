@@ -41,6 +41,7 @@ button:hover {
 
 button:hover:disabled {
   @apply bg-bluegrey-300;
+  @apply cursor-default;
 }
 
 .button-red {
@@ -97,6 +98,75 @@ button:hover:disabled {
 
 .button-grey:hover {
   @apply bg-gray-700;
+}
+
+.pagination-arrow {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  @apply text-bluegrey-600;
+}
+
+.pagination-arrow:hover {
+  @apply text-bluegrey-800;
+  background-color: transparent;
+}
+
+.pagination-arrow:active {
+  @apply text-bluegrey-1000;
+  background-color: transparent;
+}
+
+.pagination-arrow:disabled {
+  background-color: transparent;
+  @apply text-bluegrey-300;
+}
+
+.pagination-arrow:disabled:hover {
+  background-color: transparent;
+}
+
+.button-pagination {
+  /* @apply bg-white; */
+  /* border: 1px solid; */
+  /* @apply border-bluegrey-300; */
+  background-color: transparent;
+  width: 2.5rem;
+  height: 2.5rem;
+  @apply text-gray-600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-pagination:not(:last-of-type) {
+  @apply mr-1;
+}
+
+.button-pagination:hover {
+  @apply bg-bluegrey-300;
+  @apply text-white;
+}
+
+.button-pagination:active {
+  @apply bg-bluegrey-500;
+}
+
+.button-pagination-active {
+  @apply bg-purple-500;
+  @apply text-white;
+  @apply border-purple-500;
+}
+
+.button-pagination-active:hover {
+  @apply bg-purple-700;
+}
+
+.button-pagination-active:active {
+  @apply bg-purple-900;
 }
 
 .button-grey:active {

@@ -272,32 +272,9 @@ input[type="text"]:focus {
     @apply mb-10;
 }
 
-/* .playlist-table td {
-    @apply text-sm;
-    @apply pr-2;
-    @apply pl-2;
-    @apply pt-1;
-    @apply pb-1;
-    @apply text-center;
-} */
-
 .playlist-table tbody tr:hover {
     @apply bg-gray-200;
     @apply cursor-pointer;
-}
-
-.tooltip {
-    @apply p-1;
-    opacity: 0;
-    position: absolute;
-    z-index: 99;
-    background-color: white;
-    @apply rounded-lg;
-    box-shadow: 0 2px 8px 0 hsla(0, 0%, 0%, 0.15);
-}
-
-.playlist-description:hover .tooltip {
-    opacity: 1;
 }
 
 .playlistTableBody tr, thead {
@@ -339,7 +316,18 @@ input[type="text"]:focus {
     @apply border-gray-300;
 }
 
+.playlistGridRow:last-of-type {
+    border-bottom: 1px solid;
+    @apply border-gray-300;
+}
+
 .playlistGridRow:hover {
-    background-color: hsl(141, 73%, 42%);
-    @apply text-white;
+    @apply bg-gray-300;
+}
+
+.pagination-wrapper {
+  @apply mt-4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

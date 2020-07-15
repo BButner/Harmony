@@ -18,7 +18,7 @@ const MusicPlaylistError: FunctionComponent<MusicPlaylistErrorProps> = ({ servic
   return (
     <div style={{
       width: '42rem'
-    }}>
+    }} className="m-auto">
       <CardGenericSlim title={getServiceNameFromId(service) + ' Playlists'} className="m-auto">
         <div className="w-full flex justify-center align-center bg-gray-200 rounded-b-lg">
           <div onClick={reconnectService} className="m-auto mt-5 mb-5">

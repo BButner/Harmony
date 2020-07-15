@@ -325,6 +325,23 @@ input[type="text"]:focus {
     @apply bg-gray-300;
 }
 
+.playlistGridRowSelected {
+  @apply text-white;
+  @apply bg-purple-500;
+}
+
+.playlistGridRowSelected:hover {
+  @apply bg-purple-700;
+}
+
+.playlistGridRowSelected svg {
+  color: white;
+}
+
+.playlistGridRowSelected svg:hover {
+  @apply text-gray-200;
+}
+
 .pagination-wrapper {
   @apply mt-4;
   display: flex;

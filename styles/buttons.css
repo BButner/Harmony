@@ -130,9 +130,6 @@ button:hover:disabled {
 }
 
 .button-pagination {
-  /* @apply bg-white; */
-  /* border: 1px solid; */
-  /* @apply border-bluegrey-300; */
   background-color: transparent;
   width: 2.5rem;
   height: 2.5rem;

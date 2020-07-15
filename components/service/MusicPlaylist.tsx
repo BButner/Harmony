@@ -31,7 +31,7 @@ const MusicPlaylist: FunctionComponent<MusicPlaylistProps> = ({ service }) => {
 
   useEffect(() => {
     if (data && currentPlaylists.length === 0) {
-      setCurrentPlaylists(data.slice(0, 10))
+      setCurrentPlaylists(data.slice(0, PER_PAGE))
     }
   })
 
@@ -39,14 +39,13 @@ const MusicPlaylist: FunctionComponent<MusicPlaylistProps> = ({ service }) => {
   if (error) return (<p>bruh</p>)
 
   if (data) {
-    pageCount = Math.ceil(data.length / 10)
-    pageCount = 100
+    pageCount = Math.ceil(data.length / PER_PAGE)
   }
 
   return (
     <div className="w-3/5">
       {data[0].error.status === 999 &&
-        <div>
+        <div className="flex justify-between">
           {selectedPlaylist === null && <MusicPlaylistTableFull
             service={service} currentPlaylists={currentPlaylists}
             selectedPlaylist={selectedPlaylist} setSelectedPlaylist={setSelectedPlaylist}
@@ -55,7 +54,8 @@ const MusicPlaylist: FunctionComponent<MusicPlaylistProps> = ({ service }) => {
             service={service} currentPlaylists={currentPlaylists}
             selectedPlaylist={selectedPlaylist} setSelectedPlaylist={setSelectedPlaylist}
             pageCount={pageCount} currentPage={currentPage} paginate={paginate}/>}
-          {selectedPlaylist && <MusicSongTable songs={selectedPlaylist.songs}/>}
+          {selectedPlaylist && <MusicSongTable songs={selectedPlaylist.songs} playlistId={selectedPlaylist.id}
+            setSelectedPlaylist={setSelectedPlaylist}/>}
         </div>}
       {data[0].error.status !== 999 && <MusicPlaylistError service={service}/>}
     </div>

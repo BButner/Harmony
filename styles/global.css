@@ -302,7 +302,6 @@ input[type="text"]:focus {
     grid-template-columns: 25% 50% 12.5% 12.5%;
     grid-template-rows: repeat(11, calc(2rem + 2px));
     white-space: nowrap;
-    /* border-top: 2px solid; */
 }
 
 .playlistGridRow p {
@@ -347,4 +346,28 @@ input[type="text"]:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.songTable {
+    display: grid;
+    grid-template-columns: 30% 30% 40%;
+    grid-template-rows: repeat(11, calc(2rem + 2px));
+    white-space: nowrap;
+}
+
+.songGridRow p {
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    overflow-y: hidden;
+}
+
+.songGridRow {
+    border-top: 1px solid;
+    @apply border-gray-300;
+}
+
+.songGridRow:last-of-type {
+    border-bottom: 1px solid;
+    @apply border-gray-300;
 }

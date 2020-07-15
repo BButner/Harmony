@@ -17,8 +17,8 @@ interface MusicPlaylistTableSlimProps {
 
 const MusicPlaylistTableSlim: FunctionComponent<MusicPlaylistTableSlimProps> = ({ service, currentPlaylists, selectedPlaylist, setSelectedPlaylist, pageCount, currentPage, paginate }) => {
   return (
-    <div>
-      <CardGenericSlim title={getServiceNameFromId(service) + ' Playlists'} className="w-1/4 p1-2 pb-2">
+    <div className="w-1/5">
+      <CardGenericSlim title={getServiceNameFromId(service) + ' Playlists'} className="w-full p1-2 pb-2">
         <div className="playlistTable" style={{ width: 'auto' }}>
           <div className="flex justify-center w-full" style={{
             gridColumnStart: 1,
@@ -39,7 +39,7 @@ const MusicPlaylistTableSlim: FunctionComponent<MusicPlaylistTableSlimProps> = (
           })}
         </div>
       </CardGenericSlim>
-      <div className="w-1/4">
+      <div className="">
         <Pagination count={pageCount} active={currentPage} paginate={paginate}/>
       </div>
     </div>

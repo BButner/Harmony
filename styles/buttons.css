@@ -6,7 +6,7 @@ button, button[type="submit"], input[type="submit"], .button {
   @apply pr-5;
   @apply pl-5;
   @apply rounded;
-  @apply transition; 
+  @apply transition;
   @apply duration-200;
   @apply ease-in-out;
   -webkit-appearance: button;
@@ -156,6 +156,7 @@ button:hover:disabled {
   @apply bg-purple-500;
   @apply text-white;
   @apply border-purple-500;
+  box-shadow: 0 2px 8px 0 hsla(0, 0%, 0%, 0.15);
 }
 
 .button-pagination-active:hover {

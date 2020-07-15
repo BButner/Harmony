@@ -21,9 +21,9 @@ const MusicPlaylistTableFull: FunctionComponent<MusicPlaylistTableFullProps> = (
   const DESC_LENGTH = 64
 
   return (
-    <div>
-      <CardGenericSlim title={getServiceNameFromId(service) + ' Playlists'} className="playlistCard w-full p1-2 pb-2">
-        <div className={`playlistTable border-${service}-500`}>
+    <div className="w-full">
+      <CardGenericSlim title={getServiceNameFromId(service) + ' Playlists'} className="w-full p1-2 pb-2">
+        <div className="playlistTable">
           {['Name', 'Description', 'Song Count', 'Link'].map((header, index) => {
             return (
               <div key={header} style={{

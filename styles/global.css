@@ -320,7 +320,7 @@ input[type="text"]:focus {
     @apply border-gray-300;
 }
 
-.playlistGridRow:hover {
+.playlistGridRow:hover, .songGridRow:hover {
     @apply bg-gray-300;
 }
 
@@ -342,7 +342,6 @@ input[type="text"]:focus {
 }
 
 .pagination-wrapper {
-  @apply mt-4;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -350,7 +349,7 @@ input[type="text"]:focus {
 
 .songTable {
     display: grid;
-    grid-template-columns: 30% 30% 40%;
+    grid-template-columns: 35% 35% 30%;
     grid-template-rows: repeat(11, calc(2rem + 2px));
     white-space: nowrap;
 }
@@ -370,4 +369,13 @@ input[type="text"]:focus {
 .songGridRow:last-of-type {
     border-bottom: 1px solid;
     @apply border-gray-300;
+}
+
+.songGridRowActive {
+    @apply bg-purple-400;
+    @apply text-white;
+}
+
+.songGridRowActive:hover {
+    @apply bg-purple-600;
 }

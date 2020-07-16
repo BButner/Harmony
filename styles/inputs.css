@@ -1,0 +1,78 @@
+.checkbox-small > input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox-small {
+    @apply relative;
+    @apply inline-block;
+}
+
+.checkbox-small > label {
+    @apply block;
+    width: 32px;
+    height: 16px;
+    text-indent: -150%;
+    clip: rect(0, 0, 0, 0);
+    color: transparent;
+    user-select: none;
+}
+
+.checkbox-small > label:before, .checkbox-small > label:after {
+    content: "";
+    @apply block;
+    @apply absolute;
+    @apply cursor-pointer;
+}
+
+.checkbox-small > label:before {
+    @apply w-full;
+    @apply h-full;
+    @apply bg-bluegrey-400;
+    @apply rounded-full;
+    -webkit-transition: background-color 0.25s ease;
+    transition: background-color .25s ease;
+}
+
+.checkbox-small > label:after {
+    top: 3px;
+    left: 3px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    @apply bg-white;
+    -webkit-transition: left 0.25s ease;
+    transition: left .25s ease;
+}
+
+.checkbox-small > input[type="checkbox"]:checked + label:before {
+    @apply bg-teal-500;
+}
+
+.checkbox-small > input[type="checkbox"]:checked + label:after {
+    left: 19px;
+}
+
+select {
+    @apply bg-gray-300;
+    @apply text-gray-800;
+    padding: .25rem .5rem .25rem .5rem;
+    @apply rounded;
+    @apply transition duration-200 ease-in-out;
+}
+
+.select:after {
+    @apply bg-red-500;
+}
+
+select:hover {
+    @apply bg-gray-400;
+    cursor: pointer;
+}
+
+select option {
+    @apply bg-gray-300;
+}
+
+select option:active {
+    outline: none;
+}

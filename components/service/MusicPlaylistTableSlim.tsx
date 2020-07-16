@@ -39,7 +39,7 @@ const MusicPlaylistTableSlim: FunctionComponent<MusicPlaylistTableSlimProps> = (
           })}
         </div>
       </CardGenericSlim>
-      <div className="">
+      <div className="mt-4">
         <Pagination count={pageCount} active={currentPage} paginate={paginate}/>
       </div>
     </div>

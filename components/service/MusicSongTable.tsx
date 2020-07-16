@@ -10,10 +10,11 @@ interface MusicSongTableProps {
   songs: Song[];
   playlistId: string;
   setSelectedPlaylist: Function;
+  setSelectedSongs: Function;
+  selectedSongs: Song[];
 }
 
-const MusicSongTable: FunctionComponent<MusicSongTableProps> = ({ songs, playlistId, setSelectedPlaylist }) => {
-  console.log(songs)
+const MusicSongTable: FunctionComponent<MusicSongTableProps> = ({ songs, playlistId, setSelectedPlaylist, setSelectedSongs, selectedSongs }) => {
   const PER_PAGE = 10
   const PAGE_COUNT = Math.ceil(songs.length / PER_PAGE)
 
@@ -36,6 +37,18 @@ const MusicSongTable: FunctionComponent<MusicSongTableProps> = ({ songs, playlis
     }
   })
 
+  const isSelected = (song: Song) => {
+    return selectedSongs.filter(s => s.id === song.id).length > 0
+  }
+
+  const handleSongClick = (song: Song) => {
+    if (isSelected(song)) {
+      setSelectedSongs(selectedSongs.filter(s => s.id !== song.id))
+    } else {
+      setSelectedSongs(selectedSongs.concat(song))
+    }
+  }
+
   return (
     <div className="w-3/4">
       <CardGenericSlim title={'Songs'} className="playlistCard w-full pb-2 relative">
@@ -52,20 +65,21 @@ const MusicSongTable: FunctionComponent<MusicSongTableProps> = ({ songs, playlis
                 gridColumnEnd: index + 2,
                 gridRowStart: 1,
                 gridRowEnd: 2
-              }} className={`${index === 0 ? 'pl-2' : ''} flex`}>
-                <p className="flex justify-left align-center"><b className="m-auto">{header}</b></p>
+              }} className="flex">
+                <p className={`flex justify-left align-center ${index === 0 ? 'pl-2' : ''}`}><b className="m-auto">{header}</b></p>
               </div>
             )
           })}
           {currentSongs.map((song, index) => {
             return <div style={{
               gridColumnStart: 1,
-              gridColumnEnd: 4,
-              gridTemplateColumns: '30% 30% 40%',
+              gridColumnEnd: 5,
+              gridTemplateColumns: '35% 35% 30%',
               gridTemplateRows: '1'
             }}
             key={song.id + index}
-            className="songGridRow grid text-xs">
+            className={`songGridRow grid text-xs cursor-pointer animated ${isSelected(song) ? 'songGridRowActive' : ''}`}
+            onClick={(): void => handleSongClick(song)}>
               <p style={{ gridColumnStart: 1, gridColumnEnd: 2 }} className="pl-2">{song.name}</p>
               <p style={{ gridColumnStart: 2, gridColumnEnd: 3 }}><i>{song.artists.map(artist => artist.name).join(', ')}</i></p>
               <p style={{ gridColumnStart: 3, gridColumnEnd: 4 }}>{song.album.name}</p>
@@ -73,7 +87,9 @@ const MusicSongTable: FunctionComponent<MusicSongTableProps> = ({ songs, playlis
           })}
         </div>
       </CardGenericSlim>
-      <Pagination count={PAGE_COUNT} active={currentPage} paginate={paginate}/>
+      <div className="mt-4">
+        <Pagination count={PAGE_COUNT} active={currentPage} paginate={paginate}/>
+      </div>
     </div>
   )
 }
@@ -81,7 +97,9 @@ const MusicSongTable: FunctionComponent<MusicSongTableProps> = ({ songs, playlis
 MusicSongTable.propTypes = {
   songs: PropTypes.arrayOf(PropTypes.instanceOf(Song)).isRequired,
   playlistId: PropTypes.string.isRequired,
-  setSelectedPlaylist: PropTypes.func.isRequired
+  setSelectedPlaylist: PropTypes.func.isRequired,
+  setSelectedSongs: PropTypes.func.isRequired,
+  selectedSongs: PropTypes.arrayOf(PropTypes.instanceOf(Song)).isRequired
 }
 
 export default MusicSongTable

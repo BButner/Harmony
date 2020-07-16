@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import PropTypes from 'prop-types'
 import { getServiceNameFromId } from '../../lang/LangService'
 import CardGenericSlim from '../cards/CardGenericSlim'
@@ -6,6 +6,7 @@ import { UnifiedPlaylistData } from '../../models/service/common/ModelCommonPlay
 import Icon from '@mdi/react'
 import { mdiOpenInApp } from '@mdi/js'
 import Pagination from './Pagination'
+import PopupSearchPaginate from '../popups/PopupSearchPaginate'
 
 interface MusicPlaylistTableFullProps {
   service: string;
@@ -17,7 +18,10 @@ interface MusicPlaylistTableFullProps {
   paginate: Function;
 }
 
-const MusicPlaylistTableFull: FunctionComponent<MusicPlaylistTableFullProps> = ({ service, currentPlaylists, selectedPlaylist, setSelectedPlaylist, pageCount, currentPage, paginate }) => {
+const MusicPlaylistTableFull: FunctionComponent<MusicPlaylistTableFullProps> = ({
+  service, currentPlaylists, selectedPlaylist,
+  setSelectedPlaylist, pageCount, currentPage, paginate
+}) => {
   const DESC_LENGTH = 64
 
   return (
@@ -62,7 +66,8 @@ const MusicPlaylistTableFull: FunctionComponent<MusicPlaylistTableFullProps> = (
           })}
         </div>
       </CardGenericSlim>
-      <div>
+      <div className="flex align-center justify-center mt-4">
+        <PopupSearchPaginate paginate={paginate}/>
         <Pagination count={pageCount} active={currentPage} paginate={paginate}/>
       </div>
     </div>

@@ -29,7 +29,6 @@ export default class User extends VuexModule {
     this.SETTINGS_ORIGINAL = user.settings
 
     if (this.SETTINGS.darkMode && !document.body.classList.contains('dark')) {
-      // document.body.classList.add('dark')
       sessionStorage.setItem('darkMode', 'true')
     } else {
       sessionStorage.setItem('darkMode', 'false')

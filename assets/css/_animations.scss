@@ -1,0 +1,87 @@
+@import './settings';
+
+.slide-enter-active, .slide-leave-active {
+  transition: all $animation-duration ease;
+}
+
+.slide-enter {
+  transform: translate(-150%, 0);
+}
+
+.slide-leave-to {
+  transform: translate(-150%, 0);
+}
+
+.slide-up-enter-active, .slide-up-leave-active {
+  transition: all $animation-duration ease;
+}
+
+.slide-up-enter {
+  transform: translate(0, 150%);
+}
+
+.slide-up-leave-to {
+  transform: translate(0, 150%);
+}
+
+.slide-left-enter-active, .slide-left-leave-active {
+  transition: all $animation-duration ease;
+}
+
+.slide-left-enter {
+  transform: translate(150%, 0);
+}
+
+.slide-left-leave-to {
+  transform: translate(150%, 0);
+}
+
+.slide-left-move {
+  transition: transform $animation-duration;
+}
+
+.slide-left-leave-active {
+  position: absolute;
+}
+
+@keyframes fade-slide-up {
+  from {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+.blur {
+  backdrop-filter: saturate(180%) blur(5px);
+  background-color: var(--blur-color);
+}
+
+@keyframes blur-background {
+  from {
+    opacity: 0;
+    backdrop-filter: saturate(100%) blur(0);
+    background-color: rgba(255, 255, 255, 0.0);
+  }
+  to {
+    backdrop-filter: saturate(180%) blur(5px);
+    background-color: var(--blur-color);
+    opacity: 1;
+  }
+}
+
+@keyframes unblur-background {
+  from {
+    backdrop-filter: saturate(180%) blur(5px);
+    background-color: var(--blur-color);
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    backdrop-filter: saturate(100%) blur(0);
+    background-color: rgba(255, 255, 255, 0.0);
+  }
+}

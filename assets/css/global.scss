@@ -1,0 +1,29 @@
+@import '_settings';
+@import 'inputs/buttons';
+@import 'inputs/checkbox';
+@import 'inputs/text';
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+body {
+  background-color: var(--main-400);
+  color: var(--text-color);
+  font-family: Rubik;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  transition: background-color $animation-duration ease;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  transition: color $animation-duration ease;
+}
+
+.soft-shadow {
+  box-shadow: 0 8px 20px 0 var(--soft-shadow);
+}
+
+svg {
+  transition: color $animation-duration ease;
+}

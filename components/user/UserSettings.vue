@@ -95,6 +95,8 @@ export default class UserSettings extends Vue {
 
           this.settingsChanged.settings.map((setting) => {
             userStore.setSettingNode({ field: setting.field, value: setting.value })
+
+            userStore.resetOriginalSettings()
           })
         } else {
           notificationsStore.addNotification(generateNotification(NotificationMessage.SETTINGS_FAILED_SAVE, NotificationType.FAILURE))

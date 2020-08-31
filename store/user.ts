@@ -41,6 +41,11 @@ export default class User extends VuexModule {
     this.SETTINGS = { ...this.SETTINGS, [settingNode.field]: settingNode.value }
   }
 
+  @Mutation
+  private RESET_ORIGINAL_SETTINGS () {
+    this.SETTINGS_ORIGINAL = this.SETTINGS
+  }
+
   @Action({ commit: 'SET_USER' })
   setUser (user: ModelUser) {
     return user
@@ -50,6 +55,9 @@ export default class User extends VuexModule {
   setSettingNode (settingNode: { field: string, value: boolean }) {
     return settingNode
   }
+
+  @Action({ commit: 'RESET_ORIGINAL_SETTINGS' })
+  resetOriginalSettings () {}
 
   get userName (): string {
     return this.USER_NAME

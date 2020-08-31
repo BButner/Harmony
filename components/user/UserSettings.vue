@@ -75,6 +75,14 @@ export default class UserSettings extends Vue {
   handleSettingClick (settingField: string) {
     const newVal = (document.getElementById(settingField)! as HTMLInputElement).checked
 
+    if (settingField === 'darkMode') {
+      if (!newVal && !document.body.classList.toString().includes('dark')) {
+        document.body.classList.add('dark')
+      } else if (newVal && document.body.classList.toString().includes('dark')) {
+        document.body.classList.remove('dark')
+      }
+    }
+
     userStore.setSettingNode({ field: settingField, value: !newVal })
   }
 

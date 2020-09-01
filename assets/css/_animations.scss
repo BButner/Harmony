@@ -44,6 +44,22 @@
   position: absolute;
 }
 
+.slide-left-noabs-enter-active, .slide-left-noabs-leave-active {
+  transition: all $animation-duration ease;
+}
+
+.slide-left-noabs-enter {
+  transform: translate(150%, 0);
+}
+
+.slide-left-noabs-leave-to {
+  transform: translate(150%, 0);
+}
+
+.slide-left-noabs-move {
+  transition: transform $animation-duration;
+}
+
 @keyframes fade-slide-up {
   from {
     transform: translateY(50%);

@@ -11,29 +11,37 @@
     </div>
     <div class="settings soft-shadow">
       <h1>Settings</h1>
-      <div v-for="cat in categories" :key="cat" class="category-wrapper">
-        <div class="setting-category">
-          <h3>
-            {{ cat }}
-          </h3>
-        </div>
-        <div v-for="setting in getSettingsInCategory(cat)" :key="setting.settingName" class="setting-node">
-          <div class="setting-details">
-            <b><p>
-              {{ setting.settingName }}
-            </p></b>
-            <small><i>
-              {{ setting.description }}
-            </i></small>
-          </div>
-          <div class="setting-value">
-            <div class="checkbox" @click="handleSettingClick(setting.settingField)">
-              <input :id="setting.settingField" type="checkbox" :checked="settings[setting.settingField]" :name="setting.settingField">
-              <label :for="setting.settingName" />
-            </div>
-          </div>
-        </div>
+      <div class="search">
+        <fa :icon="['fas', 'search']" class="search-icon" />
+        <input id="settingsSearch" v-model="searchInput" type="text">
       </div>
+      <transition-group name="slide-left-noabs">
+        <div v-for="cat in categories" :key="cat" class="category-wrapper">
+          <div v-if="getSettingsInCategory(cat).length > 0" class="setting-category">
+            <h3>
+              {{ cat }}
+            </h3>
+          </div>
+          <transition-group name="slide-left-noabs">
+            <div v-for="setting in getSettingsInCategory(cat)" :key="setting.settingName" class="setting-node">
+              <div class="setting-details">
+                <b><p>
+                  {{ setting.settingName }}
+                </p></b>
+                <small><i>
+                  {{ setting.description }}
+                </i></small>
+              </div>
+              <div class="setting-value">
+                <div class="checkbox" @click="handleSettingClick(setting.settingField)">
+                  <input :id="setting.settingField" type="checkbox" :checked="settings[setting.settingField]" :name="setting.settingField">
+                  <label :for="setting.settingName" />
+                </div>
+              </div>
+            </div>
+          </transition-group>
+        </div>
+      </transition-group>
     </div>
     <transition name="slide-up">
       <div v-if="settingsDontMatch" class="buttons">
@@ -60,6 +68,7 @@ import { updateUserSettings } from '@/lib/pusher/PusherUser'
 export default class UserSettings extends Vue {
   @Prop() readonly settings!: ModelUserSetting
   @Prop() readonly userName!: string
+  searchInput: string = ''
 
   @Emit()
   handlePopoutClick (): void {
@@ -68,7 +77,7 @@ export default class UserSettings extends Vue {
 
   @Emit()
   getSettingsInCategory (category: string) {
-    return this.settings.settingInfo.filter(s => s.category === category)
+    return this.settings.settingInfo.filter(s => s.category === category && (s.settingName.toLowerCase().includes(this.searchInput.toLowerCase()) || s.description.toLowerCase().includes(this.searchInput.toLowerCase())))
   }
 
   @Emit()
@@ -135,6 +144,20 @@ export default class UserSettings extends Vue {
 <style lang="sass" scoped>
 @import '@/assets/css/_globals'
 @import '@/assets/css/_settings'
+
+.search
+  padding-bottom: 20px
+  display: flex
+  justify-content: center
+  align-items: center
+  width: 100%
+
+  input
+    width: 55%
+
+.search-icon
+  color: var(--text-color-alt)
+  margin-right: 10px
 
 i
   transition: color $animation-duration ease
@@ -213,4 +236,7 @@ i
 
   .settings-wrapper-active
     right: 0
+
+  .search input
+    width: 100%
 </style>

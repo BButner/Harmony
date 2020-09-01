@@ -13,7 +13,7 @@
       </p>
       <div class="dark-mode">
         <div class="checkbox">
-          <input id="darkMode" type="checkbox" name="darkMode" @click="handleTest" :checked="user.settings.darkMode">
+          <input id="darkMode" type="checkbox" name="darkMode" :checked="user.settings.darkMode" @click="handleDarkModeClick">
           <label for="darkMode" />
         </div>
         <p>Dark Mode</p>
@@ -32,14 +32,35 @@
 
 <script lang="ts">
 import { Component, Vue, Emit } from 'nuxt-property-decorator'
-import { userStore } from '@/store'
+import { userStore, notificationsStore } from '@/store'
+import { updateUserSettings } from '~/lib/pusher/PusherUser'
+import { generateNotification, NotificationType } from '~/lib/notification/Notification'
+import { NotificationMessage } from '~/lib/lang/LangNotification'
 
 @Component({
 })
 export default class SidebarUserCard extends Vue {
   @Emit()
-  handleTest (): void {
-    document.body.classList.toggle('dark')
+  handleDarkModeClick (): void {
+    const newVal = !this.user.settings.darkMode
+
+    updateUserSettings(this.user.userName, { settings: [{ field: 'darkMode', value: newVal }] })
+      .then((resp) => {
+        if (resp) {
+          userStore.setSettingNode({ field: 'darkMode', value: newVal })
+          userStore.resetOriginalSettings()
+
+          if (newVal) {
+            document.body.classList.add('dark')
+            notificationsStore.addNotification(generateNotification(NotificationMessage.DARK_MODE_ENABLED, NotificationType.DARK_MODE_ENABLED))
+          } else {
+            document.body.classList.remove('dark')
+            notificationsStore.addNotification(generateNotification(NotificationMessage.DARK_MODE_DISABLED, NotificationType.DARK_MODE_DISABLED))
+          }
+        } else {
+          notificationsStore.addNotification(generateNotification(NotificationMessage.SETTINGS_FAILED_SAVE, NotificationType.FAILURE))
+        }
+      })
   }
 
   get user () {

@@ -30,12 +30,17 @@ export default class Toast extends Vue {
   }
 
   get iconClass (): string {
-    if (this.notificationData.type === NotificationType.SUCCESS) {
-      return 'success'
-    } else if (this.notificationData.type === NotificationType.FAILURE) {
-      return 'failure'
-    } else {
-      return 'warning'
+    switch (this.notificationData.type) {
+      case NotificationType.SUCCESS:
+        return 'success'
+      case NotificationType.FAILURE:
+        return 'failure'
+      case NotificationType.WARNING:
+        return 'warning'
+      case NotificationType.DARK_MODE_ENABLED:
+        return 'dark-mode-enabled'
+      case NotificationType.DARK_MODE_DISABLED:
+        return 'dark-mode-disabled'
     }
   }
 
@@ -96,6 +101,12 @@ li:not(:last-of-type)
 
 .failure
   color: $red-500
+
+.dark-mode-enabled
+  color: white
+
+.dark-mode-disabled
+  color: $yellow-500
 
 @keyframes timer-bar
   0%

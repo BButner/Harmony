@@ -40,12 +40,6 @@ const handlePopupOnClick = (event: MouseEvent): void => {
 }
 
 @Component({
-  // head(): {
-  //   bodyAttrs: {
-  //     // class: window.sessionStorage.getItem('darkMode') && !!window.sessionStorage.getItem('darkMode') ? 'dark' : ''
-  //     class: this.$darkMode
-  //   }
-  // }
   head () {
     return {
       bodyAttrs: {

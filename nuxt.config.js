@@ -55,7 +55,7 @@ export default {
       component: 'fa',
       suffix: false,
       icons: {
-        solid: ['faHome', 'faTimes', 'faCaretRight', 'faCheck', 'faExclamation'],
+        solid: ['faHome', 'faTimes', 'faCaretRight', 'faCheck', 'faExclamation', 'faSun', 'faMoon'],
         regular: ['faUser', 'faTimesCircle'],
         brands: ['faSpotify', 'faYoutube', 'faApple']
       }

@@ -19,7 +19,13 @@ import { ToastPropsData } from '~/lib/notification/Notification'
 
 const clickedElementContainsRegisteredElement = (element: HTMLElement): boolean => {
   return popupsStore.registeredIgnoredElements.map((el) => {
-    return document.getElementById(el)!.contains(element)
+    const elRetrieved = document.getElementById(el)
+
+    if (!elRetrieved) {
+      return false
+    } else {
+      return elRetrieved.contains(element)
+    }
   }).includes(true)
 }
 

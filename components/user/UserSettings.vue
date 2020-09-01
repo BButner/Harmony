@@ -50,9 +50,9 @@
 
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from 'nuxt-property-decorator'
-import { popupsStore, userStore, notificationsStore } from '@/store'
+import { popupsStore, userStore } from '@/store'
 import { ModelUserSetting, ModelUserSettingUpdate } from '@/models/ModelUserSetting'
-import { generateNotification, NotificationType } from '@/lib/notification/Notification'
+import { pushNotification, NotificationType } from '@/lib/notification/Notification'
 import { NotificationMessage } from '@/lib/lang/LangNotification'
 import { updateUserSettings } from '@/lib/pusher/PusherUser'
 
@@ -91,7 +91,7 @@ export default class UserSettings extends Vue {
     updateUserSettings(this.userName, this.settingsChanged)
       .then((resp) => {
         if (resp) {
-          notificationsStore.addNotification(generateNotification(NotificationMessage.SETTINGS_SAVED, NotificationType.SUCCESS))
+          pushNotification(NotificationMessage.SETTINGS_SAVED, NotificationType.SUCCESS)
 
           this.settingsChanged.settings.map((setting) => {
             userStore.setSettingNode({ field: setting.field, value: setting.value })
@@ -99,7 +99,7 @@ export default class UserSettings extends Vue {
             userStore.resetOriginalSettings()
           })
         } else {
-          notificationsStore.addNotification(generateNotification(NotificationMessage.SETTINGS_FAILED_SAVE, NotificationType.FAILURE))
+          pushNotification(NotificationMessage.SETTINGS_FAILED_SAVE, NotificationType.FAILURE)
         }
       })
   }

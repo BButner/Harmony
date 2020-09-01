@@ -32,9 +32,9 @@
 
 <script lang="ts">
 import { Component, Vue, Emit } from 'nuxt-property-decorator'
-import { userStore, notificationsStore } from '@/store'
+import { userStore } from '@/store'
 import { updateUserSettings } from '~/lib/pusher/PusherUser'
-import { generateNotification, NotificationType } from '~/lib/notification/Notification'
+import { NotificationType, pushNotification } from '~/lib/notification/Notification'
 import { NotificationMessage } from '~/lib/lang/LangNotification'
 
 @Component({
@@ -52,13 +52,13 @@ export default class SidebarUserCard extends Vue {
 
           if (newVal) {
             document.body.classList.add('dark')
-            notificationsStore.addNotification(generateNotification(NotificationMessage.DARK_MODE_ENABLED, NotificationType.DARK_MODE_ENABLED))
+            pushNotification(NotificationMessage.DARK_MODE_ENABLED, NotificationType.DARK_MODE_ENABLED)
           } else {
             document.body.classList.remove('dark')
-            notificationsStore.addNotification(generateNotification(NotificationMessage.DARK_MODE_DISABLED, NotificationType.DARK_MODE_DISABLED))
+            pushNotification(NotificationMessage.DARK_MODE_DISABLED, NotificationType.DARK_MODE_DISABLED)
           }
         } else {
-          notificationsStore.addNotification(generateNotification(NotificationMessage.SETTINGS_FAILED_SAVE, NotificationType.FAILURE))
+          pushNotification(NotificationMessage.SETTINGS_FAILED_SAVE, NotificationType.FAILURE)
         }
       })
   }

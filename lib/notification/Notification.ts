@@ -1,3 +1,5 @@
+import { notificationsStore } from '@/store'
+
 export enum NotificationType {
   SUCCESS,
   WARNING,
@@ -13,7 +15,11 @@ export interface ToastPropsData {
   type: NotificationType;
 }
 
-export const generateNotification = (content: string, type: NotificationType): ToastPropsData => {
+export const pushNotification = (content: string, type: NotificationType): void => {
+  notificationsStore.addNotification(generateNotification(content, type))
+}
+
+const generateNotification = (content: string, type: NotificationType): ToastPropsData => {
   return { content, iconData: getIconDataFromType(type), key: Math.floor(Math.random() * 999999999999).toString(), type }
 }
 

@@ -39,7 +39,8 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '~/plugins/theme'
+    '~/plugins/theme',
+    '~/plugins/vue-scrollto'
   ],
   /*
   ** Auto import components
@@ -55,7 +56,9 @@ export default {
       component: 'fa',
       suffix: false,
       icons: {
-        solid: ['faHome', 'faTimes', 'faCaretRight', 'faCheck', 'faExclamation', 'faSun', 'faMoon', 'faSearch'],
+        solid: ['faHome', 'faTimes', 'faCaretRight', 'faCheck', 'faExclamation', 'faSun',
+          'faMoon', 'faSearch', 'faLongArrowAltUp', 'faLongArrowAltDown', 'faMusic', 'faUser',
+          'faPlus', 'faShareSquare', 'faArrowsAltH', 'faCog', 'faSlash', 'faDollarSign'],
         regular: ['faUser', 'faTimesCircle'],
         brands: ['faSpotify', 'faYoutube', 'faApple']
       }
@@ -65,6 +68,7 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    'vue-scrollto/nuxt'
   ],
   /*
   ** Build configuration

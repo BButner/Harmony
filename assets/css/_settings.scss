@@ -4,6 +4,7 @@
 .dark {
   --text-color: #{$primary-light-100};
   --text-color-alt: lightgray;
+  --text-color-alt-opposite: #8c8989;
   --main-100: #{$primary-dark-100};
   --main-200: #{$primary-dark-200};
   --main-300: #{$primary-dark-300};
@@ -19,8 +20,9 @@
 }
 
 :root {
-  --text-color: #{$primary-dark-300};
-  --text-color-alt: gray;
+  --text-color: #424242;
+  --text-color-alt: #8c8989;
+  --text-color-alt-opposite: lightgray;
   --main-100: #{$primary-light-100};
   --main-200: #{$primary-light-200};
   --main-300: #{$primary-light-300};

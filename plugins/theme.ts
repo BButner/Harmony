@@ -1,4 +1,11 @@
 import Config from '@/config/default.json'
+import Vue from 'vue'
+
+declare module 'vue/types/vue' {
+  interface Vue {
+    $darkMode: boolean
+  }
+}
 
 export default async (context, inject) => {
   await fetch(`${Config.apiUrl}/user`, {
@@ -21,5 +28,9 @@ export default async (context, inject) => {
 
       inject('darkMode', darkMode)
       context.$darkMode = darkMode
+    })
+    .catch((err) => {
+      console.log(err)
+      return null
     })
 }

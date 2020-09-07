@@ -75,6 +75,9 @@ export default class Sidebar extends Vue {
           userStore.setUser(user)
         }
       })
+      .catch((err) => {
+        console.log(err)
+      })
 
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
@@ -91,6 +94,7 @@ export default class Sidebar extends Vue {
   width: 65px
   background-color: var(--main-200)
   transition: background-color $animation-duration ease, left $animation-duration ease
+  z-index: 999
 
 .popout
   display: none

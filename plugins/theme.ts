@@ -7,7 +7,7 @@ declare module 'vue/types/vue' {
   }
 }
 
-export default async (context, inject) => {
+export default async (context: any, inject: any) => {
   await fetch(`${Config.apiUrl}/user`, {
     credentials: 'include',
     headers: context.req ? { cookie: context.req.headers.cookie } : undefined

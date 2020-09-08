@@ -58,7 +58,8 @@ export default {
       icons: {
         solid: ['faHome', 'faTimes', 'faCaretRight', 'faCheck', 'faExclamation', 'faSun',
           'faMoon', 'faSearch', 'faLongArrowAltUp', 'faLongArrowAltDown', 'faMusic', 'faUser',
-          'faPlus', 'faShareSquare', 'faArrowsAltH', 'faCog', 'faSlash', 'faDollarSign'],
+          'faPlus', 'faShareSquare', 'faArrowsAltH', 'faCog', 'faSlash', 'faDollarSign',
+          'faTimesCircle'],
         regular: ['faUser', 'faTimesCircle'],
         brands: ['faSpotify', 'faYoutube', 'faApple']
       }

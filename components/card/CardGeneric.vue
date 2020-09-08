@@ -24,7 +24,7 @@ export default class SidebarUserCard extends Vue {
 .card-wrapper
   background-color: var(--main-200)
   padding: 20px
-  border-radius: 10px
+  border-radius: 15px
 
 .card-animated
   animation: fade-slide-up $animation-duration 1

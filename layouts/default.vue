@@ -30,10 +30,14 @@ const clickedElementContainsRegisteredElement = (element: HTMLElement): boolean 
 }
 
 const handlePopupOnClick = (event: MouseEvent): void => {
-  if (document.getElementById('page-content')!.contains(document.elementFromPoint(event.clientX, event.clientY))) {
-    if (popupsStore.anyCardsVisible) {
-      if (!clickedElementContainsRegisteredElement(document.elementFromPoint(event.clientX, event.clientY)! as HTMLElement)) {
-        popupsStore.closeAllPopups()
+  const el: Element | null = document.elementFromPoint(event.clientX, event.clientY)
+
+  if (el) {
+    if (document.getElementById('page-content')!.contains(document.elementFromPoint(event.clientX, event.clientY))) {
+      if (popupsStore.anyCardsVisible) {
+        if (!clickedElementContainsRegisteredElement(el as HTMLElement)) {
+          popupsStore.closeAllPopups()
+        }
       }
     }
   }

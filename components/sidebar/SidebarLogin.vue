@@ -9,9 +9,11 @@
       <fa class="icon" :icon="['far', 'user']" />
     </div>
 
-    <transition name="slide">
-      <SidebarLoginButtons v-if="loginButtonsVisible" />
-    </transition>
+    <ScreenBlur :display="loginButtonsVisible">
+      <transition name="slide-up">
+        <SidebarLoginButtons v-if="loginButtonsVisible" />
+      </transition>
+    </ScreenBlur>
   </div>
 </template>
 

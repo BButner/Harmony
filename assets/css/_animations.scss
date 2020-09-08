@@ -71,9 +71,45 @@
   }
 }
 
-.blur {
+// .blur-enter-active, .blur-leave-active {
+//   transition: all $animation-duration ease;
+// }
+
+// .blur-enter {
+//   animation: blur-background $animation-duration ease;
+// }
+
+// .blur-leave-to {
+//   animation: unblur-background $animation-duration ease;
+// }
+
+.blur-enter {
+  animation: blur-background $animation-duration;
+}
+
+.blur-enter-active {
+  animation: blur-background $animation-duration;
+}
+
+.blur-leave-active {
+  animation: unblur-background $animation-duration;
+}
+
+.blur-background {
   backdrop-filter: saturate(180%) blur(5px);
   background-color: var(--blur-color);
+}
+
+// .blur-enter {
+//   @extend .blur;
+// }
+
+.animate-blur {
+  animation: blur-background $animation-duration ease;
+}
+
+.animate-unblur {
+  animation: unblur-background $animation-duration ease;
 }
 
 @keyframes blur-background {

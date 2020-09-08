@@ -1,5 +1,5 @@
 <template>
-  <fa :icon="['fas', 'times']" class="close" @click="handleClick" />
+  <fa :icon="['fas', 'times-circle']" class="close" @click="handleClick" />
 </template>
 
 <script lang="ts">
@@ -25,11 +25,11 @@ export default class SidebarUserCard extends Vue {
   position: absolute
   top: 6px
   right: 6px
-  color: $red-500;
-  transition: color $animation-duration
-  text-size: 125%;
+  color: var(--text-color-alt)
+  transition: color $animation-duration, transform $animation-duration
+  font-size: 120%
 
   &:hover
     cursor: pointer
-    color: $red-700
+    transform: scale(1.1)
 </style>

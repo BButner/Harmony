@@ -1,14 +1,24 @@
 <template>
-  <CardGeneric class="card-buttons" closable namespace="popups" commit="SIDEBAR_LOGIN_BUTTONS">
-    <button v-for="service in services" :key="service" :class="service" @click="handleServiceButtonClick(service)">
-      <img class="loginImage" :src="getServiceImage(service)">
-      <p>Continue with <span style="text-transform:capitalize">{{ service }}</span></p>
-    </button>
+  <CardGeneric id="login" class="card-buttons" closable namespace="popups" commit="SIDEBAR_LOGIN_BUTTONS">
+    <p class="has-account">
+      Already have an account?
+    </p>
+    <div class="buttons">
+      <button v-for="service in services" :key="service" :class="service" @click="handleServiceButtonClick(service)">
+        <img class="loginImage" :src="getServiceImage(service)">
+        <p>Continue with <span style="text-transform:capitalize">{{ service }}</span></p>
+      </button>
+    </div>
+    <p class="no-account">
+      Don't have an account?
+    </p>
+    <button>Register</button>
   </CardGeneric>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Emit } from 'nuxt-property-decorator'
+import Config from '@/config/default.json'
 const loginServices: string[] = ['google', 'spotify', 'facebook', 'twitter']
 
 @Component
@@ -24,7 +34,7 @@ export default class SidebarLoginButtons extends Vue {
 
   @Emit()
   handleServiceButtonClick (service: string): void {
-    window.location.href = `http://10.0.0.97:3001/login/${service}`
+    window.location.href = `${Config.apiUrl}/login/${service}`
   }
 }
 </script>
@@ -34,27 +44,37 @@ export default class SidebarLoginButtons extends Vue {
 @import '@/assets/css/_settings'
 
 .card-buttons
-  position: fixed
-  bottom: 0
-  left: 75px
+  text-align: center
+  position: relative
 
-.card-buttons button
-  padding: 8px 10px 8px 10px
-  width: 100%
-  display: flex
-  justify-content: between
-  align-items: center
-  transition: transform $animation-duration ease, background-color $animation-duration ease;
-  font-size: 100%
+.has-account
+  margin-bottom: 20px
 
-  &:hover
-    transform: translateY(-7px)
+.no-account
+  margin: 20px 0 20px 0
 
-  &:not(:last-of-type)
-    margin-bottom: 10px
+.buttons
+  display: block
 
-  p
-    margin-left: 40px
+  button
+    display: block
+    padding: 12px 15px 12px 15px
+    width: 300px
+    text-align: center
+    transition: transform $animation-duration ease, background-color $animation-duration ease;
+    font-size: 100%
+    position: relative
+
+    &:hover
+      transform: translateY(-7px)
+
+    &:not(:last-of-type)
+      margin-bottom: 10px
+
+    img
+      position: absolute
+      top: 6px
+      left: 6px
 
 .loginImage
   height: 32px
@@ -88,4 +108,17 @@ export default class SidebarLoginButtons extends Vue {
     background-color: hsl(141, 73%, 36%)
   &:active
     background-color: hsl(141, 73%, 30%)
+
+@media (max-width: $screen-small)
+  .card-buttons
+    position: fixed
+    bottom: 0
+    left: 0
+    width: 100%
+
+  #login
+    border-radius: 15px 15px 0 0
+
+  .buttons button
+    margin: 0 auto
 </style>

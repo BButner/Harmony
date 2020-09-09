@@ -12,8 +12,11 @@
     <div class="settings soft-shadow">
       <h1>Settings</h1>
       <div class="search">
-        <fa :icon="['fas', 'search']" class="search-icon" />
-        <input id="settingsSearch" v-model="searchInput" type="text">
+        <!-- <fa :icon="['fas', 'search']" class="search-icon" />
+        <input id="settingsSearch" v-model="searchInput" type="text"> -->
+        <InputTextWrapper>
+          <input v-model="searchInput" type="text">
+        </InputTextWrapper>
       </div>
       <transition-group name="slide-left-noabs">
         <div v-for="cat in categories" :key="cat" class="category-wrapper">

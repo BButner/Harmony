@@ -1,7 +1,7 @@
 input[type="text"], input[type="password"] {
   transition: all $animation-duration ease;
   outline: none;
-  border-radius: 3px;
+  border-radius: 6px;
   border: 1px solid var(--main-400);
   padding: 8px 4px 8px 4px;
   background-color: var(--main-400);

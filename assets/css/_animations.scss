@@ -71,18 +71,6 @@
   }
 }
 
-// .blur-enter-active, .blur-leave-active {
-//   transition: all $animation-duration ease;
-// }
-
-// .blur-enter {
-//   animation: blur-background $animation-duration ease;
-// }
-
-// .blur-leave-to {
-//   animation: unblur-background $animation-duration ease;
-// }
-
 .blur-enter {
   animation: blur-background $animation-duration;
 }
@@ -96,13 +84,8 @@
 }
 
 .blur-background {
-  backdrop-filter: saturate(180%) blur(5px);
   background-color: var(--blur-color);
 }
-
-// .blur-enter {
-//   @extend .blur;
-// }
 
 .animate-blur {
   animation: blur-background $animation-duration ease;
@@ -115,11 +98,9 @@
 @keyframes blur-background {
   from {
     opacity: 0;
-    backdrop-filter: saturate(100%) blur(0);
     background-color: rgba(255, 255, 255, 0.0);
   }
   to {
-    backdrop-filter: saturate(180%) blur(5px);
     background-color: var(--blur-color);
     opacity: 1;
   }
@@ -127,13 +108,11 @@
 
 @keyframes unblur-background {
   from {
-    backdrop-filter: saturate(180%) blur(5px);
     background-color: var(--blur-color);
     opacity: 1;
   }
   to {
     opacity: 0;
-    backdrop-filter: saturate(100%) blur(0);
     background-color: rgba(255, 255, 255, 0.0);
   }
 }

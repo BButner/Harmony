@@ -16,7 +16,7 @@
   --alt-400: #{$primary-light-400};
   --alt-500: #{$primary-light-500};
   --soft-shadow: hsla(0, 0%, 0%, 0.2);
-  --blur-color: hsla(230, 11%, 11%, 0.7);
+  --blur-color: hsla(230, 11%, 11%, 0.9);
 }
 
 :root {
@@ -34,6 +34,6 @@
   --alt-400: #{$primary-dark-200};
   --alt-500: #{$primary-dark-100};
   --soft-shadow: #{$soft-shadow};
-  --blur-color: hsla(236, 5%, 85%, 0.7);
+  --blur-color: hsla(230, 11%, 11%, 0.8);
   --animation-duration: 0.25s;
 }

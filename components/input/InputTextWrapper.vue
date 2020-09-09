@@ -1,12 +1,9 @@
 <template>
   <div class="input-text-wrapper">
     <div class="icon icon-custom">
-      <fa :icon="['fas', 'search']" />
+      <fa :icon="icon" />
     </div>
-    <!-- <input ref="input" v-model="inputVModel" type="text"> -->
-    <div>
-      <slot />
-    </div>
+    <slot />
     <div class="icon clear" @click="handleClear">
       <fa :icon="['fas', 'times']" />
     </div>
@@ -18,12 +15,14 @@ import { Component, Emit, Prop, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class InputTextWrapper extends Vue {
-  @Prop() inputVModel!: string
+  @Prop() icon!: string[]
+  @Prop() modelName!: string
 
   @Emit()
   handleClear (): void {
-    if (this.$slots.default && this.$slots.default[0]) {
-      (this.$slots.default[0].elm as HTMLInputElement).value = ''
+    const slots = this.$slots.default
+    if (slots && slots[0] && slots[0].context) {
+      slots[0].context.$data[this.modelName] = ''
     }
   }
 }

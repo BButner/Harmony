@@ -12,10 +12,8 @@
     <div class="settings soft-shadow">
       <h1>Settings</h1>
       <div class="search">
-        <!-- <fa :icon="['fas', 'search']" class="search-icon" />
-        <input id="settingsSearch" v-model="searchInput" type="text"> -->
-        <InputTextWrapper>
-          <input v-model="searchInput" type="text">
+        <InputTextWrapper model-name="searchInput" :icon="['fas', 'search']" class="search-wrapper">
+          <input v-model="searchInput" type="text" class="input-search">
         </InputTextWrapper>
       </div>
       <transition-group name="slide-left-noabs">
@@ -160,12 +158,11 @@ export default class UserSettings extends Vue {
   align-items: center
   width: 100%
 
-  input
-    width: 55%
+.search-wrapper
+  width: 75%
 
-.search-icon
-  color: var(--text-color-alt)
-  margin-right: 10px
+.input-search
+  width: 100%
 
 i
   transition: color $animation-duration ease
@@ -245,6 +242,6 @@ i
   .settings-wrapper-active
     right: 0
 
-  .search input
+  .search-wrapper
     width: 100%
 </style>

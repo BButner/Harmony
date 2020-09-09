@@ -51,14 +51,14 @@ export default class SidebarLoginButtons extends Vue {
   margin-bottom: 20px
 
 .no-account
-  margin: 20px 0 20px 0
+  margin: 60px 0 20px 0
 
 .buttons
   display: block
 
   button
     display: block
-    padding: 12px 15px 12px 15px
+    padding: 20px 26px 20px 26px
     width: 300px
     text-align: center
     transition: transform $animation-duration ease, background-color $animation-duration ease;
@@ -73,8 +73,8 @@ export default class SidebarLoginButtons extends Vue {
 
     img
       position: absolute
-      top: 6px
-      left: 6px
+      top: 13px
+      left: 13px
 
 .loginImage
   height: 32px
@@ -83,6 +83,7 @@ export default class SidebarLoginButtons extends Vue {
 .google
   background-color: hsl(0, 0%, 100%)
   color: $primary-dark-500
+  border: 1px solid hsla(0, 0%, 40%, 0.1)
   &:hover
     background-color: hsl(0, 0%, 92%)
   &:active

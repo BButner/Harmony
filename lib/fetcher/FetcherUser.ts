@@ -16,3 +16,19 @@ export const fetchUserSelf = async (): Promise<ModelUserSelf | null> => {
     return response.json()
   }
 }
+
+export const logout = async(): Promise<boolean> => {
+  const response = await fetch(`${Config.apiUrl}/logout`, {
+    credentials: 'include'
+  })
+    .catch((err) => {
+      console.log(err)
+      return null
+    })
+
+  if (!response) {
+    return false
+  } else {
+    return response.ok
+  }
+}

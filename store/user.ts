@@ -44,6 +44,18 @@ export default class User extends VuexModule {
     this.SETTINGS = this.SETTINGS_ORIGINAL
   }
 
+  @Mutation
+  private RESET () {
+    this.USER_NAME = ''
+    this.DISPLAY_NAME = ''
+    this.AVATAR_URL = ''
+    this.REGISTRATION_DATE = new Date()
+    this.EMAIL = ''
+    this.LOGGED_IN = false
+    this.SETTINGS = emptyModelUserSetting
+    this.SETTINGS_ORIGINAL = emptyModelUserSetting
+  }
+
   @Action({ commit: 'SET_USER' })
   setUser (user: ModelUser) {
     return user
@@ -59,6 +71,9 @@ export default class User extends VuexModule {
 
   @Action({ commit: 'RESET_SETTINGS' })
   resetSettings () {}
+
+  @Action({ commit: 'RESET' })
+  resetUser () {}
 
   get userName (): string {
     return this.USER_NAME

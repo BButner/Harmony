@@ -22,7 +22,7 @@
         <nuxt-link :to="`/user/${user.userName}`">
           <button>Profile</button>
         </nuxt-link>
-        <button class="button-red">
+        <button class="button-red" @click="handleLogoutClick">
           Logout
         </button>
       </div>
@@ -36,10 +36,23 @@ import { userStore } from '@/store'
 import { updateUserSettings } from '~/lib/pusher/PusherUser'
 import { NotificationType, pushNotification } from '~/lib/notification/Notification'
 import { NotificationMessage } from '~/lib/lang/LangNotification'
+import { logout } from '~/lib/fetcher/FetcherUser'
 
 @Component({
 })
 export default class SidebarUserCard extends Vue {
+  @Emit()
+  handleLogoutClick (): void {
+    logout()
+      .then((resp) => {
+        if (resp) {
+          window.location.reload()
+        } else {
+          pushNotification(NotificationMessage.LOGOUT_FAILED, NotificationType.FAILURE)
+        }
+      })
+  }
+
   @Emit()
   handleDarkModeClick (): void {
     const newVal = !this.user.settings.darkMode

@@ -39,6 +39,11 @@ export default class User extends VuexModule {
     this.SETTINGS_ORIGINAL = this.SETTINGS
   }
 
+  @Mutation
+  private RESET_SETTINGS () {
+    this.SETTINGS = this.SETTINGS_ORIGINAL
+  }
+
   @Action({ commit: 'SET_USER' })
   setUser (user: ModelUser) {
     return user
@@ -51,6 +56,9 @@ export default class User extends VuexModule {
 
   @Action({ commit: 'RESET_ORIGINAL_SETTINGS' })
   resetOriginalSettings () {}
+
+  @Action({ commit: 'RESET_SETTINGS' })
+  resetSettings () {}
 
   get userName (): string {
     return this.USER_NAME

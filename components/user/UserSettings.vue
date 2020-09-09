@@ -48,7 +48,7 @@
         <button class="button-teal" @click="handleSaveClick">
           Save
         </button>
-        <button class="button-red">
+        <button class="button-red" @click="handleCancelClick">
           Cancel
         </button>
       </div>
@@ -111,6 +111,11 @@ export default class UserSettings extends Vue {
           pushNotification(NotificationMessage.SETTINGS_FAILED_SAVE, NotificationType.FAILURE)
         }
       })
+  }
+
+  @Emit()
+  handleCancelClick (): void {
+    userStore.resetSettings()
   }
 
   get categories (): string[] {

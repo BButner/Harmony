@@ -37,7 +37,7 @@ const UserInfoCard: FunctionComponent<UserInfoCardProps> = ({ self, closeFunctio
       <CardGeneric className="text-center space-y-6">
         <Closable closeFunction={closeFunction} />
         <div className="m-auto flex justify-center">
-          <Image className="w-full m-auto " width={100} height={100} src={`${Config.bucketUrl}${self.avatarUrl}`} quality={100} priority />
+          <Image className="w-full m-auto rounded-full" width={100} height={100} src={`${Config.bucketUrl}${self.avatarUrl}`} quality={100} priority />
         </div>
         <div className="bg-main-300 p-2 rounded-lg">
           <p className="text-lg">Welcome, {self.username}.</p>

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ModelUserSelf } from 'models/user/ModelUser'
 import Config from 'config/default.json'
 import styles from './usermobile.module.scss'
+import Image from 'next/image'
 
 type UserMobileProps = {
   self: ModelUserSelf;
@@ -10,17 +11,19 @@ type UserMobileProps = {
 
 const UserMobile: FunctionComponent<UserMobileProps> = ({ self }) => {
   return (
-    <div className={`bg-main-300 p-2 space-y-4 ${styles['user-mobile-wrapper']}`}>
-      <div className="flex justify-start items-center">
-        <div className="rounded-full h-12 w-12 bg-center bg-cover " style={{ backgroundImage: `url('${Config.bucketUrl}${self.avatarUrl}')` }} />
-        <div className="text-left pl-2">
-          <p>{self.username}</p>
-          <p className="text-xs">{self.email}</p>
-        </div>
+    <div className={`p-2 space-y-4 ${styles['user-mobile-wrapper']}`}>
+      <div className="w-full flex justify-center">
+        <Image className="rounded-full" width={50} height={50} src={`${Config.bucketUrl}${self.avatarUrl}`} quality={100} priority />
       </div>
-      <div className="flex justify-between ml-4 mr-4">
-        <Link href={`/user/${self.username}`}><a className="block">Profile</a></Link>
-        <a className="block">Sign Out</a>
+      <div className="bg-main-300 p-2 rounded-lg">
+        <p className="text-lg">{self.username}</p>
+        <p className="text-color-alt">{self.displayName}</p>
+        <p className="text-color-alt text-sm">{self.email}</p>
+      </div>
+      <div className="space-y-2">
+        <button className="w-full">Profile</button>
+        <button className="w-full">Settings</button>
+        <button className="button-red w-full">Logout</button>
       </div>
     </div>
   )

@@ -45,6 +45,22 @@
   transform: translateX(200%)
 }
 
+.slide-from-top-enter {
+  transform: translateY(-200%)
+}
+
+.slide-from-top-enter-active {
+  transform: translateY(0%)
+}
+
+.slide-from-top-exit {
+  transform: translateY(0%)
+}
+
+.slide-from-top-exit-active {
+  transform: translateY(-200%)
+}
+
 // .slide-enter-active, .slide-leave-active {
 //   transition: all $animation-duration ease;
 // }

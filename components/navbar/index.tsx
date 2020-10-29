@@ -23,7 +23,7 @@ const Navbar: FunctionComponent = () => {
           <div id="nav-links-burger" className="md:hidden" onClick={(): void => setLinksVisible(!linksVisible)}><Icon path={mdiMenu} size={1} /></div>
         </div>
         <div className={"md:hidden " + styles['nav-links']}>
-          <CSSTransition in={linksVisible} timeout={{ exit: 250 }} unmountOnExit classNames="appear">
+          <CSSTransition in={linksVisible} timeout={{ exit: 250 }} unmountOnExit classNames="slide-from-top">
             <LinksMobile setVisible={setLinksVisible} self={data} />
           </CSSTransition>
         </div>

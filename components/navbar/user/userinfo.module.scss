@@ -1,0 +1,12 @@
+@import 'styles/_globals.scss';
+@import 'styles/_colors.scss';
+
+.user-wrapper {
+  background-color: var(--main-300);
+  border-radius: 15px;
+
+  &:hover {
+    background-color: var(--main-500);
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,40 @@
+@import '_colors';
+@import '_globals';
+
+.dark {
+  --text-color: #{$primary-light-100};
+  --text-color-alt: lightgray;
+  --text-color-alt-opposite: #8c8989;
+  --main-100: #{$primary-dark-100};
+  --main-200: #{$primary-dark-200};
+  --main-300: #{$primary-dark-300};
+  --main-400: #{$primary-dark-400};
+  --main-500: #{$primary-dark-500};
+  --alt-100: #{$primary-light-100};
+  --alt-200: #{$primary-light-200};
+  --alt-300: #{$primary-light-300};
+  --alt-400: #{$primary-light-400};
+  --alt-500: #{$primary-light-500};
+  --soft-shadow: hsla(0, 0%, 0%, 0.2);
+  --blur-color: hsla(230, 11%, 11%, 0.9);
+}
+
+:root {
+  --text-color: #424242;
+  --text-color-alt: #8c8989;
+  --text-color-alt-opposite: lightgray;
+  --main-100: #{$primary-light-100};
+  --main-200: #{$primary-light-200};
+  --main-300: #{$primary-light-300};
+  --main-400: #{$primary-light-400};
+  --main-500: #{$primary-light-500};
+  --alt-100: #{$primary-dark-500};
+  --alt-200: #{$primary-dark-400};
+  --alt-300: #{$primary-dark-300};
+  --alt-400: #{$primary-dark-200};
+  --alt-500: #{$primary-dark-100};
+  --soft-shadow: #{$soft-shadow};
+  --hard-shadow: hsla(0, 0%, 0%, 0.2);
+  --blur-color: hsla(230, 11%, 11%, 0.9);
+  --animation-duration: 0.25s;
+}

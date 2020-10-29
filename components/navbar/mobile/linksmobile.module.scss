@@ -1,0 +1,9 @@
+@import 'styles/_globals.scss';
+
+.links-card {
+  position: fixed;
+  top: 4px;
+  left: 4px;
+  width: calc(100% - 8px);
+  transition: background-color $animation-duration ease, transform $animation-duration ease, opacity $animation-duration ease;
+}

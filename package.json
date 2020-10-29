@@ -1,0 +1,28 @@
+{
+  "name": "harmony-dev",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@mdi/js": "^5.6.55",
+    "@mdi/react": "^1.4.0",
+    "@types/react-transition-group": "^4.4.0",
+    "next": "9.5.3",
+    "postcss-preset-env": "^6.7.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-transition-group": "^4.4.1",
+    "sass": "^1.26.11",
+    "swr": "^0.3.5",
+    "tailwindcss": "^1.8.10"
+  },
+  "devDependencies": {
+    "@types/node": "^14.11.2",
+    "@types/react": "^16.9.50",
+    "typescript": "^4.0.3"
+  }
+}

@@ -1,0 +1,91 @@
+button {
+  color: white;
+  outline: none;
+  border: none;
+  padding: .5rem 2rem .5rem 2rem;
+  border-radius: 7px;
+  background-color: $purple-500;
+  font-family: Rubik;
+  font-size: 90%;
+
+  &:hover {
+    background-color: $purple-700;
+    cursor: pointer;
+  }
+
+  &:active {
+    background-color: $purple-900;
+  }
+}
+
+.button-teal {
+  background-color: $teal-500;
+  &:hover {
+    background-color: $teal-700;
+  }
+  &:active {
+    background-color: $teal-900;
+  }
+}
+
+.button-red {
+  background-color: $red-500;
+  &:hover {
+    background-color: $red-700;
+  }
+  &:active {
+    background-color: $red-900;
+  }
+}
+
+.button-blue {
+  background-color: $blue-500;
+  &:hover {
+    background-color: $blue-700;
+  }
+  &:active {
+    background-color: $blue-900;
+  }
+}
+
+.button-google {
+  background-color: hsl(0, 0%, 100%);
+  color: $primary-dark-500;
+  border: 1px solid hsla(0, 0%, 40%, 0.1);
+  &:hover {
+    background-color: hsl(0, 0%, 92%);
+  }
+  &:active {
+    background-color: hsl(0, 0%, 84%);
+  }
+}
+
+.button-facebook {
+  background-color: hsl(221, 44%, 41%);
+  &:hover {
+    background-color: hsl(221, 44%, 35%);
+  }
+  &:active {
+    background-color: hsl(221, 44%, 29%);
+  }
+}
+
+.button-twitter {
+  background-color: hsl(203, 89%, 53%);
+  &:hover {
+    background-color: hsl(203, 89%, 47%);
+  }
+  &:active {
+    background-color: hsl(203, 89%, 41%);
+  }
+}
+
+.button-spotify {
+  background-color: hsl(141, 73%, 42%);
+  &:hover {
+    background-color: hsl(141, 73%, 36%);
+  }
+  &:active {
+    background-color: hsl(141, 73%, 30%);
+  }
+}

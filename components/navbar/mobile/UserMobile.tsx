@@ -13,7 +13,7 @@ const UserMobile: FunctionComponent<UserMobileProps> = ({ self }) => {
   return (
     <div className={`p-2 space-y-4 ${styles['user-mobile-wrapper']}`}>
       <div className="w-full flex justify-center">
-        <Image className="rounded-full" width={50} height={50} src={`${Config.bucketUrl}${self.avatarUrl}`} quality={100} priority />
+        <Image className="rounded-full avatar-shadow" width={75} height={75} src={`${Config.bucketUrl}${self.avatarUrl}`} quality={100} priority />
       </div>
       <div className="bg-main-300 p-2 rounded-lg">
         <p className="text-lg">{self.username}</p>

@@ -40,7 +40,7 @@ const UserLoginLinks: FunctionComponent<UserLoginLinksProps> = ({ setLoginCardVi
           {getLoginLinks().map(link => {
             return (
               <Link key={link.id} href={`${Config.apiUrl}/login/oauth2/authorization/${link.id}`}>
-                <button className={`block m-auto ${styles['login-button-service']} button-${link.id}`}>
+                <button className={`block w-64 m-auto ${styles['login-button-service']} button-${link.id}`}>
                   <img className={styles['login-button-service-image']} src={`/images/login/${link.id}-login.png`} />
                   {link.title}
                 </button>

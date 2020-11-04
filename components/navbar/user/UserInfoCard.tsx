@@ -6,6 +6,7 @@ import Closable from 'components/generic/Closable'
 import { clickedElementIsPopupElement } from 'lib/util/PopupUtil'
 import Config from 'config/default.json'
 import Image from 'next/image'
+import { fetchUserLogout } from 'lib/fetcher/FetcherUser'
 
 type UserInfoCardProps = {
   self: ModelUserSelf,
@@ -32,6 +33,17 @@ const UserInfoCard: FunctionComponent<UserInfoCardProps> = ({ self, closeFunctio
     }
   })
 
+  const handleButtonLogoutClick = (): void => {
+    fetchUserLogout()
+      .then(resp => {
+        if (resp) {
+          console.log('200')
+        } else {
+          console.log('oof')
+        }
+      })
+  }
+
   return (
     <div className={styles['card-wrapper']} ref={card}>
       <CardGeneric className="text-center space-y-6">
@@ -49,7 +61,9 @@ const UserInfoCard: FunctionComponent<UserInfoCardProps> = ({ self, closeFunctio
             <button className="w-32">Profile</button>
             <button className="w-32">Settings</button>
           </div>
-          <button className="button-red w-full">Logout</button>
+          <form action="http://localhost:8080/logout" method="post">
+            <button className="button-red w-full">Logout</button>
+          </form>
         </div>
       </CardGeneric>
     </div>

@@ -14,6 +14,7 @@ export async function fetchUserSelf (ctx): Promise<ModelUserSelf> {
 
 export async function fetchUserLogout (): Promise<any> {
   const response = await fetch(Config.apiUrl + '/logout', {
+    method: 'POST',
     credentials: 'include'
   })
 

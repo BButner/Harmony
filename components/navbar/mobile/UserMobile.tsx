@@ -23,7 +23,9 @@ const UserMobile: FunctionComponent<UserMobileProps> = ({ self }) => {
       <div className="space-y-2">
         <button className="w-full">Profile</button>
         <button className="w-full">Settings</button>
-        <button className="button-red w-full">Logout</button>
+        <form action="http://localhost:8080/logout" method="post">
+          <button className="button-red w-full">Logout</button>
+        </form>
       </div>
     </div>
   )

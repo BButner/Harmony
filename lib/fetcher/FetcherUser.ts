@@ -21,8 +21,8 @@ export async function fetchUserLogout (): Promise<any> {
   return response.ok
 }
 
-export const fetchUserByUsername = async (ctx): Promise<ModelUser> => {
-  const response = await fetch(`${Config.apiUrl}/user/${ctx.params.username}`, {
+export const fetchUserById = async (ctx): Promise<ModelUser> => {
+  const response = await fetch(`${Config.apiUrl}/users/${ctx.params.id}`, {
     credentials: 'include',
     headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
   })

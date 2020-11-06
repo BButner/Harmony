@@ -4,6 +4,7 @@ import { ModelUserSelf } from 'models/user/ModelUser'
 import Config from 'config/default.json'
 import styles from './usermobile.module.scss'
 import Image from 'next/image'
+import InformationWrapper from 'components/generic/information/InformationWrapper'
 
 type UserMobileProps = {
   self: ModelUserSelf;
@@ -15,11 +16,11 @@ const UserMobile: FunctionComponent<UserMobileProps> = ({ self }) => {
       <div className="w-full flex justify-center">
         <Image className="rounded-full avatar-shadow" width={75} height={75} src={`${Config.bucketUrl}${self.avatarUrl}`} quality={100} priority />
       </div>
-      <div className="bg-main-300 p-2 rounded-lg">
+      <InformationWrapper>
         <p className="text-lg">{self.username}</p>
         <p className="text-color-alt">{self.displayName}</p>
         <p className="text-color-alt text-sm">{self.email}</p>
-      </div>
+      </InformationWrapper>
       <div className="space-y-2">
         <button className="w-full">Profile</button>
         <button className="w-full">Settings</button>

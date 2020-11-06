@@ -8,6 +8,7 @@ import Config from 'config/default.json'
 import Image from 'next/image'
 import { fetchUserLogout } from 'lib/fetcher/FetcherUser'
 import Link from 'next/link'
+import InformationWrapper from 'components/generic/information/InformationWrapper'
 
 type UserInfoCardProps = {
   self: ModelUserSelf,
@@ -34,17 +35,6 @@ const UserInfoCard: FunctionComponent<UserInfoCardProps> = ({ self, closeFunctio
     }
   })
 
-  const handleButtonLogoutClick = (): void => {
-    fetchUserLogout()
-      .then(resp => {
-        if (resp) {
-          console.log('200')
-        } else {
-          console.log('oof')
-        }
-      })
-  }
-
   return (
     <div className={styles['card-wrapper']} ref={card}>
       <CardGeneric className="text-center space-y-6">
@@ -52,11 +42,11 @@ const UserInfoCard: FunctionComponent<UserInfoCardProps> = ({ self, closeFunctio
         <div className="m-auto flex justify-center">
           <Image className="w-full m-auto rounded-full avatar-shadow" width={100} height={100} src={`${Config.bucketUrl}${self.avatarUrl}`} quality={100} priority />
         </div>
-        <div className="bg-main-300 p-2 rounded-lg">
+        <InformationWrapper>
           <p className="text-lg">Welcome, {self.username}.</p>
           <p className="text-color-alt">{self.displayName}</p>
           <p className="text-color-alt text-sm">{self.email}</p>
-        </div>
+        </InformationWrapper>
         <div className="space-y-2">
           <div className="flex space-x-2">
             <Link href={`/user/${self.idExternal}`}><button className="w-32">Profile</button></Link>

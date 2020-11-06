@@ -30,3 +30,7 @@ export const fetchUserById = async (ctx): Promise<ModelUser> => {
   if (!response.ok) return null
   else return response.json()
 }
+
+export const fetchUserSettings = async (userId: String) => {
+  const response = await fetch(`${Config.apiUrl}/users/${userId}/settings`)
+}

@@ -1,12 +1,11 @@
 input[type="text"], input[type="password"] {
   transition: all $animation-duration ease;
   outline: none;
-  border-radius: 6px;
+  @extend .rounded-std-sm;
   border: 1px solid var(--main-400);
-  padding: 8px 4px 8px 4px;
+  padding: 6px 4px;
   background-color: var(--main-400);
   color: var(--alt-900);
-  font-size: 110%;
 
   &:focus {
     border-color: $purple-400;

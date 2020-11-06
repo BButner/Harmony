@@ -2,15 +2,19 @@ import CardGeneric from 'components/generic/card/CardGeneric'
 import InformationWrapper from 'components/generic/information/InformationWrapper'
 import StatsWrapper from 'components/generic/information/StatsWrapper'
 import { ModelUser } from 'models/user/ModelUser'
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import Image from 'next/image'
 import Config from 'config/default.json'
+import { CSSTransition } from 'react-transition-group'
+import UserSettings from './UserSettings'
 
 type UserProfileProps = {
   user: ModelUser;
 }
 
 const UserProfile: FunctionComponent<UserProfileProps> = ({ user }) => {
+  const [settingsVisible, setSettingsVisible] = useState<boolean>(false)
+
   return (
     <CardGeneric className="w-64 h-full flex flex-wrap flex-col justify-center">
       <div className="p-4 w-full flex justify-center items-center">
@@ -33,11 +37,14 @@ const UserProfile: FunctionComponent<UserProfileProps> = ({ user }) => {
         </StatsWrapper>
       </div>
       <div className="space-y-2 w-full">
-        <button className="button-blue w-full">Settings</button>
+        <button className="button-blue w-full" onClick={(): void => setSettingsVisible(!settingsVisible)}>Settings</button>
         <form action={`${Config.apiUrl}/logout`} method="post">
           <button className="button-red w-full">Logout</button>
         </form>
       </div>
+      <CSSTransition in={settingsVisible} timeout={{ exit: 250 }} unmountOnExit className="slide-from-top">
+        <UserSettings userId={user.idExternal}/>
+      </CSSTransition>
     </CardGeneric>
   )
 }

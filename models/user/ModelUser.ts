@@ -10,6 +10,7 @@ export interface ModelUser {
 
 export interface ModelUserSelf {
   id: string;
+  idExternal: string,
   avatarUrl: string;
   displayName: string;
   username: string;

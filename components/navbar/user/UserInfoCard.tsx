@@ -7,6 +7,7 @@ import { clickedElementIsPopupElement } from 'lib/util/PopupUtil'
 import Config from 'config/default.json'
 import Image from 'next/image'
 import { fetchUserLogout } from 'lib/fetcher/FetcherUser'
+import Link from 'next/link'
 
 type UserInfoCardProps = {
   self: ModelUserSelf,
@@ -58,10 +59,10 @@ const UserInfoCard: FunctionComponent<UserInfoCardProps> = ({ self, closeFunctio
         </div>
         <div className="space-y-2">
           <div className="flex space-x-2">
-            <button className="w-32">Profile</button>
+            <Link href={`/user/${self.idExternal}`}><button className="w-32">Profile</button></Link>
             <button className="w-32">Settings</button>
           </div>
-          <form action="http://localhost:8080/logout" method="post">
+          <form action={`${Config.apiUrl}/logout`} method="post">
             <button className="button-red w-full">Logout</button>
           </form>
         </div>

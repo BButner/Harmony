@@ -16,6 +16,8 @@ button {
   &:active {
     background-color: $purple-900;
   }
+
+  @extend .rounded-std-sm;
 }
 
 .button-outline {

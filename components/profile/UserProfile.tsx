@@ -16,7 +16,7 @@ const UserProfile: FunctionComponent<UserProfileProps> = ({ user }) => {
   const [settingsVisible, setSettingsVisible] = useState<boolean>(false)
 
   return (
-    <CardGeneric className="w-64 h-full flex flex-wrap flex-col justify-center">
+    <CardGeneric className="w-64 h-full flex flex-wrap flex-col justify-center appear">
       <div className="p-4 w-full flex justify-center items-center">
         <Image className="w-full rounded-full avatar-shadow" width={125} height={125} src={`${Config.bucketUrl}${user.avatarUrl}`} quality={100} priority />
       </div>

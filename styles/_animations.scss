@@ -9,6 +9,16 @@
   }
 }
 
+.appear {
+  transition: transform $animation-duration ease;
+  animation: animation-appear $animation-duration ease;
+}
+
+@keyframes animation-appear {
+  from { transform: scale(0.9); }
+  to { transform: scale(1); }
+}
+
 .appear-enter {
   transform: scale(0.9);
   opacity: 0;

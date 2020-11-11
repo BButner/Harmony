@@ -5,8 +5,8 @@ import { ModelUser } from 'models/user/ModelUser'
 import React, { FunctionComponent, useState } from 'react'
 import Image from 'next/image'
 import Config from 'config/default.json'
-import { CSSTransition } from 'react-transition-group'
 import UserSettings from './UserSettings'
+import PopupBlur from 'components/popup/PopupBlur'
 
 type UserProfileProps = {
   user: ModelUser;
@@ -42,9 +42,9 @@ const UserProfile: FunctionComponent<UserProfileProps> = ({ user }) => {
           <button className="button-red w-full">Logout</button>
         </form>
       </div>
-      <CSSTransition in={settingsVisible} timeout={{ exit: 250 }} unmountOnExit className="slide-from-top">
-        <UserSettings userId={user.idExternal}/>
-      </CSSTransition>
+      <PopupBlur visible={settingsVisible}>
+        <UserSettings userId={user.idExternal} closeFunction={setSettingsVisible}/>
+      </PopupBlur>
     </CardGeneric>
   )
 }

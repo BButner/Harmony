@@ -61,6 +61,22 @@
   transform: translateY(-200%)
 }
 
+.fade-in-enter {
+  opacity: 0;
+}
+
+.fade-in-enter-active {
+  opacity: 1;
+}
+
+.fade-in-exit {
+  opacity: 1;
+}
+
+.fade-in-exit-active {
+  opacity: 0;
+}
+
 // .slide-enter-active, .slide-leave-active {
 //   transition: all $animation-duration ease;
 // }

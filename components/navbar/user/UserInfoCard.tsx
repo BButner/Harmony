@@ -43,7 +43,7 @@ const UserInfoCard: FunctionComponent<UserInfoCardProps> = ({ self, closeFunctio
           <Image className="w-full m-auto rounded-full avatar-shadow" width={100} height={100} src={`${Config.bucketUrl}${self.avatarUrl}`} quality={100} priority />
         </div>
         <InformationWrapper>
-          <p className="text-lg">Welcome, {self.username}.</p>
+          <p className="text-lg">Hello, {self.username}.</p>
           <p className="text-color-alt">{self.displayName}</p>
           <p className="text-color-alt text-sm">{self.email}</p>
         </InformationWrapper>

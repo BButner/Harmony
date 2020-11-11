@@ -1,14 +1,12 @@
-interface ModelUserSettingInfo {
-  settingField: string;
-  settingName: string;
+export interface ModelUserSettingCategory {
+  id: number;
   description: string;
-  category: string;
+  settingCategory: string;
+  settingName: string;
 }
 
 export interface ModelUserSetting {
   emailPublic: boolean;
   displayNamePublic: boolean;
-  showImageStats: boolean;
   darkMode: boolean;
-  settingInfo: ModelUserSettingInfo[];
 }

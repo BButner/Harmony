@@ -1,4 +1,14 @@
 @import 'styles/_globals.scss';
+@import 'styles/_colors.scss';
+
+.title {
+  z-index: 0;
+}
+
+.settings-card {
+  height: 500px;
+  transition: transform $animation-duration ease;
+}
 
 .category-button {
   background-color: transparent;
@@ -6,11 +16,32 @@
   @apply w-64;
   @apply pt-4;
   @apply pb-4;
+  position: relative;
+
+  background-color: var(--main-300);
 
   &:hover {
     color: white;
+
+    svg {
+      color: white;
+    }
+  }
+
+  &-selected {
+    background-color: $purple-500;
+    color: white;
+
+    svg {
+      color: white;
+    }
   }
 
   transition: background-color $animation-duration ease, color $animation-duration ease;
   @apply block;
+}
+
+.setting-node:not(:last-of-type) {
+  border-bottom: 2px solid var(--main-300);
+  @apply pb-2;
 }

@@ -22,7 +22,6 @@ const UserSettings: FunctionComponent<UserSettingsProps> = ({ userId, closeFunct
 
   return (
     <CardGeneric className={`w-3/5 ${styles['settings-card']} relative`}>
-      {/* <h1 className={`absolute top-0 left-0 w-full text-center text-2xl font-bold pt-2 ${styles.title}`}>Settings</h1> */}
       <Closable closeFunction={closeFunction} />
       <div className="flex items-center mb-4">
         <Icon path={mdiMagnify} size={1} className="text-color-alt mr-2" />

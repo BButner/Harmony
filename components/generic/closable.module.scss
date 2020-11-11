@@ -1,0 +1,7 @@
+.icon {
+  color: var(--text-color);
+
+  &:hover svg {
+    color: var(--text-color-alt);
+  }
+}

@@ -6,7 +6,7 @@ import React, { FunctionComponent, useState } from 'react'
 import Image from 'next/image'
 import Config from 'config/default.json'
 import UserSettings from './UserSettings'
-import PopupBlur from 'components/popup/PopupBlur'
+import PopupBlur from 'components/generic/popup/PopupBlur'
 
 type UserProfileProps = {
   user: ModelUser;

@@ -71,6 +71,22 @@
   transform: translateY(-200%)
 }
 
+.slide-from-bottom-enter {
+  transform: translateY(200%)
+}
+
+.slide-from-bottom-enter-active {
+  transform: translateY(0%)
+}
+
+.slide-from-bottom-exit {
+  transform: translateY(0%)
+}
+
+.slide-from-bottom-exit-active {
+  transform: translateY(200%)
+}
+
 .fade-in-enter {
   opacity: 0;
 }

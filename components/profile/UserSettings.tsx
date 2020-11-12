@@ -7,6 +7,7 @@ import styles from './usersettings.module.scss'
 import { fetchSettingCategories, fetchUserSettings } from 'lib/fetcher/FetcherUserSettings'
 import { getIconFromSettingCategory, getSettingsFromCategory, getUniqueSettingCategories, settingsChanged } from 'lib/util/SettingsUtil'
 import Closable from 'components/generic/Closable'
+import { CSSTransition } from 'react-transition-group'
 
 type UserSettingsProps = {
   userId: string;
@@ -64,10 +65,12 @@ const UserSettings: FunctionComponent<UserSettingsProps> = ({ userId, closeFunct
               </div>
             })}
         </div>
-        <div className="absolute bottom-0 right-0 p-4 space-x-2">
-          <button className="button-teal">Save</button>
-          <button className="button-red">Cancel</button>
-        </div>
+        <CSSTransition in={selectedCategory !== "GENERAL"} timeout={{ exit: 250 }} classNames="appear" unmountOnExit>
+          <div className="absolute bottom-0 right-0 p-4 space-x-2 animated-transition">
+            <button className="button-teal">Save</button>
+            <button className="button-red">Cancel</button>
+          </div>
+        </CSSTransition>
       </div>
     </CardGeneric>
   )

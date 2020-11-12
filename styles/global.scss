@@ -48,3 +48,7 @@ svg {
 .rounded-std-sm {
   border-radius: 12px;
 }
+
+.animated-transition {
+  transition: transform $animation-duration ease, opacity $animation-duration ease;
+}

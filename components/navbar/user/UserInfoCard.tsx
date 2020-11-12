@@ -6,9 +6,10 @@ import Closable from 'components/generic/Closable'
 import { clickedElementIsPopupElement } from 'lib/util/PopupUtil'
 import Config from 'config/default.json'
 import Image from 'next/image'
-import { fetchUserLogout } from 'lib/fetcher/FetcherUser'
 import Link from 'next/link'
 import InformationWrapper from 'components/generic/information/InformationWrapper'
+import useSWR from 'swr'
+import { fetchUserSettings } from 'lib/fetcher/FetcherUserSettings'
 
 type UserInfoCardProps = {
   self: ModelUserSelf,
@@ -17,6 +18,7 @@ type UserInfoCardProps = {
 
 const UserInfoCard: FunctionComponent<UserInfoCardProps> = ({ self, closeFunction }) => {
   const card = useRef(null)
+  const { data: dataSettings, mutate: mutateSettings } = useSWR('/self/settings', () => fetchUserSettings(self.idExternal))
 
   const handleClick = (event: MouseEvent): void => {
     const clickedElement = document.elementFromPoint(event.clientX, event.clientY)
@@ -47,6 +49,13 @@ const UserInfoCard: FunctionComponent<UserInfoCardProps> = ({ self, closeFunctio
           <p className="text-color-alt">{self.displayName}</p>
           <p className="text-color-alt text-sm">{self.email}</p>
         </InformationWrapper>
+        <div className="flex justify-center items-center space-x-4">
+          <p>Dark Mode</p>
+          <div className="checkbox">
+            <input type="checkbox" id="darkMode" />
+            <label htmlFor="darkMode"></label>
+          </div>
+        </div>
         <div className="space-y-2">
           <div className="flex space-x-2">
             <Link href={`/user/${self.idExternal}`}><button className="w-32">Profile</button></Link>

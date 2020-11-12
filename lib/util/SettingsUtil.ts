@@ -35,3 +35,7 @@ export const getSettingsFromCategory = (selectedCategory: string, categories: Mo
 const translateNodeToName = (settingNode: string): string => {
   return settingNode.replaceAll(/(_[a-z])/g, (res) => { return res.toUpperCase()}).replaceAll("_", "")
 }
+
+export const settingsChanged = (settingsCurrent: ModelUserSetting, settingsOriginal: ModelUserSetting): boolean => {
+  return Object.entries(settingsCurrent).filter(entry => settingsOriginal[entry[0]] !== entry[1]).length > 0
+}

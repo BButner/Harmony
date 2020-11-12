@@ -106,3 +106,11 @@ button {
     background-color: hsl(141, 73%, 30%);
   }
 }
+
+button:disabled {
+  @apply bg-gray-500;
+
+  &:hover, &:active {
+    @apply bg-gray-500;
+  }
+}

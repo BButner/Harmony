@@ -38,7 +38,7 @@ const UserInfoCard: FunctionComponent<UserInfoCardProps> = ({ self, closeFunctio
   })
 
   return (
-    <div className={styles['card-wrapper']} ref={card}>
+    <div className={`${styles['card-wrapper']} z-40`} ref={card}>
       <CardGeneric className="text-center space-y-6">
         <Closable closeFunction={closeFunction} />
         <div className="m-auto flex justify-center">
@@ -53,7 +53,7 @@ const UserInfoCard: FunctionComponent<UserInfoCardProps> = ({ self, closeFunctio
           <p>Dark Mode</p>
           <div className="checkbox">
             <input type="checkbox" id="darkMode" />
-            <label htmlFor="darkMode"></label>
+            <label htmlFor="darkMode" onClick={(): void => document.body.classList.toggle('dark')}></label>
           </div>
         </div>
         <div className="space-y-2">

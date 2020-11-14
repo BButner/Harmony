@@ -16,7 +16,7 @@ const Navbar: FunctionComponent = () => {
   const { data, error } = useSWR('/user/self', fetchUserSelf)
 
   return (
-    <>
+    <div className="z-40">
       <div className={`w-screen bg-main-200 soft-shadow ${styles.navbar} flex justify-between z-40}`}>
         <div className={`flex pl-4 pr-4 md:p-0 w-full md:w-auto justify-between md:justify-center items-center ${styles.hero}`}>
           <Link href='/'><a><img src="/images/logo_written.png" className={`h-12 md:pl-4 ${styles.logo}`} alt=""/></a></Link>
@@ -38,7 +38,7 @@ const Navbar: FunctionComponent = () => {
           <User self={data} />
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

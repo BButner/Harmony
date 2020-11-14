@@ -1,0 +1,28 @@
+.laptop-wrapper {
+  width: 420px;
+}
+
+.screen {
+  width: 384px;
+  height: 240px;
+  border-radius: 10px 10px 0 0;
+  background-color: #2d3036;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.keyboard {
+  margin: 0 auto;
+  background-color: #9ba1ab;
+  height: 12px;
+  width: 100%;
+  border-radius: 0 0 12px 12px;
+}
+
+.trackpad {
+  margin: 0 auto;
+  border-radius: 0 0 10px 10px;
+  width: 75px;
+  height: 4px;
+  background-color: #aeb4bf;
+}

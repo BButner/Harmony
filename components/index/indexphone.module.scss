@@ -1,0 +1,16 @@
+.phone {
+  height: 190px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  border-radius: 10px;
+  background-color: #2d3036;
+  border: 2px solid #9ba1ab;
+  padding: 2px;
+}
+
+.content {
+  border-radius: 7px;
+  background-color: var(--main-400);
+}

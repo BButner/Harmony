@@ -32,7 +32,7 @@ const UserLoginLinks: FunctionComponent<UserLoginLinksProps> = ({ setLoginCardVi
   })
 
   return (
-    <div className={styles['login-card-wrapper']} ref={card}>
+    <div className={`${styles['login-card-wrapper']} z-40`} ref={card}>
       <CardGeneric className="space-y-4 text-center relative">
         <Closable closeFunction={setLoginCardVisible} />
         <div className="buttons space-y-4">

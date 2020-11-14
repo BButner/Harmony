@@ -38,3 +38,12 @@
   --blur-color: hsla(230, 11%, 11%, 0.9);
   --animation-duration: 0.25s;
 }
+
+@layer utilities {
+  @responsive {
+    .scale-35 {
+      --transform-scale-x: 0.35;
+      --transform-scale-y: 0.35;
+    }
+  }
+}

@@ -1,67 +1,23 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent } from 'react'
 import Layout from 'components/layout'
-import { CSSTransition } from 'react-transition-group'
+import IndexComputer from 'components/index/IndexComputer'
+import IndexLaptop from 'components/index/IndexLaptop'
+import IndexPhone from 'components/index/IndexPhone'
 
 const index: FunctionComponent = () => {
-  const [visible, setVisible] = useState<boolean>(false)
-
   return (
-    // <div>
-
-    //   <p>This is a test</p>
-    //   <input type="checkbox" checked={visible} onChange={(): void => setVisible(!visible)}/>
-    //   <button onClick={(): void => console.log(visible)}>Test</button>
-      
-    //   {/* <CSSTransition in={visible} unmountOnExit classNames="slide-new" timeout={{
-    //     exit: 250
-    //   }}>
-    //     <div className="animation-testing">Test</div>
-    //   </CSSTransition> */}
-    // </div>
     <Layout pageTitle="Index">
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>shit</p>
+      <div className="flex justify-center items-end flex-wrap space-x-4 transform scale-35 md:scale-75 lg:scale-100">
+        <div className="relative">
+          <IndexComputer />
+          <div className="absolute" style={{ bottom: '-90px', left: '-70px' }}>
+            <IndexLaptop />
+          </div>
+          <div className="absolute" style={{ bottom: '-90px', left: '500px' }}>
+            <IndexPhone />
+          </div>
+        </div>
+      </div>
     </Layout>
   )
 }

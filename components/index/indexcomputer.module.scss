@@ -1,0 +1,38 @@
+.computer-wrapper {
+  width: 768px;
+}
+
+.monitor-wrapper {
+  width: 100%;
+  height: 432px;
+}
+
+.screen {
+  background-color: #2d3036;
+  width: 100%;
+  height: 85%;
+  border-radius: 15px 15px 0 0;
+  padding: 20px;
+}
+
+.chin {
+  height: 15%;
+  background-color: #9ba1ab;
+  border-radius: 0 0 15px 15px;
+}
+
+.stand {
+  height: 100px;
+  width: 150px;
+  background-color: #5e636b;
+  background: linear-gradient(#7c818a, #858a94);
+  margin: 0 auto;
+}
+
+.foot {
+  background-color: #9ba1ab;
+  margin: 0 auto;
+  height: 10px;
+  width: 175px;
+  border-radius: 5px 5px 0 0;
+}

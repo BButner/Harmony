@@ -3,7 +3,7 @@
 
 .login-login {
   &:hover {
-    color: $purple-500;
+    @apply text-purple-500;
     cursor: pointer;
   }
 }
@@ -14,11 +14,11 @@
   outline: none;
 
   &:hover {
-    background-color: $purple-500;
+    @apply bg-purple-500;
     color: white;
   }
 
   &:active {
-    background-color: $purple-700;
+    @apply bg-purple-700;
   }
 }

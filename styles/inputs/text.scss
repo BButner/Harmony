@@ -8,7 +8,7 @@ input[type="text"], input[type="password"] {
   color: var(--alt-900);
 
   &:focus {
-    border-color: $purple-400;
+    @apply border-purple-500;
     background-color: var(--main-200);
   }
 

@@ -75,7 +75,7 @@ const UserSettings: FunctionComponent<UserSettingsProps> = ({ idExternal, closeF
         </div>
         <CSSTransition in={selectedCategory !== "GENERAL"} timeout={{ exit: 250 }} classNames="appear" unmountOnExit>
           <div className="absolute bottom-0 right-0 p-4 space-x-2 animated-transition">
-            <button className="button-teal" onClick={handleSaveClick}>Save</button>
+            <button className="button-green" onClick={handleSaveClick}>Save</button>
             <button className="button-red">Cancel</button>
           </div>
         </CSSTransition>

@@ -4,64 +4,65 @@ button {
   border: none;
   padding: .5rem 2rem .5rem 2rem;
   border-radius: 7px;
-  background-color: $purple-500;
+  @apply bg-purple-500;
   font-family: Rubik;
   font-size: 90%;
 
   &:hover {
-    background-color: $purple-700;
+    @apply bg-purple-700;
     cursor: pointer;
   }
 
   &:active {
-    background-color: $purple-900;
+    @apply bg-purple-900;
   }
 
   @extend .rounded-std-sm;
 }
 
 .button-outline {
-  color: $purple-500;
-  border: 1px solid $purple-500;
+  @apply text-purple-500;
+  border: 1px solid;
+  @apply border-purple-500;
   background-color: transparent;
 
   &:hover {
-    background-color: $purple-700;
+    @apply bg-purple-700;
     color: white;
   }
 
   &:active {
-    background-color: $purple-900;
+    @apply bg-purple-900;
   }
 }
 
-.button-teal {
-  background-color: $teal-500;
+.button-green {
+  @apply bg-green-500;
   &:hover {
-    background-color: $teal-700;
+    @apply bg-green-700;
   }
   &:active {
-    background-color: $teal-900;
+    @apply bg-green-900;
   }
 }
 
 .button-red {
-  background-color: $red-500;
+  @apply bg-red-500;
   &:hover {
-    background-color: $red-700;
+    @apply bg-red-700;
   }
   &:active {
-    background-color: $red-900;
+    @apply bg-red-900;
   }
 }
 
 .button-blue {
-  background-color: $blue-500;
+  @apply bg-blue-500;
   &:hover {
-    background-color: $blue-700;
+    @apply bg-blue-700;
   }
   &:active {
-    background-color: $blue-900;
+    @apply bg-blue-900;
   }
 }
 

@@ -36,7 +36,7 @@ const LinksMobile: FunctionComponent<LinksMobileProps> = ({ setVisible, self }) 
   }, [])
 
   return (
-    <div className={styles['links-card']} ref={card}>
+    <div className={`${styles['links-card']} z-50`} ref={card}>
       <CardGeneric className={`md:hidden hard-shadow text-center`}>
         <div className="w-full h-12 flex justify-between">
           <Link href='/'><a><img src="/images/logo_circle.png" className="h-12 w-12" /></a></Link>

@@ -6,7 +6,7 @@ import Config from 'config/default.json'
 
 const LoginMobile: FunctionComponent = () => {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 z-50">
       <p className="text-color-alt">Already have an account?</p>
       <div className="buttons space-y-4">
         {getLoginLinks().map(link => {

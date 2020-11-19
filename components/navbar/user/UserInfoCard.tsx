@@ -10,6 +10,7 @@ import Link from 'next/link'
 import InformationWrapper from 'components/generic/information/InformationWrapper'
 import useSWR from 'swr'
 import { fetchUserSettings } from 'lib/fetcher/FetcherUserSettings'
+import { updateDarkMode } from 'lib/pusher/PusherUser'
 
 type UserInfoCardProps = {
   self: ModelUserSelf,
@@ -37,6 +38,13 @@ const UserInfoCard: FunctionComponent<UserInfoCardProps> = ({ self, closeFunctio
     }
   })
 
+  const handleOnChange = (checkbox: HTMLInputElement): void => {
+    updateDarkMode(self.idExternal, {...dataSettings, darkMode: !dataSettings.darkMode})
+      .then(resp => {
+        if (resp) mutateSettings({...dataSettings, darkMode: !dataSettings.darkMode}, false)
+      })
+  }
+
   return (
     <div className={`${styles['card-wrapper']} z-40`} ref={card}>
       <CardGeneric className="text-center space-y-6">
@@ -52,8 +60,8 @@ const UserInfoCard: FunctionComponent<UserInfoCardProps> = ({ self, closeFunctio
         <div className="flex justify-center items-center space-x-4">
           <p>Dark Mode</p>
           <div className="checkbox">
-            <input type="checkbox" id="darkMode" />
-            <label htmlFor="darkMode" onClick={(): void => document.body.classList.toggle('dark')}></label>
+            <input type="checkbox" id="darkMode" checked={dataSettings && dataSettings.darkMode} onChange={(e): void => handleOnChange(e.target)} />
+            <label htmlFor="darkMode"></label>
           </div>
         </div>
         <div className="space-y-2">

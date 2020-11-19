@@ -7,7 +7,7 @@ type CardGenericProps = {
 
 const CardGeneric: FunctionComponent<CardGenericProps> = ({ children, className }) => {
   return (
-    <div className={`bg-main-200 p-4 ${styles.card} soft-shadow ${className ? className : ''}`}>
+    <div className={`bg-main-200 p-4 ${styles.card} shadow-xl ${className ? className : ''}`}>
       {children}
     </div>
   )

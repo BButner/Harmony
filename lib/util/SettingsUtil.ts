@@ -22,7 +22,7 @@ interface SettingFromCategory {
 
 export const getSettingsFromCategory = (selectedCategory: string, categories: ModelUserSettingCategory[], settings: ModelUserSetting): SettingFromCategory[] => {
   const nodes = categories.filter(cat => cat.settingCategory == selectedCategory).map(cat => translateNodeToName(cat.settingName))
-  console.log(categories)
+
   return Object.entries(settings).filter(entry => nodes.includes(entry[0])).map(entry => {
     return { settingName: entry[0],
       settingValue: entry[1],

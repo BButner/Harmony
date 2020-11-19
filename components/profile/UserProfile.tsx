@@ -43,7 +43,7 @@ const UserProfile: FunctionComponent<UserProfileProps> = ({ user }) => {
         </form>
       </div>
       <PopupBlur visible={settingsVisible}>
-        <UserSettings userId={user.idExternal} closeFunction={setSettingsVisible}/>
+        <UserSettings idExternal={user.idExternal} closeFunction={setSettingsVisible}/>
       </PopupBlur>
     </CardGeneric>
   )

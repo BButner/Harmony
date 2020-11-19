@@ -2,20 +2,21 @@ import Icon from '@mdi/react'
 import { mdiMagnify, mdiAccount } from '@mdi/js'
 import CardGeneric from 'components/generic/card/CardGeneric'
 import React, { FunctionComponent, useState, useEffect } from 'react'
-import useSWR, { mutate } from 'swr'
+import useSWR from 'swr'
 import styles from './usersettings.module.scss'
 import { fetchSettingCategories, fetchUserSettings } from 'lib/fetcher/FetcherUserSettings'
 import { getIconFromSettingCategory, getSettingsFromCategory, getUniqueSettingCategories, settingsChanged } from 'lib/util/SettingsUtil'
 import Closable from 'components/generic/Closable'
 import { CSSTransition } from 'react-transition-group'
+import { updateUserSettings } from 'lib/pusher/PusherUser'
 
 type UserSettingsProps = {
-  userId: string;
+  idExternal: string;
   closeFunction: Function;
 }
 
-const UserSettings: FunctionComponent<UserSettingsProps> = ({ userId, closeFunction }) => {
-  const { data: dataSettings, error, mutate: mutateSettings  } = useSWR('/self/settings', url => fetchUserSettings(userId))
+const UserSettings: FunctionComponent<UserSettingsProps> = ({ idExternal, closeFunction }) => {
+  const { data: dataSettings, error, mutate: mutateSettings  } = useSWR('/self/settings', url => fetchUserSettings(idExternal))
   const { data: dataCategories, error: errorCategories } = useSWR('/self/settings/categories', fetchSettingCategories)
   const [selectedCategory, setSelectedCategory] = useState<string>("GENERAL")
 
@@ -23,6 +24,13 @@ const UserSettings: FunctionComponent<UserSettingsProps> = ({ userId, closeFunct
 
   const handleCheckboxClick = (checkbox: HTMLInputElement) => {
     mutateSettings({...dataSettings, [checkbox.id]: !dataSettings[checkbox.id] }, false)
+  }
+
+  const handleSaveClick = (): void => {
+    updateUserSettings(idExternal, dataSettings)
+      .then(resp => {
+        console.log(resp)
+      })
   }
 
   return (
@@ -67,7 +75,7 @@ const UserSettings: FunctionComponent<UserSettingsProps> = ({ userId, closeFunct
         </div>
         <CSSTransition in={selectedCategory !== "GENERAL"} timeout={{ exit: 250 }} classNames="appear" unmountOnExit>
           <div className="absolute bottom-0 right-0 p-4 space-x-2 animated-transition">
-            <button className="button-teal">Save</button>
+            <button className="button-teal" onClick={handleSaveClick}>Save</button>
             <button className="button-red">Cancel</button>
           </div>
         </CSSTransition>

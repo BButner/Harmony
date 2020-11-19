@@ -1,8 +1,8 @@
 import Config from 'config/default.json'
 import { ModelUserSetting, ModelUserSettingCategory } from 'models/user/ModelUserSetting'
 
-export const fetchUserSettings = async (externalId: String) => {
-  const promise = fetch(`${Config.apiUrl}/users/${externalId}/settings`, {
+export const fetchUserSettings = async (idExternal: String) => {
+  const promise = fetch(`${Config.apiUrl}/users/${idExternal}/settings`, {
     credentials: 'include'
   })
     .then(resp => resp.json())

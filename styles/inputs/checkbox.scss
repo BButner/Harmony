@@ -11,9 +11,9 @@
   display: block;
   width: 50px;
   height: 22px;
-  border-radius: 6px;
+  border-radius: 10px;
   background-color: var(--main-400);
-  border: 1px solid var(--main-500);
+  border: 3px solid var(--main-500);
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
@@ -44,7 +44,7 @@
 }
 
 .checkbox input[type="checkbox"]:checked + label {
-  @apply border-purple-500;
+  @apply border-purple-400;
 
   &:before {
     @apply bg-purple-400;

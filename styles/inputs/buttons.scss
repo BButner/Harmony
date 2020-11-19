@@ -15,6 +15,14 @@ button {
 
   &:active {
     @apply bg-purple-900;
+    outline: none;
+  }
+
+  &:focus {
+    outline: none;
+    @apply ring-4;
+    @apply ring-purple-500;
+    @apply ring-opacity-50;
   }
 
   @extend .rounded-std-sm;
@@ -44,6 +52,12 @@ button {
   &:active {
     @apply bg-green-900;
   }
+  &:focus {
+    outline: none;
+    @apply ring-4;
+    @apply ring-green-500;
+    @apply ring-opacity-50;
+  }
 }
 
 .button-red {
@@ -54,6 +68,12 @@ button {
   &:active {
     @apply bg-red-900;
   }
+  &:focus {
+    outline: none;
+    @apply ring-4;
+    @apply ring-red-500;
+    @apply ring-opacity-50;
+  }
 }
 
 .button-blue {
@@ -63,6 +83,12 @@ button {
   }
   &:active {
     @apply bg-blue-900;
+  }
+  &:focus {
+    outline: none;
+    @apply ring-4;
+    @apply ring-blue-500;
+    @apply ring-opacity-50;
   }
 }
 

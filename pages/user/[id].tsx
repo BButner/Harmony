@@ -3,20 +3,17 @@ import { fetchUserById } from 'lib/fetcher/FetcherUser'
 import { ModelUser } from 'models/user/ModelUser'
 import { GetServerSideProps } from 'next'
 import React, { FunctionComponent } from 'react'
-import Image from 'next/image'
-import Config from 'config/default.json'
-import CardGeneric from 'components/generic/card/CardGeneric'
-import InformationWrapper from 'components/generic/information/InformationWrapper'
-import StatsWrapper from 'components/generic/information/StatsWrapper'
 import UserProfile from 'components/profile/UserProfile'
+import { fetchUserSettingsImplicit } from 'lib/fetcher/FetcherUserSettings'
 
 type ProfileProps = {
-  user?: ModelUser
+  user?: ModelUser,
+  darkMode: boolean
 }
 
-const Profile: FunctionComponent<ProfileProps> = ({ user }) => {
+const Profile: FunctionComponent<ProfileProps> = ({ user, darkMode }) => {
   return (
-    <Layout pageTitle={user.username}>
+    <Layout pageTitle={user.username} darkMode={darkMode}>
       <div className="flex h-full">
         <UserProfile user={user} />
         <div className="flex">
@@ -31,5 +28,6 @@ export default Profile
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const dataUser = await fetchUserById(ctx)
-  return { props: { user: dataUser }}
+  const darkMode = (await fetchUserSettingsImplicit(ctx)).darkMode
+  return { props: { user: dataUser, darkMode }}
 }

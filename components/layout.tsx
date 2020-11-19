@@ -1,15 +1,23 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 import Meta from './meta'
 import Navbar from 'components/navbar'
 import styles from './layout.module.scss'
+import { mdiPageLayoutBody } from '@mdi/js'
 
 type LayoutProps = {
   pageTitle: string;
   children: any;
-  noPadding?: boolean
+  noPadding?: boolean,
+  darkMode?: boolean
 }
 
-const Layout: FunctionComponent<LayoutProps> = ({ pageTitle, children, noPadding }) => {
+const Layout: FunctionComponent<LayoutProps> = ({ pageTitle, children, noPadding, darkMode }) => {
+  useEffect(() => {
+    if (self && darkMode && !document.body.classList.contains('dark')) {
+      document.body.classList.add('dark')
+    }
+  }, [])
+
   return (
     <>
       <Meta pageTitle={pageTitle} />

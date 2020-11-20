@@ -28,6 +28,11 @@ export default Profile
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const dataUser = await fetchUserById(ctx)
-  const darkMode = (await fetchUserSettingsImplicit(ctx)).darkMode
-  return { props: { user: dataUser, darkMode }}
+  const settings = await fetchUserSettingsImplicit(ctx)
+
+  if (!dataUser) {
+    return { notFound: true }
+  }
+
+  return { props: { user: dataUser, darkMode: settings.darkMode }}
 }

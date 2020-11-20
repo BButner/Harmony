@@ -54,6 +54,9 @@ module.exports = {
       }
     },
   },
+  transitionDuration: {
+    '250': '250ms'
+  },
   variants: {},
   plugins: [],
 }

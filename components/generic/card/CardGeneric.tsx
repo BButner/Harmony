@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react'
-import styles from './cardgeneric.module.scss'
 
 type CardGenericProps = {
   className?: string;
@@ -7,7 +6,7 @@ type CardGenericProps = {
 
 const CardGeneric: FunctionComponent<CardGenericProps> = ({ children, className }) => {
   return (
-    <div className={`bg-main-200 p-4 ${styles.card} shadow-xl ${className ? className : ''}`}>
+    <div className={`bg-main-200 p-4 shadow-xl ${className ? className : ''} rounded-std`}>
       {children}
     </div>
   )

@@ -44,11 +44,11 @@
 }
 
 .checkbox input[type="checkbox"]:checked + label {
-  @apply border-purple-400;
+  @apply border-purple-500;
 
   &:before {
-    @apply bg-purple-400;
-    left: 18px;
+    @apply bg-purple-500;
+    left: 10px;
     top: 0px;
   }
 }

@@ -13,7 +13,9 @@ import User from './user/index'
 
 const Navbar: FunctionComponent = () => {
   const [linksVisible, setLinksVisible] = useState<boolean>(false)
-  const { data, error } = useSWR('/user/self', fetchUserSelf)
+  const { data, error } = useSWR('/user/self', fetchUserSelf, {
+    revalidateOnFocus: false
+  })
 
   return (
     <div className="z-40">

@@ -53,10 +53,7 @@ button {
     @apply bg-green-900;
   }
   &:focus {
-    outline: none;
-    @apply ring-4;
     @apply ring-green-500;
-    @apply ring-opacity-50;
   }
 }
 
@@ -69,10 +66,7 @@ button {
     @apply bg-red-900;
   }
   &:focus {
-    outline: none;
-    @apply ring-4;
     @apply ring-red-500;
-    @apply ring-opacity-50;
   }
 }
 
@@ -85,10 +79,7 @@ button {
     @apply bg-blue-900;
   }
   &:focus {
-    outline: none;
-    @apply ring-4;
     @apply ring-blue-500;
-    @apply ring-opacity-50;
   }
 }
 
@@ -102,6 +93,10 @@ button {
   &:active {
     background-color: hsl(0, 0%, 84%);
   }
+  &:focus {
+    @apply ring-gray-300;
+    @apply ring-opacity-50;
+  }
 }
 
 .button-facebook {
@@ -111,6 +106,10 @@ button {
   }
   &:active {
     background-color: hsl(221, 44%, 29%);
+  }
+  &:focus {
+    @apply ring-blue-900;
+    @apply ring-opacity-50;
   }
 }
 
@@ -122,6 +121,10 @@ button {
   &:active {
     background-color: hsl(203, 89%, 41%);
   }
+  &:focus {
+    @apply ring-blue-500;
+    @apply ring-opacity-50;
+  }
 }
 
 .button-spotify {
@@ -131,6 +134,10 @@ button {
   }
   &:active {
     background-color: hsl(141, 73%, 30%);
+  }
+  &:focus {
+    @apply ring-spotify-500;
+    @apply ring-opacity-50;
   }
 }
 

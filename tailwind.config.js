@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   future: {
     // removeDeprecatedGapUtilities: true,
@@ -50,7 +52,8 @@ module.exports = {
           'main': 'var(--text-color)',
           'alt': 'var(--text-color-alt)',
           'alt-opp': 'var(--text-color-opposite)'
-        }
+        },
+        cyan: colors.cyan
       }
     },
   },

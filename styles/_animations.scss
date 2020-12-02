@@ -103,150 +103,21 @@
   opacity: 0;
 }
 
-// .slide-enter-active, .slide-leave-active {
-//   transition: all $animation-duration ease;
-// }
-
-// .slide-enter {
-//   transform: translate(-150%, 0);
-// }
-
-// .slide-leave-to {
-//   transform: translate(-150%, 0);
-// }
-
-// .slide-new-enter-active {
-//   transform: translateX(0);
-// }
-
-// .slide-new-enter {
-//   transform: translateX(-150%);
-// }
-
-// .slide-new-exit {
-//   transform: translateX(0);
-// }
-
-// .slide-new-exit-active {
-//   transform: translateX(-150%);
-// }
-
-// .my-node-enter {
-//   opacity: 0;
-// }
-// .my-node-enter-active {
-//   opacity: 1;
-//   transition: opacity 200ms;
-// }
-// .my-node-exit {
-//   opacity: 1;
-// }
-// .my-node-exit-active {
-//   opacity: 0;
-//   transition: opacity 200ms;
-// }
-
-// .slide-up-enter-active, .slide-up-leave-active {
-//   transition: all $animation-duration ease;
-// }
-
-// .slide-up-enter {
-//   transform: translate(0, 150%);
-// }
-
-// .slide-up-leave-to {
-//   transform: translate(0, 150%);
-// }
-
-// .slide-left-enter-active, .slide-left-leave-active {
-//   transition: all $animation-duration ease;
-// }
-
-// .slide-left-enter {
-//   transform: translate(150%, 0);
-// }
-
-// .slide-left-leave-to {
-//   transform: translate(150%, 0);
-// }
-
-// .slide-left-move {
-//   transition: transform $animation-duration;
-// }
-
-// .slide-left-leave-active {
-//   position: absolute;
-// }
-
-// .slide-left-noabs-enter-active, .slide-left-noabs-leave-active {
-//   transition: all $animation-duration ease;
-// }
-
-// .slide-left-noabs-enter {
-//   transform: translate(150%, 0);
-// }
-
-// .slide-left-noabs-leave-to {
-//   transform: translate(150%, 0);
-// }
-
-// .slide-left-noabs-move {
-//   transition: transform $animation-duration;
-// }
-
-// @keyframes fade-slide-up {
-//   from {
-//     transform: translateY(50%);
-//     opacity: 0;
-//   }
-//   to {
-//       transform: translateY(0);
-//       opacity: 1;
-//   }
-// }
-
-// .blur-enter {
-//   animation: blur-background $animation-duration;
-// }
-
-// .blur-enter-active {
-//   animation: blur-background $animation-duration;
-// }
-
-// .blur-leave-active {
-//   animation: unblur-background $animation-duration;
-// }
-
-// .blur-background {
-//   background-color: var(--blur-color);
-// }
-
-// .animate-blur {
-//   animation: blur-background $animation-duration ease;
-// }
-
-// .animate-unblur {
-//   animation: unblur-background $animation-duration ease;
-// }
-
-// @keyframes blur-background {
-//   from {
-//     opacity: 0;
-//     background-color: rgba(255, 255, 255, 0.0);
-//   }
-//   to {
-//     background-color: var(--blur-color);
-//     opacity: 1;
-//   }
-// }
-
-// @keyframes unblur-background {
-//   from {
-//     background-color: var(--blur-color);
-//     opacity: 1;
-//   }
-//   to {
-//     opacity: 0;
-//     background-color: rgba(255, 255, 255, 0.0);
-//   }
-// }
+.fade-slide-enter {
+  opacity: 0;
+  transform: translateX(-50%);
+}
+.fade-slide-enter-active {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: opacity $animation-duration ease, transform $animation-duration ease;
+}
+.fade-slide-exit {
+  opacity: 1;
+  transform: translateX(0%);
+}
+.fade-slide-exit-active {
+  opacity: 0;
+  transform: translateX(50%);
+  transition: opacity $animation-duration ease, transform $animation-duration ease;
+}

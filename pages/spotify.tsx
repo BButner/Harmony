@@ -5,6 +5,8 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 import Config from 'config/default.json'
 import { useRouter } from 'next/router'
 import { timeStamp } from 'console'
+import CardGeneric from 'components/generic/card/CardGeneric'
+import ServicePlaylistTable from 'components/service/ServicePlaylistTable'
 
 type SpotifyProps = {
   darkMode: boolean;
@@ -71,31 +73,17 @@ const Spotify: FunctionComponent<SpotifyProps> = ({ darkMode }) => {
         .catch(err => {
           console.log(err)
         })
-    } else {
-      fetch(`${Config.apiUrl}/service/spotify/playlists`, {
-        method: 'GET',
-        credentials: 'include'
-      })
-        .then(resp => {
-          return resp.json()
-        })
-        .then(resp => {
-          setPlaylists(resp)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    }
+      }
   }, [])
 
   return (
     <Layout pageTitle="Spotify" darkMode={darkMode}>
-      <button onClick={redirect}>Connect</button>
-      <button onClick={playlists}>Playlists</button>
-      <br/>
-      {pData && pData.map(playlist => {
-        return <p key={playlist.id} onClick={(): void => getSongs(playlist.id)}>{playlist.name}</p>
-      })}
+      <div className="flex items-start">
+        <button onClick={redirect}>Connect</button>
+        <button onClick={playlists}>Playlists</button>
+        <br/>
+        {pData !== null && <ServicePlaylistTable playlists={pData} />}
+      </div>
     </Layout>
   )
 }

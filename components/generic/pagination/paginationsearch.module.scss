@@ -6,6 +6,7 @@
 
 .search-key-button {
   border-radius: 15px 0 0 15px;
+  @apply w-52;
 
   @apply bg-transparent;
   @apply text-color-alt;

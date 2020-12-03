@@ -11,9 +11,10 @@ type PaginationProps = {
   perPage: number;
   minHeight?: number;
   searchPrefix: string;
+  schemaFilter?: string[];
 }
 
-const Pagination: FunctionComponent<PaginationProps> = ({ children, allValues, setCurrentValues, perPage, minHeight, searchPrefix }) => {
+const Pagination: FunctionComponent<PaginationProps> = ({ children, allValues, setCurrentValues, perPage, minHeight, searchPrefix, schemaFilter }) => {
   const [currentPage, setCurrentPage] = useState<number>(0)
   const pageCount = Math.ceil(allValues.length / perPage)
   const [pageInputError, setPageInputError] = useState<boolean>(false)
@@ -60,7 +61,8 @@ const Pagination: FunctionComponent<PaginationProps> = ({ children, allValues, s
       <TransitionGroup className="flex w-full justify-center space-x-2" style={{ minHeight: minHeight ? minHeight : 'auto' }}>
         {children}
       </TransitionGroup>
-      <PaginationSearch prefix={searchPrefix} setFilteredProperty={setFilterdProperty} filteredProperty={filteredProperty} paginate={paginate} schemaValue={allValues.length == 0 ? null : allValues[0]} />
+
+      <PaginationSearch schemaFilter={schemaFilter} prefix={searchPrefix} setFilteredProperty={setFilterdProperty} filteredProperty={filteredProperty} paginate={paginate} schemaValue={allValues.length == 0 ? null : allValues[0]} />
 
       <div className="ml-2 flex items-center justify-center space-x-2 rounded-std p-2 bg-main-200">
         <button className={`${styles['pagination-button']}`} onClick={(): void => paginate(currentPage - 1)} disabled={currentPage === 0}>

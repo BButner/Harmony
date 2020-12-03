@@ -24,7 +24,7 @@ const PaginationSearch: FunctionComponent<PaginationSearchProps> = ({ setFiltere
     } else {
       const lowerSchemaFilter = schemaFilter.map(field => field.toLowerCase())
 
-      return fields.filter(field => !lowerSchemaFilter.includes(field.toLowerCase()))
+      return fields.filter(field => lowerSchemaFilter.includes(field.toLowerCase()))
     }
   }
 

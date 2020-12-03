@@ -19,7 +19,7 @@ const ServicePlaylistTable: FunctionComponent<ServicePlaylistTableProps> = ({ pl
 
   return (
     <div style={{ width: `${SIZE * PER_PAGE + 50}px` }}>
-      <Pagination allValues={playlists} setCurrentValues={setCurrentPlaylists} perPage={PER_PAGE} minHeight={280} searchPrefix="Playlist">
+      <Pagination schemaFilter={['name', 'description']} allValues={playlists} setCurrentValues={setCurrentPlaylists} perPage={PER_PAGE} minHeight={280} searchPrefix="Playlist">
         {currentPlaylists.map(playlist => {
           return (
             <CSSTransition key={playlist.id} timeout={{ enter: 275 }} classNames="fade-slide">

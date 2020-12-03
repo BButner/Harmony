@@ -56,7 +56,7 @@ const PaginationSearch: FunctionComponent<PaginationSearchProps> = ({ setFiltere
           </CardGeneric>
         </CSSTransition>
       </div>
-      <Icon className="ml-2 mr-2 text-color-alt" path={mdiMagnify} size={1.25} />
+      <Icon className="ml-2 mr-2 text-color-alt" path={mdiMagnify} size={1} />
       <input type="text" onChange={(e): void => {
         paginate(0, e.currentTarget.value)
       }} />

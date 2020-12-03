@@ -13,7 +13,7 @@ type ServicePlaylistTableProps = {
 }
 
 const ServicePlaylistTable: FunctionComponent<ServicePlaylistTableProps> = ({ playlists }) => {
-  const PER_PAGE: number = 5
+  const PER_PAGE: number = 7
   const SIZE: number = 220
   const [currentPlaylists, setCurrentPlaylists] = useState<UnifiedPlaylist[]>([])
 
@@ -22,7 +22,7 @@ const ServicePlaylistTable: FunctionComponent<ServicePlaylistTableProps> = ({ pl
       <Pagination schemaFilter={['name', 'description']} allValues={playlists} setCurrentValues={setCurrentPlaylists} perPage={PER_PAGE} minHeight={280} searchPrefix="Playlist">
         {currentPlaylists.map(playlist => {
           return (
-            <CSSTransition key={playlist.id} timeout={{ enter: 275 }} classNames="fade-slide">
+            <CSSTransition key={playlist.id} timeout={{ enter: 300 }} classNames="fade-slide">
               <CardGeneric className={`overflow-hidden bg-main-200 ${styles['playlist-card']}`} noPadding>
                 <img src={playlist.imageHref} width={220} height={220} />
                 <div className="text-center flex items-center justify-center" style={{ height: '60px' }}>

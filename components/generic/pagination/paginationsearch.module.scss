@@ -1,0 +1,37 @@
+@import 'styles/_globals.scss';
+
+.search-key-selector {
+  border-radius: 15px 0 0 15px;
+}
+
+.search-key-button {
+  border-radius: 15px 0 0 15px;
+
+  @apply bg-transparent;
+  @apply text-color-alt;
+
+  &:hover {
+    @apply bg-main-300;
+  }
+
+  &:active {
+    @apply bg-main-500;
+  }
+
+  &:focus, &:active {
+    box-shadow: none;
+  }
+}
+
+.search-selections-wrapper {
+  transition: opacity $animation-duration ease, transform $animation-duration ease;
+}
+
+.search-selection {
+  @apply bg-transparent;
+  @apply text-color-main;
+
+  &:focus, &:active {
+    box-shadow: none;
+  }
+}

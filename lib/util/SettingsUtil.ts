@@ -32,7 +32,7 @@ export const getSettingsFromCategory = (selectedCategory: string, categories: Mo
   })
 }
 
-const translateNodeToName = (settingNode: string): string => {
+export const translateNodeToName = (settingNode: string): string => {
   return settingNode.replaceAll(/(_[a-z])/g, (res) => { return res.toUpperCase()}).replaceAll("_", "")
 }
 

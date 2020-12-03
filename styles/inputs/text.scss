@@ -17,3 +17,11 @@ input[type="text"], input[type="password"] {
     background-color: var(--main-300);
   }
 }
+
+.input-error {
+  @apply border-red-500 #{!important};
+
+  &:focus {
+    @apply border-red-500 #{!important};
+  }
+}

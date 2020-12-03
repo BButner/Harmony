@@ -1,14 +1,23 @@
 .pagination-button {
   @apply bg-transparent;
   @apply p-1;
-
+  @apply rounded-lg;
   @apply text-purple-500;
 
   &:hover {
     @apply text-white;
   }
 
+  &:focus, &:active {
+    box-shadow: none;
+  }
+
   &:disabled {
-    @apply text-white;
+    @apply text-gray-500;
+    @apply bg-transparent;
+
+    &:hover {
+      @apply text-white;
+    }
   }
 }

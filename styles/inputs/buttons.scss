@@ -26,6 +26,17 @@ button {
   }
 
   @extend .rounded-std-sm;
+
+  &:disabled {
+    @apply bg-gray-300;
+    &:hover, &:active {
+      @apply bg-gray-400;
+    }
+    &:focus {
+      @apply ring-gray-500;
+      @apply ring-opacity-50;
+    }
+  }
 }
 
 .button-outline {
@@ -137,17 +148,6 @@ button {
   }
   &:focus {
     @apply ring-spotify-500;
-    @apply ring-opacity-50;
-  }
-}
-
-button:disabled {
-  @apply bg-gray-500;
-  &:hover, &:active {
-    @apply bg-gray-500;
-  }
-  &:focus {
-    @apply ring-gray-500;
     @apply ring-opacity-50;
   }
 }

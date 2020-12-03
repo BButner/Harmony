@@ -1,4 +1,14 @@
 .pagination-button {
   @apply bg-transparent;
   @apply p-1;
+
+  @apply text-purple-500;
+
+  &:hover {
+    @apply text-white;
+  }
+
+  &:disabled {
+    @apply text-white;
+  }
 }

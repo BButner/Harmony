@@ -2,18 +2,9 @@
 
 .playlist-card {
   transition: background-color $animation-duration ease, transform $animation-duration ease, opacity $animation-duration ease;
-
-  img {
-    transition: opacity $animation-duration ease;
-  }
-
   &:hover {
     transform: translateY(-5px);
     cursor: pointer;
     background-color: var(--main-300);
-
-    img {
-      // opacity: 0.6;
-    }
   }
 }

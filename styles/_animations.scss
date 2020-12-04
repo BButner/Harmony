@@ -110,7 +110,6 @@
 .fade-slide-enter-active {
   opacity: 1;
   transform: translateX(0%);
-  transition: opacity $animation-duration ease, transform $animation-duration ease;
 }
 .fade-slide-exit {
   opacity: 1;
@@ -118,6 +117,7 @@
 }
 .fade-slide-exit-active {
   opacity: 0;
+  visibility: hidden;
   transform: translateX(50%);
-  transition: opacity $animation-duration ease, transform $animation-duration ease;
+  position: absolute;
 }

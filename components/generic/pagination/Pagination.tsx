@@ -12,9 +12,10 @@ type PaginationProps = {
   minHeight?: number;
   searchPrefix: string;
   schemaFilter?: string[];
+  noFlex?: boolean;
 }
 
-const Pagination: FunctionComponent<PaginationProps> = ({ children, allValues, setCurrentValues, perPage, minHeight, searchPrefix, schemaFilter }) => {
+const Pagination: FunctionComponent<PaginationProps> = ({ children, allValues, setCurrentValues, perPage, minHeight, searchPrefix, schemaFilter, noFlex }) => {
   const [currentPage, setCurrentPage] = useState<number>(0)
   const pageCount = Math.ceil(allValues.length / perPage)
   const [pageInputError, setPageInputError] = useState<boolean>(false)
@@ -58,7 +59,7 @@ const Pagination: FunctionComponent<PaginationProps> = ({ children, allValues, s
 
   return (
     <div className="space-y-4 flex flex-wrap justify-center">
-      <TransitionGroup className="flex w-full justify-center space-x-2" style={{ minHeight: minHeight ? minHeight : 'auto' }}>
+      <TransitionGroup className={`w-full ${noFlex ? 'space-y-2 m-auto' : 'flex justify-center space-x-2'}`} style={{ minHeight: minHeight ? minHeight : 'auto' }}>
         {children}
       </TransitionGroup>
 

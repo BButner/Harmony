@@ -1,8 +1,8 @@
-import { UnifiedAlbum, UnifiedArtist } from './ModelServiceGeneric'
+import { ModelUnifiedAlbum, ModelUnifiedArtist } from './ModelServiceGeneric'
 
-export interface UnifiedSong {
-  album: UnifiedAlbum;
-  artists: UnifiedArtist[];
+export interface ModelUnifiedSong {
+  album: ModelUnifiedAlbum;
+  artists: ModelUnifiedArtist[];
   explicit: boolean;
   uri: string;
   id: string;

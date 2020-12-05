@@ -1,6 +1,6 @@
 import Icon from '@mdi/react'
 import { mdiLink } from '@mdi/js'
-import { UnifiedPlaylist } from 'models/service/ModelServicePlaylist'
+import { ModelUnifiedPlaylist } from 'models/service/ModelServicePlaylist'
 import React, { FunctionComponent, useState } from 'react'
 import styles from './serviceplaylisttable.module.scss'
 import Image from 'next/image'
@@ -11,22 +11,26 @@ import ServiceSongDisplay from './ServiceSongDisplay'
 import PopupBlur from 'components/generic/popup/PopupBlur'
 
 type ServicePlaylistTableProps = {
-  playlists?: UnifiedPlaylist[];
+  playlists?: ModelUnifiedPlaylist[];
 }
 
 const ServicePlaylistTable: FunctionComponent<ServicePlaylistTableProps> = ({ playlists }) => {
   const PER_PAGE: number = 7
   const SIZE: number = 220
-  const [currentPlaylists, setCurrentPlaylists] = useState<UnifiedPlaylist[]>([])
+  const [currentPlaylists, setCurrentPlaylists] = useState<ModelUnifiedPlaylist[]>([])
   const [songDisplayVisible, setSongDisplayVisible] = useState<boolean>(false)
+  const [selectedPlaylist, setSelectedPlaylist] = useState<ModelUnifiedPlaylist>(null)
 
   return (
     <div style={{ width: `${SIZE * PER_PAGE + 50}px` }}>
-      <Pagination schemaFilter={['name', 'description']} allValues={playlists} setCurrentValues={setCurrentPlaylists} perPage={PER_PAGE} minHeight={280} searchPrefix="Playlist">
+      <Pagination schemaFilter={['name', 'description']} allValues={playlists} setCurrentValues={setCurrentPlaylists} perPage={PER_PAGE} minHeight={280} searchPrefix='Playlist'>
         {currentPlaylists.map(playlist => {
           return (
             <CSSTransition key={playlist.id} timeout={275} classNames="fade-slide" unmountOnExit>
-              <CardGeneric className={`overflow-hidden bg-main-200 ${styles['playlist-card']}`} noPadding onClick={(): void => setSongDisplayVisible(true)}>
+              <CardGeneric className={`overflow-hidden bg-main-200 ${styles['playlist-card']}`} noPadding onClick={(): void => {
+                setSelectedPlaylist(playlist)
+                setSongDisplayVisible(true)
+              }}>
                 <img src={playlist.imageHref} width={220} height={220} />
                 <div className="text-center flex items-center justify-center" style={{ height: '60px' }}>
                   <div>
@@ -40,7 +44,7 @@ const ServicePlaylistTable: FunctionComponent<ServicePlaylistTableProps> = ({ pl
         })}
       </Pagination>
       <PopupBlur visible={songDisplayVisible}>
-        <ServiceSongDisplay visible={songDisplayVisible} setVisible={setSongDisplayVisible} />
+        <ServiceSongDisplay playlist={selectedPlaylist} visible={songDisplayVisible} setVisible={setSongDisplayVisible} />
       </PopupBlur>
     </div>
   )

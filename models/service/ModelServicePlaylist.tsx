@@ -1,4 +1,4 @@
-export interface UnifiedPlaylist {
+export interface ModelUnifiedPlaylist {
   name: string;
   description: string;
   uri: string;

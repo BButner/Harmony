@@ -1,10 +1,5 @@
 @import 'styles/_globals.scss';
 
-.paylist-info-wrapper {
-  backdrop-filter: saturate(180%) blur(20px);
-  background-color: rgba(255, 255, 255, 0.7);
-}
-
 .song-card {
   transition: background-color $animation-duration ease, transform $animation-duration ease, opacity $animation-duration ease;
   &:hover {

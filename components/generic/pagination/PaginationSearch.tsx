@@ -36,9 +36,9 @@ const PaginationSearch: FunctionComponent<PaginationSearchProps> = ({ setFiltere
   }, [])
 
   return (
-    <div className="rounded-std flex items-center justify-center bg-main-200 pr-2">
-      <div className={`h-full ${styles['search-key-selector']} flex items-center justify-center relative`}>
-        <button onClick={(): void => setSearchSelectorVisible(!searchSelectorVisible)} className={`h-full ${styles['search-key-button']} flex justify-center items-center pl-4 pr-2 capitalize`}>
+    <div className="p-2 space-y-2 md:space-y-0 rounded-std md:flex items-center justify-center bg-main-200">
+      <div className={`md:h-full ${styles['search-key-selector']} flex items-center justify-center relative`}>
+        <button onClick={(): void => setSearchSelectorVisible(!searchSelectorVisible)} className={`w-full md:w-52 ${styles['search-key-button']} flex justify-center items-center pl-4 pr-2 capitalize`}>
           {prefix} {filteredProperty} <Icon path={mdiChevronDown} size={1} /></button>
         <CSSTransition in={searchSelectorVisible} timeout={{ exit: 250 }} classNames="appear" unmountOnExit>
           <CardGeneric className={`absolute left-0 shadow-2xl border-main-500 capitalize space-y-2 text-center ${styles['search-selections-wrapper']} p-5`}>
@@ -56,10 +56,12 @@ const PaginationSearch: FunctionComponent<PaginationSearchProps> = ({ setFiltere
           </CardGeneric>
         </CSSTransition>
       </div>
-      <Icon className="ml-2 mr-2 text-color-alt" path={mdiMagnify} size={1} />
-      <input type="text" onChange={(e): void => {
-        paginate(0, e.currentTarget.value)
-      }} />
+      <div className="flex items-center">
+        <Icon className="md:ml-2 mr-2 text-color-alt" path={mdiMagnify} size={1} />
+        <input type="text" onChange={(e): void => {
+          paginate(0, e.currentTarget.value)
+        }} />
+      </div>
     </div>
   )
 }

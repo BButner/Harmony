@@ -59,8 +59,8 @@ const Pagination: FunctionComponent<PaginationProps> = ({ children, allValues, s
   }, [])
 
   return (
-    <div className={`space-y-4 flex flex-wrap justify-center ${className ? className : ''}`}>
-      <TransitionGroup className={`w-full ${noFlex ? 'space-y-2 m-auto' : 'flex justify-center space-x-2'}`} style={{ minHeight: minHeight ? minHeight : 'auto' }}>
+    <div className={`space-y-4 flex flex-wrap justify-center`}>
+      <TransitionGroup className={`w-full ${className ? className : ''}`} style={{ minHeight: minHeight ? minHeight : 'auto' }}>
         {children}
       </TransitionGroup>
 

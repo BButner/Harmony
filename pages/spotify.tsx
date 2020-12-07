@@ -83,12 +83,14 @@ const Spotify: FunctionComponent<SpotifyProps> = ({ darkMode }) => {
 
   return (
     <Layout pageTitle="Spotify" darkMode={darkMode}>
-      <div className="flex items-center justify-center w-full h-full relative">
-        {!pData && <div className="text-center">
-          <div className="relative" onClick={redirect}>
-            <Icon path={mdiSpotify} size={8} className="m-auto text-gray-500 hover:text-spotify-500 cursor-pointer" />
+      <div className="md:flex items-center justify-center w-full h-full relative">
+        {!pData && <div className="text-center flex items-center justify-center h-full">
+          <div>
+            <div className="relative" onClick={redirect}>
+              <Icon path={mdiSpotify} size={8} className="m-auto text-gray-500 hover:text-spotify-500 cursor-pointer transform scale-75 md:scale-100" />
+            </div>
+            <p className="text-xl text-color-alt">Spotify is not currently authorized, please <a className="cursor-pointer text-purple-500 hover:text-purple-700" onClick={redirect}>click here</a> or on the icon to reconnect.</p>
           </div>
-          <p className="text-xl text-color-alt">Spotify is not currently authorized, please <a className="cursor-pointer text-purple-500 hover:text-purple-700" onClick={redirect}>click here</a> or on the icon to reconnect.</p>
         </div>}
         {pData !== null && <ServicePlaylistTable playlists={pData} />}
       </div>

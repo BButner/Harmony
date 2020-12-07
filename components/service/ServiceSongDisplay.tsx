@@ -39,7 +39,7 @@ const ServiceSongDisplay: FunctionComponent<ServiceSongDisplayProps> = ({ visibl
         </div>
       </CardGeneric>
       <Closable closeFunction={setVisible} />
-      <Pagination className="w-2/5" minHeight={(SIZE + 8) * PER_PAGE} schemaFilter={['name', 'artist.name']} allValues={dataSongs} setCurrentValues={setCurrentSongs} perPage={PER_PAGE} searchPrefix='Song' noFlex>
+      <Pagination className="w-2/5 space-y-2" minHeight={(SIZE + 8) * PER_PAGE} schemaFilter={['name', 'artist.name']} allValues={dataSongs} setCurrentValues={setCurrentSongs} perPage={PER_PAGE} searchPrefix='Song' noFlex>
         {currentSongs.map((song, index) => {
           return (
             <CSSTransition key={`${song.id}:${index}`} timeout={275} classNames="fade-slide-left">

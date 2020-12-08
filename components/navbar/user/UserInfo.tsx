@@ -9,7 +9,7 @@ type UserInfoProps = {
 }
 
 const UserInfo: FunctionComponent<UserInfoProps> = ({ self }) => {
-  const [userInfoCardVisible, setUserInfoCardVisible] = useState<Boolean>(false)
+  const [userInfoCardVisible, setUserInfoCardVisible] = useState<boolean>(false)
 
   return (
     <>

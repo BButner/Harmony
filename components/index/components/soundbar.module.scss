@@ -1,0 +1,65 @@
+.bar {
+  // background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(250, 250, 250, 0.9), rgba(255, 255, 255, 0));
+  width: 10px;
+  // transition: height 1s ease;
+}
+
+.bar-bottom {
+  // background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(250, 250, 250, 0.9));
+  @apply bg-white;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  // border-radius: 0 0 100% 100%;
+  filter: blur(9px);
+}
+
+.wave-1 {
+  animation-name: wave-1;
+  animation-duration: 1.25s;
+}
+
+.wave-2 {
+  animation-name: wave-2;
+  animation-duration: 1.5s;
+}
+
+.wave-3 {
+  animation-name: wave-3;
+}
+
+@keyframes wave-1 {
+  0% { height: 100% }
+  10% { height: 60% }
+  20% { height: 80% }
+  30% { height: 70%  }
+  40% { height: 100% }
+  50% { height: 65% }
+  60% { height: 100% }
+  70% { height: 60% }
+  80% { height: 80% }
+  90% { height: 20% }
+  100% { height: 100% }
+}
+
+@keyframes wave-2 {
+  0% { height: 100% }
+  10% { height: 20% }
+  20% { height: 80% }
+  30% { height: 60%  }
+  40% { height: 100% }
+  50% { height: 65% }
+  60% { height: 100% }
+  70% { height: 70% }
+  80% { height: 80% }
+  90% { height: 60% }
+  100% { height: 100% }
+}
+
+@keyframes wave-3 {
+  0% { height: 100% }
+  20% { height: 50% }
+  40% { height: 90% }
+  60% { height: 60% }
+  80% { height: 50% }
+  100% { height: 100% }
+}

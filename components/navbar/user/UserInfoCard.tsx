@@ -4,7 +4,6 @@ import React, { FunctionComponent, useRef, useEffect } from 'react'
 import styles from './userinfocard.module.scss'
 import Closable from 'components/generic/Closable'
 import { clickedElementIsPopupElement } from 'lib/util/PopupUtil'
-import Config from 'config/default.json'
 import Image from 'next/image'
 import Link from 'next/link'
 import InformationWrapper from 'components/generic/information/InformationWrapper'
@@ -44,7 +43,7 @@ const UserInfoCard: FunctionComponent<UserInfoCardProps> = ({ self, closeFunctio
       <CardGeneric className="text-center space-y-6">
         <Closable closeFunction={closeFunction} />
         <div className="m-auto flex justify-center">
-          <Image className="w-full m-auto rounded-full avatar-shadow" width={100} height={100} src={`${Config.bucketUrl}${self.avatarUrl}`} quality={100} priority />
+          <Image className="w-full m-auto rounded-full avatar-shadow" width={100} height={100} src={`${process.env.BUCKET_URL}${self.avatarUrl}`} quality={100} priority />
         </div>
         <InformationWrapper>
           <p className="text-lg">Hello, {self.username}.</p>
@@ -57,7 +56,7 @@ const UserInfoCard: FunctionComponent<UserInfoCardProps> = ({ self, closeFunctio
             <Link href={`/user/${self.idExternal}`}><button className="w-32">Profile</button></Link>
             <button className="w-32">Settings</button>
           </div>
-          <form action={`${Config.apiUrl}/logout`} method="post">
+          <form action={`${process.env.API_URL}/logout`} method="post">
             <button className="button-red w-full">Logout</button>
           </form>
         </div>

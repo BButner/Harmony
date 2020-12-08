@@ -4,7 +4,6 @@ import StatsWrapper from 'components/generic/information/StatsWrapper'
 import { ModelUser } from 'models/user/ModelUser'
 import React, { FunctionComponent, useState } from 'react'
 import Image from 'next/image'
-import Config from 'config/default.json'
 import UserSettings from './UserSettings'
 import PopupBlur from 'components/generic/popup/PopupBlur'
 
@@ -18,7 +17,7 @@ const UserProfile: FunctionComponent<UserProfileProps> = ({ user }) => {
   return (
     <CardGeneric className="w-64 h-full flex flex-wrap flex-col justify-center appear">
       <div className="p-4 w-full flex justify-center items-center">
-        <Image className="w-full rounded-full avatar-shadow" width={125} height={125} src={`${Config.bucketUrl}${user.avatarUrl}`} quality={100} priority />
+        <Image className="w-full rounded-full avatar-shadow" width={125} height={125} src={`${process.env.BUCKET_URL}${user.avatarUrl}`} quality={100} priority />
       </div>
       <InformationWrapper className="w-full">
         <p className="text-xl">{user.username}</p>
@@ -38,7 +37,7 @@ const UserProfile: FunctionComponent<UserProfileProps> = ({ user }) => {
       </div>
       <div className="space-y-2 w-full">
         <button className="button-blue w-full" onClick={(): void => setSettingsVisible(!settingsVisible)}>Settings</button>
-        <form action={`${Config.apiUrl}/logout`} method="post">
+        <form action={`${process.env.API_URL}/logout`} method="post">
           <button className="button-red w-full">Logout</button>
         </form>
       </div>

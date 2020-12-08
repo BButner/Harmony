@@ -20,6 +20,9 @@ export const fetchUserSettingsImplicit = async (ctx): Promise<ModelUserSetting> 
       if (resp.ok) return resp.json()
       else return null
     })
+    .catch(err => {
+      return null
+    })
 
   return response
 }

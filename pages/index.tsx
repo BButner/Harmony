@@ -14,7 +14,7 @@ const index: FunctionComponent<IndexProps> = ({ darkMode }) => {
   return (
     <Layout pageTitle="Index" darkMode={darkMode}>
       <div className="flex justify-center items-end flex-wrap space-x-4 transform scale-35 md:scale-75 lg:scale-100">
-        <div className="relative">
+        <div className="relative scale-35">
           <IndexComputer />
           <div className="absolute" style={{ bottom: '-90px', left: '-70px' }}>
             <IndexLaptop />

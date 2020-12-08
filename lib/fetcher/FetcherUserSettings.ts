@@ -3,7 +3,7 @@ import { ModelUser } from 'models/user/ModelUser'
 import { ModelUserSetting, ModelUserSettingCategory } from 'models/user/ModelUserSetting'
 
 export const fetchUserSettings = async (idExternal: String): Promise<ModelUserSetting> => {
-  const promise = fetch(`${process.env.API_URL}/users/${idExternal}/settings`, {
+  const promise = fetch(`${process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL}/users/${idExternal}/settings`, {
     credentials: 'include'
   })
     .then(resp => resp.json())
@@ -12,7 +12,7 @@ export const fetchUserSettings = async (idExternal: String): Promise<ModelUserSe
 }
 
 export const fetchUserSettingsImplicit = async (ctx): Promise<ModelUserSetting> => {
-  const response = await fetch(`${process.env.API_URL}/users/me/settings`, {
+  const response = await fetch(`${process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL}/users/me/settings`, {
     credentials: 'include',
     headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
   })
@@ -28,7 +28,7 @@ export const fetchUserSettingsImplicit = async (ctx): Promise<ModelUserSetting> 
 }
 
 export const fetchSettingCategories = async (): Promise<ModelUserSettingCategory[]> => {
-  const promise = fetch(`${process.env.API_URL}/settings/categories`, {
+  const promise = fetch(`${process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL}/settings/categories`, {
     credentials: 'include'
   })
     .then(resp => resp.json())

@@ -10,8 +10,9 @@ const SectionSplash: FunctionComponent = () => {
       </div>
       <div className="z-30 h-1/2 flex items-center justify-center text-white text-center">
         <div className={styles['fade-in']}>
-          <h1 className="text-9xl tracking-wider">Harmony</h1>
-          <h2 className="text-4xl">Playlist Sharing, Made Easy</h2>
+          <img className="m-auto " src="/images/logo_h.png" />
+          <h1 className="text-6xl md:text-9xl tracking-wider">Harmony</h1>
+          <h2 className="text-2xl md:text-4xl">Playlist Sharing, Made Easy</h2>
         </div>
         <button className={`absolute bottom-16 text-3xl mt-16 ${styles['button-how']}`}>How?</button>
       </div>

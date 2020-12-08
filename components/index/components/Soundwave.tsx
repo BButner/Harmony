@@ -16,12 +16,12 @@ const Soundwave: FunctionComponent = () => {
 
   const [barCount, setBarCount] = useState<number>(0)
 
-  useEffect((): void => {
+  useEffect(() => {
     setBarCount(getBarCount())
 
     window.addEventListener('resize', handleResize)
 
-    function cleanup () {
+    return function cleanup () {
       window.removeEventListener('resize', handleResize)
     }
   }, [])
@@ -32,7 +32,7 @@ const Soundwave: FunctionComponent = () => {
         <div className="w-full h-1 flex space-x-3 flex-end">
           {Array.from({length: barCount}, () => Math.floor(Math.random() * 3)).map((x, index) => {
             return (
-              <Soundbar animationIndex={x} />
+              <Soundbar key={index} animationIndex={x} />
             )
           })}
         </div>

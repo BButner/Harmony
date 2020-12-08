@@ -6,6 +6,10 @@ export async function fetchUserSelf (ctx): Promise<ModelUserSelf> {
     headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined,
     method: "GET"
   })
+    .catch(err => {
+      console.log(err)
+      return null
+    })
 
   if (!response.ok) return null
   else return response.json()

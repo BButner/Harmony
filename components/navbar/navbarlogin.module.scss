@@ -1,0 +1,24 @@
+@import 'styles/_globals.scss';
+
+.wrapper {
+  position: fixed;
+  top: 65px;
+  transition: background-color $animation-duration ease, transform $animation-duration ease;
+}
+
+.card {
+  transition: background-color $animation-duration ease, transform $animation-duration ease;
+}
+
+.login-button-service {
+  height: 50px;
+  position: relative;
+}
+
+.login-button-service-image {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}

@@ -3,7 +3,6 @@ import CardGeneric from 'components/generic/card/CardGeneric'
 import { getLoginLinks } from 'lib/navbar/links'
 import styles from './userloginlinks.module.scss'
 import Link from 'next/link'
-import Config from 'config/default.json'
 import { clickedElementIsPopupElement } from 'lib/util/PopupUtil'
 import Closable from 'components/generic/Closable'
 
@@ -39,7 +38,7 @@ const UserLoginLinks: FunctionComponent<UserLoginLinksProps> = ({ setLoginCardVi
           <p className="text-color-alt">Already have an account?</p>
           {getLoginLinks().map(link => {
             return (
-              <Link key={link.id} href={`${Config.apiUrl}/login/oauth2/authorization/${link.id}`}>
+              <Link key={link.id} href={`${process.env.API_URL}/login/oauth2/authorization/${link.id}`}>
                 <button className={`block w-64 m-auto ${styles['login-button-service']} button-${link.id}`}>
                   <img className={styles['login-button-service-image']} src={`/images/login/${link.id}-login.png`} />
                   {link.title}

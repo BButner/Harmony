@@ -2,7 +2,6 @@ import Layout from 'components/layout'
 import { fetchUserSettingsImplicit } from 'lib/fetcher/FetcherUserSettings'
 import { GetServerSideProps } from 'next'
 import React, { FunctionComponent, useEffect, useState } from 'react'
-import Config from 'config/default.json'
 import { useRouter } from 'next/router'
 import { timeStamp } from 'console'
 import CardGeneric from 'components/generic/card/CardGeneric'
@@ -19,14 +18,14 @@ const Spotify: FunctionComponent<SpotifyProps> = ({ darkMode }) => {
   const redirect = (): void => {
     window.location.href = 'https://accounts.spotify.com/authorize' + 
       '?response_type=code' +
-      '&client_id=' + Config.service.spotify.clientId + 
+      '&client_id=' + process.env.SPOTIFY_CLIENT_ID + 
       '&scope=' + encodeURIComponent('playlist-read-private') + 
       '&redirect_uri=' + encodeURIComponent('http://10.0.0.97:3000/spotify')
   }
   const [pData, setPlaylists] = useState(null)
 
   const getSongs = (id: string): void => {
-    fetch(`${Config.apiUrl}/service/spotify/playlists/${id}/songs`, {
+    fetch(`${process.env.API_URL}/service/spotify/playlists/${id}/songs`, {
       credentials: 'include'
     })
       .then(resp => {
@@ -43,7 +42,7 @@ const Spotify: FunctionComponent<SpotifyProps> = ({ darkMode }) => {
   }
 
   const playlists = (): Promise<boolean> => {
-    return fetch(`${Config.apiUrl}/service/spotify/playlists`, {
+    return fetch(`${process.env.API_URL}/service/spotify/playlists`, {
       credentials: 'include'
     })
       .then(resp => {
@@ -62,7 +61,7 @@ const Spotify: FunctionComponent<SpotifyProps> = ({ darkMode }) => {
 
   useEffect(() => {
     if (router.query.code) {
-      fetch(`${Config.apiUrl}/service/spotify/token`, {
+      fetch(`${process.env.API_URL}/service/spotify/token`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

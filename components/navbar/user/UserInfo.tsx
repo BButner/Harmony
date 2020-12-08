@@ -2,7 +2,6 @@ import { ModelUserSelf } from 'models/user/ModelUser'
 import React, { FunctionComponent, useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import styles from './userinfo.module.scss'
-import Config from 'config/default.json'
 import UserInfoCard from './UserInfoCard'
 
 type UserInfoProps = {
@@ -10,7 +9,7 @@ type UserInfoProps = {
 }
 
 const UserInfo: FunctionComponent<UserInfoProps> = ({ self }) => {
-  const [userInfoCardVisible, setUserInfoCardVisible] = useState<Boolean>(false)
+  const [userInfoCardVisible, setUserInfoCardVisible] = useState<boolean>(false)
 
   return (
     <>
@@ -19,7 +18,7 @@ const UserInfo: FunctionComponent<UserInfoProps> = ({ self }) => {
         id="toggle-action-user"
         onClick={(): void => setUserInfoCardVisible(!userInfoCardVisible)}
       >
-        <div className="rounded-full h-8 w-8 bg-center bg-cover " style={{ backgroundImage: `url('${Config.bucketUrl}${self.avatarUrl}')` }} />
+        <div className="rounded-full h-8 w-8 bg-center bg-cover " style={{ backgroundImage: `url('${process.env.BUCKET_URL}${self.avatarUrl}')` }} />
         <p>{self.username}</p>
       </div>
       <CSSTransition in={userInfoCardVisible} timeout={{ exit: 250 }} unmountOnExit classNames="slide-from-right">

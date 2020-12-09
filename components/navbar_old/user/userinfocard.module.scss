@@ -1,9 +1,0 @@
-@import 'styles/_globals.scss';
-@import 'styles/_colors.scss';
-
-.card-wrapper {
-  position: fixed;
-  top: 65px;
-  right: 20px;
-  transition: background-color $animation-duration ease, transform $animation-duration ease;
-}

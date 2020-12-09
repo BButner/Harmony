@@ -40,9 +40,12 @@ const NavbarAccess: FunctionComponent<NavbarAccessProps> = ({ self }) => {
       </div>}
 
       {self && <div className="flex items-center">
-        <div className="rounded-std bg-main-300 p-2 hover:bg-main-400 cursor-pointer flex items-center space-x-4 popup-activator-profile" onClick={handleProfileClick}>
+        <div className="hidden rounded-std bg-main-300 p-2 hover:bg-main-400 cursor-pointer md:flex items-center space-x-4 popup-activator-profile" onClick={handleProfileClick}>
           <img className="w-8 h-8" src={`${process.env.NEXT_PUBLIC_BUCKET_URL}${self.avatarUrl}`} />
           <p>{self.username}</p>
+        </div>
+        <div className="h-full md:hidden popup-activator-profile" onClick={handleProfileClick} >
+          <Icon path={mdiMenu} size={1} />
         </div>
 
         <CSSTransition in={profileCardVisible} classNames="slide-from-right" timeout={{ exit: 250 }} unmountOnExit>

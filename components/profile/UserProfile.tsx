@@ -17,7 +17,7 @@ const UserProfile: FunctionComponent<UserProfileProps> = ({ user }) => {
   return (
     <CardGeneric className="w-64 h-full flex flex-wrap flex-col justify-center appear">
       <div className="p-4 w-full flex justify-center items-center">
-        <Image className="w-full rounded-full avatar-shadow" width={125} height={125} src={`${process.env.BUCKET_URL}${user.avatarUrl}`} quality={100} priority />
+        <Image className="w-full rounded-full avatar-shadow" width={125} height={125} src={`${process.env.BUCKET_URL ?? process.env.NEXT_PUBLIC_BUCKET_URL}${user.avatarUrl}`} quality={100} priority />
       </div>
       <InformationWrapper className="w-full">
         <p className="text-xl">{user.username}</p>
@@ -37,7 +37,7 @@ const UserProfile: FunctionComponent<UserProfileProps> = ({ user }) => {
       </div>
       <div className="space-y-2 w-full">
         <button className="button-blue w-full" onClick={(): void => setSettingsVisible(!settingsVisible)}>Settings</button>
-        <form action={`${process.env.API_URL}/logout`} method="post">
+        <form action={`${process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL}/logout`} method="post">
           <button className="button-red w-full">Logout</button>
         </form>
       </div>

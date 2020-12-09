@@ -45,7 +45,7 @@ const PaginationSearch: FunctionComponent<PaginationSearchProps> = ({ setFiltere
             <Closable closeFunction={setSearchSelectorVisible} />
             {searchableFields.map(field => {
               return (
-                <button onClick={(): void => {
+                <button key={field} onClick={(): void => {
                   setFilteredProperty(field)
                   setSearchSelectorVisible(false)
                 }} className={`m-auto capitalize w-full hover:bg-main-400 cursor-pointer rounded-lg pt-1 pb-1 pl-2 pr-2 block ${styles['search-selection']}`}>

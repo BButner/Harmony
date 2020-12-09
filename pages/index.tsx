@@ -10,8 +10,20 @@ type IndexProps = {
 
 const index: FunctionComponent<IndexProps> = ({ darkMode }) => {
   return (
-    <Layout pageTitle="Index" darkMode={darkMode} noPadding>
+    <Layout pageTitle="Index" darkMode={darkMode} noPadding navNoFill navFixed>
       <SectionSplash />
+      <p>test</p>
+      <p>test</p>
+      <p>test</p>
+      <p>test</p>
+      <p>test</p>
+      <p>test</p>
+      <p>test</p>
+      <p>test</p>
+      <p>test</p>
+      <p>test</p>
+      <p>test</p>
+      <p>test</p>
     </Layout>
   )
 }

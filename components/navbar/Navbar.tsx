@@ -1,5 +1,5 @@
 import { getServiceLinks } from 'lib/navbar/links'
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useState, useEffect } from 'react'
 import styles from './navbar.module.scss'
 import Link from 'next/link'
 import useSWR from 'swr'
@@ -11,11 +11,33 @@ type NavbarProps = {
   noFill?: boolean;
 }
 
-const Navbar: FunctionComponent = () => {
+const Navbar: FunctionComponent<NavbarProps> = ({ fixed, noFill }) => {
   const { data, error } = useSWR('/user/self', fetchUserSelf, { revalidateOnFocus: false })
+  const [scrolled, setScrolled] = useState<boolean>(false)
+
+  const handleScroll = (): void => {
+    const EL_LAYOUT = document.getElementById('layout')
+
+    if (EL_LAYOUT.scrollTop > 10 && !scrolled) {
+      setScrolled(true)
+    } else if (EL_LAYOUT.scrollTop <= 10) {
+      setScrolled(false)
+    }
+  }
+
+  useEffect(() => {
+    if (noFill) {
+      // window.addEventListener('scroll', handleScroll)
+      document.getElementById('layout').addEventListener('scroll', handleScroll)
+
+      return function cleanup () {
+        document.getElementById('layout').removeEventListener('scroll', handleScroll)
+      }
+    }
+  }, [])
 
   return (
-    <div className={`${styles.navbar} w-full bg-main-200 flex justify-between z-50`}>
+    <div className={`${styles.navbar} w-full ${noFill && !scrolled ? 'text-white ' + (scrolled ? styles['navbar-scrolled'] : '') : 'bg-main-200'} ${fixed ? styles['navbar-fixed'] : ''} flex justify-between z-50`}>
       {/* Logo */}
       <div className="w-3/4 md:w-1/4">
         <Link href='/'><a><img src="/images/logo_written.png" className="m-2 h-12 animated-transition hover:opacity-50" /></a></Link>
@@ -31,8 +53,8 @@ const Navbar: FunctionComponent = () => {
       </div>
 
       {/* User Info */}
-     <div className="md:w-1/4">
-        <NavbarAccess self={data} />
+     <div className={`md:w-1/4 ${fixed ? 'mr-2 md:mr-4' : ''}`}>
+        <NavbarAccess self={data} noFill={noFill} scrolled={scrolled} />
       </div>
     </div>
   )

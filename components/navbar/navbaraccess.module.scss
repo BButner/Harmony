@@ -1,0 +1,70 @@
+@import 'styles/_globals.scss';
+
+.register-button {
+  @apply bg-main-400;
+  @apply text-color-main;
+  border: 2px solid;
+  @apply border-main-400;
+
+  transition: background-color $animation-duration ease, color $animation-duration ease, border $animation-duration ease;
+
+  &:active {
+    @apply bg-purple-700;
+    @apply text-white;
+    @apply border-purple-700;
+  }
+
+  &:hover {
+    @apply text-white;
+    @apply bg-purple-500;
+    @apply border-purple-500;
+  }
+
+  &-nofill {
+    @apply bg-transparent;
+    @apply text-color-alt-opp;
+    border: 2px solid;
+    @apply border-main-300;
+
+    &:hover {
+      @apply bg-main-300;
+      @apply text-color-main;
+      @apply border-main-300;
+    }
+
+    &:focus {
+      @apply ring-0;
+    }
+
+    &:active {
+      @apply bg-main-500;
+      @apply border-main-500;
+    }
+  }
+}
+
+.profile {
+  border-radius: 15px;
+  @apply bg-main-300;
+  @apply p-2;
+  @apply cursor-pointer;
+  @apply md:flex;
+  @apply items-center;
+  @apply space-x-4;
+  border: 2px solid;
+  @apply border-main-300;
+  
+  &:hover {
+    @apply bg-main-400;
+    @apply border-main-400;
+  }
+
+  &-nofill {
+    @apply bg-transparent;
+    @apply text-white;
+
+    &:hover {
+      @apply text-color-main;
+    }
+  }
+}

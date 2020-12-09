@@ -18,31 +18,14 @@ const Spotify: FunctionComponent<SpotifyProps> = ({ darkMode }) => {
   const redirect = (): void => {
     window.location.href = 'https://accounts.spotify.com/authorize' + 
       '?response_type=code' +
-      '&client_id=' + process.env.SPOTIFY_CLIENT_ID + 
+      '&client_id=' + process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID + 
       '&scope=' + encodeURIComponent('playlist-read-private') + 
       '&redirect_uri=' + encodeURIComponent('http://10.0.0.97:3000/spotify')
   }
   const [pData, setPlaylists] = useState(null)
 
-  const getSongs = (id: string): void => {
-    fetch(`${process.env.API_URL}/service/spotify/playlists/${id}/songs`, {
-      credentials: 'include'
-    })
-      .then(resp => {
-        console.log(resp)
-        return resp.json()
-      })
-      .then(data => {
-        const test = data
-        console.log(test)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
-
   const playlists = (): Promise<boolean> => {
-    return fetch(`${process.env.API_URL}/service/spotify/playlists`, {
+    return fetch(`${process.env.NEXT_PUBLIC_API_URL}/service/spotify/playlists`, {
       credentials: 'include'
     })
       .then(resp => {
@@ -61,7 +44,7 @@ const Spotify: FunctionComponent<SpotifyProps> = ({ darkMode }) => {
 
   useEffect(() => {
     if (router.query.code) {
-      fetch(`${process.env.API_URL}/service/spotify/token`, {
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/service/spotify/token`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

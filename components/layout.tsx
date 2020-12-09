@@ -23,8 +23,8 @@ const Layout: FunctionComponent<LayoutProps> = ({ pageTitle, children, noPadding
     <>
       <Meta pageTitle={pageTitle} />
       <div className="h-screen w-screen">
-        <Navbar />
-        <div className={`${styles['page-content-wrapper']} ${navFixed ? styles['page-content-wrapper-fixed-nav'] : ''} ${noPadding ? '' : 'p-4'} z-0`}>
+        <Navbar fixed={navFixed} noFill={navNoFill} />
+        <div id="layout" className={`${styles['page-content-wrapper']} ${navFixed ? styles['page-content-wrapper-fixed-nav'] : ''} ${noPadding ? '' : 'p-4'} z-0`}>
           {children}
         </div>
       </div>

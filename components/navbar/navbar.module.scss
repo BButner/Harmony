@@ -1,3 +1,11 @@
 .navbar {
   height: 60px;
+
+  &-fixed {
+    position: fixed;
+  }
+}
+
+.navbar-scrolled {
+  @apply bg-main-200;
 }

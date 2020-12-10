@@ -2,15 +2,15 @@
 
 .button-how {
   background: transparent;
-  border: 1px solid white;
+  border: 2px solid rgba(255, 255, 255, 0.75);
   @apply text-white;
-  opacity: 0.75;
+  opacity: 0.5;
 
-  transition: color $animation-duration ease, background-color $animation-duration ease;
+  transition: color $animation-duration ease, background-color $animation-duration ease, opacity $animation-duration ease;
 
   &:hover {
     @apply text-blue-900;
-    @apply bg-white;
+    background-color: rgba(255, 255, 255, 0.75);
     opacity: 1;
   }
 }

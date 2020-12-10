@@ -1,0 +1,15 @@
+.droplet {
+  position: absolute;
+  opacity: 0.15;
+  color: rgba(255, 255, 255, 0.6);
+  animation-name: float;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -webkit-filter: drop-shadow( 3px 3px 2px #ffffffb3);
+  filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, .7));
+}
+
+@keyframes float {
+  from { transform: translateY(-50vh) }
+  to { transform: translateY(400vh) }
+}

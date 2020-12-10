@@ -1,0 +1,31 @@
+.animate {
+  opacity: 0.25;
+  color: rgba(255, 255, 255, 0.6);
+  animation-name: float;
+  animation-duration: 45s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -webkit-filter: drop-shadow( 3px 3px 2px rgba(255, 255, 255, .7));
+  filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, .7));
+}
+
+.animate2 {
+  opacity: 0.25;
+  color: rgba(255, 255, 255, 0.6);
+  animation-name: float2;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -webkit-filter: drop-shadow( 3px 3px 2px rgba(255, 255, 255, .7));
+  filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, .7));
+}
+
+@keyframes float {
+  from { top: -100px }
+  to { top: calc(100vh) }
+}
+
+@keyframes float2 {
+  from { top: -100px }
+  to { top: calc(100vh) }
+}

@@ -3,6 +3,7 @@ import Layout from 'components/layout'
 import { fetchUserSettingsImplicit } from 'lib/fetcher/FetcherUserSettings'
 import { GetServerSideProps } from 'next'
 import SectionSplash from 'components/index/SectionSplash'
+import SectionHow from 'components/index/SectionHow'
 
 type IndexProps = {
   darkMode?: boolean;
@@ -12,18 +13,7 @@ const index: FunctionComponent<IndexProps> = ({ darkMode }) => {
   return (
     <Layout pageTitle="Index" darkMode={darkMode} noPadding navNoFill navFixed>
       <SectionSplash />
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
+      <SectionHow />
     </Layout>
   )
 }

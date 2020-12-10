@@ -14,7 +14,7 @@ const SectionSplash: FunctionComponent = () => {
           <h1 className="text-6xl md:text-9xl tracking-wider">Harmony</h1>
           <h2 className="text-2xl md:text-4xl">Playlist Sharing, Made Easy</h2>
         </div>
-        <button className={`absolute bottom-16 text-3xl mt-16 ${styles['button-how']}`}>How?</button>
+        <button className={`absolute bottom-16 text-2xl mt-16 ${styles['button-how']}`}>How Does It Work?</button>
       </div>
     </div>
   )

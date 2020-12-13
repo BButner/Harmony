@@ -9,9 +9,15 @@
   transition: color $animation-duration ease, background-color $animation-duration ease, opacity $animation-duration ease;
 
   &:hover {
-    @apply text-blue-900;
-    background-color: rgba(255, 255, 255, 0.75);
+    // @apply text-blue-900;
+    // background-color: rgba(255, 255, 255, 0.75);
+    @apply bg-transparent;
     opacity: 1;
+  }
+
+  &:focus {
+    @apply ring-white;
+    @apply ring-opacity-50;
   }
 }
 

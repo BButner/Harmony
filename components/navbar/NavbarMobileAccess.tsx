@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { fetchUserSelf } from 'lib/api/user/UserFetcher'
 import { ModelUserSelf } from 'models/user/ModelUser'
 import { FunctionComponent, useState } from 'react'
-import useSWR from 'swr'
+// import useSWR from 'swr'
 import * as AnimatePopup from 'lib/animations/PopupGeneric'
 import styles from './NavbarMobileAccess.module.scss'
 
@@ -12,7 +12,8 @@ type NavbarMobileAccessProps = {
 }
 
 export const NavbarMobileAccess: FunctionComponent<NavbarMobileAccessProps> = ({ visible }) => {
-  const { data: self, error } = useSWR<ModelUserSelf, any>('/user/self', fetchUserSelf)
+  // const { data: self, error } = useSWR<ModelUserSelf, any>('/user/self', fetchUserSelf)
+  const self = null
   const variants = AnimatePopup.mobilePopupVariants
 
   if (self) {

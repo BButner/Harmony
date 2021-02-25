@@ -1,0 +1,16 @@
+.blur {
+  @apply fixed;
+  @apply top-0;
+  @apply left-72;
+  @apply w-full;
+  @apply h-full;
+  background-color: rgba(0, 0, 0, 0.85);
+  margin-top: 0 !important;
+}
+
+@media (max-width: 640px) {
+  .blur {
+    @apply left-0;
+    height: calc(100% - 64px); // subtract height of mobile navbar
+  }
+}

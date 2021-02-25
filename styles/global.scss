@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './inputs';
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+body {
+  font-family: Rubik;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @apply ml-72;
+  @apply p-4;
+}
+
+@media (max-width: 640px) {
+  body {
+    @apply ml-0;
+  }
+}

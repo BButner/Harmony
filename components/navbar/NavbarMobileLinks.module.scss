@@ -1,0 +1,85 @@
+.service-button {
+  @apply block;
+  @apply w-full;
+  @apply p-4;
+  @apply relative;
+
+  &-spotify {
+    @apply bg-spotify-500;
+
+    &:focus {
+      @apply bg-spotify-700;
+      outline: none;
+      @apply ring-4;
+      @apply ring-spotify-500;
+      @apply ring-opacity-50;
+    }
+
+    &:active {
+      @apply bg-spotify-900;
+    }
+  }
+
+  &-youtube {
+    @apply bg-youtube-500;
+
+    &:focus {
+      @apply bg-youtube-700;
+      outline: none;
+      @apply ring-4;
+      @apply ring-youtube-500;
+      @apply ring-opacity-50;
+    }
+
+    &:active {
+      @apply bg-youtube-900;
+    }
+  }
+
+  &-apple {
+    @apply bg-apple-500;
+
+    &:focus {
+      @apply bg-apple-700;
+      outline: none;
+      @apply ring-4;
+      @apply ring-apple-500;
+      @apply ring-opacity-50;
+    }
+
+    &:active {
+      @apply bg-apple-900;
+    }
+  }
+
+  &-pandora {
+    @apply bg-pandora-500;
+
+    &:focus {
+      @apply bg-pandora-700;
+      outline: none;
+      @apply ring-4;
+      @apply ring-pandora-500;
+      @apply ring-opacity-50;
+    }
+
+    &:active {
+      @apply bg-pandora-900;
+    }
+  }
+
+  svg {
+    @apply absolute;
+    margin-top: -1px;
+  }
+}
+
+.wrapper::after {
+  content: "";
+  @apply h-24;
+  @apply bg-white;
+  @apply absolute;
+  @apply top-full;
+  @apply w-full;
+  @apply left-0;
+}

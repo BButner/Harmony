@@ -1,0 +1,9 @@
+.wrapper::after {
+  content: "";
+  @apply h-24;
+  @apply bg-white;
+  @apply absolute;
+  @apply top-full;
+  @apply w-full;
+  @apply left-0;
+}

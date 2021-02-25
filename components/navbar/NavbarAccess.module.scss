@@ -1,0 +1,23 @@
+.access-button {
+  @apply bg-transparent;
+  border: 2px solid;
+  @apply border-gray-300;
+  @apply text-gray-300;
+
+  &:hover {
+    @apply bg-gray-200;
+    @apply text-gray-700;
+    @apply border-gray-200;
+  }
+
+  &:active {
+    @apply bg-gray-300;
+  }
+
+  &:focus {
+    outline: none;
+    @apply ring-4;
+    @apply ring-gray-300;
+    @apply ring-opacity-50;
+  }
+}

@@ -1,0 +1,155 @@
+button {
+  color: white;
+  outline: none;
+  border: none;
+  padding: .5rem 2rem .5rem 2rem;
+  @apply rounded-xl;
+  @apply bg-purple-500;
+  font-family: Rubik;
+  font-size: 90%;
+  @apply transition;
+  @apply duration-200;
+
+  &:hover {
+    @apply bg-purple-700;
+    cursor: pointer;
+  }
+
+  &:active {
+    @apply bg-purple-900;
+    outline: none;
+  }
+
+  &:focus {
+    outline: none;
+    @apply ring-4;
+    @apply ring-purple-500;
+    @apply ring-opacity-50;
+  }
+
+  &:disabled {
+    @apply bg-gray-300;
+    &:hover, &:active {
+      @apply bg-gray-400;
+    }
+    &:focus {
+      @apply ring-gray-500;
+      @apply ring-opacity-50;
+    }
+  }
+}
+
+.button-outline {
+  @apply text-purple-500;
+  border: 1px solid;
+  @apply border-purple-500;
+  background-color: transparent;
+
+  &:hover {
+    @apply bg-purple-700;
+    color: white;
+  }
+
+  &:active {
+    @apply bg-purple-900;
+  }
+}
+
+.button-green {
+  @apply bg-green-500;
+  &:hover {
+    @apply bg-green-700;
+  }
+  &:active {
+    @apply bg-green-900;
+  }
+  &:focus {
+    @apply ring-green-500;
+    @apply ring-opacity-50;
+  }
+}
+
+.button-red {
+  @apply bg-red-500;
+  &:hover {
+    @apply bg-red-700;
+  }
+  &:active {
+    @apply bg-red-900;
+  }
+  &:focus {
+    @apply ring-red-500;
+    @apply ring-opacity-50;
+  }
+}
+
+.button-blue {
+  @apply bg-blue-500;
+  &:hover {
+    @apply bg-blue-700;
+  }
+  &:active {
+    @apply bg-blue-900;
+  }
+  &:focus {
+    @apply ring-blue-500;
+    @apply ring-opacity-50;
+  }
+}
+
+.button-google {
+  background-color: hsl(0, 0%, 100%);
+  @apply text-gray-800;
+  &:hover {
+    background-color: hsl(0, 0%, 92%);
+  }
+  &:active {
+    background-color: hsl(0, 0%, 84%);
+  }
+  &:focus {
+    @apply ring-gray-300;
+    @apply ring-opacity-50;
+  }
+}
+
+.button-facebook {
+  background-color: hsl(221, 44%, 41%);
+  &:hover {
+    background-color: hsl(221, 44%, 35%);
+  }
+  &:active {
+    background-color: hsl(221, 44%, 29%);
+  }
+  &:focus {
+    @apply ring-blue-900;
+    @apply ring-opacity-50;
+  }
+}
+
+.button-twitter {
+  background-color: hsl(203, 89%, 53%);
+  &:hover {
+    background-color: hsl(203, 89%, 47%);
+  }
+  &:active {
+    background-color: hsl(203, 89%, 41%);
+  }
+  &:focus {
+    @apply ring-blue-500;
+    @apply ring-opacity-50;
+  }
+}
+
+.button-spotify {
+  @apply bg-spotify-500;
+  &:hover {
+    @apply bg-spotify-700;
+  }
+  &:active {
+    @apply bg-spotify-900;
+  }
+  &:focus {
+    @apply ring-spotify-500;
+    @apply ring-opacity-50;
+  }
+}

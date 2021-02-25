@@ -1,0 +1,27 @@
+input[type="text"], input[type="password"] {
+  // transition: all $animation-duration ease;
+  outline: none;
+  border-radius: 10px;
+  // border: 2px solid var(--main-400);
+  padding: 6px 4px;
+  // background-color: var(--main-200);
+  // @apply text-color-main;
+
+  &:focus {
+    @apply border-purple-500;
+    // background-color: var(--main-200);
+  }
+
+  &:hover:not(:focus) {
+    // border-color: var(--main-500);
+    // background-color: var(--main-300);
+  }
+}
+
+.input-error {
+  @apply border-red-500 #{!important};
+
+  &:focus {
+    @apply border-red-500 #{!important};
+  }
+}

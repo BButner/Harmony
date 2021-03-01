@@ -1,20 +1,85 @@
-$elements: 4;
+.outer {
+  @apply w-32;
+  @apply h-32;
+  @apply rounded-full;
+  @apply bg-purple-400;
+  @apply flex;
+  @apply items-center;
+  @apply justify-center;
+  @apply relative;
+  @apply overflow-hidden;
+  animation: rainbow 5s linear infinite;
 
-@for $i from 1 to $elements + 1 {
-  .sphere:nth-of-type(#{$i}) {
-    animation: hover 0.75s ease infinite #{0.2 * $i}s alternate;
+  &:after {
+    content: "";
+    @apply h-full;
+    @apply w-10;
+    @apply bg-purple-800;
+    @apply absolute;
+    animation: spin 5s linear infinite;
   }
 }
 
-.sphere {
-  @apply bg-transparent;
-  @apply w-5;
-  @apply h-5;
+.inner {
+  @apply bg-white;
+  @apply w-28;
+  @apply h-28;
   @apply rounded-full;
-  @apply bg-purple-400;
+  @apply z-50;
 }
 
-@keyframes hover {
-  from { transform: translateY(0); }
-  to { transform: translateY(50px); }
+@keyframes rainbow {
+  0% {
+    @apply bg-red-400;
+  }
+  14% {
+    @apply bg-yellow-400;
+  }
+  28% {
+    @apply bg-green-400;
+  }
+  42% {
+    @apply bg-blue-400;
+  }
+  56% {
+    @apply bg-indigo-400;
+  }
+  70% {
+    @apply bg-purple-400;
+  }
+  84% {
+    @apply bg-pink-400;
+  }
+  100% {
+    @apply bg-red-400;
+  }
+}
+
+@keyframes spin {
+  0% {
+    @apply bg-red-800;
+    transform: rotate(0deg);
+  }
+  14% {
+    @apply bg-yellow-800;
+  }
+  28% {
+    @apply bg-green-800;
+  }
+  42% {
+    @apply bg-blue-800;
+  }
+  56% {
+    @apply bg-indigo-800;
+  }
+  70% {
+    @apply bg-purple-800;
+  }
+  84% {
+    @apply bg-pink-800;
+  }
+  100% {
+    @apply bg-red-800;
+    transform: rotate(1080deg);
+  }
 }

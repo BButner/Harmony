@@ -4,17 +4,23 @@ import { FunctionComponent } from 'react'
 
 type PlaylistWrapperProps = {
   playlist: Playlist;
+  variants: any;
+  setSelectedPlaylist: Function;
 }
 
-export const PlaylistWrapper: FunctionComponent<PlaylistWrapperProps> = ({ playlist }) => {
+export const PlaylistWrapper: FunctionComponent<PlaylistWrapperProps> = ({ playlist, variants, setSelectedPlaylist }) => {
   return (
-    <motion.div
-      className="rounded-2xl shadow-2xl w-56 h-56 m-4 overflow-hidden"
+    <motion.li
+      className="rounded-2xl shadow-2xl w-56 h-56 m-4 overflow-hidden cursor-pointer"
       style={{
         backgroundImage: `url(${playlist.imageHref})`,
         backgroundSize: 'cover'
       }}
       whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      variants={variants}
+      key={playlist.id}
+      onClick={(): void => setSelectedPlaylist(playlist)}
     >
       <div
         className="w-full h-full flex items-end"
@@ -24,6 +30,6 @@ export const PlaylistWrapper: FunctionComponent<PlaylistWrapperProps> = ({ playl
           <p className="text-2xl">{playlist.name}</p>
         </div>
       </div>
-    </motion.div>
+    </motion.li>
   )
 }

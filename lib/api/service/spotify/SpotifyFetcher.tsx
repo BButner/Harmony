@@ -1,4 +1,4 @@
-import { Playlist } from "models/service/ModelService"
+import { Playlist, Song } from "models/service/ModelService"
 import { ENDPOINT_SPOTIFY_PLAYLISTS, ENDPOINT_SPOTIFY_TOKEN } from "../../Endpoints"
 
 export interface SpotifyPlaylists {
@@ -19,6 +19,20 @@ export const fetchSpotifyPlaylists = (): Promise<Playlist[]> => {
     })
     .catch(err => {
       throw(err)
+    })
+}
+
+export const fetchSpotifyPlaylistSongs = (playlistId: string): Promise<Song[]> => {
+  return fetch(`${ENDPOINT_SPOTIFY_PLAYLISTS}/${playlistId}/songs`, {
+    credentials: 'include'
+  })
+    .then(resp => {
+      if (resp.ok) return resp.json()
+      else throw("")
+    })
+    .then(songs => songs)
+    .catch(err => {
+      throw err
     })
 }
 

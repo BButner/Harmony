@@ -7,6 +7,7 @@ import Icon from '@mdi/react'
 import { mdiSpotify } from '@mdi/js'
 import { motion } from 'framer-motion'
 import { spotifyAuthRedirect } from 'lib/services/spotify/SpotifyRedirect'
+import { LoadingIcon } from 'components/misc/LoadingIcon'
 
 type SpotifyHandlerProps = {
   playlistData: QueryObserverResult<Playlist[], Error>;
@@ -16,13 +17,12 @@ export const SpotifyHandler: FunctionComponent<SpotifyHandlerProps> = ({ playlis
   const router = useRouter()
 
   useEffect(() => {
-    console.log('mounted')
     if (playlistData.isError) {
+      playlistData.remove()
       if (router.query.code) {
         storeSpotifyToken(router.query.code.toString())
           .then(stored => {
             if (stored) {
-              console.log('stored')
               router.push('/spotify')
               playlistData.refetch()
             }
@@ -32,10 +32,10 @@ export const SpotifyHandler: FunctionComponent<SpotifyHandlerProps> = ({ playlis
   })
 
   if (playlistData.isLoading) {
-    return <p>loading...</p>
+    return <div className="w-full h-screen flex items-center justify-center"><LoadingIcon /></div>
   } else if (!playlistData.isSuccess && (playlistData.isError || !playlistData.data)) {
     return (
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center w-full h-screen">
         <div className="text-center">
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 1 }} onClick={spotifyAuthRedirect}>
             <Icon path={mdiSpotify} size={8} className="text-gray-400 m-auto mb-10 transition cursor-pointer duration-200 hover:text-spotify-500" />

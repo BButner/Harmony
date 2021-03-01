@@ -12,7 +12,7 @@ export const NavbarUser: FunctionComponent<NavbarUserProps> = ({ self }) => {
   const [userCardVisible, setUserCardVisible] = useState<boolean>(false)
 
   return (
-    <div className="hidden md:block relative">
+    <div className="hidden md:block md:w-full relative">
       <div
         className="w-full bg-gray-800 rounded-xl p-2 flex items-center text-lg transition duration-200 hover:bg-gray-900 cursor-pointer"
         onClick={(): void => setUserCardVisible(!userCardVisible)}

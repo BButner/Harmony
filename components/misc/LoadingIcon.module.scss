@@ -1,0 +1,20 @@
+$elements: 4;
+
+@for $i from 1 to $elements + 1 {
+  .sphere:nth-of-type(#{$i}) {
+    animation: hover 0.75s ease infinite #{0.2 * $i}s alternate;
+  }
+}
+
+.sphere {
+  @apply bg-transparent;
+  @apply w-5;
+  @apply h-5;
+  @apply rounded-full;
+  @apply bg-purple-400;
+}
+
+@keyframes hover {
+  from { transform: translateY(0); }
+  to { transform: translateY(50px); }
+}

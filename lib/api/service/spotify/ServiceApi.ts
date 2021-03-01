@@ -1,13 +1,13 @@
-import { Playlist } from "models/service/ModelService"
+import { Playlist, Song } from "models/service/ModelService"
 import { useQuery } from "react-query"
-import { fetchSpotifyPlaylists } from "./SpotifyFetcher"
+import { fetchSpotifyPlaylists, fetchSpotifyPlaylistSongs } from "./SpotifyFetcher"
 import { SpotifyPlaylists } from './SpotifyFetcher'
 
 export default class ServiceApi {
   public loadPlaylists = (service: string) => {
     return useQuery<Playlist[], Error>(
       `/service/${service}`,
-      this[`get${service.charAt(0).toUpperCase() + service.slice(1)}Playlists`],
+      this[`get${this.uppercaseService(service)}Playlists`],
       {
         retryOnMount: false,
         refetchOnMount: false,
@@ -16,7 +16,22 @@ export default class ServiceApi {
     )
   }
 
-  private getSpotifyPlaylists = (): Promise<SpotifyPlaylists> => {
+  public loadSongsByPlaylistId = (playlistId: string) => {
+    return useQuery<Song[], Error>(
+      [`/service/spotify/playlist/${playlistId}`, playlistId],
+      () => this[`getSpotifyPlaylistSongs`](playlistId)
+    )
+  }
+
+  private getSpotifyPlaylists = (): Promise<Playlist[]> => {
     return fetchSpotifyPlaylists()
+  }
+
+  private getSpotifyPlaylistSongs = (playlistId: string): Promise<Song[]> => {
+    return fetchSpotifyPlaylistSongs(playlistId)
+  }
+
+  private uppercaseService = (serviceId: string): string => {
+    return serviceId.charAt(0).toUpperCase() + serviceId.slice(1)
   }
 }

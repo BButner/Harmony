@@ -17,9 +17,19 @@ export const PlaylistControls: FunctionComponent = () => {
         <Icon path={mdiChevronDoubleLeft} />
       </motion.div>
       <motion.div
-        className="w-52 h-52 bg-purple-500 rounded-xl p-1"
+        className="rounded-l-xl p-2 bg-white shadow-xl flex space-x-4 bordernpm  border-gray-400"
       >
-        <div className="w-full h-full bg-white rounded-lg"></div>
+        <div className="space-y-2 text-center">
+          <p>Songs</p>
+          <button className="block w-full button-blue">Select All Songs</button>
+          <button className="button-red">Deselect All Songs</button>
+        </div>
+        <div className="space-y-2 text-center">
+          <p>Playlist</p>
+          <button className="block w-full button-blue">Transfer Playlist</button>
+          <button className="block button-green w-full">Backup Playlist</button>
+          <button className="button-red w-full">Delete Playlist</button>
+        </div>
       </motion.div>
     </div>
   )

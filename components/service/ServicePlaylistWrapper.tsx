@@ -52,7 +52,7 @@ export const ServicePlaylistWrapper: FunctionComponent<ServicePlaylistWrapperPro
           </div>
         }
       </AnimatePresence>
-      <PlaylistControls />
+      {/* <PlaylistControls /> */}
     </div>
   )
 }

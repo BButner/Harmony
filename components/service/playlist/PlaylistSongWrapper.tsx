@@ -36,7 +36,7 @@ export const PlaylistSongWrapper: FunctionComponent<PlaylistSongWrapperProps> = 
         animate="visible"
       >
         <motion.li className="w-full m-4 rounded-xl overflow-hidden flex items-center bg-gray-200 space-x-4">
-          <img src={selectedPlaylist.imageHref} className="h-32 w-32" />
+          <img src={selectedPlaylist.imageHref} className="w-40 h-40" />
           <div className="space-y-2">
             <p className="text-3xl">{selectedPlaylist.name}</p>
             <p>{selectedPlaylist.description}</p>

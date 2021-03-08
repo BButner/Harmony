@@ -1,0 +1,31 @@
+.song-wrapper {
+  @apply h-20;
+  @apply w-96;
+  @apply m-2;
+  @apply rounded-xl;
+  @apply shadow-lg;
+  @apply overflow-hidden;
+  @apply flex;
+  @apply items-center;
+  @apply transition-colors;
+  @apply duration-200; 
+  @apply bg-gray-200;
+  @apply cursor-pointer;
+
+  p {
+    @apply transition-colors;
+    @apply duration-200;
+  }
+
+  &-selected {
+    @apply bg-purple-400;
+
+    p {
+      @apply text-white;
+
+      &:not(:first-of-type) {
+        @apply text-gray-200;
+      }
+    }
+  }
+}

@@ -1,12 +1,13 @@
 import HarmonyApi from 'lib/api/HarmonyApi'
-import { FunctionComponent, useState } from 'react'
+import { FunctionComponent, useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { PlaylistWrapper } from './playlist/PlaylistWrapper'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Playlist } from 'models/service/ModelService'
+import { Playlist, Song } from 'models/service/ModelService'
 import { SelectedPlaylistList } from './playlist/SelectedPlaylistList'
 import { PlaylistSongWrapper } from './playlist/PlaylistSongWrapper'
 import { PlaylistControls } from './playlist/PlaylistControls'
+import { hydrateFromLocalStorage } from 'lib/services/generic/playlistcontrols/SongSelectionHandler'
 
 type ServicePlaylistWrapperProps = {
   service: 'spotify' | 'pandora' | 'youtube' | 'apple';
@@ -17,14 +18,20 @@ export const ServicePlaylistWrapper: FunctionComponent<ServicePlaylistWrapperPro
   const playlists = api.serviceApi.loadPlaylists(service)
   const SpotifyHandler = dynamic(() => import('./spotify/SpotifyHandler').then(h => h.SpotifyHandler))
   const [selectedPlaylist, setSelectedPlaylist] = useState<Playlist>(null)
+  const [selectedSongs, setSelectedSongs] = useState<Song[]>([])
+
+  useEffect(() => {
+    hydrateFromLocalStorage(setSelectedSongs, service)
+  }, [])
 
   const variants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 50, scale: 0.8 },
     visible: {
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
-        staggerChildren: 0.05
+        staggerChildren: 0.025
       }
     }
   }
@@ -48,11 +55,18 @@ export const ServicePlaylistWrapper: FunctionComponent<ServicePlaylistWrapperPro
               setSelectedPlaylist={setSelectedPlaylist}
               playlists={playlists.data}
             />
-            <PlaylistSongWrapper selectedPlaylist={selectedPlaylist} harmonyApi={api} />
+            <PlaylistSongWrapper
+              selectedSongs={selectedSongs}
+              setSelectedSongs={setSelectedSongs}
+              selectedPlaylist={selectedPlaylist}
+              harmonyApi={api}
+              setSelectedPlaylist={setSelectedPlaylist}
+              service={service}
+            />
           </div>
         }
       </AnimatePresence>
-      {/* <PlaylistControls /> */}
+      <PlaylistControls selectedSongs={selectedSongs} />
     </div>
   )
 }

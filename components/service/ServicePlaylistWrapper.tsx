@@ -1,14 +1,13 @@
 import HarmonyApi from 'lib/api/HarmonyApi'
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, useContext, useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { PlaylistWrapper } from './playlist/PlaylistWrapper'
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Playlist, Song } from 'models/service/ModelService'
-import { SelectedPlaylistList } from './playlist/SelectedPlaylistList'
-import { PlaylistSongWrapper } from './playlist/PlaylistSongWrapper'
 import { PlaylistControls } from './playlist/PlaylistControls'
 import { hydrateFromLocalStorage } from 'lib/services/generic/playlistcontrols/SongSelectionHandler'
 import { PlaylistProvider } from 'lib/services/PlaylistContext'
+import { SelectedPlaylistDisplay } from './playlist/SelectedPlaylistDisplay'
 
 type ServicePlaylistWrapperProps = {
   service: 'spotify' | 'pandora' | 'youtube' | 'apple';
@@ -42,7 +41,8 @@ export const ServicePlaylistWrapper: FunctionComponent<ServicePlaylistWrapperPro
       selectedPlaylist,
       selectedSongs,
       setSelectedSongs,
-      setSelectedPlaylist
+      setSelectedPlaylist,
+      playlists
     }}>
       <div className="w-full h-full flex flex-wrap">
         {service === 'spotify' && <SpotifyHandler playlistData={playlists} />}
@@ -54,19 +54,9 @@ export const ServicePlaylistWrapper: FunctionComponent<ServicePlaylistWrapperPro
         >
           {playlists.data.map(playlist => <PlaylistWrapper key={playlist.id} playlist={playlist} variants={variants} />)}
         </motion.ul>}
-        <AnimatePresence>
-          {playlists.data && selectedPlaylist !== null && 
-            <div className="flex max-w-full w-full">
-              <SelectedPlaylistList
-                playlists={playlists.data}
-              />
-              <PlaylistSongWrapper
-                harmonyApi={api}
-                service={service}
-              />
-            </div>
-          }
-        </AnimatePresence>
+
+        {selectedPlaylist && <SelectedPlaylistDisplay harmonyApi={api} />}
+
         <PlaylistControls />
       </div>
     </PlaylistProvider>

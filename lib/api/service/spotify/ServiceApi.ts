@@ -1,10 +1,9 @@
 import { Playlist, Song } from "models/service/ModelService"
-import { useQuery } from "react-query"
+import { QueryObserverResult, useQuery } from "react-query"
 import { fetchSpotifyPlaylists, fetchSpotifyPlaylistSongs } from "./SpotifyFetcher"
-import { SpotifyPlaylists } from './SpotifyFetcher'
 
 export default class ServiceApi {
-  public loadPlaylists = (service: string) => {
+  public loadPlaylists = (service: string): QueryObserverResult<Playlist[], Error> => {
     return useQuery<Playlist[], Error>(
       `/service/${service}`,
       this[`get${this.uppercaseService(service)}Playlists`],

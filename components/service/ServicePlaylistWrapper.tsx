@@ -1,5 +1,5 @@
 import HarmonyApi from 'lib/api/HarmonyApi'
-import { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { PlaylistWrapper } from './playlist/PlaylistWrapper'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -8,6 +8,7 @@ import { SelectedPlaylistList } from './playlist/SelectedPlaylistList'
 import { PlaylistSongWrapper } from './playlist/PlaylistSongWrapper'
 import { PlaylistControls } from './playlist/PlaylistControls'
 import { hydrateFromLocalStorage } from 'lib/services/generic/playlistcontrols/SongSelectionHandler'
+import { PlaylistProvider } from 'lib/services/PlaylistContext'
 
 type ServicePlaylistWrapperProps = {
   service: 'spotify' | 'pandora' | 'youtube' | 'apple';
@@ -21,7 +22,7 @@ export const ServicePlaylistWrapper: FunctionComponent<ServicePlaylistWrapperPro
   const [selectedSongs, setSelectedSongs] = useState<Song[]>([])
 
   useEffect(() => {
-    hydrateFromLocalStorage(setSelectedSongs, service)
+    setSelectedSongs(hydrateFromLocalStorage(setSelectedSongs, service))
   }, [])
 
   const variants = {
@@ -37,36 +38,37 @@ export const ServicePlaylistWrapper: FunctionComponent<ServicePlaylistWrapperPro
   }
 
   return (
-    <div className="w-full h-full flex flex-wrap">
-      {service === 'spotify' && <SpotifyHandler playlistData={playlists} />}
-      {playlists.data && selectedPlaylist === null && <motion.ul
-        variants={variants}
-        initial="hidden"
-        animate="visible"
-        className="flex list-none flex-wrap justify-between"
-      >
-        {playlists.data.map(playlist => <PlaylistWrapper key={playlist.id} playlist={playlist} variants={variants} setSelectedPlaylist={setSelectedPlaylist} />)}
-      </motion.ul>}
-      <AnimatePresence>
-        {playlists.data && selectedPlaylist !== null && 
-          <div className="flex max-w-full w-full">
-            <SelectedPlaylistList
-              selectedPlaylist={selectedPlaylist}
-              setSelectedPlaylist={setSelectedPlaylist}
-              playlists={playlists.data}
-            />
-            <PlaylistSongWrapper
-              selectedSongs={selectedSongs}
-              setSelectedSongs={setSelectedSongs}
-              selectedPlaylist={selectedPlaylist}
-              harmonyApi={api}
-              setSelectedPlaylist={setSelectedPlaylist}
-              service={service}
-            />
-          </div>
-        }
-      </AnimatePresence>
-      <PlaylistControls selectedSongs={selectedSongs} />
-    </div>
+    <PlaylistProvider value={{
+      selectedPlaylist,
+      selectedSongs,
+      setSelectedSongs,
+      setSelectedPlaylist
+    }}>
+      <div className="w-full h-full flex flex-wrap">
+        {service === 'spotify' && <SpotifyHandler playlistData={playlists} />}
+        {playlists.data && selectedPlaylist === null && <motion.ul
+          variants={variants}
+          initial="hidden"
+          animate="visible"
+          className="flex list-none flex-wrap justify-between"
+        >
+          {playlists.data.map(playlist => <PlaylistWrapper key={playlist.id} playlist={playlist} variants={variants} />)}
+        </motion.ul>}
+        <AnimatePresence>
+          {playlists.data && selectedPlaylist !== null && 
+            <div className="flex max-w-full w-full">
+              <SelectedPlaylistList
+                playlists={playlists.data}
+              />
+              <PlaylistSongWrapper
+                harmonyApi={api}
+                service={service}
+              />
+            </div>
+          }
+        </AnimatePresence>
+        <PlaylistControls />
+      </div>
+    </PlaylistProvider>
   )
 }

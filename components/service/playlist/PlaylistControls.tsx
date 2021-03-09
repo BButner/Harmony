@@ -1,14 +1,10 @@
 import Icon from '@mdi/react'
 import { motion } from 'framer-motion'
-import { FunctionComponent, useState } from 'react'
+import { FunctionComponent, useContext, useState } from 'react'
 import { mdiChevronDoubleLeft } from '@mdi/js'
-import { Song } from 'models/service/ModelService'
+import { PlaylistContext } from 'lib/services/PlaylistContext'
 
-type PlaylistControlsProps = {
-  selectedSongs: Song[];
-}
-
-export const PlaylistControls: FunctionComponent<PlaylistControlsProps> = ({ selectedSongs }) => {
+export const PlaylistControls: FunctionComponent= () => {
   const variants = {
     hidden: { x: '100%', y: '-50%' },
     visible: { x: 0, y: '-50%' }
@@ -18,6 +14,8 @@ export const PlaylistControls: FunctionComponent<PlaylistControlsProps> = ({ sel
     hidden: { rotate: 0 },
     visible: { rotate: 180 }
   }
+
+  const context = useContext(PlaylistContext)
 
   const [controlsVisible, setControlsVisible] = useState<boolean>(false)
 
@@ -33,7 +31,7 @@ export const PlaylistControls: FunctionComponent<PlaylistControlsProps> = ({ sel
         whileHover={{ width: 32 }}
         onClick={(): void => setControlsVisible(!controlsVisible)}
       >
-        <div className="absolute -top-3 -left-3 bg-red-500 rounded-xl p-1 text-xs text-center" style={{ minWidth: '24px' }}>{selectedSongs.length}</div>
+        <div className="absolute -top-3 -left-3 bg-red-500 rounded-xl p-1 text-xs text-center" style={{ minWidth: '24px' }}>{context.selectedSongs.length}</div>
         <motion.div
           variants={svgVariants}
           initial="hidden"

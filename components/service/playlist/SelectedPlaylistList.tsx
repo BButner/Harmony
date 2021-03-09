@@ -1,14 +1,15 @@
 import { motion } from 'framer-motion'
+import { PlaylistContext } from 'lib/services/PlaylistContext'
 import { Playlist } from 'models/service/ModelService'
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useContext } from 'react'
 
 type SelectedPlaylistListProps = {
   playlists: Playlist[];
-  selectedPlaylist: Playlist;
-  setSelectedPlaylist: Function;
 }
 
-export const SelectedPlaylistList: FunctionComponent<SelectedPlaylistListProps> = ({ playlists, selectedPlaylist, setSelectedPlaylist }) => {
+export const SelectedPlaylistList: FunctionComponent<SelectedPlaylistListProps> = ({ playlists }) => {
+  const context = useContext(PlaylistContext)
+
   const variants = {
     hidden: { x: '-100%' },
     visible: {
@@ -35,13 +36,13 @@ export const SelectedPlaylistList: FunctionComponent<SelectedPlaylistListProps> 
               backgroundPosition: 'center'
             }}
             whileHover={{ x: 20 }}
-            onClick={(): void => setSelectedPlaylist(playlist)}
+            onClick={(): void => context.setSelectedPlaylist(playlist)}
             key={playlist.id}
           >
             <div
-              className={`w-full h-full flex items-center ${selectedPlaylist.id === playlist.id ? 'bg-purple-500' : ''}`}
+              className={`w-full h-full flex items-center ${context.selectedPlaylist.id === playlist.id ? 'bg-purple-500' : ''}`}
               style={
-                selectedPlaylist.id === playlist.id ? {} : {
+                context.selectedPlaylist.id === playlist.id ? {} : {
                   backgroundColor: 'rgba(0, 0, 0, 0.8)'
                 }
               }

@@ -16,12 +16,12 @@ export const songIsSelected = (song: Song, selectedSongs: Song[]): boolean => {
   return selectedSongs.filter(s => s.id === song.id).length > 0
 }
 
-export const hydrateFromLocalStorage = (setSelectedSongs: Function, service: string): void => {
+export const hydrateFromLocalStorage = (setSelectedSongs: Function, service: string): Song[] => {
   const songs: string = localStorage.getItem(service + 'selectedSongIds')
 
   if (songs !== null) {
-    setSelectedSongs(JSON.parse(songs))
-  }
+    return JSON.parse(songs)
+  } else return []
 }
 
 const saveToLocalStorage = (selectedSongs: Song[], service: string): void => {

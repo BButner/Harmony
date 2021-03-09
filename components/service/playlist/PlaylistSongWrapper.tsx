@@ -4,21 +4,20 @@ import { LoadingIcon } from 'components/misc/LoadingIcon'
 import { motion } from 'framer-motion'
 import HarmonyApi from 'lib/api/HarmonyApi'
 import { Playlist, Song } from 'models/service/ModelService'
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useContext } from 'react'
 import { handleSongSelection, hydrateFromLocalStorage, songIsSelected } from 'lib/services/generic/playlistcontrols/SongSelectionHandler'
 import styles from './PlaylistSongWrapper.module.scss'
+import { PlaylistContext } from 'lib/services/PlaylistContext'
 
 type PlaylistSongWrapperProps = {
-  selectedPlaylist: Playlist;
   harmonyApi: HarmonyApi;
-  setSelectedPlaylist: Function;
-  selectedSongs: Song[];
-  setSelectedSongs: Function;
   service: string;
 }
 
-export const PlaylistSongWrapper: FunctionComponent<PlaylistSongWrapperProps> = ({ selectedPlaylist, harmonyApi, setSelectedPlaylist, selectedSongs, setSelectedSongs, service }) => {
-  const songs = harmonyApi.serviceApi.loadSongsByPlaylistId(selectedPlaylist.id)
+export const PlaylistSongWrapper: FunctionComponent<PlaylistSongWrapperProps> = ({ harmonyApi, service }) => {
+  const context = useContext(PlaylistContext)
+
+  const songs = harmonyApi.serviceApi.loadSongsByPlaylistId(context.selectedPlaylist.id)
   const variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -31,7 +30,7 @@ export const PlaylistSongWrapper: FunctionComponent<PlaylistSongWrapperProps> = 
   }
 
   const handleSongClick = (song: Song): void => {
-    handleSongSelection(song, selectedSongs, setSelectedSongs, service)
+    handleSongSelection(song, context.selectedSongs, context.setSelectedSongs, service)
   }
 
   if (songs.isError || songs.isLoading) {
@@ -47,24 +46,29 @@ export const PlaylistSongWrapper: FunctionComponent<PlaylistSongWrapperProps> = 
         initial="hidden"
         animate="visible"
       >
+        {/* Playlist Header */}
         <motion.li className="w-full relative m-4 rounded-xl overflow-hidden flex items-center bg-gray-200 space-x-4">
-          <img src={selectedPlaylist.imageHref} className="w-40 h-40" />
+          <img src={context.selectedPlaylist.imageHref} className="w-40 h-40" />
           <div className="space-y-2">
-            <p className="text-3xl">{selectedPlaylist.name}</p>
-            <p>{selectedPlaylist.description}</p>
+            <p className="text-3xl">{context.selectedPlaylist.name}</p>
+            <p>{context.selectedPlaylist.description}</p>
             <p className="text-sm text-gray-600">{songs.data.length} Songs</p>
           </div>
-          <motion.div className="absolute top-0 right-0 cursor-pointer" onClick={(): void => setSelectedPlaylist(null)} whileHover={{ scale: 1.2 }} whileTap={{ scale: 1.0 }}>
+          <motion.div className="absolute top-0 right-0 cursor-pointer" onClick={(): void => context.setSelectedPlaylist(null)} whileHover={{ scale: 1.2 }} whileTap={{ scale: 1.0 }}>
             <Icon className="mt-2 mr-2" path={mdiClose} size={1} />
           </motion.div>
         </motion.li>
+
+        {/* Songs */}
         {songs.data.map((song, index) => {
           return (
             <motion.li
-              className={`${styles['song-wrapper']} ${songIsSelected(song, selectedSongs) ? styles['song-wrapper-selected'] : ''}`}
+              className={`${styles['song-wrapper']} ${songIsSelected(song, context.selectedSongs) ? styles['song-wrapper-selected'] : ''}`}
               variants={variants}
-              key={selectedPlaylist.id + song.id + index}
+              key={context.selectedPlaylist.id + song.id + index}
               onClick={(): void => handleSongClick(song)}
+              whileHover={{ scale: 1.025 }}
+              whileTap={{ scale: 1.0 }}
             >
               <img className="w-20 h-20" src={song.album.imageHref} />
               <div

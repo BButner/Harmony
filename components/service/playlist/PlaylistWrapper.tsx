@@ -1,14 +1,15 @@
 import { motion } from 'framer-motion'
+import { PlaylistContext } from 'lib/services/PlaylistContext'
 import { Playlist } from 'models/service/ModelService'
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useContext } from 'react'
 
 type PlaylistWrapperProps = {
   playlist: Playlist;
   variants: any;
-  setSelectedPlaylist: Function;
 }
 
-export const PlaylistWrapper: FunctionComponent<PlaylistWrapperProps> = ({ playlist, variants, setSelectedPlaylist }) => {
+export const PlaylistWrapper: FunctionComponent<PlaylistWrapperProps> = ({ playlist, variants }) => {
+  const context = useContext(PlaylistContext)
   return (
     <motion.li
       className="rounded-2xl shadow-2xl w-56 h-56 m-4 overflow-hidden cursor-pointer"
@@ -20,7 +21,7 @@ export const PlaylistWrapper: FunctionComponent<PlaylistWrapperProps> = ({ playl
       whileTap={{ scale: 0.95 }}
       variants={variants}
       key={playlist.id}
-      onClick={(): void => setSelectedPlaylist(playlist)}
+      onClick={(): void => context.setSelectedPlaylist(playlist)}
     >
       <div
         className="w-full h-full flex items-end"

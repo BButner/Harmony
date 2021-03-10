@@ -12,6 +12,10 @@
   @apply bg-gray-200;
   @apply cursor-pointer;
 
+  &:hover {
+    @apply bg-gray-300;
+  }
+
   p {
     @apply transition-colors;
     @apply duration-200;
@@ -19,6 +23,10 @@
 
   &-selected {
     @apply bg-purple-400;
+
+    &:hover {
+      @apply bg-purple-500;
+    }
 
     p {
       @apply text-white;

@@ -3,19 +3,20 @@ import { mdiClose } from '@mdi/js'
 import { LoadingIcon } from 'components/misc/LoadingIcon'
 import { motion } from 'framer-motion'
 import HarmonyApi from 'lib/api/HarmonyApi'
-import { Playlist, Song } from 'models/service/ModelService'
+import { Song } from 'models/service/ModelService'
 import { FunctionComponent, useContext } from 'react'
-import { handleSongSelection, hydrateFromLocalStorage, songIsSelected } from 'lib/services/generic/playlistcontrols/SongSelectionHandler'
+import { handleSongSelection, songIsSelected } from 'lib/services/generic/playlistcontrols/SongSelectionHandler'
 import styles from './PlaylistSongWrapper.module.scss'
 import { PlaylistContext } from 'lib/services/PlaylistContext'
+import { NavigationContext } from 'lib/navigation/NavigationContext'
 
 type PlaylistSongWrapperProps = {
   harmonyApi: HarmonyApi;
-  service: string;
 }
 
-export const PlaylistSongWrapper: FunctionComponent<PlaylistSongWrapperProps> = ({ harmonyApi, service }) => {
+export const PlaylistSongWrapper: FunctionComponent<PlaylistSongWrapperProps> = ({ harmonyApi }) => {
   const context = useContext(PlaylistContext)
+  const navContext = useContext(NavigationContext)
 
   const songs = harmonyApi.serviceApi.loadSongsByPlaylistId(context.selectedPlaylist.id)
   const variants = {
@@ -30,7 +31,7 @@ export const PlaylistSongWrapper: FunctionComponent<PlaylistSongWrapperProps> = 
   }
 
   const handleSongClick = (song: Song): void => {
-    handleSongSelection(song, context.selectedSongs, context.setSelectedSongs, service)
+    handleSongSelection(song, context.selectedSongs, context.setSelectedSongs, navContext.currentService)
   }
 
   if (songs.isError || songs.isLoading) {

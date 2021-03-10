@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { FunctionComponent, useContext, useState } from 'react'
 import { mdiChevronDoubleLeft } from '@mdi/js'
 import { PlaylistContext } from 'lib/services/PlaylistContext'
+import { PlaylistSongControls } from './PlaylistSongControls'
 
 export const PlaylistControls: FunctionComponent= () => {
   const variants = {
@@ -13,6 +14,11 @@ export const PlaylistControls: FunctionComponent= () => {
   const svgVariants = {
     hidden: { rotate: 0 },
     visible: { rotate: 180 }
+  }
+
+  const songCountVariants = {
+    hidden: { scale: 0, opacity: 0, transition: { duration: 0.1 } },
+    visible: { scale: 1, opacity: 1, transition: { duration: 0.1 } }
   }
 
   const context = useContext(PlaylistContext)
@@ -31,7 +37,18 @@ export const PlaylistControls: FunctionComponent= () => {
         whileHover={{ width: 32 }}
         onClick={(): void => setControlsVisible(!controlsVisible)}
       >
-        <div className="absolute -top-3 -left-3 bg-red-500 rounded-xl p-1 text-xs text-center" style={{ minWidth: '24px' }}>{context.selectedSongs.length}</div>
+        {/* Red Circle for Song Count */}
+        <motion.div
+          className="absolute -top-3 -left-3 bg-red-500 rounded-xl p-1 text-xs text-center"
+          style={{ minWidth: '24px' }}
+          variants={songCountVariants}
+          initial="hidden"
+          animate={context.selectedSongs.length > 0 ? 'visible' : ''}
+        >
+            {context.selectedSongs.length}
+        </motion.div>
+
+        {/* SVG Wrapper */}
         <motion.div
           variants={svgVariants}
           initial="hidden"
@@ -41,21 +58,11 @@ export const PlaylistControls: FunctionComponent= () => {
           <Icon path={mdiChevronDoubleLeft} />
         </motion.div>
       </motion.div>
-      <div className="absolute w-10 bg-white left-full h-full"></div>
+      <div className="absolute w-10 bg-white left-full h-full border-t border-b border-gray-400"></div>
       <motion.div
         className="rounded-l-xl p-2 bg-white shadow-xl flex space-x-4 border-t border-l border-b border-gray-400"
       >
-        <div className="space-y-2 text-center">
-          <p>Songs</p>
-          <button className="block w-full button-blue">Select All Songs</button>
-          <button className="button-red">Deselect All Songs</button>
-        </div>
-        <div className="space-y-2 text-center">
-          <p>Playlist</p>
-          <button className="block w-full button-blue">Transfer Playlist</button>
-          <button className="block button-green w-full">Backup Playlist</button>
-          <button className="button-red w-full">Delete Playlist</button>
-        </div>
+        <PlaylistSongControls />
       </motion.div>
     </motion.div>
   )

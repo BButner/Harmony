@@ -5,7 +5,7 @@ import { ServicePlaylistWrapper } from 'components/service/ServicePlaylistWrappe
 const spotify: FunctionComponent = () => {
   return (
     <Layout pageTitle="Spotify">
-      <ServicePlaylistWrapper service="spotify" />
+      <ServicePlaylistWrapper />
     </Layout>
   )
 }

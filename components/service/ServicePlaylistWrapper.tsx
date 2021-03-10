@@ -4,24 +4,23 @@ import dynamic from 'next/dynamic'
 import { PlaylistWrapper } from './playlist/PlaylistWrapper'
 import { motion } from 'framer-motion'
 import { Playlist, Song } from 'models/service/ModelService'
-import { PlaylistControls } from './playlist/PlaylistControls'
+import { PlaylistControls } from './playlist/playlistcontrols/PlaylistControls'
 import { hydrateFromLocalStorage } from 'lib/services/generic/playlistcontrols/SongSelectionHandler'
 import { PlaylistProvider } from 'lib/services/PlaylistContext'
 import { SelectedPlaylistDisplay } from './playlist/SelectedPlaylistDisplay'
+import { NavigationContext } from 'lib/navigation/NavigationContext'
 
-type ServicePlaylistWrapperProps = {
-  service: 'spotify' | 'pandora' | 'youtube' | 'apple';
-}
-
-export const ServicePlaylistWrapper: FunctionComponent<ServicePlaylistWrapperProps> = ({ service }) => {
+export const ServicePlaylistWrapper: FunctionComponent = () => {
   const api: HarmonyApi = new HarmonyApi()
-  const playlists = api.serviceApi.loadPlaylists(service)
+  const navContext = useContext(NavigationContext)
+
+  const playlists = api.serviceApi.loadPlaylists(navContext.currentService)
   const SpotifyHandler = dynamic(() => import('./spotify/SpotifyHandler').then(h => h.SpotifyHandler))
   const [selectedPlaylist, setSelectedPlaylist] = useState<Playlist>(null)
   const [selectedSongs, setSelectedSongs] = useState<Song[]>([])
 
   useEffect(() => {
-    setSelectedSongs(hydrateFromLocalStorage(setSelectedSongs, service))
+    setSelectedSongs(hydrateFromLocalStorage(setSelectedSongs, navContext.currentService))
   }, [])
 
   const variants = {
@@ -45,7 +44,7 @@ export const ServicePlaylistWrapper: FunctionComponent<ServicePlaylistWrapperPro
       playlists
     }}>
       <div className="w-full h-full flex flex-wrap">
-        {service === 'spotify' && <SpotifyHandler playlistData={playlists} />}
+        {navContext.currentService === 'spotify' && <SpotifyHandler playlistData={playlists} />}
         {playlists.data && selectedPlaylist === null && <motion.ul
           variants={variants}
           initial="hidden"

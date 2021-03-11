@@ -20,7 +20,6 @@ export const SelectedPlaylistDisplay: FunctionComponent<SelectedPlaylistDisplayP
               />
               <PlaylistSongWrapper
                 harmonyApi={harmonyApi}
-                service={'spotify'}
               />
             </div>
           }

@@ -22,6 +22,23 @@
     @apply text-purple-400;
   }
 
+  &-active {
+    @apply bg-gray-800;
+
+    &-spotify svg {
+      @apply text-spotify-400;
+    }
+    &-apple svg {
+      @apply text-apple-400;
+    }
+    &-youtube svg {
+      @apply text-youtube-400;
+    }
+    &-pandora svg {
+      @apply text-pandora-400;
+    }
+  }
+
   &-spotify:hover svg {
     @apply text-spotify-400;
   }

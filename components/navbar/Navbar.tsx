@@ -8,6 +8,7 @@ import { NavbarAccess } from './NavbarAccess'
 import { useRouter } from 'next/router'
 import { NavbarMobileLinks } from './NavbarMobileLinks'
 import { NavbarMobileAccess } from './NavbarMobileAccess'
+import { Modal } from 'components/popup/Modal'
 
 export const Navbar: FunctionComponent = () => {
   const router = useRouter()
@@ -44,11 +45,29 @@ export const Navbar: FunctionComponent = () => {
       <div className="hidden md:block space-y-4 w-full">
         <p className="text-gray-400">Services</p>
         {getNavigationLinks().map(link => {
-          return <Link href={link.href} key={link.id}><a className={`${styles.link} ${styles['link-' + link.id]}`}><Icon path={link.icon} size={1} />{link.title}</a></Link>
+          return (
+            <Link
+              href={link.href}
+              key={link.id}>
+                <a
+                  className={`${styles.link} ${styles['link-' + link.id]} ${router.pathname.includes(link.id) ?
+                    `${styles['link-active']} ${styles[`link-active-${link.id}`]}`
+                    : ''}`}
+                >
+                    <Icon path={link.icon} size={1} />{link.title}
+                </a>
+            </Link>
+          )
         })}
       </div>
 
-      <NavbarMobileLinks visible={serviceSelectorVisible} />
+      <Modal
+        title="Example Title"
+        description="This is an example description."
+        visible={serviceSelectorVisible}
+        setVisible={setServiceSelectorVisible}>
+        <NavbarMobileLinks visible={serviceSelectorVisible} />
+      </Modal>
 
       {/* Filler */}
       <div className="hidden md:block flex-1" />

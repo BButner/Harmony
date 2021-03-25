@@ -68,7 +68,6 @@ export const PlaylistSongWrapper: FunctionComponent<PlaylistSongWrapperProps> = 
               variants={variants}
               key={context.selectedPlaylist.id + song.id + index}
               onClick={(): void => handleSongClick(song)}
-              whileTap={{ scale: 0.95 }}
             >
               <img className="w-20 h-20" src={song.album.imageHref} />
               <div

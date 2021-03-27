@@ -27,7 +27,7 @@ export const Navbar: FunctionComponent = () => {
 
   return (
     <div className="w-full h-16 md:w-72 md:h-screen bg-white md:bg-gray-700 fixed bottom-0 md:top-0 left-0 md:p-4 text-gray-400 md:text-gray-300 md:space-y-6 flex items-center md:flex-col md:flex-wrap z-50">
-      <img src="/img/logo_written.png" className="hidden md:block h-14 m-auto" />
+      <img src="/img/logos/logo_written.png" className="hidden md:block h-14 m-auto" />
 
       {/* Nav Links */}
       <div className="hidden md:block space-y-4 w-full">

@@ -18,10 +18,11 @@ export const Modal: FunctionComponent<ModalProps> = (props) => {
         static
         open={props.visible}
         onClose={(): void => props.setVisible(false)}
+        className="w-screen h-screen fixed bottom-0"
       >
         <div className="fixed z-50 bottom-0 overflow-y-hidden">
           <div className="md:flex md:items-center md:justify-center h-screen w-screen">
-            <Dialog.Overlay className="fixed inset-0 w-screen h-screen transition-opacity">
+            {/* <Dialog.Overlay className="fixed inset-0 w-screen h-screen transition-opacity">
               <Transition.Child
                 className="absolute w-screen h-screen inset-0 bg-gray-900"
                 enter="transition-opacity duration-200"
@@ -31,7 +32,7 @@ export const Modal: FunctionComponent<ModalProps> = (props) => {
                 leaveFrom="opacity-85"
                 leaveTo="opacity-0"
               />
-            </Dialog.Overlay>
+            </Dialog.Overlay> */}
             <Transition.Child
               className="absolute bottom-0 left-0 w-screen md:w-auto bg-white rounded-t-2xl md:rounded-2xl p-4 z-50"
               enter="transition-transform duration-200 transform"

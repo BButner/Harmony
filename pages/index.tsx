@@ -5,7 +5,7 @@ import { Layout } from '../components/Layout'
 const index: FunctionComponent = () => {
   return (
     <Layout pageTitle="Harmony">
-      <div className="w-full h-screen flex items-center justify-center">
+      <div className="w-full h-screen flex items-center justify-center overflow-hidden">
         <div className="rounded-xl relative">
           {/* Background Tilted Square */}
           <TiltedSquare animated className="bg-gradient-to-br from-green-200 to-blue-300" />
@@ -13,6 +13,9 @@ const index: FunctionComponent = () => {
             <img src="/img/logos/logo_written.png" />
           </div>
         </div>
+      </div>
+      <div className="">
+        this is yet another test
       </div>
     </Layout>
   )

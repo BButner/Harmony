@@ -66,7 +66,8 @@ export const Navbar: FunctionComponent = () => {
         description="This is an example description."
         visible={serviceSelectorVisible}
         setVisible={setServiceSelectorVisible}>
-        <NavbarMobileLinks visible={serviceSelectorVisible} />
+        {/* <NavbarMobileLinks visible={serviceSelectorVisible} /> */}
+        <button className="w-full">Example Button</button>
       </Modal>
 
       {/* Filler */}

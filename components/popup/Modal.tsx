@@ -18,29 +18,28 @@ export const Modal: FunctionComponent<ModalProps> = (props) => {
         static
         open={props.visible}
         onClose={(): void => props.setVisible(false)}
-        className="w-screen h-screen fixed bottom-0"
       >
         <div className="fixed z-50 bottom-0 overflow-y-hidden">
           <div className="md:flex md:items-center md:justify-center h-screen w-screen">
-            {/* <Dialog.Overlay className="fixed inset-0 w-screen h-screen transition-opacity">
+            <Dialog.Overlay className="fixed inset-0 w-screen h-screen opacity-90">
               <Transition.Child
-                className="absolute w-screen h-screen inset-0 bg-gray-900"
+                className="fixed w-screen h-screen inset-0 bg-gray-900"
                 enter="transition-opacity duration-200"
                 enterFrom="opacity-0"
-                enterTo="opacity-85"
+                enterTo="opacity-100"
                 leave="transition-opacity duration-200"
-                leaveFrom="opacity-85"
+                leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               />
-            </Dialog.Overlay> */}
+            </Dialog.Overlay>
             <Transition.Child
-              className="absolute bottom-0 left-0 w-screen md:w-auto bg-white rounded-t-2xl md:rounded-2xl p-4 z-50"
-              enter="transition-transform duration-200 transform"
-              enterFrom="transform opacity-0"
-              enterTo="transform opacity-100"
-              leave="transition-transform duration-200"
-              leaveFrom="transform translate-y-0"
-              leaveTo="transform translate-y-full"
+              className="fixed bottom-0 left-0 w-screen md:w-auto bg-white rounded-t-2xl md:rounded-2xl p-4 z-50"
+              enter="transition duration-200 transform"
+              enterFrom="translate-y-full md:translate-y-0 md:opacity-0"
+              enterTo="translate-y-0 md:opacity-100"
+              leave="transition duration-200 transform"
+              leaveFrom="translate-y-0 md:opacity-100"
+              leaveTo="translate-y-full md:opacity-0 md:translate-y-0"
             >
               <Dialog.Title className="text-center md:text-left text-2xl">
                 {props.title}

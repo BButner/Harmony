@@ -21,7 +21,7 @@ export const SelectedPlaylistList: FunctionComponent<SelectedPlaylistListProps> 
     <PlaylistConsumer>
       {({ selectedPlaylist, setSelectedPlaylist }) => (
         <motion.div
-          className="h-screen w-80 overflow-y-scroll overflow-x-hidden bg-gray-200"
+          className="h-screen w-80 overflow-y-scroll overflow-x-hidden bg-gray-200 hidden md:block"
           variants={variants}
           initial="hidden"
           animate="visible"

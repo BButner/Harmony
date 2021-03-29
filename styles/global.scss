@@ -19,3 +19,11 @@ body {
     @apply ml-0;
   }
 }
+
+@layer utilities {
+  @variants responsive {
+    .w-playlistlist {
+      width: calc(100% - 320px);
+    }
+  }
+}

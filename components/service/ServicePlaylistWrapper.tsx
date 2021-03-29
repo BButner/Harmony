@@ -42,13 +42,13 @@ export const ServicePlaylistWrapper: FunctionComponent = () => {
       setSelectedPlaylist,
       playlists
     }}>
-      <div className="w-full h-full flex flex-wrap">
+      <div className="w-full h-full md:flex flex-wrap">
         {navContext.currentService === 'spotify' && <SpotifyHandler playlistData={playlists} />}
         {playlists.data && selectedPlaylist === null && <motion.ul
           variants={variants}
           initial="hidden"
           animate="visible"
-          className="flex list-none flex-wrap justify-between"
+          className="md:flex list-none flex-wrap justify-between"
         >
           {playlists.data.map(playlist => <PlaylistWrapper key={playlist.id} playlist={playlist} variants={variants} />)}
         </motion.ul>}

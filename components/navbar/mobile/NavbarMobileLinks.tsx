@@ -12,12 +12,14 @@ type NavbarMobileLinksProps = {
 
 export const NavbarMobileLinks: FunctionComponent<NavbarMobileLinksProps> = ({ visible }) => {
   return (
-    <div className="space-y-2">
+    <div className="space-y-4">
       {getNavigationLinks().map(link => {
-        return <button key={link.id} className={`${styles['service-button']} ${styles[`service-button-${link.id}`]}`}>
-          <Icon path={link.icon} size={1} />
-          <p>{link.title}</p>
-        </button>
+        return <a className="block" href={link.href}>
+          <button key={link.id} className={`${styles['service-button']} ${styles[`service-button-${link.id}`]}`}>
+            <Icon path={link.icon} size={1} />
+            <p>{link.title}</p>
+          </button>
+        </a>
       })}
     </div>
   )

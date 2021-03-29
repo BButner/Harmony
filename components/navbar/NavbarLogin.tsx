@@ -1,8 +1,7 @@
 import { FunctionComponent, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { getLoginLinks } from 'lib/navigation/NavigationLinks'
-import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { handleModalInteraction } from 'lib/navigation/ModalHandler'
+import { NavbarLoginButtons } from './NavbarLoginButtons'
 
 type NavbarLoginProps = {
   visible: boolean;
@@ -48,15 +47,7 @@ export const NavbarLogin: FunctionComponent<NavbarLoginProps> = ({ visible, setV
           <p>
             Already have an Account?
           </p>
-          {getLoginLinks().map(link => {
-            return (
-              <Link key={link.id} href={`${process.env.NEXT_PUBLIC_API_URL}/login/oauth2/authorization/${link.id}`}>
-                <button className={`block w-full m-auto button-${link.id}`}>
-                  {link.title}
-                </button>
-              </Link>
-            )
-          })}
+          <NavbarLoginButtons />
           <p className="text-sm">
             Don't have an account? Please click Register below!
           </p>

@@ -6,8 +6,8 @@ import { mdiHome, mdiAccount, mdiMusicCircle } from '@mdi/js'
 import { getNavigationLinks, NavigationDetail } from 'lib/navigation/NavigationLinks'
 import { NavbarAccess } from './NavbarAccess'
 import { useRouter } from 'next/router'
-import { NavbarMobileLinks } from './NavbarMobileLinks'
-import { NavbarMobileAccess } from './NavbarMobileAccess'
+import { NavbarMobileLinks } from './mobile/NavbarMobileLinks'
+import { NavbarMobileAccess } from './mobile/NavbarMobileAccess'
 import { Modal } from 'components/popup/Modal'
 
 export const Navbar: FunctionComponent = () => {
@@ -62,12 +62,11 @@ export const Navbar: FunctionComponent = () => {
       </div>
 
       <Modal
-        title="Example Title"
-        description="This is an example description."
+        title="Service Selection"
+        description="Select a service to manage."
         visible={serviceSelectorVisible}
         setVisible={setServiceSelectorVisible}>
-        {/* <NavbarMobileLinks visible={serviceSelectorVisible} /> */}
-        <button className="w-full">Example Button</button>
+        <NavbarMobileLinks visible={serviceSelectorVisible} />
       </Modal>
 
       {/* Filler */}
@@ -76,7 +75,7 @@ export const Navbar: FunctionComponent = () => {
       {/* Access Area */}
       <NavbarAccess />     
 
-      <NavbarMobileAccess visible={userPopupVisible} />
+      <NavbarMobileAccess setVisible={setUserPopupVisible} visible={userPopupVisible} />
     </div>
   )
 }

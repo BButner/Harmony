@@ -3,11 +3,23 @@
   border: 2px solid;
   @apply border-gray-300;
   @apply text-gray-300;
+  @apply flex;
+  @apply items-center;
+  @apply justify-center;
+  @apply space-x-4;
+
+  svg {
+    @apply transition-colors;
+  }
 
   &:hover {
     @apply bg-gray-200;
     @apply text-gray-700;
     @apply border-gray-200;
+
+    svg {
+      @apply text-gray-700;
+    }
   }
 
   &:active {

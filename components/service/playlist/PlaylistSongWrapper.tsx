@@ -1,5 +1,3 @@
-import Icon from '@mdi/react'
-import { mdiClose } from '@mdi/js'
 import { LoadingIcon } from 'components/misc/LoadingIcon'
 import { motion } from 'framer-motion'
 import HarmonyApi from 'lib/api/HarmonyApi'
@@ -9,6 +7,8 @@ import { handleSongSelection, songIsSelected } from 'lib/services/generic/playli
 import styles from './PlaylistSongWrapper.module.scss'
 import { PlaylistContext } from 'lib/services/PlaylistContext'
 import { NavigationContext } from 'lib/navigation/NavigationContext'
+import { XIcon } from '@heroicons/react/outline'
+import clsx from 'clsx'
 
 type PlaylistSongWrapperProps = {
   harmonyApi: HarmonyApi;
@@ -40,9 +40,6 @@ export const PlaylistSongWrapper: FunctionComponent<PlaylistSongWrapperProps> = 
     return (
       <motion.ul
         className="max-h-screen w-screen md:w-auto overflow-y-auto md:flex md:flex-wrap overflow-x-hidden justify-around items-start md:w-playlistlist"
-        // style={{
-        //   width: 'calc(100% - 320px)'
-        // }}
         variants={variants}
         initial="hidden"
         animate="visible"
@@ -56,7 +53,7 @@ export const PlaylistSongWrapper: FunctionComponent<PlaylistSongWrapperProps> = 
             <p className="text-sm text-gray-600">{songs.data.length} Songs</p>
           </div>
           <motion.div className="absolute top-0 right-0 cursor-pointer" onClick={(): void => context.setSelectedPlaylist(null)} whileHover={{ scale: 1.2 }} whileTap={{ scale: 1.0 }}>
-            <Icon className="mt-2 mr-2" path={mdiClose} size={1} />
+            <XIcon className="mt-2 mr-2 w-6 h-6" />
           </motion.div>
         </motion.li>
 
@@ -64,7 +61,10 @@ export const PlaylistSongWrapper: FunctionComponent<PlaylistSongWrapperProps> = 
         {songs.data.map((song, index) => {
           return (
             <motion.li
-              className={`${styles['song-wrapper']} ${songIsSelected(song, context.selectedSongs) ? styles['song-wrapper-selected'] : ''}`}
+              className={clsx(
+                styles['song-wrapper'],
+                songIsSelected(song, context.selectedSongs) ? styles['song-wrapper-selected'] : ''
+              )}
               variants={variants}
               key={context.selectedPlaylist.id + song.id + index}
               onClick={(): void => handleSongClick(song)}

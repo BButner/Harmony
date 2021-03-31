@@ -1,12 +1,11 @@
-import { mdiSpotify, mdiApple, mdiYoutube, mdiPandora } from '@mdi/js'
+import { iconApple, iconPandora, iconSpotify, iconYoutube } from "lib/icons"
 
 export interface NavigationDetail {
   id: string;
   title: string;
   href: string;
-  icon: string;
+  iconPath: string;
 }
-
 interface LoginLink {
   title: string;
   id: string;
@@ -14,10 +13,10 @@ interface LoginLink {
 
 export const getNavigationLinks = (): NavigationDetail[] => {
   return [
-    { id: 'apple', title: 'Apple Music', href: '/apple', icon: mdiApple },
-    { id: 'pandora', title: 'Pandora', href: '/pandora', icon: mdiPandora },
-    { id: 'spotify', title: 'Spotify', href: '/spotify', icon: mdiSpotify },
-    { id: 'youtube', title: 'YouTube Music', href: '/youtube', icon: mdiYoutube }
+    { id: 'apple', title: 'Apple Music', href: '/apple', iconPath: iconApple },
+    { id: 'pandora', title: 'Pandora', href: '/pandora', iconPath: iconPandora },
+    { id: 'spotify', title: 'Spotify', href: '/spotify', iconPath: iconSpotify },
+    { id: 'youtube', title: 'YouTube Music', href: '/youtube', iconPath: iconYoutube }
   ]
 }
 

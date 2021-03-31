@@ -1,7 +1,5 @@
-import Icon from '@mdi/react'
 import { motion } from 'framer-motion'
 import { FunctionComponent, useContext, useState } from 'react'
-import { mdiChevronDoubleLeft } from '@mdi/js'
 import { PlaylistContext } from 'lib/services/PlaylistContext'
 import { PlaylistSongControls } from './PlaylistSongControls'
 
@@ -55,7 +53,7 @@ export const PlaylistControls: FunctionComponent= () => {
           animate={controlsVisible ? 'visible' : ''}
           className="flex items-center justify-center w-full h-full"
         >
-          <Icon path={mdiChevronDoubleLeft} />
+          {/* <Icon path={mdiChevronDoubleLeft} /> */}
         </motion.div>
       </motion.div>
       <div className="absolute w-10 bg-white left-full h-full border-t border-b border-gray-400"></div>

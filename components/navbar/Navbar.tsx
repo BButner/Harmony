@@ -8,6 +8,7 @@ import { NavbarMobileLinks } from './mobile/NavbarMobileLinks'
 import { NavbarMobileAccess } from './mobile/NavbarMobileAccess'
 import { Modal } from 'components/popup/Modal'
 import { HomeIcon, UserCircleIcon, MusicNoteIcon } from '@heroicons/react/outline'
+import clsx from 'clsx'
 
 export const Navbar: FunctionComponent = () => {
   const router = useRouter()
@@ -39,9 +40,13 @@ export const Navbar: FunctionComponent = () => {
               href={link.href}
               key={link.id}>
                 <a
-                  className={`${styles.link} ${styles['link-' + link.id]} ${router.pathname.includes(link.id) ?
-                    `${styles['link-active']} ${styles[`link-active-${link.id}`]}`
-                    : ''}`}
+                  className={clsx(
+                    styles.link,
+                    styles[`link-${link.id}`],
+                    router.pathname.includes(link.id) ? [
+                      styles['link-active'], styles[`link-active-${link.id}`]
+                    ] : ''
+                  )}
                 >
                     <svg
                       className="w-6 h-6"

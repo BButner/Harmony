@@ -1,5 +1,4 @@
 import { FunctionComponent } from 'react'
-import { NavbarLoginButtons } from '../NavbarLoginButtons'
 import { Modal } from 'components/popup/Modal'
 import { NavbarMobileAccessLogin } from './NavbarMobileAccessLogin'
 import HarmonyApi from 'lib/api/HarmonyApi'

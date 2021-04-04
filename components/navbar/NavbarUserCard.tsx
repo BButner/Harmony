@@ -45,7 +45,9 @@ export const NavbarUserCard: FunctionComponent<NavbarUserCardProps> = ({ self, s
       className="w-72 absolute bottom-full"
     >
       <div className="space-y-4 bg-gray-800 p-4 rounded-xl text-center m-2 ">
-        <img src={ENDPOINT_IMAGES + self.avatarUrl} className="rounded-full w-20 h-20 m-auto" />
+        <div className="flex items-center justify-center w-24 h-24 rounded-full m-auto bg-gray-900">
+          <img src={ENDPOINT_IMAGES + self.avatarUrl} className="rounded-full w-20 h-20 m-auto bg-gray-800" />
+        </div>
         <div>
           <p className="text-xl">{self.username}</p>
           <p className="text-gray-400 text-lg">{self.displayName}</p>

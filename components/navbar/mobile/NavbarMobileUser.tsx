@@ -10,7 +10,7 @@ type NavbarMobileUserProps = {
 export const NavbarMobileUser: FunctionComponent<NavbarMobileUserProps> = ({ self }) => {
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-center w-36 h-36 rounded-full m-auto bg-gradient-to-br from-purple-400 to-pink-400">
+      <div className="flex items-center justify-center w-36 h-36 rounded-full m-auto bg-gray-200">
         <img src={ENDPOINT_IMAGES + self.avatarUrl} className="rounded-full w-32 h-32 m-auto bg-gray-100" />
       </div>
       <div className="bg-gray-200 rounded-2xl p-2 text-center">

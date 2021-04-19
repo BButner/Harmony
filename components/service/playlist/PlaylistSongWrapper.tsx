@@ -35,17 +35,17 @@ export const PlaylistSongWrapper: FunctionComponent<PlaylistSongWrapperProps> = 
   }
 
   if (songs.isError || songs.isLoading) {
-    return <div className="w-screen md:w-auto h-screen flex items-center justify-center md:w-playlistlist"><LoadingIcon /></div>
+    return <div className="w-screen lg:w-auto h-screen flex items-center justify-center lg:w-playlistlist"><LoadingIcon /></div>
   } else if (songs.data) {
     return (
       <motion.ul
-        className="max-h-screen w-screen md:w-auto overflow-y-auto md:flex md:flex-wrap overflow-x-hidden justify-around items-start md:w-playlistlist"
+        className="max-h-screen w-screen lg:w-auto overflow-y-auto lg:flex lg:flex-wrap overflow-x-hidden justify-around items-start lg:w-playlistlist"
         variants={variants}
         initial="hidden"
         animate="visible"
       >
         {/* Playlist Header */}
-        <motion.li className="w-screen md:w-full relative mb-2 md:m-4 md:rounded-xl overflow-hidden flex items-center bg-gray-200 space-x-4">
+        <motion.li className="w-screen lg:w-full relative mb-2 lg:m-4 lg:rounded-xl overflow-hidden flex items-center bg-gray-200 space-x-4">
           <img src={context.selectedPlaylist.imageHref} className="w-40 h-40" />
           <div className="space-y-2">
             <p className="text-3xl">{context.selectedPlaylist.name}</p>

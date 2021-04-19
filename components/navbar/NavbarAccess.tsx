@@ -12,7 +12,7 @@ export const NavbarAccess: FunctionComponent = () => {
 
   if (self.isLoading || self.isError || !self.data) {
     return (
-      <div className="hidden md:block md:w-full space-y-2 relative">
+      <div className="hidden lg:block lg:w-full space-y-2 relative">
         <button
           className={`w-full ${styles['access-button']}`}
           onClick={(): void => setLoginButtonsVisible(!loginButtonsVisible)}

@@ -20,7 +20,7 @@ export const Modal: FunctionComponent<ModalProps> = (props) => {
         onClose={(): void => props.setVisible(false)}
       >
         <div className="fixed z-50 bottom-0 overflow-y-hidden">
-          <div className="md:flex md:items-center md:justify-center h-screen w-screen">
+          <div className="lg:flex lg:items-center lg:justify-center h-screen w-screen">
             <Dialog.Overlay className="fixed inset-0 w-screen h-screen opacity-90">
               <Transition.Child
                 className="fixed w-screen h-screen inset-0 bg-gray-900"
@@ -33,18 +33,18 @@ export const Modal: FunctionComponent<ModalProps> = (props) => {
               />
             </Dialog.Overlay>
             <Transition.Child
-              className="fixed bottom-0 left-0 w-screen md:w-auto bg-white rounded-t-2xl md:rounded-2xl p-4 z-50"
+              className="fixed bottom-0 left-0 w-screen lg:w-auto bg-white rounded-t-2xl lg:rounded-2xl p-4 z-50"
               enter="transition duration-200 transform"
-              enterFrom="translate-y-full md:translate-y-0 md:opacity-0"
-              enterTo="translate-y-0 md:opacity-100"
+              enterFrom="translate-y-full lg:translate-y-0 lg:opacity-0"
+              enterTo="translate-y-0 lg:opacity-100"
               leave="transition duration-200 transform"
-              leaveFrom="translate-y-0 md:opacity-100"
-              leaveTo="translate-y-full md:opacity-0 md:translate-y-0"
+              leaveFrom="translate-y-0 lg:opacity-100"
+              leaveTo="translate-y-full lg:opacity-0 lg:translate-y-0"
             >
-              <Dialog.Title className="text-center md:text-left text-2xl">
+              <Dialog.Title className="text-center lg:text-left text-2xl">
                 {props.title}
               </Dialog.Title>
-              <Dialog.Description className="text-center md:text-left text-lg text-gray-700 mb-8">
+              <Dialog.Description className="text-center lg:text-left text-lg text-gray-700 mb-8">
                 {props.description}
               </Dialog.Description>
 

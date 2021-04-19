@@ -1,11 +1,11 @@
 .song-wrapper {
   @apply h-20;
   @apply w-screen;
-  @apply md:w-96;
+  @apply lg:w-96;
   @apply mb-1;
-  @apply md:m-2;
-  @apply md:rounded-xl;
-  @apply md:shadow-lg;
+  @apply lg:m-2;
+  @apply lg:rounded-xl;
+  @apply lg:shadow-lg;
   @apply overflow-hidden;
   @apply flex;
   @apply items-center;
